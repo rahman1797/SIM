@@ -28,6 +28,7 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url('assets/css/themes/all-themes.css')?>" rel="stylesheet" />
+
 </head>
 
 <body class="theme-red">
@@ -68,7 +69,17 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <div class="navbar-brand">Sistem Informasi Manajemen OPMAWA</div>
+                <div class="navbar-brand">Sistem Informasi Manajemen OPMAWA</div> 
+
+<!-- 
+                <?php echo print_r($_SESSION); ?>
+
+                <?php
+        if (!isset($_SESSION['logged_in'])) {
+            redirect(base_url('Login_C'));
+        }
+     ?> -->
+
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
