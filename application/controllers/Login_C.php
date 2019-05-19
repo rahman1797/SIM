@@ -19,7 +19,6 @@ class Login_C extends CI_Controller {
         $where = array(
             'user_NIM' => $NIM,
             'user_pass' => $pass
-
             );
 
         $cek2 = $this->M_user->cekLogin("user_tbl",$where);
@@ -45,8 +44,13 @@ class Login_C extends CI_Controller {
                         </script>";
             }
 
-        echo "sukses";
+        // echo "sukses";
         }
         //**controller cek akun
+
+        public function exeLogout() {
+            $this->session->sess_destroy();
+            $this->load->view('login');
+        }
 
     }

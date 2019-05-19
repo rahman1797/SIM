@@ -25,10 +25,12 @@
         <div class="logo">
             <a href="javascript:void(0);">Admin<b>BSB</b></a>
             <small>Admin BootStrap Based - Material Design</small>
+
+            <?PHP print_r($_SESSION); ?>
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST" action="<?php echo base_url('Login_C/exeLogin') ?>" name="loginForm">
+                <form id="sign_in" method="POST" onsubmit="return Login()" name="loginForm">
                     <div class="msg">Sign in to start your session</div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -80,15 +82,15 @@
 
   function Login()
   {
-   var NIM=$("#user_NIM").val();
-   var pass=$("#user_pass").val();
+   var user_NIM=$("#user_NIM").val();
+   var user_pass=$("#user_pass").val();
    
-   if(NIM!="" && pass!="")
+   if(user_NIM!="" && user_pass!="")
    { 
       $.ajax
       ({
         type:'post',
-        url:"<?php echo base_url('LOGIN/exeLogin') ?>",
+        url:"<?php echo base_url('Login_C/exeLogin') ?>",
         data:{user_NIM:user_NIM, user_pass:user_pass
       },
       
@@ -97,11 +99,11 @@
         {
           swal({
           title: "Sukses!",
-            text: "Selamat Datang di SpotOn!",
+            text: "Selamat Datang di SIM OPMAWA!",
             icon: "success",
             button: "Lanjutkan!"
           }).then(function() {
-              window.location = "../beranda";
+              window.location = "Main_C";
           });
           
         }

@@ -22,7 +22,7 @@ class Main_C extends CI_Controller {
 	//controller default
 	public function index()
 	{	
-		$this->session->sess_destroy();
+
 		$this->load->view('layout/header');
 		$this->load->view('beranda');
 		$this->load->view('layout/footer');

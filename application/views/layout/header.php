@@ -71,14 +71,36 @@
                 <a href="javascript:void(0);" class="bars"></a>
                 <div class="navbar-brand">Sistem Informasi Manajemen OPMAWA</div> 
 
-<!-- 
+
+
+
+
+
+
+
+
+
                 <?php echo print_r($_SESSION); ?>
 
                 <?php
         if (!isset($_SESSION['logged_in'])) {
-            redirect(base_url('Login_C'));
+            echo "<script>
+                alert('login dulu');
+                
+            </script>";
+            
         }
-     ?> -->
+     ?> 
+
+
+
+
+
+
+
+
+
+
 
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -225,7 +247,7 @@
                            <!--  <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
                             <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li> -->
                             <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
+                            <li><a href="<?php echo base_url('Login_C/exeLogout') ?>"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
                     </div>
                 </div>
