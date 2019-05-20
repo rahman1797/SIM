@@ -39,6 +39,7 @@
 
     <!-- Demo Js -->
     <script src="<?php echo base_url('assets/js/demo.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/canvasjs.min.js')?>"></script>
 </body>
 
 </html>

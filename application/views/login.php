@@ -23,15 +23,17 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">Admin<b>BSB</b></a>
-            <small>Admin BootStrap Based - Material Design</small>
+            <a href="javascript:void(0);">Login <b>SIM</b></a>
+            <small>Sistem Informasi Manajemen OPMAWA FMIPA</small>
 
-            <?PHP print_r($_SESSION); ?>
+            <!-- <?PHP print_r($_SESSION); ?> -->
+
+
         </div>
         <div class="card">
             <div class="body">
                 <form id="sign_in" method="POST" onsubmit="return Login()" name="loginForm">
-                    <div class="msg">Sign in to start your session</div>
+                    
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
@@ -50,7 +52,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                            <button class="btn btn-block bg-pink waves-effect" type="submit">MASUK</button>
                         </div>
                     </div>
                 </form>
@@ -82,16 +84,18 @@
 
   function Login()
   {
-   var user_NIM=$("#user_NIM").val();
-   var user_pass=$("#user_pass").val();
+   var NIM=$("#user_NIM").val();
+   var pass=$("#user_pass").val();
    
-   if(user_NIM!="" && user_pass!="")
+   if(NIM!="" && pass!="")
    { 
       $.ajax
       ({
         type:'post',
         url:"<?php echo base_url('Login_C/exeLogin') ?>",
-        data:{user_NIM:user_NIM, user_pass:user_pass
+        data:{
+          user_NIM:NIM, 
+          user_pass:pass
       },
       
       success:function(response) {
@@ -115,11 +119,6 @@
         
         }
       });
-   }
-   
-   else
-   {
-    swal ( "Maaf" ,  "NIM/password harus diisi" ,  "error" );
    }
 
    return false;

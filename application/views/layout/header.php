@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>SIM OPMAWA</title>
+
+    <link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" type="image/x-icon">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -79,15 +81,12 @@
 
 
 
-
+<!-- 
                 <?php echo print_r($_SESSION); ?>
-
+ -->
                 <?php
         if (!isset($_SESSION['logged_in'])) {
-            echo "<script>
-                alert('login dulu');
-                
-            </script>";
+            Redirect(base_url('Login_C'));
             
         }
      ?> 
