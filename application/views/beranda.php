@@ -175,9 +175,7 @@ window.onload = function () {
 
 var chart = new CanvasJS.Chart("chartContainer", {
     animationEnabled: true,
-    title:{
-        text: "Crude Oil Reserves vs Production, 2016"
-    },  
+      
     axisY: {
         title: "Rupiah (Rp)",
         titleFontColor: "#4F81BC",
@@ -185,47 +183,32 @@ var chart = new CanvasJS.Chart("chartContainer", {
         labelFontColor: "#4F81BC",
         tickColor: "#4F81BC"
     },
-    axisY2: {
-        title: "Millions of Barrels/day",
-        titleFontColor: "#C0504E",
-        lineColor: "#C0504E",
-        labelFontColor: "#C0504E",
-        tickColor: "#C0504E"
-    },  
+     
     toolTip: {
         shared: true
     },
     legend: {
-        cursor:"pointer",
-        itemclick: toggleDataSeries
+        position: "top"
+
     },
     data: [{
         type: "column",
-        name: "Proven Oil Reserves (bn)",
-        legendText: "Proven Oil Reserves",
-        showInLegend: true, 
+        name: "Pemasukkan",         
         dataPoints:[
-            { label: "Saudi", y: 266.21 },
-            { label: "Venezuela", y: 302.25 },
-            { label: "Iran", y: 157.20 },
-            { label: "Iraq", y: 148.77 },
-            { label: "Kuwait", y: 101.50 },
-            { label: "UAE", y: 97.8 }
+            { label: "Proker 1", y: 200000 },
+            { label: "Proker 2", y: 150000 },
+            { label: "Proker 3", y: 125000 },
+            { label: "Proker 4", y: 900000 },
         ]
     },
     {
         type: "column", 
-        name: "Oil Production (million/day)",
-        legendText: "Oil Production",
-        axisYType: "secondary",
-        showInLegend: true,
+        name: "Pengeluaran",
         dataPoints:[
-            { label: "Saudi", y: 10.46 },
-            { label: "Venezuela", y: 2.27 },
-            { label: "Iran", y: 3.99 },
-            { label: "Iraq", y: 4.45 },
-            { label: "Kuwait", y: 2.92 },
-            { label: "UAE", y: 3.1 }
+            { label: "Proker 1", y: 210000 },
+            { label: "Proker 2", y: 100000 },
+            { label: "Proker 3", y: 125000 },
+            { label: "Proker 4", y: 500000 },
         ]
     }]
 });
