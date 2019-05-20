@@ -134,22 +134,10 @@
                 <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>BAR CHART</h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <h2>Grafik Keuangan</h2>
                         </div>
                         <div class="body">
-                            <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+                            <div id="chartContainer" style="height: 300px; max-width: 800px; margin: 0px auto;"></div>
                         </div>
                     </div>
                 </div>
@@ -179,26 +167,20 @@ var chart = new CanvasJS.Chart("chartContainer", {
     axisY: {
         title: "Rupiah (Rp)",
         titleFontColor: "#4F81BC",
-        lineColor: "#4F81BC",
-        labelFontColor: "#4F81BC",
-        tickColor: "#4F81BC"
     },
      
     toolTip: {
         shared: true
     },
-    legend: {
-        position: "top"
 
-    },
     data: [{
         type: "column",
         name: "Pemasukkan",         
         dataPoints:[
             { label: "Proker 1", y: 200000 },
-            { label: "Proker 2", y: 150000 },
+            { label: "Pro2", y: 150000 },
             { label: "Proker 3", y: 125000 },
-            { label: "Proker 4", y: 900000 },
+            { label: "Prok", y: 210000 },
         ]
     },
     {
@@ -208,21 +190,11 @@ var chart = new CanvasJS.Chart("chartContainer", {
             { label: "Proker 1", y: 210000 },
             { label: "Proker 2", y: 100000 },
             { label: "Proker 3", y: 125000 },
-            { label: "Proker 4", y: 500000 },
+            { label: "Proker 5", y: 300000 },
         ]
     }]
 });
 chart.render();
-
-function toggleDataSeries(e) {
-    if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-        e.dataSeries.visible = false;
-    }
-    else {
-        e.dataSeries.visible = true;
-    }
-    chart.render();
-}
 
 }
 </script>
