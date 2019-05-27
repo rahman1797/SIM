@@ -1,11 +1,3 @@
-      <!-- CSS FOR THIS PAGE ONLY -->
-      <style type="text/css">
-          #round {
-            border-radius: 15px;
-          }
-      </style>
-
-
       <section class="content">
         <div class="container-fluid">
         

@@ -4,7 +4,7 @@
             <!-- Widgets -->
             <div class="row clearfix">
                 <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-pink hover-expand-effect">
+                    <div class="info-box bg-pink hover-expand-effect" id="round">
                         <div class="icon">
                             <i class="material-icons">playlist_add_check</i>
                         </div>
@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-green hover-expand-effect">
+                    <div class="info-box bg-light-green hover-expand-effect" id="round">
                         <div class="icon">
                             <i class="material-icons">forum</i>
                         </div>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-orange hover-expand-effect">
+                    <div class="info-box bg-orange hover-expand-effect" id="round">
                         <div class="icon">
                             <i class="material-icons"></i>
                         </div>
@@ -43,7 +43,7 @@
                
                 <!-- INFO STATUS PROKER -->
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <div class="card">
+                    <div class="card" id="round">
                         <div class="header">
                             <h2>INFO PROGRAM KERJA</h2>
                         </div>
@@ -132,7 +132,7 @@
 
                   <!-- Bar Chart -->
                 <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
-                    <div class="card">
+                    <div class="card" id="round">
                         <div class="header">
                             <h2>Grafik Keuangan</h2>
                         </div>
