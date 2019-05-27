@@ -22,8 +22,9 @@
     <!-- Animation Css -->
     <link href="<?php echo base_url('assets/plugins/animate-css/animate.css')?>" rel="stylesheet" />
 
-    <!-- Morris Chart Css-->
-    <link href="<?php echo base_url('assets/plugins/morrisjs/morris.css')?>" rel="stylesheet" />
+
+   <!-- JQuery DataTable Css -->
+    <link href="<?php echo base_url('assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')?>" rel="stylesheet">
 
     <!-- Custom Css -->
     <link href="<?php echo base_url('assets/css/style.css')?>" rel="stylesheet">
@@ -257,13 +258,13 @@
                 <ul class="list">
                     <li class="header">NAVIGASI UTAMA</li>
                     <li class="active">
-                        <a href="#">
+                        <a href="<?php echo base_url('Main_C') ?>">
                             <i class="material-icons">home</i>
                             <span>Beranda</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo base_url('User_C/index') ?>">
                             <i class="material-icons">group</i>
                             <span>Daftar Anggota</span>
                         </a>
