@@ -26,7 +26,9 @@
     <!-- Custom Js -->
     <script src="<?php echo base_url('assets/js/admin.js')?>"></script>
     <script src="<?php echo base_url('assets/js/pages/tables/jquery-datatable.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/pages/ui/modals.js')?>"></script>
     <script src="<?php echo base_url('assets/js/pages/index.js')?>"></script>
+
     
 
     <!-- Demo Js -->
