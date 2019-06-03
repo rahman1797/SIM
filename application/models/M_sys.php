@@ -10,4 +10,8 @@ class M_sys extends CI_Model{
 		return $this->db->get_where('posisi_tbl');
 	}
 
+	function inputProdi($data) {
+		$this->db->insert('prodi_tbl', $data);
+	}
+
 }

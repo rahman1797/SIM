@@ -27,4 +27,25 @@ class Main_C extends CI_Controller {
 	}
 	//**controller default
 
+	public function addProdi(){
+		$nama = $this->input->post('nama_prodi');
+		$data = array(
+			'prodi_nama' => $nama
+		);
+		$this->M_sys->inputProdi($data);
+
+	}
+
+	// public function addPosisi(){
+		
+	// }
+
+	// public function delProdi(){
+		
+	// }
+
+	// public function delProdi(){
+		
+	// }
+
 }

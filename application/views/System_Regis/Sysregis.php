@@ -7,7 +7,7 @@
                     <div class="card" id="round">
                         <div class="header" align="center">
                             
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#defaultModal" id="round">Tambah Prodi</button>  
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProdi" id="round">Tambah Prodi</button>  
                         </div>
                         
                         <div class="body">
@@ -47,6 +47,8 @@
                 </div>
             </div> 
 
+             <button id="MyButton">MYBUTTON</button>
+
             <!-- #END# Tabel Prodi -->
 
             <!-- Tabel Posisi -->
@@ -55,7 +57,7 @@
                     <div class="card" id="round">
                         <div class="header" align="center">
                             
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#defaultModal" id="round">Tambah Prodi</button>  
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalPosisi" id="round">Tambah Posisi</button>  
                         </div>
                         
                         <div class="body">
@@ -105,6 +107,9 @@
                 </div>
             </div> 
 
+
+           
+
             <!-- #END# Tabel Posisi -->
         </div>
     </section>
@@ -113,22 +118,43 @@
 
 
 
- <!-- Default Size -->
-            <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+ <!-- Modal Prodi -->
+            <div class="modal fade" id="ModalProdi" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" id="round">
+                        <center>
+                        <div class="modal-body">
+                            <!-- Form Prodi -->
+                          
+                                <form id="form_validation" class="formProdi" method="POST" style="margin: 20px" onsubmit="return submitProdi()">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="nama_prodi" id="nama_prodi" required>
+                                            <label class="form-label">Masukkan Program Studi Baru</label>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary waves-effect btn-lg simpanProdi" type="submit" id="round">Simpan</button>
+                                </form>
+                                     
+                            <!-- #END# Form Prodi -->
+                        </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+
+ <!-- Modal Posisi -->
+            <div class="modal fade" id="ModalPosisi" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
                         </div>
                         <div class="modal-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
-                            vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-                            Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-                            nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-                            Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                            INI MODAL POSISI
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
                             <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
                         </div>
                     </div>
@@ -136,3 +162,24 @@
             </div>
 
 
+
+
+<script type="text/javascript">
+    
+    function submitProdi() {
+         var data = $('.formProdi').serialize();
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo base_url('Main_C/addProdi') ?>",
+                data: data,
+                success: function() {
+                    swal({
+                      title: "Sukses!",
+                        text: "Selamat Datang di SIM OPMAWA!",
+                        icon: "success",
+                      })
+                    }
+                })
+            };
+
+    </script>
