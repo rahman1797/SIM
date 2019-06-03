@@ -45,7 +45,6 @@ class Login_C extends CI_Controller {
                         </script>";
             }
 
-        // echo "sukses";
         }
         //**controller cek akun
 

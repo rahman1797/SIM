@@ -87,6 +87,13 @@
                     if (!isset($_SESSION['logged_in'])) {
                         Redirect(base_url('Login_C'));
                     }
+                    if ($_SESSION['user_role'] == 1) {
+                        echo 'Eksekutif';
+                    }
+                    else {
+                        echo 'Legislatif';   
+                    }
+                    
                 ?> 
 
 
@@ -295,7 +302,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo base_url('Main_C/Sysregis') ?>">
                             <i class="material-icons">settings</i>
                             <span>Registrasi Sistem</span>
                         </a>

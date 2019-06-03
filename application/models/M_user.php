@@ -17,4 +17,11 @@ class M_user extends CI_Model{
         return $query->result_array();
 	}
 
+	public function getPosisi($id_posisi){
+        
+        $query = $this->db->get_where('posisi_tbl', array('posisi_ID' => $id_posisi));
+
+        return $query->result_array();
+	}
+
 }
