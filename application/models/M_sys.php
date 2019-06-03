@@ -14,4 +14,16 @@ class M_sys extends CI_Model{
 		$this->db->insert('prodi_tbl', $data);
 	}
 
+	function inputPosisi($data) {
+		$this->db->insert('posisi_tbl', $data);
+	}
+
+	function deleteProdi($data) {
+		$this->db->delete('prodi_tbl', $data);
+	}
+
+	function deletePosisi($data) {
+		$this->db->delete('posisi_tbl', $data);
+	}
+
 }

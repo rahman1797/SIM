@@ -36,14 +36,25 @@ class Main_C extends CI_Controller {
 
 	}
 
-	// public function addPosisi(){
-		
-	// }
+	public function addPosisi(){
+		$namaPosisi = $this->input->post('nama_posisi');
+		$namaLembaga = $this->input->post('nama_lembaga');
+		$data = array(
+			'posisi_nama' => $namaPosisi,
+			'posisi_lembaga' => $namaLembaga
+		);
+		$this->M_sys->inputPosisi($data);		
+	}
 
-	// public function delProdi(){
-		
-	// }
+	public function delProdi($id){
+		$idPro = array('prodi_ID' => $id);
+		$this->M_sys->deleteProdi($idPro,'prodi_tbl');
+	}
 
+	public function delPosisi($id){
+		$idPos = array('posisi_ID' => $id);
+		$this->M_sys->deletePosisi($idPos,'posisi_tbl');
+	}
 	// public function delProdi(){
 		
 	// }
