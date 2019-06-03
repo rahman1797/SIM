@@ -47,7 +47,9 @@
                 </div>
             </div> 
 
-             <button id="MyButton">MYBUTTON</button>
+            <div class="alert alert-success">
+              <strong>Success!</strong> Indicates a successful or positive action.
+            </div>
 
             <!-- #END# Tabel Prodi -->
 
@@ -165,21 +167,18 @@
 
 
 <script type="text/javascript">
-    
     function submitProdi() {
+
          var data = $('.formProdi').serialize();
             $.ajax({
                 type: 'POST',
                 url: "<?php echo base_url('Main_C/addProdi') ?>",
                 data: data,
                 success: function() {
-                    swal({
-                      title: "Sukses!",
-                        text: "Selamat Datang di SIM OPMAWA!",
-                        icon: "success",
-                      })
-                    }
-                })
-            };
+                    alert("Sukses");
+                }
+            });
+            
+        }
 
     </script>
