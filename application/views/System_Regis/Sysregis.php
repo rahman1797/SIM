@@ -6,7 +6,10 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                         <div class="header" align="center">
-                            
+                            <div class="alert alert-warning" id="round">
+                              <strong>Informasi!</strong> Menghapus salah satu prodi, maka seluruh user yang merupakan prodi tersebut akan otomatis terhapus.
+                            </div>
+
                             <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProdi" id="round">Tambah Prodi</button>  
                         </div>
                         
@@ -74,6 +77,7 @@
                                             <th>No</th>
                                             <th>Posisi Terdaftar</th>
                                             <th>Lembaga</th>
+                                            <th>Kelola</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -81,6 +85,7 @@
                                             <th>No</th>
                                             <th>Posisi Terdaftar</th>
                                             <th>Lembaga</th>
+                                            <th>Kelola</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -102,6 +107,9 @@
                                                         echo "Legislatif";
                                                     } ?>
                                                  </td>
+                                                 <td>
+                                                    <a href="<?php echo site_url();?>/Main_C/delPosisi/<?php print($dt_pos->posisi_ID);?>"><button class="btn btn-danger" onclick="return delConfirm()">Delete</button></a>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                         
