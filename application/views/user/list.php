@@ -8,12 +8,12 @@
                         <div class="header" align="center">
                             <h2><strong>DAFTAR ANGGOTA OPMAWA</strong></h2>
                             <p></p>
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#defaultModal" id="round">Tambah Anggota</button>  
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalAnggota" id="round">Tambah Anggota</button>  
                         </div>
                         
                         <div class="body">
                             <div class="table-responsive">
-                                <table id="round" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <table id="refAng" class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
@@ -76,26 +76,105 @@
 
 
 
- <!-- Default Size -->
-            <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+ <!-- Modal Tambah Anggota -->
+            <div class="modal fade" id="ModalAnggota" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
-                        </div>
+                    <div class="modal-content" id="round">
+                       <center>
                         <div class="modal-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
-                            vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-                            Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-                            nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-                            Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                              <!-- Form Angggota -->
+                          
+                                <form id="form_validation" class="formAnggota" method="POST" style="margin: 20px" onsubmit="return submitAnggota()">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="user_nama" id="user_nama" required>
+                                            <input type="hidden" value="<?php echo $_SESSION['user_role'] ?>" name="nama_lembaga" id="nama_lembaga" required>
+                                            <label class="form-label">Nama Lengkap</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="user_NIM" id="user_NIM" required>
+                                            <label class="form-label">Nomor Induk Mahasiswa</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="Password" class="form-control" name="user_pass" id="user_pass" required>
+                                            <label class="form-label">Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="checkbox" name="checkbox">
+                                        <label for="checkbox">Tampilkan password</label>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="Password" class="form-control" name="user_pass_check" id="user_pass_check" required>
+                                            <label class="form-label">Validasi Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <select class="form-control show-tick">
+                                                <option value="">-- Prodi --</option>
+                                                <option value="10">10</option>
+                                                <option value="20">20</option>
+                                                <option value="30">30</option>
+                                                <option value="40">40</option>
+                                                <option value="50">50</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <select class="form-control show-tick">
+                                                <option value="">-- Posisi --</option>
+                                                <option value="10">10</option>
+                                                <option value="20">20</option>
+                                                <option value="30">30</option>
+                                                <option value="40">40</option>
+                                                <option value="50">50</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="user_tahun" value="<?php echo $_SESSION['user_role'] ?>">
+                                    <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                                </form>
+
+                            <!-- #END# Form Anggota -->
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                        </div>
+                        </center>
                     </div>
                 </div>
             </div>
 
 
+
+
+
+<script type="text/javascript">
+     function submitPosisi() {
+
+         var data = $('.formAnggota').serialize();
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo base_url('Main_C/addAnggota') ?>",
+                data: data,
+                success: function() {
+                    Swal.fire({
+                      position: 'top-end',
+                      type: 'success',
+                      title: 'Berhasil menambah Anggota',
+                      showConfirmButton: false,
+                      timer: 1500
+                    }).then(function(){
+                        $('#refAng').load(document.URL +  ' #refAng');
+                    })
+                       
+                }
+            });
+            return false;
+            
+        }
+</script>

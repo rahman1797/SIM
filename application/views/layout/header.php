@@ -17,6 +17,9 @@
     <!-- Bootstrap Core Css -->
     <link href="<?php echo base_url('assets/plugins/bootstrap/css/bootstrap.css')?>" rel="stylesheet">
 
+    <!-- Bootstrap Select Css -->
+    <link href="<?php echo base_url('assets/plugins/bootstrap-select/css/bootstrap-select.css')?>" rel="stylesheet" />
+
     <!-- Waves Effect Css -->
     <link href="<?php echo base_url('assets/plugins/node-waves/waves.css')?>" rel="stylesheet" />
 
