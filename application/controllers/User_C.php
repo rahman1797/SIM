@@ -42,6 +42,13 @@ class User_C extends CI_Controller {
 		$this->M_user->inputAnggota($data);
 	}
 
+	public function delAnggota($id)
+	{
+		$idUser = array('user_ID' => $id);
+		$this->M_user->deleteAnggota($idUser,'user_tbl');
+		redirect(base_url('User_C/index'));
+	}
+
 	
 	//**controller default
 

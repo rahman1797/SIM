@@ -13,7 +13,7 @@
                         
                         <div class="body">
                             <div class="table-responsive">
-                                <table id="refAng" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <table id="refAng" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
@@ -22,6 +22,7 @@
                                             <th>Posisi</th>
                                             <th>Tahun</th>
                                             <th>Lembaga</th>
+                                            <th>Kelola</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -32,6 +33,7 @@
                                             <th>Posisi</th>
                                             <th>Tahun</th>
                                             <th>Lembaga</th>
+                                            <th>Kelola</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -57,6 +59,9 @@
                                                                 echo "Legislatif";
                                                             }
                                                  ?></td>
+                                                 <td>
+                                                    <a href="<?php echo site_url();?>/User_C/delAnggota/<?php print($u->user_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                         
@@ -86,7 +91,7 @@
                           <div class="alert alert-warning" id="round">
                               <strong>Informasi!</strong> Tahun kepengurusan dan lembaga akan menyesuaikan dengan ketua/ sekretaris yang meng-input.
                             </div>
-                                <form id="form_validation" class="formAnggota" method="POST" style="margin: 20px" onsubmit="return submitAnggota()">
+                                <form id="form_validation" name="formAnggota" class="formAnggota" method="POST" style="margin: 20px" onsubmit="return submitAnggota()">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="user_nama" id="user_nama" required>
@@ -156,25 +161,38 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
+
      function submitAnggota() {
+
          var data = $('.formAnggota').serialize();
-            $.ajax({
-                type: 'POST',
-                data: data,
-                url: "<?php echo base_url('User_C/addAnggota') ?>",
-                success: function() {
-                    Swal.fire({
-                      position: 'top-end',
-                      type: 'success',
-                      title: 'Berhasil menambah Anggota',
-                      showConfirmButton: false,
-                      timer: 1500
-                    }).then(function(){
-                        $('#refAng').load(document.URL +  ' #refAng');
-                    })
-                       
-                }
-            });
+         var pass = document.formAnggota.user_pass.value;  
+         var pass_check = document.formAnggota.user_pass_check.value;  
+        
+             if(pass == pass_check){            
+                $.ajax({
+                    type: 'POST',
+                    data: data,
+                    url: "<?php echo base_url('User_C/addAnggota') ?>",
+                    success: function() {
+                        Swal.fire({
+                          position: 'top-end',
+                          type: 'success',
+                          title: 'Berhasil menambah Anggota',
+                          showConfirmButton: false,
+                          timer: 1500
+                        }).then(function(){
+                            $('#refAng').load(document.URL +  ' #refAng');
+                        })     
+                    }
+                });
+             }  
+        
+            else
+            {  
+                alert("Password harus sama!");  
+                return false;  
+            }
+            
             return false;
         }
 
@@ -186,4 +204,15 @@
                 x.type = "password";
               }
         }
+
+         function delConfirm()
+            {
+                job = confirm("Are you sure to delete permanently?");
+                
+                if(job != true)
+                {
+                    return false;
+                }
+            }
+
 </script>

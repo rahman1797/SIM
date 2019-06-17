@@ -15,7 +15,7 @@
                         
                         <div class="body">
                             <div class="table-responsive">
-                                <table id="refPro" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <table id="refPro" class="table table-bordered table-striped table-hover js-basic-example dataTable" style="border-radius: 12px"    >
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -42,7 +42,7 @@
                                                 <td><?php echo $no++ ?></td>
                                                 <td><?php echo $dt_pro->prodi_nama ?></td>
                                                 <td>
-                                                    <a href="<?php echo site_url();?>/Main_C/delProdi/<?php print($dt_pro->prodi_ID);?>"><button class="btn btn-danger" onclick="return delConfirm()">Delete</button></a>
+                                                    <a href="<?php echo site_url();?>/Main_C/delProdi/<?php print($dt_pro->prodi_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -71,7 +71,7 @@
                         
                         <div class="body refresh">
                             <div class="table-responsive">
-                                <table id="refPos" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <table id="refPos" class="table table-bordered table-striped table-hover js-basic-example dataTable" style="border-radius: 12px">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -108,7 +108,7 @@
                                                     } ?>
                                                  </td>
                                                  <td>
-                                                    <a href="<?php echo site_url();?>/Main_C/delPosisi/<?php print($dt_pos->posisi_ID);?>"><button class="btn btn-danger" onclick="return delConfirm()">Delete</button></a>
+                                                    <a href="<?php echo site_url();?>/Main_C/delPosisi/<?php print($dt_pos->posisi_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

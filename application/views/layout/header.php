@@ -40,6 +40,10 @@
       #round {
         border-radius: 12px;
       }
+
+      .round_edge {
+        border-radius: 12px; 
+      }
     </style>
 
 

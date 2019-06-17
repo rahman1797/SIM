@@ -29,4 +29,8 @@ class M_user extends CI_Model{
 		$this->db->insert('user_tbl', $data);
 	}
 
+	function deleteAnggota($data) {
+		$this->db->delete('user_tbl', $data);
+	}
+
 }
