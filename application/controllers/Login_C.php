@@ -32,7 +32,7 @@ class Login_C extends CI_Controller {
                 $sess_data['user_nama'] = $sess->user_nama;
                 $sess_data['user_role'] = $sess->user_role;
                 $sess_data['user_prodi'] = $sess->user_prodi;
-                $sess_data['user_tahun'] = $sess->user_prodi;
+                $sess_data['user_tahun'] = $sess->user_tahun;
                 $sess_data['user_posisi'] = $sess->user_posisi;
             }
                 $this->session->set_userdata($sess_data);

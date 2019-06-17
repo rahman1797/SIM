@@ -83,12 +83,13 @@
                        <center>
                         <div class="modal-body">
                               <!-- Form Angggota -->
-                          
+                          <div class="alert alert-warning" id="round">
+                              <strong>Informasi!</strong> Tahun kepengurusan dan lembaga akan menyesuaikan dengan ketua/ sekretaris yang meng-input.
+                            </div>
                                 <form id="form_validation" class="formAnggota" method="POST" style="margin: 20px" onsubmit="return submitAnggota()">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="user_nama" id="user_nama" required>
-                                            <input type="hidden" value="<?php echo $_SESSION['user_role'] ?>" name="nama_lembaga" id="nama_lembaga" required>
                                             <label class="form-label">Nama Lengkap</label>
                                         </div>
                                     </div>
@@ -105,7 +106,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="checkbox" id="checkbox" name="checkbox">
+                                        <input type="checkbox" id="checkbox" name="checkbox" onclick="lihatPass()">
                                         <label for="checkbox">Tampilkan password</label>
                                     </div>
                                     <div class="form-group form-float">
@@ -116,29 +117,30 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick">
+                                            <select class="form-control show-tick" name="user_prodi">
                                                 <option value="">-- Prodi --</option>
-                                                <option value="10">10</option>
-                                                <option value="20">20</option>
-                                                <option value="30">30</option>
-                                                <option value="40">40</option>
-                                                <option value="50">50</option>
+                                                <?php 
+                                                    foreach ($prodi_data as $pd) {
+                                                        echo "<option value='$pd->prodi_ID'>".$pd->prodi_nama ."</option>";
+                                                    }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick">
+                                            <select class="form-control show-tick" name="user_posisi">
                                                 <option value="">-- Posisi --</option>
-                                                <option value="10">10</option>
-                                                <option value="20">20</option>
-                                                <option value="30">30</option>
-                                                <option value="40">40</option>
-                                                <option value="50">50</option>
+                                                <?php 
+                                                    foreach ($posisi_data as $pod) {
+                                                        echo "<option value='$pod->posisi_ID'>".$pod->posisi_nama ."</option>";
+                                                    }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="user_tahun" value="<?php echo $_SESSION['user_role'] ?>">
+                                    <input type="hidden" name="user_tahun" value="<?php echo $_SESSION['user_tahun'] ?>">
+                                     <input type="hidden" name="user_role" value="<?php echo $_SESSION['user_role'] ?>">
                                     <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
                                 </form>
 
@@ -151,16 +153,15 @@
 
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
-     function submitPosisi() {
-
+     function submitAnggota() {
          var data = $('.formAnggota').serialize();
             $.ajax({
                 type: 'POST',
-                url: "<?php echo base_url('Main_C/addAnggota') ?>",
                 data: data,
+                url: "<?php echo base_url('User_C/addAnggota') ?>",
                 success: function() {
                     Swal.fire({
                       position: 'top-end',
@@ -175,6 +176,14 @@
                 }
             });
             return false;
-            
+        }
+
+        function lihatPass(){
+            var x = document.getElementById("user_pass");
+              if (x.type === "password") {
+                x.type = "text";
+              } else {
+                x.type = "password";
+              }
         }
 </script>

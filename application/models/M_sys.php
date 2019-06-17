@@ -10,6 +10,10 @@ class M_sys extends CI_Model{
 		return $this->db->get_where('posisi_tbl');
 	}
 
+			function tampil_regis_posisi_byLembaga(){
+				return $this->db->get_where('posisi_tbl', array('posisi_lembaga' => $_SESSION['user_role'] ));
+			}
+
 	function inputProdi($data) {
 		$this->db->insert('prodi_tbl', $data);
 	}

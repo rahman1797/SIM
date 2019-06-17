@@ -92,9 +92,11 @@
                     }
                     if ($_SESSION['user_role'] == 1) {
                         echo 'Eksekutif';
+                        echo $_SESSION['user_tahun'];
                     }
                     else {
                         echo 'Legislatif';   
+                        echo $_SESSION['user_tahun'];
                     }
                     
                 ?> 

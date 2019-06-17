@@ -27,16 +27,17 @@ class Main_C extends CI_Controller {
 	}
 	//**controller default
 
-	public function addProdi(){
+	public function addProdi()
+	{
 		$nama = $this->input->post('nama_prodi');
 		$data = array(
 			'prodi_nama' => $nama
 		);
 		$this->M_sys->inputProdi($data);
-
 	}
 
-	public function addPosisi(){
+	public function addPosisi()
+	{
 		$namaPosisi = $this->input->post('nama_posisi');
 		$namaLembaga = $this->input->post('nama_lembaga');
 		$data = array(
@@ -46,13 +47,15 @@ class Main_C extends CI_Controller {
 		$this->M_sys->inputPosisi($data);		
 	}
 
-	public function delProdi($id){
+	public function delProdi($id)
+	{
 		$idPro = array('prodi_ID' => $id);
 		$this->M_sys->deleteProdi($idPro,'prodi_tbl');
 		redirect(base_url('Main_C/Sysregis'));
 	}
 
-	public function delPosisi($id){
+	public function delPosisi($id)
+	{
 		$idPos = array('posisi_ID' => $id);
 		$this->M_sys->deletePosisi($idPos,'posisi_tbl');
 		redirect(base_url('Main_C/Sysregis'));

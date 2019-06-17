@@ -24,4 +24,9 @@ class M_user extends CI_Model{
         return $query->result_array();
 	}
 
+	function inputAnggota($data) {
+		print_r($data);
+		$this->db->insert('user_tbl', $data);
+	}
+
 }
