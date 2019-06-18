@@ -59,6 +59,8 @@
                                                      <button class="btn btn-info">Panitia</button>
                                                      <button class="btn btn-info">To Do List</button>
                                                      <button class="btn btn-info">Edit</button>
+                                                     <button class="btn btn-info">Field Report</button>
+                                                     <button class="btn btn-info">Dokumen</button>
                                                      <button class="btn btn-danger">Hapus</button>
                                                  </td>
             
