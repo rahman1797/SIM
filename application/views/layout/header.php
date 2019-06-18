@@ -84,7 +84,7 @@
     <!-- Top Bar -->
     <nav class="navbar">
         <div class="container-fluid">
-            <div class="navbar-header">
+            <div class="navbar-header" style="margin-bottom: 0">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
                 <div class="navbar-brand">Sistem Informasi Manajemen OPMAWA</div> 
@@ -271,7 +271,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo base_url('Proker_C') ?>">
                             <i class="material-icons">list</i>
                             <span>Daftar Proker</span>
                         </a>
