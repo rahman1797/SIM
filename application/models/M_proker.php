@@ -6,6 +6,10 @@ class M_proker extends CI_Model{
 		return $this->db->get_where('proker_tbl');
 	}
 
+	function tampil_prokerDetail(){
+		return $this->db->get_where('proker_tbl', array('proker_ID' => $_GET['id_proker']));
+	}
+
 	function inputProker($data) {
 		$this->db->insert('proker_tbl', $data);
 	}

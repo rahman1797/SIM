@@ -17,6 +17,15 @@ class Proker_C extends CI_Controller {
 
 	}
 
+	public function prokerDetail()
+	{	
+		$data['proker_data'] = $this->M_proker->tampil_prokerDetail()->result();
+		$this->load->view('layout/header');
+		$this->load->view('proker/prokerDetail',$data);
+		$this->load->view('layout/footer');
+
+	}
+
 	
 
 }

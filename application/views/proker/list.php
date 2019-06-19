@@ -8,7 +8,7 @@
                         <div class="header" align="center">
                             <h2><strong>DAFTAR PROGRAM KERJA</strong></h2>
                             <p></p>
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalAnggota" id="round">Tambah Program Kerja</button>  
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProker" id="round">Tambah Program Kerja</button>  
                         </div>
                         
                         <div class="body">
@@ -40,6 +40,7 @@
                                        
                                             foreach($proker_data as $pd){ 
                                             $date = date_create($pd->proker_tanggal);
+                                            $id_proker = $pd->proker_ID
                                             ?>
                                             <tr>
                                                 <td><?php echo $pd->proker_nama ?></td>
@@ -56,12 +57,9 @@
                                                  <td><?php echo $pd->proker_tahun ?></td>
                                                  <td><?php echo $pd->proker_nilai ?></td>
                                                  <td>
-                                                     <button class="btn btn-info">Panitia</button>
-                                                     <button class="btn btn-info">To Do List</button>
-                                                     <button class="btn btn-info">Edit</button>
-                                                     <button class="btn btn-info">Field Report</button>
-                                                     <button class="btn btn-info">Dokumen</button>
-                                                     <button class="btn btn-danger">Hapus</button>
+                                                     <a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>">
+                                                        <button class="btn btn-info">Detail Proker</button>
+                                                    </a>
                                                  </td>
             
                                             </tr>
@@ -81,7 +79,40 @@
 
 
 
+<!-- Modal Tambah Anggota -->
+            <div class="modal fade" id="ModalProker" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" id="round">
+                       <center>
+                        <div class="modal-body">
+                              <!-- Form Angggota -->
+                          <div class="alert alert-warning" id="round">
+                              <strong>Informasi!</strong> Tahun periode kepengurusan dan lembaga akan menyesuaikan dengan ketua/ sekretaris yang meng-input.
+                            </div>
+                                <form id="form_validation" name="formProker" class="formProker" method="POST" style="margin: 20px" onsubmit="return submitProker()">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="proker_nama" id="Proker_nama" required>
+                                            <label class="form-label">Nama Proker</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="proker_tanggal" id="proker_tanggal" required>
+                                            <label class="form-label">Tanggal Pelaksanaan</label>
+                                        </div>
+                                    </div>
+                                     <input type="hidden" name="proker_tahun" value="<?php echo $_SESSION['user_tahun'] ?>">
+                                     <input type="hidden" name="proker_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
+                                    <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                                </form>
 
+                            <!-- #END# Form Anggota -->
+                        </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
