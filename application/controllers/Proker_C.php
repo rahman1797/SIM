@@ -38,8 +38,14 @@ class Proker_C extends CI_Controller {
 			'proker_tahun' => $tahunProker,
 			'proker_lembaga' => $lembagaProker
 		);
-		// print_r($_POST);
 		$this->M_proker->inputProker($data);
+	}
+
+	public function delProker($id)
+	{
+		$idProker = array('proker_ID' => $id);
+		$this->M_proker->deleteProker($idProker,'proker_tbl');
+		redirect(base_url('Proker_C/index'));
 	}
 
 	
