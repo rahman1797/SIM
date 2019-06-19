@@ -24,7 +24,16 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <?php 
-                                        echo "<strong>Penilaian Proker : </strong>" . $pd->proker_nilai;
+                                                
+                                      if ($pd->proker_nilai) 
+                                        {
+                                            echo "<strong>Penilaian Proker : </strong>" . $pd->proker_nilai;
+                                        }
+
+                                      else 
+                                        {
+                                            echo "<strong>Penilaian Proker : </strong>" . "Proker belum dinilai";
+                                        };
                                     ?>
                                 </div>
                                 <div class="col-lg-3">

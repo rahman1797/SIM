@@ -26,6 +26,11 @@
     <!-- Animation Css -->
     <link href="<?php echo base_url('assets/plugins/animate-css/animate.css')?>" rel="stylesheet" />
 
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="<?php echo base_url('assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')?>" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="<?php echo base_url('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css')?>" rel="stylesheet" />
 
    <!-- JQuery DataTable Css -->
     <link href="<?php echo base_url('assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')?>" rel="stylesheet">

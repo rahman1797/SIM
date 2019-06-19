@@ -13,7 +13,7 @@
                         
                         <div class="body">
                             <div class="table-responsive">
-                                <table id="refAng" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                                <table id="refProker" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
@@ -55,7 +55,16 @@
                                                             }
                                                  ?></td>
                                                  <td><?php echo $pd->proker_tahun ?></td>
-                                                 <td><?php echo $pd->proker_nilai ?></td>
+                                                 <td><?php if ($pd->proker_nilai) 
+                                                            {
+                                                                echo $pd->proker_nilai;
+                                                            }
+
+                                                          else 
+                                                            {
+                                                                echo "Proker belum dinilai";
+                                                            }
+                                                 ?></td>
                                                  <td>
                                                      <a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>">
                                                         <button class="btn btn-info">Detail Proker</button>
@@ -97,10 +106,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="proker_tanggal" id="proker_tanggal" required>
-                                            <label class="form-label">Tanggal Pelaksanaan</label>
+                                         <div class="form-group">
+                                        <div class="form-line" id="inputDate">
+                                            <input type="date" class="form-control" name="proker_tanggal" placeholder="Please choose a date...">
                                         </div>
+                                    </div>
                                     </div>
                                      <input type="hidden" name="proker_tahun" value="<?php echo $_SESSION['user_tahun'] ?>">
                                      <input type="hidden" name="proker_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
@@ -117,5 +127,33 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
+     $(function () {
+                $('#inputDate').datetimepicker({
+                    format: 'LT'
+                });
+            });
 
+     function submitProker() {
+
+         var data = $('.formProker').serialize();
+                  
+            $.ajax({
+                type: 'POST',
+                data: data,
+                url: "<?php echo base_url('Proker_C/addProker') ?>",
+                success: function() {
+                    Swal.fire({
+                      position: 'top-end',
+                      type: 'success',
+                      title: 'Berhasil Menambah Proker',
+                      showConfirmButton: false,
+                      timer: 1500
+                    }).then(function(){
+                        $('#refProker').load(document.URL +  ' #refProker');
+                    })     
+                }
+            });
+            
+            return false;
+        }
 </script>

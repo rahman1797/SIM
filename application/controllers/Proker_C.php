@@ -12,8 +12,8 @@ class Proker_C extends CI_Controller {
 	{	
 		$data['proker_data'] = $this->M_proker->tampil_proker()->result();
 		$this->load->view('layout/header');
-		$this->load->view('proker/list',$data);
 		$this->load->view('layout/footer');
+		$this->load->view('proker/list',$data);
 
 	}
 
@@ -21,9 +21,25 @@ class Proker_C extends CI_Controller {
 	{	
 		$data['proker_data'] = $this->M_proker->tampil_prokerDetail()->result();
 		$this->load->view('layout/header');
-		$this->load->view('proker/prokerDetail',$data);
 		$this->load->view('layout/footer');
+		$this->load->view('proker/prokerDetail',$data);
 
+	}
+
+	public function addProker()
+	{
+		$namaProker = $this->input->post('proker_nama');
+		$tanggalProker = $this->input->post('proker_tanggal');
+		$tahunProker = $this->input->post('proker_tahun');
+		$lembagaProker = $this->input->post('proker_lembaga');
+		$data = array(
+			'proker_nama' => $namaProker,
+			'proker_tanggal' => $tanggalProker,
+			'proker_tahun' => $tahunProker,
+			'proker_lembaga' => $lembagaProker
+		);
+		// print_r($_POST);
+		$this->M_proker->inputProker($data);
 	}
 
 	
