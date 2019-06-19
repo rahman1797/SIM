@@ -90,7 +90,7 @@
                 <div class="navbar-brand">Sistem Informasi Manajemen OPMAWA</div> 
 
 
-                <?php
+              <!--   <?php
                     if (!isset($_SESSION['logged_in'])) {
                         Redirect(base_url('Login_C'));
                     }
@@ -103,7 +103,7 @@
                         echo $_SESSION['user_tahun'];
                     }
                     
-                ?> 
+                ?>  -->
 
 
             </div>

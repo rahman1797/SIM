@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <?php 
-                                        echo "<strong>Tanggal Pelaksanaan : </strong>" .date_format($date,"d-M-Y");
+                                        echo "<strong>Status Pelaksanaan : </strong>" ."Sedang Berjalan";
                                     }
                                     ?>
                                 </div>
