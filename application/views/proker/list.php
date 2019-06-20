@@ -67,7 +67,7 @@
                                                  ?></td>
                                                  <td>
                                                      <a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>">
-                                                        <button class="btn btn-info">Detail Proker</button>
+                                                        <button class="btn btn-info" id="round">Detail Proker</button>
                                                     </a>
                                                     <a href="<?php echo site_url();?>/Proker_C/delProker/<?php print($pd->proker_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
                                                  </td>

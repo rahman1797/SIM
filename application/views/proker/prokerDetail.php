@@ -52,7 +52,7 @@
                             <!-- Widgets -->
                         <div class="row clearfix">
                             <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box bg-pink hover-expand-effect" id="round">
+                                <div class="info-box bg-pink hover-zoom-effect" id="round">
                                     <div class="icon">
                                         <i class="material-icons">assignment_turned_in</i>
                                     </div>
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box bg-light-green hover-expand-effect" id="round">
+                                <div class="info-box bg-light-blue hover-zoom-effect" id="round">
                                     <div class="icon">
                                         <i class="material-icons">people</i>
                                     </div>
@@ -74,12 +74,23 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box bg-orange hover-expand-effect" id="round">
+                                <div class="info-box bg-orange hover-zoom-effect" id="round">
                                     <div class="icon">
                                         <i class="material-icons">description</i>
                                     </div>
                                     <div class="content">
                                         <div class="text">Dokumen</div>
+                                        <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box bg-green hover-zoom-effect" id="round">
+                                    <div class="icon">
+                                        <i class="material-icons">timeline</i>
+                                    </div>
+                                    <div class="content">
+                                        <div class="text">Laporan Keuangan</div>
                                         <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
                                     </div>
                                 </div>
