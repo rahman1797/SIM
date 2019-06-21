@@ -17,6 +17,8 @@ class Proker_C extends CI_Controller {
 
 	}
 
+
+// TAMPIL PROKER
 	public function prokerDetail()
 	{	
 		$data['proker_data'] = $this->M_proker->tampil_prokerDetail()->result();
@@ -26,6 +28,19 @@ class Proker_C extends CI_Controller {
 
 	}
 
+			public function prokerPosisi()
+			{	
+				$data['proker_posisi'] = $this->M_proker->tampil_prokerPosisi()->result();
+				$this->load->view('layout/header');
+				$this->load->view('layout/footer');
+				$this->load->view('proker/detailProker/prokerPosisi',$data);
+
+			}	
+#END# TAMPIL PROKER
+
+
+
+// CRUD PROKER
 	public function addProker()
 	{
 		$namaProker = $this->input->post('proker_nama');
@@ -41,6 +56,17 @@ class Proker_C extends CI_Controller {
 		$this->M_proker->inputProker($data);
 	}
 
+			public function addProkerPosisi()
+			{
+				$namaPosisi = $this->input->post('prokerPosisi_nama');
+				$idProker = $this->input->post('id_proker');
+				$data = array(
+					'prokerPosisi_nama' => $namaPosisi,
+					'id_proker' => $idProker
+				);
+				$this->M_proker->inputProkerPosisi($data);
+			}
+
 	public function delProker($id)
 	{
 		$idProker = array('proker_ID' => $id);
@@ -48,6 +74,15 @@ class Proker_C extends CI_Controller {
 		redirect(base_url('Proker_C/index'));
 	}
 
+			public function delProkerPosisi($id)
+			{
+				$idProker = array('prokerPosisi_ID' => $id);
+				$this->M_proker->deleteProkerPosisi($idProker,'prokerPosisi_tbl');
+				echo "<script>
+					window.history.back();
+				</script>";
+			}
+ #END# CRUD PROKER
 	
 
 }

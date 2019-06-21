@@ -95,6 +95,19 @@
                                     </div>
                                 </div>
                             </div>
+                            <a href="<?php echo base_url('Proker_C/prokerPosisi?id_proker='.$_GET['id_proker']) ?>">
+                            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="info-box bg-light-green hover-zoom-effect" id="round">
+                                        <div class="icon">
+                                            <i class="material-icons">people</i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="text">Posisi Kepanitiaan</div>
+                                            <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </a>
                         </div>
 
 
