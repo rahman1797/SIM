@@ -125,6 +125,58 @@
                 </div>
                 <!-- #END# INFO STATUS PROKER -->
 
+
+                <!-- Info Tugas Saya -->
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <div class="card" id="round">
+                        <div class="header">
+                            <h2>INFO Tugas Saya</h2>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-hover dashboard-task-infos">
+                                    <thead>
+                                        <tr>
+                                            <th>No Proker</th>
+                                            <th>Tugas</th>
+                                            <th>Status</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Bikin Desain</td>
+                                            <td><span class="label bg-green">Clear</span></td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Bikin Surat Undangan</td>
+                                            <td><span class="label bg-green">Clear</span></td>
+                                           
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Beli Makanan</td>
+                                            <td><span class="label bg-red">Suspended</span></td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Siapin Kamera</td>
+                                            <td><span class="label bg-orange">On Progress</span></td>
+                                           
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Info Tugas Saya -->
+
                   <!-- Keuangan Chart -->
                 <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
                     <div class="card" id="round">
