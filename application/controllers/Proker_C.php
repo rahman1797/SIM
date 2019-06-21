@@ -6,6 +6,7 @@ class Proker_C extends CI_Controller {
 	function __Construct(){
         parent ::__construct();
         $this->load->model('M_proker');
+        $this->load->model('M_user');
     }
 	//controller default
 	public function index()
@@ -35,6 +36,17 @@ class Proker_C extends CI_Controller {
 				$this->load->view('layout/header');
 				$this->load->view('layout/footer');
 				$this->load->view('proker/detailProker/prokerPosisi',$data);
+
+			}	
+
+			public function prokerAnggota()
+			{	
+				$data['proker_anggota'] = $this->M_proker->tampil_prokerAnggota()->result();
+				$data['proker_posisi'] = $this->M_proker->tampil_prokerPosisi()->result();
+				$data['user_data'] = $this->M_user->tampil_data()->result();
+				$this->load->view('layout/header');
+				$this->load->view('layout/footer');
+				$this->load->view('proker/detailProker/prokerAnggota',$data);
 
 			}	
 #END# TAMPIL PROKER
