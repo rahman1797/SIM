@@ -1,3 +1,5 @@
+     <?php error_reporting(0); ?>
+
       <section class="content">
         <div class="container-fluid">
         
