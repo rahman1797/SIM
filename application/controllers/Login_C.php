@@ -50,7 +50,7 @@ class Login_C extends CI_Controller {
 
         public function exeLogout() {
             $this->session->sess_destroy();
-            $this->load->view('login');
+            redirect(base_url('Login_C'));
         }
 
     }

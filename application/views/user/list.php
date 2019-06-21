@@ -60,7 +60,20 @@
                                                             }
                                                  ?></td>
                                                  <td>
-                                                    <a href="<?php echo site_url();?>/User_C/delAnggota/<?php print($u->user_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                    <?php 
+
+                                                        if ($_SESSION['user_role'] != $u->user_role) {
+                                                            echo "Locked";
+                                                        }
+                                                        elseif ($_SESSION['user_role'] == $u->user_role) {
+                                                            ?>
+                                                            
+                                                            <a href="<?php echo site_url();?>/User_C/delAnggota/<?php print($u->user_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                            
+                                                            <?php
+                                                        }
+
+                                                     ?>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -207,6 +220,7 @@
 
          function delConfirm()
             {
+
                 job = confirm("Are you sure to delete permanently?");
                 
                 if(job != true)
