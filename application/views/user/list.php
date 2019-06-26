@@ -1,3 +1,4 @@
+
       <section class="content">
         <div class="container-fluid">
         
@@ -42,13 +43,13 @@
                                        
                                             foreach($user_data as $u){ 
                                                 $idToProdi = $this->M_user->getProdi($u->user_prodi);
-                                                $idToPosisi = $this->M_user->getPosisi($u->user_prodi);
+                                                $idToPosisi = $this->M_user->getPosisi($u->user_posisi);
                                             ?>
                                             <tr>
                                                 <td><?php echo $u->user_nama ?></td>
                                                 <td><?php echo $u->user_NIM ?></td>
-                                                <td><?php echo $idToProdi['0']['prodi_nama'] ?></td>
-                                                <td><?php echo $idToPosisi['0']['posisi_nama'] ?></td>
+                                                <td><?php echo $idToProdi['0']['prodi_nama']; ?></td>
+                                                <td><?php echo $idToPosisi['0']['posisi_nama']; ?></td>
                                                 <td><?php echo $u->user_tahun ?></td>
                                                 <td><?php if ($u->user_role == 1) 
                                                             {
