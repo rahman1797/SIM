@@ -37,13 +37,15 @@
                                             foreach($proker_anggota as $pa){ 
                                             $idProker = $pa->id_proker;
                                             $idPosisi = $pa->id_posisi;
+                                            $idUser = $pa->id_user;
                                             $id_anggota = $pa->prokerAnggota_ID;
                                             $idToPosisi = $this->M_proker->getPosisiNama($idPosisi);
                                             $idToProker = $this->M_proker->getProkerNama($idProker);
+                                            $idToNama = $this->M_user->getUserNama($idUser);
                                             ?>
                                             <tr>
                                                 
-                                                <td><?php echo $pa->prokerAnggota_nama ?></td>
+                                                <td><?php echo $idToNama['0']['user_nama']; ?></td>
                                                 <td><?php echo $idToPosisi['0']['prokerPosisi_nama']; ?> </td>
                                                 <td>
                                                     <a href="<?php echo site_url();?>/Proker_C/delProkerAnggota/<?php print($id_anggota);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
@@ -82,7 +84,7 @@
                                                 <option value="">-- Nama Anggota Kepanitiaan --</option>
                                                 <?php 
                                                     foreach ($user_data as $ud) {
-                                                        echo "<option value='$ud->user_nama'>".$ud->user_nama ."</option>";
+                                                        echo "<option value='$ud->user_ID'>".$ud->user_nama ."</option>";
                                                     }
                                                 ?>
                                             </select>

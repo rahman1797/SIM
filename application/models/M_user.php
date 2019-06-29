@@ -10,6 +10,15 @@ class M_user extends CI_Model{
 		return $this->db->get_where('user_tbl');
 	}
 
+			function getUserNama($id_user)
+			{
+				
+				 $query = $this->db->get_where('user_tbl', array('user_ID' => $id_user));
+
+        		 return $query->result_array();
+				
+			}
+
 	public function getProdi($id_prodi){
         
         $query = $this->db->get_where('prodi_tbl', array('prodi_ID' => $id_prodi));

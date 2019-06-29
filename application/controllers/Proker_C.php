@@ -87,7 +87,7 @@ class Proker_C extends CI_Controller {
 				$anggotaPosisi = $this->input->post('prokerAnggota_posisi');
 				$idProker = $this->input->post('id_proker');
 				$data = array(
-					'prokerAnggota_nama' => $anggotaNama,
+					'id_user' => $anggotaNama,
 					'id_proker' => $idProker,
 					'id_posisi' => $anggotaPosisi
 				);
