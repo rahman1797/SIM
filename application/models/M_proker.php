@@ -98,6 +98,10 @@ class M_proker extends CI_Model{
 				$this->db->insert('prokerAnggota_tbl', $data);
 			}
 
+			function inputProkerTugas($data) {
+				$this->db->insert('prokerTugas_tbl', $data);
+			}
+
 
 // Delete Proker yang terdaftar beserta sub function nya
 	function deleteProker($data) {

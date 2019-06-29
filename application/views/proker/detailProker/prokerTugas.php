@@ -1,4 +1,4 @@
-
+<?php error_reporting(0); ?>
 
       <section class="content">
         <div class="container-fluid">
@@ -8,14 +8,14 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                         <div class="header" align="center">
-                            <h2><strong>DAFTAR TUGAS DAN CATATATAN</strong></h2>
+                            <h2><strong>DAFTAR TUGAS DAN CATATAN</strong></h2>
                             <p></p>
                             <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerAnggota" id="round">Tambah Tugas/Catatan</button>  
                         </div>
                         
                         <div class="body">
                             <div class="table-responsive">
-                                <table id="refProkerAnggota" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                                <table id="refProkerTugas" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
                                             <th>Deskripsi Tugas</th>
@@ -44,7 +44,15 @@
                                             <tr>
                                                 
                                                 <td><?php echo $pa->prokerTugas_deskripsi; ?></td>
-                                                <td><?php echo $idToNama['0']['user_nama']; ?> </td>
+                                                <td><?php if ($idToNama['0']['user_nama'] == NULL) 
+                                                          {
+                                                                echo "Tidak Ada PJ";
+                                                          }
+                                                          else 
+                                                          {
+                                                                echo $idToNama['0']['user_nama'];
+                                                          }
+                                                 ?> </td>
                                                 <td>
                                                     <a href="<?php echo site_url();?>/Proker_C/delProkerTugas/<?php print($id_tugas);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
                                                 </td>
@@ -75,11 +83,14 @@
                        <center>
                         <div class="modal-body">
                               <!-- Form Angggota -->
-                                <form id="form_validation" name="formProkerAnggota" class="formProkerAnggota" method="POST" style="margin: 20px" onsubmit="return submitProkerAnggota()">
+                              <div class="alert alert-warning" id="round">
+                                  <strong>Informasi!</strong> Penanggung Jawab tidak wajib untuk di pilih.
+                                </div>
+                                <form id="form_validation" name="formProkerTugas" class="formProkerTugas" method="POST" style="margin: 20px" onsubmit="return submitProkerTugas()">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <select class="form-control show-tick" name="prokerTugas_pj">
-                                                <option value="">-- Nama Anggota Kepanitiaan --</option>
+                                                <option value="">-- Penanggung Jawab --</option>
                                                 <?php 
                                                     foreach ($anggota_data as $ad) {
                                                         $idToNama = $this->M_user->getUserNama($ad->id_user);
@@ -91,14 +102,7 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" name="prokerAnggota_posisi">
-                                                <option value="">-- Posisi Kepanitiaan --</option>
-                                                <?php 
-                                                    foreach ($proker_posisi as $pp) {
-                                                        echo "<option value='$pp->prokerPosisi_ID'>".$pp->prokerPosisi_nama ."</option>";
-                                                    }
-                                                ?>
-                                            </select>
+                                            <textarea class="form-control" name="prokerTugas_deskripsi"></textarea>
                                         </div>
                                     </div>
                                      <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
@@ -116,23 +120,23 @@
 
 <script type="text/javascript">
 
-     function submitProkerAnggota() {
+     function submitProkerTugas() {
 
-         var data = $('.formProkerAnggota').serialize();
+         var data = $('.formProkerTugas').serialize();
                   
             $.ajax({
                 type: 'POST',
                 data: data,
-                url: "<?php echo base_url('Proker_C/addProkerAnggota') ?>",
+                url: "<?php echo base_url('Proker_C/addProkerTugas') ?>",
                 success: function() {
                     Swal.fire({
                       position: 'top-end',
                       type: 'success',
-                      title: 'Berhasil Menambah Anggota Kepanitiaan Proker',
+                      title: 'Berhasil Menambah Catatan/Tugas',
                       showConfirmButton: false,
                       timer: 1500
                     }).then(function(){
-                        $('#refProkerAnggota').load(document.URL +  ' #refProkerAnggota');
+                        $('#refProkerTugas').load(document.URL +  ' #refProkerTugas');
                     })     
                 }
             });
