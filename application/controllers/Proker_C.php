@@ -50,6 +50,17 @@ class Proker_C extends CI_Controller {
 				$this->load->view('proker/detailProker/prokerAnggota',$data);
 
 			}	
+
+			public function prokerTugas()
+			{	
+				$data['proker_tugas'] = $this->M_proker->tampil_prokerTugas()->result();
+				$data['proker_posisi'] = $this->M_proker->tampil_prokerPosisi()->result();
+				$data['anggota_data'] = $this->M_proker->tampil_prokerAnggota()->result();
+				$this->load->view('layout/header');
+				$this->load->view('layout/footer');
+				$this->load->view('proker/detailProker/prokerTugas',$data);
+
+			}	
 #END# TAMPIL PROKER
 
 

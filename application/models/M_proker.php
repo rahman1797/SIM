@@ -20,6 +20,24 @@ class M_proker extends CI_Model{
 				return $this->db->get_where('prokerAnggota_tbl', array('id_proker' => $_GET['id_proker']));	
 			}
 
+			function tampil_prokerTugas(){
+				return $this->db->get_where('prokerTugas_tbl', array('id_proker' => $_GET['id_proker']));	
+			}
+
+			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
+			function JumlahProkerTugas()
+			{   
+			    $query = $this->db->get_where('prokerTugas_tbl', array('id_proker' => $_GET['id_proker']));
+			    if($query->num_rows()>0)
+			    {
+			      return $query->num_rows();
+			    }
+			    else
+			    {
+			      return 0;
+			    }
+			}
+
 			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
 			function JumlahProkerPosisi()
 			{   
@@ -92,6 +110,10 @@ class M_proker extends CI_Model{
 
 			function deleteProkerAnggota($data) {
 				$this->db->delete('prokerAnggota_tbl', $data);
+			}
+
+			function deleteProkerTugas($data) {
+				$this->db->delete('prokerTugas_tbl', $data);
 			}
 
 }
