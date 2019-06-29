@@ -70,7 +70,7 @@
                                         </div>
                                         <div class="content">
                                             <div class="text">Daftar Panitia</div>
-                                            <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
+                                            <div class="number count-to" data-from="0" data-to="<?php echo $totalAnggotaKepanitiaan; ?>" data-speed="1000" data-fresh-interval="20"></div>
                                         </div>
                                     </div>
                                 </a>

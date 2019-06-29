@@ -15,7 +15,7 @@
                         
                         <div class="body">
                             <div class="table-responsive">
-                                <table id="refProkerPosisi" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                                <table id="refProkerAnggota" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
                                             <th>Nama Panitia</th>
@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" name="user_prodi">
+                                            <select class="form-control show-tick" name="prokerAnggota_posisi">
                                                 <option value="">-- Posisi Kepanitiaan --</option>
                                                 <?php 
                                                     foreach ($proker_posisi as $pp) {
@@ -115,7 +115,7 @@
 
 <script type="text/javascript">
 
-     function submitProkerPosisi() {
+     function submitProkerAnggota() {
 
          var data = $('.formProkerAnggota').serialize();
                   

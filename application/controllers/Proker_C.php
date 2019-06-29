@@ -24,6 +24,7 @@ class Proker_C extends CI_Controller {
 	{	
 		$data['proker_data'] = $this->M_proker->tampil_prokerDetail()->result();
 		$data['totalPosisiKepanitiaan'] = $this->M_proker->JumlahProkerPosisi();
+		$data['totalAnggotaKepanitiaan'] = $this->M_proker->JumlahProkerAnggota();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('proker/prokerDetail',$data);
@@ -80,6 +81,19 @@ class Proker_C extends CI_Controller {
 				$this->M_proker->inputProkerPosisi($data);
 			}
 
+			public function addProkerAnggota()
+			{
+				$anggotaNama = $this->input->post('prokerAnggota_nama');
+				$anggotaPosisi = $this->input->post('prokerAnggota_posisi');
+				$idProker = $this->input->post('id_proker');
+				$data = array(
+					'prokerAnggota_nama' => $anggotaNama,
+					'id_proker' => $idProker,
+					'id_posisi' => $anggotaPosisi
+				);
+				$this->M_proker->inputProkerAnggota($data);
+			}
+
 	public function delProker($id)
 	{
 		$idProker = array('proker_ID' => $id);
@@ -89,8 +103,17 @@ class Proker_C extends CI_Controller {
 
 			public function delProkerPosisi($id)
 			{
-				$idProker = array('prokerPosisi_ID' => $id);
-				$this->M_proker->deleteProkerPosisi($idProker,'prokerPosisi_tbl');
+				$idPosisi = array('prokerPosisi_ID' => $id);
+				$this->M_proker->deleteProkerPosisi($idPosisi,'prokerPosisi_tbl');
+				echo "<script>
+					window.history.back();
+				</script>";
+			}
+
+			public function delProkerAnggota($id)
+			{
+				$idAnggota = array('prokerAnggota_ID' => $id);
+				$this->M_proker->deleteProkerAnggota($idAnggota,'prokerAnggota_tbl');
 				echo "<script>
 					window.history.back();
 				</script>";
