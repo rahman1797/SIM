@@ -24,6 +24,11 @@ class M_proker extends CI_Model{
 				return $this->db->get_where('prokerTugas_tbl', array('id_proker' => $_GET['id_proker']));	
 			}
 
+					function tampil_prokerTugasSaya()
+					{
+						return $this->db->get_where('prokerTugas_tbl', array('id_user' => $_SESSION['user_ID'] ));
+					}
+
 			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
 			function JumlahProkerTugas()
 			{   

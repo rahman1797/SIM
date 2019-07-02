@@ -19,7 +19,7 @@
                                             <th>Nama</th>
                                             <th>Tanggal</th>
                                             <th>Lembaga</th>
-                                            <th>Tahun</th>
+                                            <th>Tahun Kepengurusan</th>
                                             <th>Nilai</th>
                                             <th>Kelola</th>
                                         </tr>
@@ -29,7 +29,7 @@
                                             <th>Nama</th>
                                             <th>Tanggal</th>
                                             <th>Lembaga</th>
-                                            <th>Tahun</th>
+                                            <th>Tahun Kepengurusan</th>
                                             <th>Nilai</th>
                                             <th>Kelola</th>
                                         </tr>
@@ -54,7 +54,7 @@
                                                                 echo "Legislatif";
                                                             }
                                                  ?></td>
-                                                 <td><?php echo $pd->proker_tahun ?></td>
+                                                 <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
                                                  <td><?php if ($pd->proker_nilai) 
                                                             {
                                                                 echo $pd->proker_nilai;

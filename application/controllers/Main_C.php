@@ -6,13 +6,15 @@ class Main_C extends CI_Controller {
 	function __Construct(){
         parent ::__construct();
         $this->load->model('M_sys');
+        $this->load->model('M_proker');
     }
 	//controller default
 	public function index()
 	{	
-
+		$data['data_proker'] = $this->M_proker->tampil_proker()->result();
+		$data['data_tugasSaya'] = $this->M_proker->tampil_prokerTugasSaya()->result();
 		$this->load->view('layout/header');
-		$this->load->view('beranda');
+		$this->load->view('beranda', $data);
 		$this->load->view('layout/footer');
 
 	}
