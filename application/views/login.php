@@ -19,7 +19,11 @@
     <!-- Custom Css -->
     <link href="<?php echo base_url('assets/css/style.css')?>" rel="stylesheet">
 </head>
-
+<style type="text/css">
+  body {
+    background-image: url("assets/images/4028.jpg");
+  }
+</style>
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
@@ -27,6 +31,7 @@
             <small>Sistem Informasi Manajemen OPMAWA FMIPA</small>
 
             <!-- <?PHP print_r($_SESSION); ?> -->
+
 
 
         </div>

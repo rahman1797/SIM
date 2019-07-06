@@ -62,7 +62,7 @@
 
                                                           else 
                                                             {
-                                                                echo "Proker belum dinilai";
+                                                                echo "<font color='red'>Proker belum dinilai</font>";
                                                             }
                                                  ?></td>
                                                  <td>

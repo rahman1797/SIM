@@ -19,7 +19,7 @@
                             <div class="row">
                                 <div class="col-lg-3">
                                     <?php 
-                                        echo "<strong>Tanggal Pelaksanaan : </strong>" .date_format($date,"d M Y");
+                                        echo "<strong>Rencana Tanggal Pelaksanaan : </strong>" .date_format($date,"d M Y");
                                     ?>
                                 </div>
                                 <div class="col-lg-3">
@@ -32,7 +32,7 @@
 
                                       else 
                                         {
-                                            echo "<strong>Penilaian Proker : </strong>" . "Proker belum dinilai";
+                                            echo "<strong>Penilaian Proker : </strong>" . "<font color='red'>Proker belum dinilai</font>";
                                         };
                                     ?>
                                 </div>
@@ -53,20 +53,20 @@
                         <div class="row clearfix">
                             <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
                                 <a href="<?php echo base_url('Proker_C/prokerTugas?id_proker='.$_GET['id_proker']) ?>">
-                                    <div class="info-box bg-pink hover-zoom-effect" id="round">
+                                    <div style="cursor: pointer;" class="info-box bg-pink hover-zoom-effect" id="round">
                                         <div class="icon">
                                             <i class="material-icons">assignment_turned_in</i>
                                         </div>
                                         <div class="content">
                                             <div class="text">DAFTAR TUGAS</div>
-                                            <div class="number count-to" data-from="0" data-to="125" data-speed="1000" data-fresh-interval="20"></div>
+                                            <div class="number count-to" data-from="0" data-to="<?php echo $totalTugas; ?>" data-speed="1000" data-fresh-interval="20"></div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
                                 <a href="<?php echo base_url('Proker_C/prokerAnggota?id_proker='.$_GET['id_proker']) ?>">
-                                    <div class="info-box bg-light-blue hover-zoom-effect" id="round">
+                                    <div style="cursor: pointer;" class="info-box bg-light-blue hover-zoom-effect" id="round">
                                         <div class="icon">
                                             <i class="material-icons">people</i>
                                         </div>
@@ -78,7 +78,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box bg-orange hover-zoom-effect" id="round">
+                                <div style="cursor: pointer;" class="info-box bg-orange hover-zoom-effect" id="round">
                                     <div class="icon">
                                         <i class="material-icons">description</i>
                                     </div>
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box bg-green hover-zoom-effect" id="round">
+                                <div style="cursor: pointer;" class="info-box bg-green hover-zoom-effect" id="round">
                                     <div class="icon">
                                         <i class="material-icons">timeline</i>
                                     </div>
@@ -102,7 +102,7 @@
                             
                                 <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
                                     <a href="<?php echo base_url('Proker_C/prokerPosisi?id_proker='.$_GET['id_proker']) ?>">
-                                    <div class="info-box bg-light-green hover-zoom-effect" id="round">
+                                    <div style="cursor: pointer;" class="info-box bg-light-green hover-zoom-effect" id="round">
                                         <div class="icon">
                                             <i class="material-icons">people</i>
                                         </div>

@@ -97,7 +97,7 @@
                         </div>
                         <div class="body">
                             <div class="table-responsive">
-                                <table class="table table-hover dashboard-task-infos">
+                                <table class="table table-hover dashboard-task-infos" id="refTugasSaya">
                                     <thead>
                                         <tr>
                                             <th>Nama Proker</th>
@@ -111,7 +111,7 @@
                                             $idProker = $ts->id_proker;
                                             $idToProker = $this->M_proker->getProkerNama($idProker);
                                         ?>
-                                        <tr>
+                                        <tr onclick="return check()" style="cursor: pointer;">
                                             <td><?php echo $idToProker['0']['proker_nama'];  ?></td>
                                             <td><?php echo $ts->prokerTugas_deskripsi; ?></td>
                                             <td><span class="label bg-green">Clear</span></td>
@@ -186,5 +186,9 @@
         });
         chart.render();
 
+        }
+
+        function check(){
+            window.alert('TEST')
         }
     </script>
