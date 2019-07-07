@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Upload_C extends CI_Controller {
+class Berkas_C extends CI_Controller {
 
 	function __Construct(){
         parent ::__construct();
@@ -9,14 +9,15 @@ class Upload_C extends CI_Controller {
         $this->load->model('M_user');
         $this->load->model('M_berkas');
         $this->load->helper('url');
-         $this->load->library('upload');
+        $this->load->library('upload');
     }
 	//controller default
 	public function index()
 	{	
+		$data['berkas_data'] = $this->M_berkas->tampil_berkas()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
-		$this->load->view('proker/detailProker/prokerBerkas');
+		$this->load->view('proker/detailProker/prokerBerkas',$data);
 
 	}
 		

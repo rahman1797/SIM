@@ -51,8 +51,6 @@
       }
     </style>
 
-<?php error_reporting(0); ?>
-
 </head>
 
 <body class="theme-red">
