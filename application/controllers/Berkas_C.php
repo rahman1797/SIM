@@ -9,6 +9,7 @@ class Berkas_C extends CI_Controller {
         $this->load->model('M_user');
         $this->load->model('M_berkas');
         $this->load->helper('url');
+        $this->load->helper('download');
         $this->load->library('upload');
     }
 	//controller default
@@ -22,30 +23,74 @@ class Berkas_C extends CI_Controller {
 	}
 		
 	function do_upload(){
-        $config['upload_path'] = './resources/uploads/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //Allowing types
-        $config['encrypt_name'] = TRUE; //encrypt file name 
- 
-        $this->upload->initialize($config);
-        if(!empty($_FILES['filefoto']['name'])){
- 
-            if ($this->upload->do_upload('filefoto')){
- 
-                $data   = $this->upload->data();
-                $image  = $data['file_name']; //get file name
-                $title  = $this->input->post('title');
-                $this->upload_model->upload_image($title,$image);
-                echo "Upload Successful";
- 
-            }else{
-                echo "Upload failed. Image file must be gif|jpg|png|jpeg|bmp";
-            }
-                      
-        }else{
-            echo "Failed, Image file is empty.";
-        }
-                 
+         		
+         		$config['upload_path']= 'uploads/';
+			     $config['allowed_types'] = 'gif|jpg|png|txt|pdf|xlsx|csv|xls|bmp|doc|docx'; 
+			     $config['max_size']      = 10000; 
+
+			     $this->upload->initialize($config);
+
+			     $this->load->library('upload', $config); 
+			     if ($this->upload->do_upload('userfile')) { //use this function
+
+			        $data['error'] = false;
+			        $upload_data = $this->upload->data();
+			        $data['data'] = $upload_data;
+			        $data['msg'] = 'Image Successfully Uploaded.';
+
+			        $file_name = $data['data']['file_name'];
+
+			        $database = array(
+			            'berkas_nama' => $file_name,
+			            'id_user' => $_SESSION['user_ID'],
+			            'id_proker' => $_GET['id_proker'],
+			            'berkas_lembaga' => $_SESSION['user_role'] 
+			            );
+
+			        $result = $this->db->insert('berkas_tbl', $database);
+
+			        echo $file_name;
+
+			     } else {
+
+			        $data['msg'] = $this->upload->display_errors('', '<br>');
+
+			     }
+
+			    
+			                 
     }
 
+
+    function upload(){
+    	$config = array(
+    				'upload_path' => 'uploads/',
+    				'allowed_types' => 'gif|jpg|png|txt|pdf|xlsx|csv|xls|bmp',
+    				'max_size' => 25000
+    				);
+
+    	$this->upload->initialize($config);
+
+    	$file = $this->upload->data();
+
+    	// print_r($file);
+        
+
+        $database = array(
+            'berkas_nama' => $file,
+            'id_user' => $_SESSION['user_ID'],
+            'id_proker' => $_GET['id_proker'],
+            'berkas_lembaga' => $_SESSION['user_role'] 
+            );
+
+        $result = $this->db->insert('berkas_tbl', $database);
+        
+        print_r($database);
+    }
+
+    function download(){
+    	$nama_file = $_GET['name'];
+    	force_download("uploads/".$nama_file,NULL);
+    }
 
 }

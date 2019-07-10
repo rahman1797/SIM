@@ -13,15 +13,17 @@
 
 
 
-                        <form action="<?php echo site_url('upload/do_upload');?>" method="post" enctype="multipart/form-data">
-              <div class="form-group">
+                        <form action="<?php echo site_url('Berkas_C/do_upload?id_proker='.$_GET['id_proker']);?>" method="post" enctype="multipart/form-data" name="userfile">
+
+              <!-- <div class="form-group">
                 <label for="exampleInputEmail1">Title</label>
                 <input type="text" class="form-control" name="title" placeholder="Title">
-              </div>
+              </div> -->
      
               <div class="form-group">
                 <label for="exampleInputFile">File input</label>
-                <input type="file" class="dropify" name="filefoto" data-height="300">
+                <input type="file" name="userfile" id="userfile">
+                <input type="hidden" name="id_proker" value="<?php $_GET['id_proker'] ?>">
                  
               </div>
  
@@ -54,7 +56,7 @@
 
 
                         <div class="header" align="center">
-                            <h2><strong>DAFTAR ANGGOTA OPMAWA</strong></h2>
+                            <h2><strong>DAFTAR BERKAS OPMAWA</strong></h2>
                        
                         </div>
                         
@@ -106,6 +108,8 @@
                                                 <td><?php echo $bd->berkas_tanggal; ?></td>
                                                
                                                 <td>
+
+                                                    <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round">Unduh</button></a>
                                                                    
                                                     <a href="<?php echo site_url();?>/Berkas_C/delBerkas/<?php print($bd->berkas_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
                                          
@@ -201,9 +205,12 @@
             }
 
 
-            Dropzone.options.fileupload = {
-      acceptedFiles: 'image/*',
-      maxFilesize: 1 // MB
-    };
+        Dropzone.options.fileupload = {
+          acceptedFiles: 'image/*',
+          maxFilesize: 1 // MB
+        };
+
+
+
 </script>
 

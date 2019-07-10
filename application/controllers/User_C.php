@@ -34,8 +34,8 @@ class User_C extends CI_Controller {
 			'user_nama' => $nama,
 			'user_NIM' => $NIM,
 			'user_pass' => $pass,
-			'user_prodi' => $prodi,
-			'user_posisi' => $posisi,
+			'id_prodi' => $prodi,
+			'id_posisi' => $posisi,
 			'user_tahun' => $tahun,
 			'user_role' => $role
 		);

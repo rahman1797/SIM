@@ -1,5 +1,70 @@
       <section class="content">
         <div class="container-fluid">
+
+
+                 <!-- Tabel OPMAWA -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card" id="round">
+                        <div class="header" align="center">
+                            <div class="alert alert-warning" id="round">
+                              <strong>Informasi!</strong> Menghapus salah satu prodi, maka seluruh user yang merupakan prodi tersebut akan otomatis terhapus.
+                            </div>
+
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProdi" id="round">Registrasi Kabinet OPMAWA</button>  
+                        </div>
+                        
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table id="refPro" class="table table-bordered table-striped table-hover js-basic-example dataTable" style="border-radius: 12px"    >
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Kabinet</th>
+                                            <th>Nama Ketua</th>
+                                            <th>Tahun Kepengurusan</th>
+                                            <th>Kelola</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Kabinet</th>
+                                            <th>Nama Ketua</th>
+                                            <th>Tahun Kepengurusan</th>
+                                            <th>Kelola</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                        <?php 
+
+                                            $no = 1;
+                                            foreach($data_opmawa as $do){ 
+                                                $idUser = $do->id_user;
+                                                $idToNama = $this->M_user->getUserNama($idUser);
+
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $no++ ?></td>
+                                                <td><?php echo $do->opmawa_kabinet ?></td>
+                                                <td><?php echo $idToNama['0']['user_nama'] ?></td>
+                                                <td><?php echo $do->opmawa_tahun ?></td>
+                                                <td>
+                                                    <a href="<?php echo site_url();?>/Main_C/delOpmawa/<?php print($do->opmawa_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <!-- #END# Tabel OPMAWA -->
         
             <!-- Tabel Prodi -->
             <div class="row clearfix">

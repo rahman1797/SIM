@@ -7,8 +7,10 @@ class Main_C extends CI_Controller {
         parent ::__construct();
         $this->load->model('M_sys');
         $this->load->model('M_proker');
+        $this->load->model('M_berkas');
+        $this->load->model('M_user');
     }
-	//controller default
+	
 	public function index()
 	{	
 		$data['data_proker'] = $this->M_proker->tampil_proker()->result();
@@ -23,11 +25,44 @@ class Main_C extends CI_Controller {
 	{
 		$data['data_prodi'] = $this->M_sys->tampil_regis_prodi()->result();
 		$data['data_posisi'] = $this->M_sys->tampil_regis_posisi()->result();
+		$data['data_opmawa'] = $this->M_sys->tampil_regis_opmawa()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('System_Regis/Sysregis', $data);		
 	}
-	//**controller default
+
+
+
+// ON PROGGRESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+//	SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+//	SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+	public function addOPMAWA()
+	{
+		$namaKetua = $this->input->post('nama_ketua');
+		$namaKabinet = $this->input->post('nama_kabinet');
+		$tahunKepengurusan = $_SESSION['user_tahun'] + 1;
+		$data = array(
+			'opmawa_kabinet' => $namaKabinet,
+			'opmawa_ketua' => $namaKetua,
+			'opmawa_tahun' => $tahun_kepengurusan
+		);
+		$this->M_sys->inputOpmawa($data);	
+	}
+
+			function addDepartemen()
+			{
+				$nama_departemen = $this->input->post('nama_departemen');
+				$idOpmawa = $this->input->$_GET['id_opmawa'];
+				$data = array(
+					'departemen_nama' => $nama_departemen,
+					'id_opmawa' => $idOpmawa
+				);
+				$this->M_sys->inputDepartemen($data);	
+			}
+
+// SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+// SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+
 
 	public function addProdi()
 	{

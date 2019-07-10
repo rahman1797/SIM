@@ -42,15 +42,16 @@
                                         <?php 
                                        
                                             foreach($user_data as $u){ 
-                                                $idToProdi = $this->M_user->getProdi($u->user_prodi);
-                                                $idToPosisi = $this->M_user->getPosisi($u->user_posisi);
+                                                $idToProdi = $this->M_user->getProdi($u->id_prodi);
+                                                $idToPosisi = $this->M_user->getPosisi($u->id_posisi);
+                                                $tahun = $u->user_tahun;
                                             ?>
                                             <tr>
                                                 <td><?php echo $u->user_nama ?></td>
                                                 <td><?php echo $u->user_NIM ?></td>
                                                 <td><?php echo $idToProdi['0']['prodi_nama']; ?></td>
                                                 <td><?php echo $idToPosisi['0']['posisi_nama']; ?></td>
-                                                <td><?php echo $u->user_tahun ?></td>
+                                                <td><?php echo $tahun . " - " . ($tahun + 1) ?></td>
                                                 <td><?php if ($u->user_role == 1) 
                                                             {
                                                                 echo "Eksekutif";

@@ -7,6 +7,7 @@ class Proker_C extends CI_Controller {
         parent ::__construct();
         $this->load->model('M_proker');
         $this->load->model('M_user');
+        $this->load->model('M_berkas');
     }
 	//controller default
 	public function index()
@@ -26,6 +27,7 @@ class Proker_C extends CI_Controller {
 		$data['totalPosisiKepanitiaan'] = $this->M_proker->JumlahProkerPosisi();
 		$data['totalAnggotaKepanitiaan'] = $this->M_proker->JumlahProkerAnggota();
 		$data['totalTugas'] = $this->M_proker->JumlahProkerTugas();
+		$data['totalBerkas'] = $this->M_berkas->JumlahBerkas();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('proker/prokerDetail',$data);
