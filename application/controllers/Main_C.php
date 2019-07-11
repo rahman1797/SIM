@@ -24,12 +24,21 @@ class Main_C extends CI_Controller {
 	public function Sysregis()
 	{
 		$data['data_prodi'] = $this->M_sys->tampil_regis_prodi()->result();
-		$data['data_posisi'] = $this->M_sys->tampil_regis_posisi()->result();
+		$data['data_posisi'] = $this->M_sys->tampil_regis_posisi_byLembaga()->result();
 		$data['data_opmawa'] = $this->M_sys->tampil_regis_opmawa()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('System_Regis/Sysregis', $data);		
 	}
+
+			public function opmawaDetail()
+			{
+				$data['detail_opmawa'] = $this->M_sys->tampil_opmawaDetail()->result();
+				$data['detail_departemenOpmawa'] = $this->M_sys->tampil_departemenOpmawaDetail()->result();
+				$this->load->view('layout/header');
+				$this->load->view('layout/footer');
+				$this->load->view('System_Regis/opmawa/opmawaDetail', $data);		
+			}
 
 
 

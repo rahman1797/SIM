@@ -10,9 +10,17 @@ class M_sys extends CI_Model{
 		return $this->db->get_where('opmawa_tbl');
 	}
 
-	function tampil_regis_posisi(){
-		return $this->db->get_where('posisi_tbl');
-	}
+			function tampil_opmawaDetail(){
+				return $this->db->get_where('opmawa_tbl', array('opmawa_ID' => $_GET['id_opmawa']));
+			}
+
+					function tampil_departemenOpmawaDetail(){
+						return $this->db->get_where('departemen_tbl', array('id_opmawa' => $_GET['id_opmawa']));
+					}
+
+	// function tampil_regis_posisi(){
+	// 	return $this->db->get_where('posisi_tbl');
+	// }
 
 			function tampil_regis_posisi_byLembaga(){
 				return $this->db->get_where('posisi_tbl', array('posisi_lembaga' => $_SESSION['user_role'] ));

@@ -28,12 +28,15 @@ class Login_C extends CI_Controller {
            foreach ($cek2->result() as $sess ) {
             	$sess_data['logged_in'] = 'Sudah Masuk';
                 $sess_data['user_ID'] = $sess->user_ID;
-                $sess_data['user_NIM'] = $sess->user_NIM;
                 $sess_data['user_nama'] = $sess->user_nama;
-                $sess_data['user_role'] = $sess->user_role;
-                $sess_data['user_prodi'] = $sess->user_prodi;
+                $sess_data['user_NIM'] = $sess->user_NIM;             
+                $sess_data['user_prodi'] = $sess->id_prodi;
+                $sess_data['user_posisi'] = $sess->id_posisi;
+                $sess_data['user_opmawa'] = $sess->id_opmawa;
+                $sess_data['user_departemen'] = $sess->id_departemen;
                 $sess_data['user_tahun'] = $sess->user_tahun;
-                $sess_data['user_posisi'] = $sess->user_posisi;
+                $sess_data['user_role'] = $sess->user_role;
+        
             }
                 $this->session->set_userdata($sess_data);
                 echo "sukses";
@@ -41,8 +44,9 @@ class Login_C extends CI_Controller {
             else{
                 echo " <script>
                          alert('NIM atau password salah!');
-                         history.go(-1);
+                         
                         </script>";
+                        print_r($_SESSION);
             }
 
         }

@@ -16,7 +16,7 @@
                                 <table id="refProker" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
-                                            <th>Nama</th>
+                                            <th>Nama Proker</th>
                                             <th>Tanggal</th>
                                             <th>Lembaga</th>
                                             <th>Tahun Kepengurusan</th>
@@ -26,7 +26,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Nama</th>
+                                            <th>Nama Proker</th>
                                             <th>Tanggal</th>
                                             <th>Lembaga</th>
                                             <th>Tahun Kepengurusan</th>
@@ -67,13 +67,24 @@
                                                  ?></td>
                                                  <td>
                                                      <a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>">
-                                                        <button class="btn btn-info" id="round">Detail Proker</button>
+                                                        <button class="btn btn-info" id="round">Detail</button>
                                                     </a>
-                                                    <a href="<?php echo site_url();?>/Proker_C/delProker/<?php print($pd->proker_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                  <?php 
+                                                        if ($pd->proker_tahun != $_SESSION['user_tahun']) 
+                                                        {
+                                                            echo "Locked";
+                                                        }
+
+                                                        else 
+                                                        {
+                                                           echo "<a href='<?php echo site_url();?>/Proker_C/delProker/<?php print($pd->proker_ID);?>''><button class='btn btn-danger' id='round' onclick='return delConfirm()''>Delete</button></a>";
+                                                        }
+                                                  } ?>
+                                                 
                                                  </td>
             
                                             </tr>
-                                        <?php } ?>
+                                        
                                         
                                     </tbody>
                                 </table>

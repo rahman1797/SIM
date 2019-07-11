@@ -23,6 +23,7 @@
                                             <th>Nama Kabinet</th>
                                             <th>Nama Ketua</th>
                                             <th>Tahun Kepengurusan</th>
+                                            <th>Jumlah Departemen/Biro</th>
                                             <th>Kelola</th>
                                         </tr>
                                     </thead>
@@ -32,6 +33,7 @@
                                             <th>Nama Kabinet</th>
                                             <th>Nama Ketua</th>
                                             <th>Tahun Kepengurusan</th>
+                                            <th>Jumlah Departemen/Biro</th>
                                             <th>Kelola</th>
                                         </tr>
                                     </tfoot>
@@ -43,15 +45,28 @@
                                             foreach($data_opmawa as $do){ 
                                                 $idUser = $do->id_user;
                                                 $idToNama = $this->M_user->getUserNama($idUser);
-
+                                                $tahunKepengurusan = $do->opmawa_tahun;
+                                                $id_opmawa = $do->opmawa_ID;
                                             ?>
                                             <tr>
                                                 <td><?php echo $no++ ?></td>
                                                 <td><?php echo $do->opmawa_kabinet ?></td>
                                                 <td><?php echo $idToNama['0']['user_nama'] ?></td>
-                                                <td><?php echo $do->opmawa_tahun ?></td>
+                                                <td><?php echo $tahunKepengurusan . " - " . ($tahunKepengurusan + 1)  ?></td>
+                                                <td></td>
                                                 <td>
-                                                    <a href="<?php echo site_url();?>/Main_C/delOpmawa/<?php print($do->opmawa_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                    <a href="<?php echo base_url('Main_C/opmawaDetail?id_opmawa='. $id_opmawa)?>">
+                                                        <button class="btn btn-info" id="round">Detail</button>
+                                                    </a>
+                                                    <?php if ($_SESSION['user_posisi'] == 1) { ?>
+                                                            <a href="<?php echo site_url();?>/Main_C/delOpmawa/<?php print($do->opmawa_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                    
+                                                    <?php }
+                                                          else {
+                                                            echo "Locked";
+                                                          }
+                                                     ?>
+                                                    
                                                 </td>
                                             </tr>
                                         <?php } ?>

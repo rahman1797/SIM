@@ -6,9 +6,13 @@ class M_user extends CI_Model{
 		return $this->db->get_where($table,$where);
 	}
 
-	function tampil_data(){
+	function tampil_user(){
 		return $this->db->get_where('user_tbl');
 	}
+
+			function tampil_user_byLembaga(){
+				return $this->db->get_where('user_tbl', array('user_role' => $_SESSION['user_role']));
+			}
 
 			function getUserNama($id_user)
 			{

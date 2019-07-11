@@ -12,7 +12,7 @@ class User_C extends CI_Controller {
 	//controller default
 	public function index()
 	{	
-		$data['user_data'] = $this->M_user->tampil_data()->result();
+		$data['user_data'] = $this->M_user->tampil_user_byLembaga()->result();
 		$data['prodi_data'] = $this->M_sys->tampil_regis_prodi()->result();
 		$data['posisi_data'] = $this->M_sys->tampil_regis_posisi_byLembaga()->result();
 		$this->load->view('layout/header');
