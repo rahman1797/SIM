@@ -47,7 +47,7 @@ class Proker_C extends CI_Controller {
 			{	
 				$data['proker_anggota'] = $this->M_proker->tampil_prokerAnggota()->result();
 				$data['proker_posisi'] = $this->M_proker->tampil_prokerPosisi()->result();
-				$data['user_data'] = $this->M_user->tampil_data()->result();
+				$data['user_data'] = $this->M_user->tampil_user()->result();
 				$this->load->view('layout/header');
 				$this->load->view('layout/footer');
 				$this->load->view('proker/detailProker/prokerAnggota',$data);

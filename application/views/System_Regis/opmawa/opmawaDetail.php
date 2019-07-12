@@ -27,7 +27,7 @@
                                 <div class="col-lg-3">
                                     <?php 
                                                 
-                                        echo "<strong>Penilaian Proker : </strong>"  ;
+                                        echo "<strong>Penilaian Kabinet : </strong>"  ;
                                       
                                     ?>
                                 </div>
@@ -41,10 +41,16 @@
                             </div>
 
 
-
+                            <div class="header" align="center">
+                                <div class="alert alert-warning" id="round">
+                                  <strong>Informasi!</strong> Tabel ini merupakan daftar posisi/jabatan yang terdaftar di dalam OPMAWA.
+                                </div>
+                                
+                                <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalDepartemen" id="round">Tambah Departemen</button>  
+                            </div>
                       
                             <div class="table-responsive">
-                                <table id="refAng" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                                <table id="refDep" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
                                             <th>Nama Departemen/Biro</th>
@@ -96,8 +102,74 @@
 
 
 
+
+<!-- Modal Kabinet -->
+            <div class="modal fade" id="ModalDepartemen" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" id="round">
+                       <center>
+                        <div class="modal-body">
+                              <!-- Form Prodi -->
+                          
+                                <form id="form_validation" class="formDepart" method="POST" style="margin: 20px" onsubmit="return submitDepart()">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                             <label class="form-label">Nama Departemen/Biro</label>
+                                            <input type="text" class="form-control" name="nama_departemen" id="nama_departemen" required>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="id_opmawa" value="<?php echo $_GET['id_opmawa'] ?>">
+                                    <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                                </form>
+
+                            <!-- #END# Form Prodi -->
+                        </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
 
 <script type="text/javascript">
 
-</script>
+    function delConfirm()
+    {
+        job = confirm("Are you sure to delete permanently?");
+        
+        if(job != true)
+        {
+            return false;
+        }
+    }
+
+
+    function submitDepart() {
+
+         var data = $('.formDepart').serialize();
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo base_url('Main_C/addDepartemen') ?>",
+                data: data,
+                success: function() {
+                    Swal.fire({
+                      position: 'top-end',
+                      type: 'success',
+                      title: 'Berhasil menambah departemen',
+                      showConfirmButton: false,
+                      timer: 1500
+                    }).then(function(){
+                        $('#refDep').load(document.URL +  ' #refDep');
+                    })
+                       
+                }
+            });
+            return false;
+            
+        }            
+
+    </script>

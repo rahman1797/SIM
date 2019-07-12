@@ -18,6 +18,10 @@ class M_sys extends CI_Model{
 						return $this->db->get_where('departemen_tbl', array('id_opmawa' => $_GET['id_opmawa']));
 					}
 
+			function tampil_departemenOpmawa(){
+				return $this->db->get_where('departemen_tbl', array('id_opmawa' => $_SESSION['user_opmawa']));
+			}
+
 	// function tampil_regis_posisi(){
 	// 	return $this->db->get_where('posisi_tbl');
 	// }
@@ -35,7 +39,7 @@ class M_sys extends CI_Model{
 	}
 
 	function inputDepartemen($data) {
-		$this->db->insert('depatemen_tbl', $data);
+		$this->db->insert('departemen_tbl', $data);
 	}
 
 	function inputPosisi($data) {

@@ -48,7 +48,16 @@
                                                 <td><?php echo $idToNama['0']['user_nama']; ?></td>
                                                 <td><?php echo $idToPosisi['0']['prokerPosisi_nama']; ?> </td>
                                                 <td>
-                                                    <a href="<?php echo site_url();?>/Proker_C/delProkerAnggota/<?php print($id_anggota);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                    <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
+                                                        <a href="<?php echo site_url();?>/Proker_C/delProkerAnggota/<?php print($id_anggota);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                    ?>
+                                                    <?php } 
+                                                        else {
+                                                            echo "Locked";
+                                                        }
+
+                                                    ?>
+                                                    
                                                 </td>
                                             </tr>
                                         <?php } 

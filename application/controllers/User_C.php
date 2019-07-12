@@ -15,6 +15,7 @@ class User_C extends CI_Controller {
 		$data['user_data'] = $this->M_user->tampil_user_byLembaga()->result();
 		$data['prodi_data'] = $this->M_sys->tampil_regis_prodi()->result();
 		$data['posisi_data'] = $this->M_sys->tampil_regis_posisi_byLembaga()->result();
+		$data['departemen_data'] = $this->M_sys->tampil_departemenOpmawa()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('user/list', $data);
@@ -28,6 +29,8 @@ class User_C extends CI_Controller {
 		$pass = $this->input->post('user_pass_check');
 		$prodi = $this->input->post('user_prodi');
 		$posisi = $this->input->post('user_posisi');
+		$idOpmawa = $this->input->post('user_opmawa');
+		$idDepartemen = $this->input->post('user_departemen');
 		$tahun = $this->input->post('user_tahun');
 		$role = $this->input->post('user_role');
 		$data = array(
@@ -36,6 +39,8 @@ class User_C extends CI_Controller {
 			'user_pass' => $pass,
 			'id_prodi' => $prodi,
 			'id_posisi' => $posisi,
+			'id_opmawa' => $idOpmawa,
+			'id_departemen' => $idDepartemen,
 			'user_tahun' => $tahun,
 			'user_role' => $role
 		);

@@ -9,8 +9,6 @@
                     <div class="card" id="round">
                         
                         
-                        
-
 
 
                         <form action="<?php echo site_url('Berkas_C/do_upload?id_proker='.$_GET['id_proker']);?>" method="post" enctype="multipart/form-data" name="userfile">
@@ -110,8 +108,15 @@
                                                 <td>
 
                                                     <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round">Unduh</button></a>
-                                                                   
-                                                    <a href="<?php echo site_url();?>/Berkas_C/delBerkas/<?php print($bd->berkas_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                     
+                                                    <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
+                                                         <a href="<?php echo site_url();?>/Berkas_C/delBerkas/<?php print($bd->berkas_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                 <?php } 
+                                                    else {
+                                                        echo "Locked";
+                                                    }
+                                                 ?>               
+                                                   
                                          
                                                 </td>
                                             </tr>

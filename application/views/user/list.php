@@ -149,6 +149,18 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
+                                            <select class="form-control show-tick" name="user_departemen">
+                                                <option value="">-- Departemen --</option>
+                                                <?php 
+                                                    foreach ($departemen_data as $dd) {
+                                                        echo "<option value='$dd->departemen_ID'>".$dd->departemen_nama ."</option>";
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
                                             <select class="form-control show-tick" name="user_posisi">
                                                 <option value="">-- Posisi --</option>
                                                 <?php 
@@ -159,6 +171,7 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="user_opmawa" value="<?php echo $_SESSION['user_opmawa'] ?>">
                                     <input type="hidden" name="user_tahun" value="<?php echo $_SESSION['user_tahun'] ?>">
                                      <input type="hidden" name="user_role" value="<?php echo $_SESSION['user_role'] ?>">
                                     <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>

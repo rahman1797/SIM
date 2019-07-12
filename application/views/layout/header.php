@@ -315,10 +315,21 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('Main_C/Sysregis') ?>">
+                        <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">settings</i>
                             <span>Registrasi Sistem</span>
                         </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="<?php echo base_url('Main_C/regProdi') ?>">Registrasi Prodi</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url('Main_C/regOpmawa') ?>">Registrasi Opmawa</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url('Main_C/regPosisi') ?>">Registrasi Posisi</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="header">HISTORY</li>
                     <li>

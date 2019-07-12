@@ -21,14 +21,30 @@ class Main_C extends CI_Controller {
 
 	}
 
-	public function Sysregis()
+	public function regProdi()
 	{
 		$data['data_prodi'] = $this->M_sys->tampil_regis_prodi()->result();
-		$data['data_posisi'] = $this->M_sys->tampil_regis_posisi_byLembaga()->result();
-		$data['data_opmawa'] = $this->M_sys->tampil_regis_opmawa()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
-		$this->load->view('System_Regis/Sysregis', $data);		
+		$this->load->view('System_Regis/regProdi', $data);		
+	}
+
+	public function regPosisi()
+	{
+		$data['data_posisi'] = $this->M_sys->tampil_regis_posisi_byLembaga()->result();
+		$this->load->view('layout/header');
+		$this->load->view('layout/footer');
+		$this->load->view('System_Regis/regPosisi', $data);		
+	}
+
+	public function regOpmawa()
+	{
+		$data['data_opmawa'] = $this->M_sys->tampil_regis_opmawa()->result();
+		$data['prodi_data'] = $this->M_sys->tampil_regis_prodi()->result();
+		$data['user_data'] = $this->M_user->tampil_user()->result();
+		$this->load->view('layout/header');
+		$this->load->view('layout/footer');
+		$this->load->view('System_Regis/regOpmawa', $data);		
 	}
 
 			public function opmawaDetail()
@@ -47,13 +63,14 @@ class Main_C extends CI_Controller {
 //	SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 	public function addOPMAWA()
 	{
-		$namaKetua = $this->input->post('nama_ketua');
+
+		$namaKetua = $this->input->post('nama_user');
 		$namaKabinet = $this->input->post('nama_kabinet');
 		$tahunKepengurusan = $_SESSION['user_tahun'] + 1;
 		$data = array(
 			'opmawa_kabinet' => $namaKabinet,
-			'opmawa_ketua' => $namaKetua,
-			'opmawa_tahun' => $tahun_kepengurusan
+			'id_user' => $namaKetua,
+			'opmawa_tahun' => $tahunKepengurusan
 		);
 		$this->M_sys->inputOpmawa($data);	
 	}
@@ -61,7 +78,7 @@ class Main_C extends CI_Controller {
 			function addDepartemen()
 			{
 				$nama_departemen = $this->input->post('nama_departemen');
-				$idOpmawa = $this->input->$_GET['id_opmawa'];
+				$idOpmawa = $this->input->post('id_opmawa');
 				$data = array(
 					'departemen_nama' => $nama_departemen,
 					'id_opmawa' => $idOpmawa
