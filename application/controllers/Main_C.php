@@ -114,14 +114,14 @@ class Main_C extends CI_Controller {
 	{
 		$idPro = array('prodi_ID' => $id);
 		$this->M_sys->deleteProdi($idPro,'prodi_tbl');
-		redirect(base_url('Main_C/Sysregis'));
+		redirect(base_url('Main_C/regProdi'));
 	}
 
 	public function delPosisi($id)
 	{
 		$idPos = array('posisi_ID' => $id);
 		$this->M_sys->deletePosisi($idPos,'posisi_tbl');
-		redirect(base_url('Main_C/Sysregis'));
+		redirect(base_url('Main_C/regPosisi'));
 	}
 
 }

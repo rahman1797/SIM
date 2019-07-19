@@ -76,9 +76,9 @@
                                                         }
 
                                                         else 
-                                                        {
-                                                           echo "<a href='<?php echo site_url();?>/Proker_C/delProker/<?php print($pd->proker_ID);?>''><button class='btn btn-danger' id='round' onclick='return delConfirm()''>Delete</button></a>";
-                                                        }
+                                                        {  ?>
+                                                           <a href='<?php echo site_url();?>/Proker_C/delProker/<?php print($pd->proker_ID);?>'><button class='btn btn-danger' id='round' onclick='return delConfirm()'>Delete</button></a>
+                                                       <?php }
                                                   } ?>
                                                  
                                                  </td>
