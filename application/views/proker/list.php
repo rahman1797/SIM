@@ -37,7 +37,6 @@
                                     <tbody>
 
                                         <?php 
-                                       
                                             foreach($proker_data as $pd){ 
                                             $date = date_create($pd->proker_tanggal);
                                             $id_proker = $pd->proker_ID
@@ -72,20 +71,18 @@
                                                   <?php 
                                                         if ($pd->proker_tahun != $_SESSION['user_tahun']) 
                                                         {
-                                                            echo "Locked";
+                                                            echo "<button class='btn btn-danger' id='round' disabled>Locked</button>";
                                                         }
 
                                                         else 
                                                         {  ?>
                                                            <a href='<?php echo site_url();?>/Proker_C/delProker/<?php print($pd->proker_ID);?>'><button class='btn btn-danger' id='round' onclick='return delConfirm()'>Delete</button></a>
                                                        <?php }
-                                                  } ?>
+                                            } ?>
                                                  
                                                  </td>
-            
                                             </tr>
-                                        
-                                        
+                                            
                                     </tbody>
                                 </table>
                             </div>
