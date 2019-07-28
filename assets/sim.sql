@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2019 at 07:52 AM
+-- Generation Time: Jul 28, 2019 at 03:02 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -25,14 +25,69 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `panitia_tbl`
+-- Table structure for table `berkas_tbl`
 --
 
-CREATE TABLE `panitia_tbl` (
-  `panitia_ID` int(11) NOT NULL,
+CREATE TABLE `berkas_tbl` (
+  `berkas_ID` int(11) NOT NULL,
+  `berkas_nama` varchar(50) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `panitia_posisi` int(11) NOT NULL
+  `id_proker` int(11) DEFAULT NULL,
+  `berkas_tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `berkas_lembaga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `berkas_tbl`
+--
+
+INSERT INTO `berkas_tbl` (`berkas_ID`, `berkas_nama`, `id_user`, `id_proker`, `berkas_tanggal`, `berkas_lembaga`) VALUES
+(10, 'Untitled.png', 1, 5, '2019-07-08 09:23:13', 1),
+(11, 'Curriculum_Vitae.docx', 1, 5, '2019-07-08 09:56:37', 1),
+(12, 'CYMERA_20180201_093054.jpg', 25, 2, '2019-07-12 09:43:39', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `departemen_tbl`
+--
+
+CREATE TABLE `departemen_tbl` (
+  `departemen_ID` int(11) NOT NULL,
+  `departemen_nama` varchar(50) NOT NULL,
+  `id_opmawa` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `departemen_tbl`
+--
+
+INSERT INTO `departemen_tbl` (`departemen_ID`, `departemen_nama`, `id_opmawa`) VALUES
+(1, 'BPH', 1),
+(2, 'Informasi dan teknologi', 1),
+(3, 'BPH', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `opmawa_tbl`
+--
+
+CREATE TABLE `opmawa_tbl` (
+  `opmawa_ID` int(11) NOT NULL,
+  `opmawa_kabinet` varchar(25) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `opmawa_tahun` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `opmawa_tbl`
+--
+
+INSERT INTO `opmawa_tbl` (`opmawa_ID`, `opmawa_kabinet`, `id_user`, `opmawa_tahun`) VALUES
+(1, 'Bersatu', 1, 2018),
+(2, 'Berdua', 9, 2019),
+(3, 'Bertiga', 10, 2019);
 
 -- --------------------------------------------------------
 
@@ -58,9 +113,7 @@ INSERT INTO `posisi_tbl` (`posisi_ID`, `posisi_nama`, `posisi_lembaga`) VALUES
 (5, 'Bendahara Umum', 1),
 (6, 'Bendahara Umum', 2),
 (7, 'Ketua Departemen', 1),
-(8, 'Ketua Departemen', 2),
-(9, 'Sekretaris Biro', 2),
-(10, 'Mantap', 1);
+(8, 'Ketua Komisi', 2);
 
 -- --------------------------------------------------------
 
@@ -89,7 +142,11 @@ INSERT INTO `prodi_tbl` (`prodi_ID`, `prodi_nama`) VALUES
 (11, 'Kimia'),
 (12, 'Pendidikan Biologi'),
 (13, 'Pendidikan Kimia'),
-(14, 'Pendidikan Sejarah');
+(14, 'Pendidikan Sejarah'),
+(15, 'Statistika'),
+(17, 'X'),
+(18, 'C'),
+(19, 'A');
 
 -- --------------------------------------------------------
 
@@ -101,15 +158,19 @@ CREATE TABLE `prokeranggota_tbl` (
   `prokerAnggota_ID` int(11) NOT NULL,
   `id_proker` int(11) NOT NULL,
   `id_posisi` int(11) NOT NULL,
-  `prokerAnggota_nama` varchar(50) NOT NULL
+  `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `prokeranggota_tbl`
 --
 
-INSERT INTO `prokeranggota_tbl` (`prokerAnggota_ID`, `id_proker`, `id_posisi`, `prokerAnggota_nama`) VALUES
-(2, 6, 1, 'Evita Dwi Oktaviani');
+INSERT INTO `prokeranggota_tbl` (`prokerAnggota_ID`, `id_proker`, `id_posisi`, `id_user`) VALUES
+(9, 5, 1, 1),
+(11, 1, 13, 7),
+(12, 7, 19, 10),
+(14, 5, 2, 7),
+(15, 5, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -132,11 +193,37 @@ INSERT INTO `prokerposisi_tbl` (`prokerPosisi_ID`, `id_proker`, `prokerPosisi_na
 (2, 5, 'HPD'),
 (9, 5, 'Acara'),
 (13, 1, 'Konsumsi'),
-(14, 6, 'Ketua Pelaksana'),
-(15, 6, 'HPD'),
-(16, 6, 'Acara'),
-(17, 6, 'Konsumsi'),
-(18, 6, 'Sponsor');
+(19, 7, 'Ketua Pelaksana'),
+(20, 7, 'HPD'),
+(21, 7, 'Konsumsi'),
+(22, 7, 'Perlengkapan'),
+(23, 7, 'Transportasi'),
+(24, 7, 'Acara');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prokertugas_tbl`
+--
+
+CREATE TABLE `prokertugas_tbl` (
+  `prokerTugas_ID` int(11) NOT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `id_proker` int(11) NOT NULL,
+  `prokerTugas_deskripsi` varchar(255) NOT NULL,
+  `prokerTugas_status` enum('0','1') NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `prokertugas_tbl`
+--
+
+INSERT INTO `prokertugas_tbl` (`prokerTugas_ID`, `id_user`, `id_proker`, `prokerTugas_deskripsi`, `prokerTugas_status`) VALUES
+(1, 11, 5, 'Beli Makakanan', '0'),
+(2, 12, 5, 'Membuat Banner ukuran 200x300 cm. jangan lupa cari yang paling murah', '0'),
+(33, NULL, 5, 'TA', '0'),
+(34, 1, 3, 'Bawa cemilan\r\n', '0'),
+(35, 1, 7, 'Bawa kompor', '0');
 
 -- --------------------------------------------------------
 
@@ -162,7 +249,7 @@ INSERT INTO `proker_tbl` (`proker_ID`, `proker_nama`, `proker_tanggal`, `proker_
 (2, 'BINER 3.0', '2019-06-03', 1, 2017, '100'),
 (3, 'BINER 2.0', '2019-06-02', 1, 2018, NULL),
 (5, 'BINER', '2019-05-22', 1, 2018, NULL),
-(6, 'Tuk Tuk', '2019-06-22', 1, 2018, NULL);
+(7, 'Tuk Tuk', '2019-06-28', 1, 2018, NULL);
 
 -- --------------------------------------------------------
 
@@ -175,8 +262,10 @@ CREATE TABLE `user_tbl` (
   `user_nama` varchar(25) NOT NULL,
   `user_NIM` varchar(15) NOT NULL,
   `user_pass` varchar(25) NOT NULL,
-  `user_prodi` int(2) NOT NULL,
-  `user_posisi` int(2) NOT NULL,
+  `id_prodi` int(2) NOT NULL,
+  `id_posisi` int(2) NOT NULL,
+  `id_opmawa` int(11) NOT NULL,
+  `id_departemen` int(11) NOT NULL,
   `user_tahun` int(4) NOT NULL,
   `user_role` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -185,24 +274,41 @@ CREATE TABLE `user_tbl` (
 -- Dumping data for table `user_tbl`
 --
 
-INSERT INTO `user_tbl` (`user_ID`, `user_nama`, `user_NIM`, `user_pass`, `user_prodi`, `user_posisi`, `user_tahun`, `user_role`) VALUES
-(1, 'Maulana', '1', '1', 1, 1, 2018, 1),
-(7, 'Rahman', '2', '2', 2, 2, 2018, 2),
-(8, 'Evita Dwi Oktaviani', '4415151073', 'sejarah', 14, 1, 2018, 1),
-(9, 'Evita Dwi ', '441515', 'TEST', 14, 3, 2018, 1),
-(10, 'Evita Dwi Oktaviani', '4415151073', '1234', 9, 1, 2018, 1),
-(11, 'Evita Dwi Oktaviani', '9090909', '999', 12, 8, 2018, 2),
-(12, 'Asik', '7777', '7', 7, 10, 2018, 1);
+INSERT INTO `user_tbl` (`user_ID`, `user_nama`, `user_NIM`, `user_pass`, `id_prodi`, `id_posisi`, `id_opmawa`, `id_departemen`, `user_tahun`, `user_role`) VALUES
+(1, 'Maulana', '1', '1', 1, 1, 1, 1, 2018, 1),
+(7, 'Rahman', '2', '2', 2, 2, 1, 1, 2018, 2),
+(9, 'Firly', '441515', 'TEST', 14, 3, 1, 1, 2018, 1),
+(10, 'Kelik', '4415151073', '1234', 9, 1, 1, 1, 2018, 1),
+(11, 'Budi', '9090909', '999', 12, 8, 1, 1, 2018, 2),
+(13, 'fulan', '1234', '1234', 6, 4, 1, 1, 2018, 2),
+(24, 'Farhan', '123', '123', 6, 7, 3, 2, 2018, 1),
+(25, 'Aksan', '123', '123', 6, 3, 3, 2, 2018, 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `panitia_tbl`
+-- Indexes for table `berkas_tbl`
 --
-ALTER TABLE `panitia_tbl`
-  ADD PRIMARY KEY (`panitia_ID`);
+ALTER TABLE `berkas_tbl`
+  ADD PRIMARY KEY (`berkas_ID`),
+  ADD KEY `uploadOleh` (`id_user`),
+  ADD KEY `berkasProker` (`id_proker`);
+
+--
+-- Indexes for table `departemen_tbl`
+--
+ALTER TABLE `departemen_tbl`
+  ADD PRIMARY KEY (`departemen_ID`),
+  ADD KEY `id_opmawa` (`id_opmawa`);
+
+--
+-- Indexes for table `opmawa_tbl`
+--
+ALTER TABLE `opmawa_tbl`
+  ADD PRIMARY KEY (`opmawa_ID`),
+  ADD KEY `getKetuaNama` (`id_user`);
 
 --
 -- Indexes for table `posisi_tbl`
@@ -222,7 +328,8 @@ ALTER TABLE `prodi_tbl`
 ALTER TABLE `prokeranggota_tbl`
   ADD PRIMARY KEY (`prokerAnggota_ID`),
   ADD KEY `proker` (`id_proker`),
-  ADD KEY `posisi` (`id_posisi`);
+  ADD KEY `posisi` (`id_posisi`),
+  ADD KEY `nama` (`id_user`);
 
 --
 -- Indexes for table `prokerposisi_tbl`
@@ -230,6 +337,14 @@ ALTER TABLE `prokeranggota_tbl`
 ALTER TABLE `prokerposisi_tbl`
   ADD PRIMARY KEY (`prokerPosisi_ID`),
   ADD KEY `getProker` (`id_proker`);
+
+--
+-- Indexes for table `prokertugas_tbl`
+--
+ALTER TABLE `prokertugas_tbl`
+  ADD PRIMARY KEY (`prokerTugas_ID`),
+  ADD KEY `namaUser` (`id_user`),
+  ADD KEY `namaProker` (`id_proker`);
 
 --
 -- Indexes for table `proker_tbl`
@@ -242,63 +357,103 @@ ALTER TABLE `proker_tbl`
 --
 ALTER TABLE `user_tbl`
   ADD PRIMARY KEY (`user_ID`),
-  ADD KEY `getProdi` (`user_prodi`),
-  ADD KEY `getPosisi` (`user_posisi`);
+  ADD KEY `getPosisi` (`id_posisi`),
+  ADD KEY `getProdi` (`id_prodi`),
+  ADD KEY `getOpmawa` (`id_opmawa`),
+  ADD KEY `getDepartemen` (`id_departemen`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `panitia_tbl`
+-- AUTO_INCREMENT for table `berkas_tbl`
 --
-ALTER TABLE `panitia_tbl`
-  MODIFY `panitia_ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `berkas_tbl`
+  MODIFY `berkas_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `departemen_tbl`
+--
+ALTER TABLE `departemen_tbl`
+  MODIFY `departemen_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `opmawa_tbl`
+--
+ALTER TABLE `opmawa_tbl`
+  MODIFY `opmawa_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `posisi_tbl`
 --
 ALTER TABLE `posisi_tbl`
-  MODIFY `posisi_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `posisi_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `prodi_tbl`
 --
 ALTER TABLE `prodi_tbl`
-  MODIFY `prodi_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `prodi_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `prokeranggota_tbl`
 --
 ALTER TABLE `prokeranggota_tbl`
-  MODIFY `prokerAnggota_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `prokerAnggota_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `prokerposisi_tbl`
 --
 ALTER TABLE `prokerposisi_tbl`
-  MODIFY `prokerPosisi_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `prokerPosisi_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `prokertugas_tbl`
+--
+ALTER TABLE `prokertugas_tbl`
+  MODIFY `prokerTugas_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `proker_tbl`
 --
 ALTER TABLE `proker_tbl`
-  MODIFY `proker_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `proker_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_tbl`
 --
 ALTER TABLE `user_tbl`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `berkas_tbl`
+--
+ALTER TABLE `berkas_tbl`
+  ADD CONSTRAINT `berkasProker` FOREIGN KEY (`id_proker`) REFERENCES `proker_tbl` (`proker_ID`),
+  ADD CONSTRAINT `uploadOleh` FOREIGN KEY (`id_user`) REFERENCES `user_tbl` (`user_ID`);
+
+--
+-- Constraints for table `departemen_tbl`
+--
+ALTER TABLE `departemen_tbl`
+  ADD CONSTRAINT `id_opmawa` FOREIGN KEY (`id_opmawa`) REFERENCES `opmawa_tbl` (`opmawa_ID`);
+
+--
+-- Constraints for table `opmawa_tbl`
+--
+ALTER TABLE `opmawa_tbl`
+  ADD CONSTRAINT `getKetuaNama` FOREIGN KEY (`id_user`) REFERENCES `user_tbl` (`user_ID`);
+
+--
 -- Constraints for table `prokeranggota_tbl`
 --
 ALTER TABLE `prokeranggota_tbl`
+  ADD CONSTRAINT `nama` FOREIGN KEY (`id_user`) REFERENCES `user_tbl` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `posisi` FOREIGN KEY (`id_posisi`) REFERENCES `prokerposisi_tbl` (`prokerPosisi_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `proker` FOREIGN KEY (`id_proker`) REFERENCES `proker_tbl` (`proker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -309,11 +464,19 @@ ALTER TABLE `prokerposisi_tbl`
   ADD CONSTRAINT `getProker` FOREIGN KEY (`id_proker`) REFERENCES `proker_tbl` (`proker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `prokertugas_tbl`
+--
+ALTER TABLE `prokertugas_tbl`
+  ADD CONSTRAINT `namaProker` FOREIGN KEY (`id_proker`) REFERENCES `proker_tbl` (`proker_ID`);
+
+--
 -- Constraints for table `user_tbl`
 --
 ALTER TABLE `user_tbl`
-  ADD CONSTRAINT `getPosisi` FOREIGN KEY (`user_posisi`) REFERENCES `posisi_tbl` (`posisi_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `getProdi` FOREIGN KEY (`user_prodi`) REFERENCES `prodi_tbl` (`prodi_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `getDepartemen` FOREIGN KEY (`id_departemen`) REFERENCES `departemen_tbl` (`departemen_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `getOpmawa` FOREIGN KEY (`id_opmawa`) REFERENCES `opmawa_tbl` (`opmawa_ID`),
+  ADD CONSTRAINT `getPosisi` FOREIGN KEY (`id_posisi`) REFERENCES `posisi_tbl` (`posisi_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `getProdi` FOREIGN KEY (`id_prodi`) REFERENCES `prodi_tbl` (`prodi_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
