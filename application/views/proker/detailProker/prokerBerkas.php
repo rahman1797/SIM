@@ -11,7 +11,7 @@
                         
 
 
-                        <form action="<?php echo site_url('Berkas_C/do_upload?id_proker='.$_GET['id_proker']);?>" method="post" enctype="multipart/form-data" name="userfile">
+                        <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker='.$_GET['id_proker']);?>" method="post" enctype="multipart/form-data" name="userfile">
 
               <!-- <div class="form-group">
                 <label for="exampleInputEmail1">Title</label>
@@ -27,13 +27,6 @@
  
               <button type="submit" class="btn btn-primary">Upload</button>
             </form>
-
-
-
-
-
-
-
 
 
 

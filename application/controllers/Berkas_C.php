@@ -22,7 +22,7 @@ class Berkas_C extends CI_Controller {
 
 	}
 		
-	function do_upload(){
+	function uploadBerkas(){
          		
          		$config['upload_path']= 'uploads/';
 			     $config['allowed_types'] = 'gif|jpg|png|txt|pdf|xlsx|csv|xls|bmp|doc|docx'; 
@@ -62,31 +62,31 @@ class Berkas_C extends CI_Controller {
     }
 
 
-    function upload(){
-    	$config = array(
-    				'upload_path' => 'uploads/',
-    				'allowed_types' => 'gif|jpg|png|txt|pdf|xlsx|csv|xls|bmp',
-    				'max_size' => 25000
-    				);
+    // function upload(){
+    // 	$config = array(
+    // 				'upload_path' => 'uploads/',
+    // 				'allowed_types' => 'gif|jpg|png|txt|pdf|xlsx|csv|xls|bmp',
+    // 				'max_size' => 25000
+    // 				);
 
-    	$this->upload->initialize($config);
+    // 	$this->upload->initialize($config);
 
-    	$file = $this->upload->data();
+    // 	$file = $this->upload->data();
 
-    	// print_r($file);
+    // 	// print_r($file);
         
 
-        $database = array(
-            'berkas_nama' => $file,
-            'id_user' => $_SESSION['user_ID'],
-            'id_proker' => $_GET['id_proker'],
-            'berkas_lembaga' => $_SESSION['user_role'] 
-            );
+    //     $database = array(
+    //         'berkas_nama' => $file,
+    //         'id_user' => $_SESSION['user_ID'],
+    //         'id_proker' => $_GET['id_proker'],
+    //         'berkas_lembaga' => $_SESSION['user_role'] 
+    //         );
 
-        $result = $this->db->insert('berkas_tbl', $database);
+    //     $result = $this->db->insert('berkas_tbl', $database);
         
-        print_r($database);
-    }
+    //     print_r($database);
+    // }
 
     function download(){
     	$nama_file = $_GET['name'];
