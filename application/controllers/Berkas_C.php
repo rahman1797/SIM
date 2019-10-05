@@ -21,6 +21,17 @@ class Berkas_C extends CI_Controller {
 		$this->load->view('proker/detailProker/prokerBerkas',$data);
 
 	}
+	
+
+	public function allBerkas()
+	{	
+		$data['berkas_data'] = $this->M_berkas->tampil_berkas()->result();
+		
+		$this->load->view('layout/header');
+		$this->load->view('layout/footer');
+		$this->load->view('berkas_all',$data);
+
+	}
 		
 	function uploadBerkas(){
          		

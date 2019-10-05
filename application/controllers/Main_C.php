@@ -15,6 +15,7 @@ class Main_C extends CI_Controller {
 	{	
 		$data['data_proker'] = $this->M_proker->tampil_proker()->result();
 		$data['data_tugasSaya'] = $this->M_proker->tampil_prokerTugasSaya()->result();
+		$data['allBerkas'] = $this->M_berkas->JumlahBerkas();
 		$this->load->view('layout/header');
 		$this->load->view('beranda', $data);
 		$this->load->view('layout/footer');

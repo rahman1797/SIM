@@ -20,21 +20,23 @@
                             <i class="material-icons">forum</i>
                         </div>
                         <div class="content">
-                            <div class="text">Komentar</div>
-                            <div class="number count-to" data-from="0" data-to="1" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text">Jadwal Rapat Terdekat</div>
+                            <?php echo date('H M Y') ?>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                    <a href="<?php echo base_url('Berkas_C/allBerkas') ?>">
                     <div class="info-box bg-orange hover-zoom-effect" id="round">
                         <div class="icon">
                             <i class="material-icons">attachment</i>
                         </div>
                         <div class="content">
                             <div class="text">File</div>
-                            <div class="number count-to" data-from="0" data-to="120" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $allBerkas ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
+                    </a>
                 </div>
             </div>
             <!-- #END# Widgets -->
@@ -135,7 +137,7 @@
                             <h2>Grafik Keuangan</h2>
                         </div>
                         <div class="body">
-                            <div id="chartContainer" style="height: 300px; max-width: 800px; margin: 0px auto;"></div>
+                            <div id="barchart_material" style="height: 300px; max-width: 800px; margin: 0px auto;"></div>
                         </div>
                     </div>
                 </div>
@@ -145,50 +147,29 @@
         </div>
     </section>
 
-
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-        window.onload = function () {
+    
 
-        var chart = new CanvasJS.Chart("chartContainer", {
-            animationEnabled: true,
-              
-            axisY: {
-                title: "Rupiah (Rp)",
-                titleFontColor: "#4F81BC",
-            },
-             
-            toolTip: {
-                shared: true
-            },
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
 
-            data: [{
-                type: "column",
-                name: "Pemasukkan",         
-                dataPoints:[
-                    { label: "BINER", y: 200000 },
-                    { label: "BINER 2.0", y: 150000 },
-                    { label: "BINER 3.0", y: 125000 },
-                    { label: "BINER 4.0", y: 210000 },
-                    { label: "BINER 5.0", y: 210000 },
-                ]
-            },
-            {
-                type: "column", 
-                name: "Pengeluaran",
-                dataPoints:[
-                    { label: "BINER", y: 210000 },
-                    { label: "BINER 2.0", y: 100000 },
-                    { label: "BINER 3.0", y: 125000 },
-                    { label: "BINER 4.0", y: 300000 },
-                    { label: "BINER 5.0", y: 210000 },
-                ]
-            }]
-        });
-        chart.render();
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Nama Program Kerja', 'Pemasukan', 'Pengeluaran'],
+          <?php foreach ($data_proker as $dp) { ?>
+          ['<?php echo $dp->proker_nama ?>', 1000, 400],
+          
+         <?php } ?>
+        ]);
 
-        }
+        var options = {
+          hAxis: {format: 'decimal'},
+          bars: 'horizontal' // Required for Material Bar Charts.
+        };
 
-        function check(){
-            window.alert('TEST')
-        }
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
     </script>
