@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2019 at 03:02 PM
+-- Generation Time: Oct 08, 2019 at 08:30 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `berkas_tbl` (
   `berkas_ID` int(11) NOT NULL,
+  `berkas_kode` varchar(15) DEFAULT NULL,
   `berkas_nama` varchar(50) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_proker` int(11) DEFAULT NULL,
@@ -41,10 +42,14 @@ CREATE TABLE `berkas_tbl` (
 -- Dumping data for table `berkas_tbl`
 --
 
-INSERT INTO `berkas_tbl` (`berkas_ID`, `berkas_nama`, `id_user`, `id_proker`, `berkas_tanggal`, `berkas_lembaga`) VALUES
-(10, 'Untitled.png', 1, 5, '2019-07-08 09:23:13', 1),
-(11, 'Curriculum_Vitae.docx', 1, 5, '2019-07-08 09:56:37', 1),
-(12, 'CYMERA_20180201_093054.jpg', 25, 2, '2019-07-12 09:43:39', 1);
+INSERT INTO `berkas_tbl` (`berkas_ID`, `berkas_kode`, `berkas_nama`, `id_user`, `id_proker`, `berkas_tanggal`, `berkas_lembaga`) VALUES
+(10, NULL, 'Untitled.png', 1, 5, '2019-07-08 09:23:13', 1),
+(11, NULL, 'Curriculum_Vitae.docx', 1, 5, '2019-07-08 09:56:37', 1),
+(12, NULL, 'CYMERA_20180201_093054.jpg', 25, 2, '2019-07-12 09:43:39', 1),
+(13, NULL, 'IMG_20180322_214821.png', 1, 5, '2019-08-25 14:41:58', 1),
+(14, NULL, 'IMG_20180322_2148211.png', 1, 5, '2019-08-25 14:44:09', 1),
+(15, NULL, '4K-Wallpaper-Desktop.jpg', 1, 5, '2019-08-25 14:51:01', 1),
+(16, NULL, '5_201501310830372.jpg', 1, NULL, '2019-10-03 05:40:43', 1);
 
 -- --------------------------------------------------------
 
@@ -88,6 +93,54 @@ INSERT INTO `opmawa_tbl` (`opmawa_ID`, `opmawa_kabinet`, `id_user`, `opmawa_tahu
 (1, 'Bersatu', 1, 2018),
 (2, 'Berdua', 9, 2019),
 (3, 'Bertiga', 10, 2019);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pemasukan_tbl`
+--
+
+CREATE TABLE `pemasukan_tbl` (
+  `pemasukan_ID` int(11) NOT NULL,
+  `pemasukan_nominal` varchar(15) NOT NULL,
+  `pemasukan_deskripsi` varchar(60) NOT NULL,
+  `pemasukan_tanggal` date NOT NULL,
+  `pemasukan_file` varchar(25) DEFAULT NULL,
+  `id_proker` int(5) NOT NULL,
+  `pemasukan_lembaga` int(3) NOT NULL,
+  `id_opmawa` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pemasukan_tbl`
+--
+
+INSERT INTO `pemasukan_tbl` (`pemasukan_ID`, `pemasukan_nominal`, `pemasukan_deskripsi`, `pemasukan_tanggal`, `pemasukan_file`, `id_proker`, `pemasukan_lembaga`, `id_opmawa`) VALUES
+(1, '150000', 'Sumbangan panitia', '2019-09-18', NULL, 5, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengeluaran_tbl`
+--
+
+CREATE TABLE `pengeluaran_tbl` (
+  `pengeluaran_ID` int(11) NOT NULL,
+  `pengeluaran_nominal` varchar(15) NOT NULL,
+  `pengeluaran_deskripsi` varchar(60) NOT NULL,
+  `pengeluaran_tanggal` date NOT NULL,
+  `pengeluaran_file` varchar(25) DEFAULT NULL,
+  `id_proker` int(5) NOT NULL,
+  `pengeluaran_lembaga` int(3) NOT NULL,
+  `id_opmawa` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pengeluaran_tbl`
+--
+
+INSERT INTO `pengeluaran_tbl` (`pengeluaran_ID`, `pengeluaran_nominal`, `pengeluaran_deskripsi`, `pengeluaran_tanggal`, `pengeluaran_file`, `id_proker`, `pengeluaran_lembaga`, `id_opmawa`) VALUES
+(1, '100000', 'Mengembalikan dana awal panitia', '2019-10-01', NULL, 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -223,7 +276,8 @@ INSERT INTO `prokertugas_tbl` (`prokerTugas_ID`, `id_user`, `id_proker`, `proker
 (2, 12, 5, 'Membuat Banner ukuran 200x300 cm. jangan lupa cari yang paling murah', '0'),
 (33, NULL, 5, 'TA', '0'),
 (34, 1, 3, 'Bawa cemilan\r\n', '0'),
-(35, 1, 7, 'Bawa kompor', '0');
+(35, 1, 7, 'Bawa kompor', '0'),
+(36, 7, 5, 'Beli minuman', '0');
 
 -- --------------------------------------------------------
 
@@ -249,7 +303,8 @@ INSERT INTO `proker_tbl` (`proker_ID`, `proker_nama`, `proker_tanggal`, `proker_
 (2, 'BINER 3.0', '2019-06-03', 1, 2017, '100'),
 (3, 'BINER 2.0', '2019-06-02', 1, 2018, NULL),
 (5, 'BINER', '2019-05-22', 1, 2018, NULL),
-(7, 'Tuk Tuk', '2019-06-28', 1, 2018, NULL);
+(7, 'Tuk Tuk', '2019-06-28', 1, 2018, NULL),
+(8, 'Asal', '2019-09-06', 1, 2018, NULL);
 
 -- --------------------------------------------------------
 
@@ -282,7 +337,8 @@ INSERT INTO `user_tbl` (`user_ID`, `user_nama`, `user_NIM`, `user_pass`, `id_pro
 (11, 'Budi', '9090909', '999', 12, 8, 1, 1, 2018, 2),
 (13, 'fulan', '1234', '1234', 6, 4, 1, 1, 2018, 2),
 (24, 'Farhan', '123', '123', 6, 7, 3, 2, 2018, 1),
-(25, 'Aksan', '123', '123', 6, 3, 3, 2, 2018, 1);
+(25, 'Aksan', '1237', '123', 6, 3, 3, 2, 2018, 1),
+(26, 'jshkdjhkjJ', '768768', 'hhhh', 10, 1, 1, 2, 2018, 1);
 
 --
 -- Indexes for dumped tables
@@ -309,6 +365,20 @@ ALTER TABLE `departemen_tbl`
 ALTER TABLE `opmawa_tbl`
   ADD PRIMARY KEY (`opmawa_ID`),
   ADD KEY `getKetuaNama` (`id_user`);
+
+--
+-- Indexes for table `pemasukan_tbl`
+--
+ALTER TABLE `pemasukan_tbl`
+  ADD PRIMARY KEY (`pemasukan_ID`),
+  ADD KEY `OpmawaIDpemasukan` (`id_opmawa`);
+
+--
+-- Indexes for table `pengeluaran_tbl`
+--
+ALTER TABLE `pengeluaran_tbl`
+  ADD PRIMARY KEY (`pengeluaran_ID`),
+  ADD KEY `OpmawaID` (`id_opmawa`);
 
 --
 -- Indexes for table `posisi_tbl`
@@ -370,7 +440,7 @@ ALTER TABLE `user_tbl`
 -- AUTO_INCREMENT for table `berkas_tbl`
 --
 ALTER TABLE `berkas_tbl`
-  MODIFY `berkas_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `berkas_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `departemen_tbl`
@@ -383,6 +453,18 @@ ALTER TABLE `departemen_tbl`
 --
 ALTER TABLE `opmawa_tbl`
   MODIFY `opmawa_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `pemasukan_tbl`
+--
+ALTER TABLE `pemasukan_tbl`
+  MODIFY `pemasukan_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `pengeluaran_tbl`
+--
+ALTER TABLE `pengeluaran_tbl`
+  MODIFY `pengeluaran_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `posisi_tbl`
@@ -412,19 +494,19 @@ ALTER TABLE `prokerposisi_tbl`
 -- AUTO_INCREMENT for table `prokertugas_tbl`
 --
 ALTER TABLE `prokertugas_tbl`
-  MODIFY `prokerTugas_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `prokerTugas_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `proker_tbl`
 --
 ALTER TABLE `proker_tbl`
-  MODIFY `proker_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `proker_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_tbl`
 --
 ALTER TABLE `user_tbl`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
@@ -448,6 +530,18 @@ ALTER TABLE `departemen_tbl`
 --
 ALTER TABLE `opmawa_tbl`
   ADD CONSTRAINT `getKetuaNama` FOREIGN KEY (`id_user`) REFERENCES `user_tbl` (`user_ID`);
+
+--
+-- Constraints for table `pemasukan_tbl`
+--
+ALTER TABLE `pemasukan_tbl`
+  ADD CONSTRAINT `OpmawaIDpemasukan` FOREIGN KEY (`id_opmawa`) REFERENCES `opmawa_tbl` (`opmawa_ID`);
+
+--
+-- Constraints for table `pengeluaran_tbl`
+--
+ALTER TABLE `pengeluaran_tbl`
+  ADD CONSTRAINT `OpmawaID` FOREIGN KEY (`id_opmawa`) REFERENCES `opmawa_tbl` (`opmawa_ID`);
 
 --
 -- Constraints for table `prokeranggota_tbl`

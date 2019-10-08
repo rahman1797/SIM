@@ -91,6 +91,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                                <a href="<?php echo base_url('Keuangan_C/index?id_proker='.$_GET['id_proker']) ?>">
                                 <div style="cursor: pointer;" class="info-box bg-green hover-zoom-effect" id="round">
                                     <div class="icon">
                                         <i class="material-icons">timeline</i>
@@ -100,6 +101,7 @@
                                         <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
                                     </div>
                                 </div>
+                                </a>
                             </div>
                             
                                 <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
