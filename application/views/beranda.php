@@ -128,6 +128,9 @@
                         </div>
                     </div>
                 </div>
+
+                <?php echo $this->M_keuangan->pemasukan(5); ?>
+                <?php echo $this->M_keuangan->pengeluaran(5); ?>
                 <!-- #END# Info Tugas Saya -->
 
                   <!-- Keuangan Chart -->
@@ -157,8 +160,12 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Nama Program Kerja', 'Pemasukan', 'Pengeluaran'],
-          <?php foreach ($data_proker as $dp) { ?>
-          ['<?php echo $dp->proker_nama ?>', 250000, 220000],
+          <?php foreach ($data_proker as $dp) { 
+            $masuk = $this->M_keuangan->pemasukan($dp->proker_ID);
+            $keluar = $this->M_keuangan->pengeluaran($dp->proker_ID);
+            ?>
+
+          [<?php echo $dp->proker_nama ?>,  <?php echo $masuk ?>, <?php echo $masuk ?> ],
           
          <?php } ?>
         ]);

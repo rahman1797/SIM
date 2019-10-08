@@ -21,13 +21,22 @@ class M_keuangan extends CI_Model{
 
 // HITUNG KEUANGAN
 
-	function pengeluaran($id){
-		return $this->db->get_where('pengeluaran_tbl', array('id_proker' => $id));
+	function pemasukan($id){
+		$query = $this->db->select_sum('pemasukan_nominal');
+		$query = $this->db->get_where('pemasukan_tbl', array('id_proker' => $id));
+		$result = $query->result();
+
+		return $result[0]->pemasukan_nominal;
 	}
 
-	function pemasukan($id){
-		return $this->db->get_where('pemasukan_tbl', array('id_proker' => $id));
+	function pengeluaran($id){
+		$query = $this->db->select_sum('pengeluaran_nominal');
+		$query = $this->db->get_where('pengeluaran_tbl', array('id_proker' => $id));
+		$result = $query->result();
+
+		return $result[0]->pengeluaran_nominal;
 	}
+
 	// function hitungPemasukan($id){
 	// 	$this->db->select('pemasukan_nominal');
 	// 	$this->db->get_where('pemasukan_tbl', array(
