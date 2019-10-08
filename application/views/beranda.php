@@ -158,7 +158,7 @@
         var data = google.visualization.arrayToDataTable([
           ['Nama Program Kerja', 'Pemasukan', 'Pengeluaran'],
           <?php foreach ($data_proker as $dp) { ?>
-          ['<?php echo $dp->proker_nama ?>', 1000, 400],
+          ['<?php echo $dp->proker_nama ?>', 250000, 220000],
           
          <?php } ?>
         ]);

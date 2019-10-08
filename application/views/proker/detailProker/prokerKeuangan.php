@@ -25,12 +25,12 @@
                         <div class="header" align="center">
                             <h2><strong>DATA PEMASUKAN PROKER</strong></h2>
                             <p></p>
-                            <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalProkerAnggota" id="round">Tambah Pemasukan</button>  
+                            <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round">Tambah Pemasukan</button>  
                         </div>
                         
                         <div class="body">
                             <div class="table-responsive">
-                                <table id="refProkerAnggota" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                                <table id="refPemasukan" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
                                             <th>Tanggal</th>
@@ -93,7 +93,7 @@
                         
                         <div class="body">
                             <div class="table-responsive">
-                                <table id="refProkerAnggota" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                                <table id="refPengeluaran" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
                                             <th>Tanggal</th>
@@ -152,39 +152,35 @@
 
 
 
-<!-- Modal Tambah Anggota -->
-            <div class="modal fade" id="ModalProkerAnggota" tabindex="-1" role="dialog">
+<!-- Modal Pemasukan -->
+            <div class="modal fade" id="ModalPemasukan" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" id="round">
                        <center>
                         <div class="modal-body">
                               <!-- Form Angggota -->
-                                <form id="form_validation" name="formProkerAnggota" class="formProkerAnggota" method="POST" style="margin: 20px" onsubmit="return submitProkerAnggota()">
+                                <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" name="prokerAnggota_nama">
-                                                <option value="">-- Nama Anggota Kepanitiaan --</option>
-                                                <?php 
-                                                    foreach ($user_data as $ud) {
-                                                        echo "<option value='$ud->user_ID'>".$ud->user_nama ."</option>";
-                                                    }
-                                                ?>
-                                            </select>
+                                            <input class="form-control" type="text" id="pemasukan_nominal" name="pemasukan_nominal">
+                                            <label class="form-label">Nominal</label>
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" name="prokerAnggota_posisi">
-                                                <option value="">-- Posisi Kepanitiaan --</option>
-                                                <?php 
-                                                    foreach ($proker_posisi as $pp) {
-                                                        echo "<option value='$pp->prokerPosisi_ID'>".$pp->prokerPosisi_nama ."</option>";
-                                                    }
-                                                ?>
-                                            </select>
+                                            <input class="form-control" type="text" name="pemasukan_deskripsi">
+                                            <label class="form-label">Deskripsi</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input class="form-control" type="date" name="pemasukan_tanggal">
+                                            
                                         </div>
                                     </div>
                                      <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
+                                     <input type="hidden" name="pemasukan_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
+                                     <input type="hidden" name="id_opmawa" value="<?php echo $_SESSION['user_opmawa'] ?>">
                                     <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
                                 </form>
 
@@ -199,23 +195,47 @@
 
 <script type="text/javascript">
 
-     function submitProkerAnggota() {
+     function submitPemasukan() {
 
-         var data = $('.formProkerAnggota').serialize();
-                  
+         var data = $('.formPemasukan').serialize();
+                  alert(data);
             $.ajax({
                 type: 'POST',
                 data: data,
-                url: "<?php echo base_url('Proker_C/addProkerAnggota') ?>",
+                url: "<?php echo base_url('Keuangan_C/inputPemasukan') ?>",
                 success: function() {
                     Swal.fire({
                       position: 'top-end',
                       type: 'success',
-                      title: 'Berhasil Menambah Anggota Kepanitiaan Proker',
+                      title: 'Berhasil',
                       showConfirmButton: false,
                       timer: 1500
                     }).then(function(){
-                        $('#refProkerAnggota').load(document.URL +  ' #refProkerAnggota');
+                        $('#refPemasukan').load(document.URL +  ' #refPemasukan');
+                    })     
+                }
+            });
+            
+            return false;
+        }
+
+        function submitPengeluaran() {
+
+         var data = $('.formPengeluaran').serialize();
+                  
+            $.ajax({
+                type: 'POST',
+                data: data,
+                url: "<?php echo base_url('Keuangan_C/inputPengeluaran') ?>",
+                success: function() {
+                    Swal.fire({
+                      position: 'top-end',
+                      type: 'success',
+                      title: 'Berhasil',
+                      showConfirmButton: false,
+                      timer: 1500
+                    }).then(function(){
+                        $('#refPengeluaran').load(document.URL +  ' #refPengeluaran');
                     })     
                 }
             });

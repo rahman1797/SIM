@@ -9,6 +9,7 @@ class Main_C extends CI_Controller {
         $this->load->model('M_proker');
         $this->load->model('M_berkas');
         $this->load->model('M_user');
+        $this->load->model('M_keuangan');
     }
 	
 	public function index()

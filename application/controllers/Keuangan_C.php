@@ -19,4 +19,28 @@ class Keuangan_C extends CI_Controller {
 
 	}
 
+	function inputPemasukan(){
+		$nominal = $this->input->post('pemasukan_nominal');
+		$deskripsi = $this->input->post('pemasukan_deskripsi');
+		$tanggal = $this->input->post('pemasukan_tanggal');
+		// $file = $this->input->post('pemasukan_file');
+		$idProker = $this->input->post('id_proker');
+		$lembaga = $this->input->post('pemasukan_lembaga');
+		$idOpmawa = $this->input->post('id_opmawa');
+
+		$data = array(
+		
+			'pemasukan_nominal' => $nominal,
+			'pemasukan_deskripsi' => $deskripsi,
+			'pemasukan_tanggal' => $tanggal,
+			'id_proker' => $idProker,
+			'pemasukan_lembaga' => $lembaga,
+			'id_opmawa' => $idOpmawa, 
+
+		);
+
+		$this->M_keuangan->inputPemasukan($data);
+		
+	}
+
 }
