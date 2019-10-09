@@ -129,8 +129,6 @@
                     </div>
                 </div>
 
-                <?php echo $this->M_keuangan->pemasukan(5); ?>
-                <?php echo $this->M_keuangan->pengeluaran(5); ?>
                 <!-- #END# Info Tugas Saya -->
 
                   <!-- Keuangan Chart -->
@@ -152,26 +150,36 @@
 
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-    
+        
+
 
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
+          
           ['Nama Program Kerja', 'Pemasukan', 'Pengeluaran'],
-          <?php foreach ($data_proker as $dp) { 
+         
+          <?php 
+
+          foreach ($data_proker as $dp) { 
+            
             $masuk = $this->M_keuangan->pemasukan($dp->proker_ID);
+            
             $keluar = $this->M_keuangan->pengeluaran($dp->proker_ID);
+
             ?>
 
-          [<?php echo $dp->proker_nama ?>,  <?php echo $masuk ?>, <?php echo $masuk ?> ],
+          ['<?php echo $dp->proker_nama; ?>',  <?php if(is_null($masuk)){echo 0;}else{echo $masuk;}?> , <?php if(is_null($keluar)){echo 0;}else{echo $keluar;}?> ],
           
          <?php } ?>
+       
         ]);
 
         var options = {
-          hAxis: {format: 'decimal'},
+          hAxis: {format: 'decimal',
+                title: 'Total nominal (Rp)'},
           bars: 'horizontal' // Required for Material Bar Charts.
         };
 
