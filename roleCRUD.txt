@@ -1,0 +1,12 @@
+Keanggotaan
+- Tambah anggota : Ketua umum, Sekretaris umum
+- Edit anggota : Masing-masing anggota
+- delete anggota : Ketua umum, Sekretaris umum	*periode|lembaga yg sama	
+
+Program Kerja
+- Tambah proker : ketua departemen, sekretaris departemen *periode|lembaga yg sama
+- Edit proker : sekretaris departemen			  *periode|lembaga yg sama
+- Delete proker : ketua departemen, sekretaris departemen *periode|lembaga yg sama
+	#Detail proker
+	- tambah kepanitiaan : sekretaris departemen
+	- delete kepanitiaan : sekretaris departemen

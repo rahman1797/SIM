@@ -35,7 +35,7 @@ class Berkas_C extends CI_Controller {
 		
 	function uploadBerkas(){
          		
-         		$config['upload_path']= 'uploads/';
+         		 $config['upload_path']= 'uploads/';
 			     $config['allowed_types'] = 'gif|jpg|png|txt|pdf|xlsx|csv|xls|bmp|doc|docx'; 
 			     $config['max_size']      = 10000; 
 

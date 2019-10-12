@@ -159,7 +159,8 @@
                        <center>
                         <div class="modal-body">
                               <!-- Form Angggota -->
-                                <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()">
+                                <!-- <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()"> -->
+                                <form id="form_validation" action="<?php echo base_url('Keuangan_C/inputPemasukan') ?>" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <input class="form-control" type="text" id="pemasukan_nominal" name="pemasukan_nominal">
@@ -175,6 +176,12 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <input class="form-control" type="date" name="pemasukan_tanggal">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input class="form-control" type="File" name="pemasukan_file">
                                             
                                         </div>
                                     </div>
@@ -198,7 +205,8 @@
      function submitPemasukan() {
 
          var data = $('.formPemasukan').serialize();
-                  alert(data);
+         alert(data);
+
             $.ajax({
                 type: 'POST',
                 data: data,
