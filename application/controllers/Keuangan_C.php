@@ -31,49 +31,52 @@ class Keuangan_C extends CI_Controller {
 		$lembaga = $this->input->post('pemasukan_lembaga');
 		$idOpmawa = $this->input->post('id_opmawa');
 
-
 		// START UPLOAD
 
-		if (isset($file)) {
-			 // print_r($_POST);
-			$config['upload_path']	 = 'uploads/';
-		    $config['allowed_types'] = 'jpg|png|jpeg';
-		    $config['max_size'] 	 = 20000; 
+		$config['upload_path']	 = 'uploads/keuangan/';
+	    $config['allowed_types'] = 'jpg|png|jpeg';
+	    $config['max_size'] 	 = 20000; 
+	    $config['file_name']	 = time();
 
-		    $this->upload->initialize($config);
+	    $this->load->library('upload', $config); 
 
-		    $this->load->library('upload', $config); 
-		   
-		    if ($this->upload->do_upload('pemasukan_file')) { //use this function
+	    $this->upload->initialize($config);
+	   
+	    if ($this->upload->do_upload('pemasukan_file')) { //use this function
 
-		    	print_r($_POST);
+	       $data['error'] = false;
+	       $upload_data = $this->upload->data();
+	       $data['data'] = $upload_data;
+	       $data['msg'] = 'Image Successfully Uploaded.';
 
-		       $data['error'] = false;
-		       $upload_data = $this->upload->data();
-		       $data['data'] = $upload_data;
-		       $data['msg'] = 'Image Successfully Uploaded.';
+	       $path_parts = pathinfo($_FILES["pemasukan_file"]["name"]);
+		   $extension = $path_parts['extension'];
 
-		       $file_name = time();
+		  echo $extension;
 
-		       $database = array(
-		       	   'pemasukan_nominal' => $nominal,
-		       	   'pemasukan_deskripsi' => $deskripsi,
-		       	   'pemasukan_tanggal' => $tanggal,
-		           'pemasukan_file' => $file_name,
-		           'id_proker' => $idProker,
-		           'pemasukan_lembaga' => $lembaga,
-		           'id_opmawa' => $idOpmawa
-		           );
+	       $file_name = time().".".$extension;
 
-		       $this->db->insert('pemasukan_tbl', $database);
-			}
+	       $database = array(
+	       	   'pemasukan_nominal' => $nominal,
+	       	   'pemasukan_deskripsi' => $deskripsi,
+	       	   'pemasukan_tanggal' => $tanggal,
+	           'pemasukan_file' => $file_name,
+	           'id_proker' => $idProker,
+	           'pemasukan_lembaga' => $lembaga,
+	           'id_opmawa' => $idOpmawa
+	           );
 
-			else {
-					echo "string";
-			        $data['msg'] = $this->upload->display_errors('', '<br>');
+	       $this->db->insert('pemasukan_tbl', $database);
 
-			     }
 		}
+
+		else {
+				echo "BBBBBBB";
+		       $error = array('error' => $this->upload->display_errors());
+				print_r($error);
+
+		     }
+		
 
 		// END UPLOAD
 

@@ -37,9 +37,6 @@
                                             <th>Nominal</th>
                                             <th>Deskripsi</th>
                                             <th>Bukti File</th>
-                                            <th>Proker</th>
-                                            <th>Lembaga</th>
-                                            <th>Kabinet Opmawa</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -48,9 +45,6 @@
                                             <th>Nominal</th>
                                             <th>Deskripsi</th>
                                             <th>Bukti File</th>
-                                            <th>Proker</th>
-                                            <th>Lembaga</th>
-                                            <th>Kabinet Opmawa</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -64,11 +58,13 @@
                                                 <td><?php echo $masuk->pemasukan_tanggal ?></td>
                                                 <td><?php echo $masuk->pemasukan_nominal ?></td>
                                                 <td><?php echo $masuk->pemasukan_deskripsi ?></td>
-                                                <td><a href="#" class="btn btn-sm btn-info" id="round">Lihat</a></td>
-                                                <td><?php echo $masuk->id_proker ?></td>
-                                                <td><?php echo $masuk->pemasukan_lembaga ?></td>
-                                                <td><?php echo $masuk->id_opmawa ?></td>
-                                                
+                                                <td><?php if (isset($masuk->pemasukan_file)) { ?>
+                                                    <a href="<?php echo base_url('uploads/keuangan/'. $masuk->pemasukan_file) ?>" class="btn btn-sm btn-success" id="round">Lihat</a>
+                                                <?php } 
+                                                else { ?>
+                                                    <a href="javascript:void(0)" class="btn btn-sm" disabled id="round">Lihat</a>
+                                                <?php }
+                                                ?></td>                                                
                                             </tr>
                                         <?php } 
        
@@ -100,9 +96,6 @@
                                             <th>Nominal</th>
                                             <th>Deskripsi</th>
                                             <th>Bukti File</th>
-                                            <th>Proker</th>
-                                            <th>Lembaga</th>
-                                            <th>Kabinet Opmawa</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -111,9 +104,6 @@
                                             <th>Nominal</th>
                                             <th>Deskripsi</th>
                                             <th>Bukti File</th>
-                                            <th>Proker</th>
-                                            <th>Lembaga</th>
-                                            <th>Kabinet Opmawa</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -124,13 +114,10 @@
                                             $totalPengeluaran += $keluar->pengeluaran_nominal; 
                                             ?>
                                             <tr>
-                                                <td><?php echo $keluar->pengeluaran_tanggal ?></td>
+                                                <td><?php echo date(" d M Y", $keluar->pengeluaran_tanggal)  ?></td>
                                                 <td><?php echo $keluar->pengeluaran_nominal ?></td>
                                                 <td><?php echo $keluar->pengeluaran_deskripsi ?></td>
                                                 <td><a href="#" class="btn btn-sm btn-info" id="round">Lihat</a></td>
-                                                <td><?php echo $keluar->id_proker ?></td>
-                                                <td><?php echo $keluar->pengeluaran_lembaga ?></td>
-                                                <td><?php echo $keluar->id_opmawa ?></td>
                                                 
                                             </tr>
                                         <?php } 
@@ -150,8 +137,6 @@
         </div>
     </section>
 
-
-
 <!-- Modal Pemasukan -->
             <div class="modal fade" id="ModalPemasukan" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -160,7 +145,7 @@
                         <div class="modal-body">
                               <!-- Form Angggota -->
                                 <!-- <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()"> -->
-                                <form id="form_validation" action="<?php echo base_url('Keuangan_C/inputPemasukan') ?>" name="formPemasukan" enctype="multipart/form-data" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
+                                <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPemasukan') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <input class="form-control" type="text" id="pemasukan_nominal" name="pemasukan_nominal">
@@ -181,8 +166,7 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input class="form-control" type="File" name="pemasukan_file">
-                                            
+                                            <input class="form-control-file" type="file" id="pemasukan_file" name="pemasukan_file">
                                         </div>
                                     </div>
                                      <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
@@ -190,8 +174,6 @@
                                      <input type="hidden" name="id_opmawa" value="<?php echo $_SESSION['user_opmawa'] ?>">
                                     <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
                                 </form>
-
-                            <!-- #END# Form Anggota -->
                         </div>
                         </center>
                     </div>
