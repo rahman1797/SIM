@@ -160,7 +160,7 @@
                         <div class="modal-body">
                               <!-- Form Angggota -->
                                 <!-- <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()"> -->
-                                <form id="form_validation" action="<?php echo base_url('Keuangan_C/inputPemasukan') ?>" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px">
+                                <form id="form_validation" action="<?php echo base_url('Keuangan_C/inputPemasukan') ?>" name="formPemasukan" enctype="multipart/form-data" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <input class="form-control" type="text" id="pemasukan_nominal" name="pemasukan_nominal">

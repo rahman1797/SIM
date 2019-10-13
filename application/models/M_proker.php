@@ -29,6 +29,13 @@ class M_proker extends CI_Model{
 						return $this->db->get_where('prokerTugas_tbl', array('id_user' => $_SESSION['user_ID'] ));
 					}
 
+						function updateData($where,$data,$table)
+						{
+							$this->db->where($where);
+							$this->db->update($table,$data);
+						}
+
+
 			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
 			function JumlahProkerTugas()
 			{   

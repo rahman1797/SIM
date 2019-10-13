@@ -34,7 +34,7 @@ class Proker_C extends CI_Controller {
 
 	}
 
-			public function prokerPosisi()
+			function prokerPosisi()
 			{	
 				$data['proker_posisi'] = $this->M_proker->tampil_prokerPosisi()->result();
 				$this->load->view('layout/header');
@@ -43,7 +43,7 @@ class Proker_C extends CI_Controller {
 
 			}	
 
-			public function prokerAnggota()
+			function prokerAnggota()
 			{	
 				$data['proker_anggota'] = $this->M_proker->tampil_prokerAnggota()->result();
 				$data['proker_posisi'] = $this->M_proker->tampil_prokerPosisi()->result();
@@ -54,7 +54,7 @@ class Proker_C extends CI_Controller {
 
 			}	
 
-			public function prokerTugas()
+			function prokerTugas()
 			{	
 				$data['proker_tugas'] = $this->M_proker->tampil_prokerTugas()->result();
 				$data['anggota_data'] = $this->M_proker->tampil_prokerAnggota()->result();
@@ -62,7 +62,27 @@ class Proker_C extends CI_Controller {
 				$this->load->view('layout/footer');
 				$this->load->view('proker/detailProker/prokerTugas',$data);
 
-			}	
+			}
+
+				function checkTugas() {
+					$status  = $this->input->post('prokerTugas_status');
+					$idTugas = $this->input->post('prokerTugas_ID');
+
+					if ($status == 0) {
+						$where = array('prokerTugas_ID' => $idTugas);
+						$data = array('prokerTugas_status' => 1);
+						$this->M_proker->updateData($where, $data, 'prokerTugas_tbl');
+						
+					}
+
+					elseif ($status == 1) {
+						$where = array('prokerTugas_ID' => $idTugas);
+						$data = array('prokerTugas_status' => 0);
+						$this->M_proker->updateData($where, $data, 'prokerTugas_tbl');
+						
+					}
+
+				}
 #END# TAMPIL PROKER
 
 

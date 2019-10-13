@@ -66,11 +66,11 @@
                                         <?php 
                                         $no = 1;
                                         foreach ($data_proker as $dp) {
-                                         
+                                        $id_proker = $dp->proker_ID;
                                         ?>
                                         <tr>
                                             <td><?php echo $no++; ?></td>
-                                            <td><?php echo $dp->proker_nama; ?></td>
+                                            <td><a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>"><?php echo $dp->proker_nama . "</a>"; ?></a></td>
                                             <td><span class="label bg-green">Pending</span></td>
                                             <td>Orang 1</td>
                                             <td>
@@ -102,8 +102,8 @@
                                 <table class="table table-hover dashboard-task-infos" id="refTugasSaya">
                                     <thead>
                                         <tr>
-                                            <th>Nama Proker</th>
-                                            <th>Tugas</th>
+                                            <th>Proker</th>
+                                            <th>Deskripsi</th>
                                             <th>Status</th>
                                             
                                         </tr>
@@ -112,11 +112,20 @@
                                         <?php foreach ($data_tugasSaya as $ts) {
                                             $idProker = $ts->id_proker;
                                             $idToProker = $this->M_proker->getProkerNama($idProker);
+                                            $idTugas = $ts->prokerTugas_ID;
+                                            $statusTugas = $ts->prokerTugas_status;
                                         ?>
-                                        <tr onclick="return check()" style="cursor: pointer;">
+                                        <tr onclick="return check(<?php echo $idTugas ?>, <?php echo $statusTugas ?>)" style="cursor: pointer;">
                                             <td><?php echo $idToProker['0']['proker_nama'];  ?></td>
                                             <td><?php echo $ts->prokerTugas_deskripsi; ?></td>
-                                            <td><span class="label bg-green">Clear</span></td>
+                                            <td><?php if ($statusTugas == 0) {
+                                                         echo "<span class='label bg-red'>Belum</span>";
+                                                      }
+                                                      elseif ($statusTugas == 1) {
+                                                         echo "<span class='label bg-green'>Clear</span>";
+                                                      }
+                                                       ?>
+                                            </td>
                                             
                                         </tr>
                                         <?php 
@@ -150,8 +159,6 @@
 
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-        
-
 
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
@@ -159,7 +166,7 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           
-          ['Nama Program Kerja', 'Pemasukan', 'Pengeluaran'],
+          ['Program Kerja', 'Pemasukan', 'Pengeluaran'],
          
           <?php 
 
@@ -187,4 +194,32 @@
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
+
+
+      function check($idTugas, $statusTugas){
+        //get the input value
+
+        alert($idTugas);
+        $.ajax({
+           
+             //the data to send to
+            data: {prokerTugas_ID : $idTugas, prokerTugas_status : $statusTugas},
+
+            //the url to send the data to
+            url: "<?php echo base_url('Proker_C/checkTugas') ?>",
+            //type. for eg: GET, POST
+            type: "POST",
+            //on success
+
+            success: function(data){
+                console.log("***********Success***************"); //You can remove here
+                console.log(data); //You can remove here
+            },
+            //on error
+            error: function(){
+                    console.log("***********Error***************"); //You can remove here
+                    console.log(data); //You can remove here
+            }
+        });
+    }
     </script>

@@ -5,6 +5,8 @@
         
             <!-- Basic Examples -->
             <div class="row clearfix">
+
+<!-- <?php echo $_SERVER['REQUEST_URI']; ?> --> 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                         <div class="header" align="center">
@@ -15,7 +17,7 @@
                         
                         <div class="body">
                             <div class="table-responsive">
-                                <table id="refProkerPosisi" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
                                             <th>Posisi Terdaftar</th>
@@ -65,7 +67,6 @@
     </section>
 
 
-
 <!-- Modal Tambah Anggota -->
             <div class="modal fade" id="ModalProkerPosisi" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -94,6 +95,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
+
+    // setTimeout(function(){
+    //    $( "#refProkerPosisi").load( "<?php echo $_SERVER['REQUEST_URI'] ?> #refProkerPosisi" );
+    // }, 2000);
 
      function submitProkerPosisi() {
 
