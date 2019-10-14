@@ -71,6 +71,19 @@ class Keuangan_C extends CI_Controller {
 		}
 
 		else {
+
+			$database = array(
+	       	   'pemasukan_nominal' => $nominal,
+	       	   'pemasukan_deskripsi' => $deskripsi,
+	       	   'pemasukan_tanggal' => $tanggal,
+	           
+	           'id_proker' => $idProker,
+	           'pemasukan_lembaga' => $lembaga,
+	           'id_opmawa' => $idOpmawa
+	           );
+
+	       $this->db->insert('pemasukan_tbl', $database);
+
 				echo "BBBBBBB";
 		       $error = array('error' => $this->upload->display_errors());
 				print_r($error);
@@ -133,6 +146,19 @@ class Keuangan_C extends CI_Controller {
 		}
 
 		else {
+
+			$database = array(
+	       	   'pengeluaran_nominal' => $nominal,
+	       	   'pengeluaran_deskripsi' => $deskripsi,
+	       	   'pengeluaran_tanggal' => $tanggal,
+	           
+	           'id_proker' => $idProker,
+	           'pengeluaran_lembaga' => $lembaga,
+	           'id_opmawa' => $idOpmawa
+	           );
+
+	       $this->db->insert('pengeluaran_tbl', $database);
+
 				echo "BBBBBBB";
 		       $error = array('error' => $this->upload->display_errors());
 				print_r($error);
