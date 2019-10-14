@@ -55,7 +55,7 @@
                                             $totalPemasukan += $masuk->pemasukan_nominal; 
                                             ?>
                                             <tr>
-                                                <td><?php echo $masuk->pemasukan_tanggal ?></td>
+                                                <td><?php echo date(" d M Y", $masuk->pemasukan_tanggal) ?></td>
                                                 <td><?php echo $masuk->pemasukan_nominal ?></td>
                                                 <td><?php echo $masuk->pemasukan_deskripsi ?></td>
                                                 <td><?php if (isset($masuk->pemasukan_file)) { ?>
@@ -84,7 +84,7 @@
                         <div class="header" align="center">
                             <h2><strong>DATA PENGELUARAN PROKER</strong></h2>
                             <p></p>
-                            <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalProkerAnggota" id="round">Tambah Pengeluaran</button>  
+                            <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round">Tambah Pengeluaran</button>  
                         </div>
                         
                         <div class="body">
@@ -117,7 +117,13 @@
                                                 <td><?php echo date(" d M Y", $keluar->pengeluaran_tanggal)  ?></td>
                                                 <td><?php echo $keluar->pengeluaran_nominal ?></td>
                                                 <td><?php echo $keluar->pengeluaran_deskripsi ?></td>
-                                                <td><a href="#" class="btn btn-sm btn-info" id="round">Lihat</a></td>
+                                                <td><?php if (isset($keluar->pengeluaran_file)) { ?>
+                                                    <a href="<?php echo base_url('uploads/keuangan/'. $keluar->pengeluaran_file) ?>" class="btn btn-sm btn-success" id="round">Lihat</a>
+                                                <?php } 
+                                                else { ?>
+                                                    <a href="javascript:void(0)" class="btn btn-sm" disabled id="round">Lihat</a>
+                                                <?php }
+                                                ?></td>
                                                 
                                             </tr>
                                         <?php } 
@@ -171,6 +177,51 @@
                                     </div>
                                      <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
                                      <input type="hidden" name="pemasukan_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
+                                     <input type="hidden" name="id_opmawa" value="<?php echo $_SESSION['user_opmawa'] ?>">
+                                    <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                                </form>
+                        </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Modal Pengeluaran -->
+            <div class="modal fade" id="ModalPengeluaran" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" id="round">
+                       <center>
+                        <div class="modal-body">
+                              <!-- Form Angggota -->
+                                <!-- <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()"> -->
+                                <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPengeluaran') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input class="form-control" type="text" id="pengeluaran_nominal" name="pengeluaran_nominal">
+                                            <label class="form-label">Nominal</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input class="form-control" type="text" name="pengeluaran_deskripsi">
+                                            <label class="form-label">Deskripsi</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input class="form-control" type="date" name="pengeluaran_tanggal">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input class="form-control-file" type="file" id="pengeluaran_file" name="pengeluaran_file">
+                                        </div>
+                                    </div>
+                                     <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
+                                     <input type="hidden" name="pengeluaran_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
                                      <input type="hidden" name="id_opmawa" value="<?php echo $_SESSION['user_opmawa'] ?>">
                                     <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
                                 </form>
