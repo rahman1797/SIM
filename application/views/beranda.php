@@ -62,7 +62,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                         <?php 
                                         $no = 1;
                                         foreach ($data_proker as $dp) {
@@ -90,7 +89,6 @@
                 </div>
                 <!-- #END# INFO STATUS PROKER -->
 
-
                 <!-- Info Tugas Saya -->
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                     <div class="card" id="round">
@@ -104,8 +102,7 @@
                                         <tr>
                                             <th>Proker</th>
                                             <th>Deskripsi</th>
-                                            <th>Status</th>
-                                            
+                                            <th>Status</th>     
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -124,20 +121,16 @@
                                                       elseif ($statusTugas == 1) {
                                                          echo "<span class='label bg-green'>Clear</span>";
                                                       }
-                                                       ?>
+                                                    ?>
                                             </td>
-                                            
                                         </tr>
-                                        <?php 
-                                            } 
-                                        ?>                                       
+                                        <?php } ?>                                       
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- #END# Info Tugas Saya -->
 
                   <!-- Keuangan Chart -->
@@ -168,17 +161,12 @@
           
           ['Program Kerja', 'Pemasukan', 'Pengeluaran'],
          
-          <?php 
-
-          foreach ($data_proker as $dp) { 
-            
+          <?php foreach ($data_proker as $dp) {   
             $masuk = $this->M_keuangan->pemasukan($dp->proker_ID);
-            
             $keluar = $this->M_keuangan->pengeluaran($dp->proker_ID);
+          ?>
 
-            ?>
-
-          ['<?php echo $dp->proker_nama; ?>',  <?php if(is_null($masuk)){echo 0;}else{echo $masuk;}?> , <?php if(is_null($keluar)){echo 0;}else{echo $keluar;}?> ],
+          ['<?php echo $dp->proker_nama; ?>',  <?php if(is_null($masuk)){echo 0;}else{echo $masuk;}?> , <?php if(is_null($keluar)){echo 0;}else{echo $keluar;} ?>],
           
          <?php } ?>
        
@@ -186,42 +174,30 @@
 
         var options = {
           hAxis: {format: 'decimal',
-                title: 'Total nominal (Rp)'},
+          title: 'Total nominal (Rp)'},
           bars: 'horizontal' // Required for Material Bar Charts.
         };
 
         var chart = new google.charts.Bar(document.getElementById('barchart_material'));
-
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
 
-
       function check($idTugas, $statusTugas){
-        //get the input value
 
-        // alert($idTugas);
         $.ajax({
-           
-             //the data to send to
-            data: {prokerTugas_ID : $idTugas, prokerTugas_status : $statusTugas},
 
-            //the url to send the data to
+            data: {prokerTugas_ID : $idTugas, prokerTugas_status : $statusTugas},
             url: "<?php echo base_url('Proker_C/checkTugas') ?>",
-            //type. for eg: GET, POST
             type: "POST",
-            //on success
 
             success: function(){  
                 console.log("***********Success***************"); //You can remove here
-                console.log(data); //You can remove here
             },
             //on error
             error: function(){
                     console.log("***********Error***************"); //You can remove here
-                    console.log(data); //You can remove here
             }
         });
-
          $('#refTugasSaya').load(document.URL +  ' #refTugasSaya');
     }
     </script>

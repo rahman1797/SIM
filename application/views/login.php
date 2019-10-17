@@ -20,20 +20,16 @@
     <link href="<?php echo base_url('assets/css/style.css')?>" rel="stylesheet">
 </head>
 <style type="text/css">
-  body {
+body {
     background-image: url("assets/images/4028.jpg");
   }
 </style>
+
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
             <a href="javascript:void(0);">Login <b>SIM</b></a>
             <small>Sistem Informasi Manajemen OPMAWA FMIPA</small>
-
-            <!-- <?PHP print_r($_SESSION); ?> -->
-
-
-
         </div>
         <div class="card">
             <div class="body">
@@ -84,16 +80,13 @@
     <!-- Sweetalert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
   
-
-  function Login()
-  {
+  function Login() {
    var NIM=$("#user_NIM").val();
    var pass=$("#user_pass").val();
    
-   if(NIM!="" && pass!="")
-   { 
+   if(NIM!="" && pass!="") { 
       $.ajax
       ({
         type:'post',
@@ -103,31 +96,30 @@
           user_pass:pass
       },
       
-      success:function(response) {
-        if(response=='sukses')
-        {
-          swal({
-          title: "Sukses!",
-            text: "Selamat Datang di SIM OPMAWA!",
-            icon: "success",
-            button: "Lanjutkan!"
-          }).then(function() {
-              window.location = "Main_C";
-          });
+        success:function(response) {
+          if(response=='sukses')
+          {
+            swal({
+            title: "Sukses!",
+              text: "Selamat Datang di SIM OPMAWA!",
+              icon: "success",
+              button: "Lanjutkan!"
+            }).then(function() {
+                window.location = "Main_C";
+            });  
+          }
           
-        }
-        
-        else
-        {
-          swal ( "Maaf" ,  "NIM/password salah" ,  "error" );
-        }
-        
+          else
+          {
+            swal ( "Maaf" ,  "NIM/password salah" ,  "error" );
+          }
+          
         }
       });
    }
-
    return false;
   }
+  
 </script>
 
 </body>
