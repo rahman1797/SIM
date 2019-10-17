@@ -199,7 +199,7 @@
       function check($idTugas, $statusTugas){
         //get the input value
 
-        alert($idTugas);
+        // alert($idTugas);
         $.ajax({
            
              //the data to send to
@@ -211,7 +211,7 @@
             type: "POST",
             //on success
 
-            success: function(data){
+            success: function(){  
                 console.log("***********Success***************"); //You can remove here
                 console.log(data); //You can remove here
             },
@@ -221,5 +221,7 @@
                     console.log(data); //You can remove here
             }
         });
+
+         $('#refTugasSaya').load(document.URL +  ' #refTugasSaya');
     }
     </script>
