@@ -10,7 +10,7 @@
     <link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" type="image/x-icon">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
@@ -39,6 +39,10 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url('assets/css/themes/all-themes.min.css')?>" rel="stylesheet" />
+
+    <!-- FullCalendar -->
+  <!--   <link href="<?php echo base_url('assets/fullcalendar/packages/core/main.css') ?>" rel='stylesheet' />
+    <link href="<?php echo base_url('assets/fullcalendar/packages/daygrid/main.css') ?>" rel='stylesheet' /> -->
 
     <style type="text/css">
       #round {
@@ -232,7 +236,7 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="<?php echo base_url('assets/images/DefaultUser.jpg')?>" width="48" height="48" alt="User" />
+                    <img src="<?php echo base_url('assets/images/user.png')?>" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['user_nama']; ?></div>
@@ -299,7 +303,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo base_url('Rapat_C') ?>">
                             <i class="material-icons">timeline</i>
                             <span>Agenda Rapat</span>
                         </a>

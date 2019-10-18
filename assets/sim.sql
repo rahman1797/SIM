@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2019 at 08:30 AM
+-- Generation Time: Oct 18, 2019 at 11:29 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -49,7 +49,8 @@ INSERT INTO `berkas_tbl` (`berkas_ID`, `berkas_kode`, `berkas_nama`, `id_user`, 
 (13, NULL, 'IMG_20180322_214821.png', 1, 5, '2019-08-25 14:41:58', 1),
 (14, NULL, 'IMG_20180322_2148211.png', 1, 5, '2019-08-25 14:44:09', 1),
 (15, NULL, '4K-Wallpaper-Desktop.jpg', 1, 5, '2019-08-25 14:51:01', 1),
-(16, NULL, '5_201501310830372.jpg', 1, NULL, '2019-10-03 05:40:43', 1);
+(16, NULL, '5_201501310830372.jpg', 1, NULL, '2019-10-03 05:40:43', 1),
+(17, NULL, 'IMG_0263.JPG', 1, 5, '2019-10-11 07:09:14', 1);
 
 -- --------------------------------------------------------
 
@@ -116,7 +117,18 @@ CREATE TABLE `pemasukan_tbl` (
 --
 
 INSERT INTO `pemasukan_tbl` (`pemasukan_ID`, `pemasukan_nominal`, `pemasukan_deskripsi`, `pemasukan_tanggal`, `pemasukan_file`, `id_proker`, `pemasukan_lembaga`, `id_opmawa`) VALUES
-(1, '150000', 'Sumbangan panitia', '2019-09-18', NULL, 5, 1, 1);
+(1, '150000', 'Sumbangan panitia', '2019-09-18', NULL, 5, 1, 1),
+(2, '80000', 'Keuntungan Jualan', '2019-10-02', NULL, 5, 1, 1),
+(3, '20000', 'Nemu duit dijalan', '2019-10-03', NULL, 5, 1, 1),
+(4, '50000', 'aadsada', '2019-10-04', NULL, 8, 1, 1),
+(5, '7000', '7', '2019-10-09', NULL, 1, 1, 1),
+(6, '77787', 'jhkhkjh', '2019-10-08', NULL, 2, 1, 1),
+(7, '7000', '7', '2019-10-09', NULL, 7, 1, 1),
+(9, '89000', 'hghjg', '2019-10-22', NULL, 3, 1, 1),
+(21, '9999', '9999', '2019-10-19', NULL, 5, 1, 1),
+(30, '1', '1', '0001-01-01', '1570949244.jpg', 5, 1, 1),
+(31, '2', '2', '0002-02-02', '1570949287.JPG', 5, 1, 1),
+(32, '250000', 'Modal', '2019-10-15', NULL, 9, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -140,7 +152,13 @@ CREATE TABLE `pengeluaran_tbl` (
 --
 
 INSERT INTO `pengeluaran_tbl` (`pengeluaran_ID`, `pengeluaran_nominal`, `pengeluaran_deskripsi`, `pengeluaran_tanggal`, `pengeluaran_file`, `id_proker`, `pengeluaran_lembaga`, `id_opmawa`) VALUES
-(1, '100000', 'Mengembalikan dana awal panitia', '2019-10-01', NULL, 5, 1, 1);
+(1, '100000', 'Mengembalikan dana awal panitia', '2019-10-01', NULL, 5, 1, 1),
+(2, '120000', 'Pembelian peralatan', '2019-10-22', NULL, 5, 1, 1),
+(3, '1000', '11', '2019-10-08', NULL, 1, 1, 1),
+(4, '1000', '1', '2019-10-16', NULL, 2, 1, 1),
+(5, '1000', '1', '2019-10-16', NULL, 3, 1, 1),
+(6, '10000', 'ghjgjh', '2019-10-15', NULL, 7, 1, 1),
+(7, '1', '1', '0001-01-01', '1571036921.JPG', 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -264,7 +282,7 @@ CREATE TABLE `prokertugas_tbl` (
   `id_user` int(11) DEFAULT NULL,
   `id_proker` int(11) NOT NULL,
   `prokerTugas_deskripsi` varchar(255) NOT NULL,
-  `prokerTugas_status` enum('0','1') NOT NULL DEFAULT '0'
+  `prokerTugas_status` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -272,12 +290,11 @@ CREATE TABLE `prokertugas_tbl` (
 --
 
 INSERT INTO `prokertugas_tbl` (`prokerTugas_ID`, `id_user`, `id_proker`, `prokerTugas_deskripsi`, `prokerTugas_status`) VALUES
-(1, 11, 5, 'Beli Makakanan', '0'),
-(2, 12, 5, 'Membuat Banner ukuran 200x300 cm. jangan lupa cari yang paling murah', '0'),
-(33, NULL, 5, 'TA', '0'),
-(34, 1, 3, 'Bawa cemilan\r\n', '0'),
-(35, 1, 7, 'Bawa kompor', '0'),
-(36, 7, 5, 'Beli minuman', '0');
+(1, 11, 5, 'Beli Makakanan', 0),
+(2, 12, 5, 'Membuat Banner ukuran 200x300 cm. jangan lupa cari yang paling murah', 0),
+(34, 1, 3, 'Bawa cemilan\r\n', 0),
+(35, 1, 7, 'Bawa kompor', 1),
+(36, 7, 5, 'Beli minuman', 0);
 
 -- --------------------------------------------------------
 
@@ -303,8 +320,30 @@ INSERT INTO `proker_tbl` (`proker_ID`, `proker_nama`, `proker_tanggal`, `proker_
 (2, 'BINER 3.0', '2019-06-03', 1, 2017, '100'),
 (3, 'BINER 2.0', '2019-06-02', 1, 2018, NULL),
 (5, 'BINER', '2019-05-22', 1, 2018, NULL),
-(7, 'Tuk Tuk', '2019-06-28', 1, 2018, NULL),
-(8, 'Asal', '2019-09-06', 1, 2018, NULL);
+(7, 'Tuk Tuk', '2019-06-28', 1, 2018, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rapat_tbl`
+--
+
+CREATE TABLE `rapat_tbl` (
+  `rapat_ID` int(11) NOT NULL,
+  `rapat_tanggal` date NOT NULL,
+  `rapat_deskripsi` varchar(100) NOT NULL,
+  `rapat_lembaga` int(11) NOT NULL,
+  `id_opmawa` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rapat_tbl`
+--
+
+INSERT INTO `rapat_tbl` (`rapat_ID`, `rapat_tanggal`, `rapat_deskripsi`, `rapat_lembaga`, `id_opmawa`) VALUES
+(1, '2019-10-23', 'Rapat pembentukan panitia BINER 5.0', 1, 1),
+(2, '2019-10-25', 'Rapat penentuan jobdesc', 1, 1),
+(3, '2019-10-31', 'Penutupan panitia', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -338,7 +377,8 @@ INSERT INTO `user_tbl` (`user_ID`, `user_nama`, `user_NIM`, `user_pass`, `id_pro
 (13, 'fulan', '1234', '1234', 6, 4, 1, 1, 2018, 2),
 (24, 'Farhan', '123', '123', 6, 7, 3, 2, 2018, 1),
 (25, 'Aksan', '1237', '123', 6, 3, 3, 2, 2018, 1),
-(26, 'jshkdjhkjJ', '768768', 'hhhh', 10, 1, 1, 2, 2018, 1);
+(26, 'jshkdjhkjJ', '768768', 'hhhh', 10, 1, 1, 2, 2018, 1),
+(27, 'Afif', '768768', 'evitacantik', 9, 1, 1, 1, 2018, 1);
 
 --
 -- Indexes for dumped tables
@@ -423,6 +463,13 @@ ALTER TABLE `proker_tbl`
   ADD PRIMARY KEY (`proker_ID`);
 
 --
+-- Indexes for table `rapat_tbl`
+--
+ALTER TABLE `rapat_tbl`
+  ADD PRIMARY KEY (`rapat_ID`),
+  ADD KEY `getOpmawa_rapat` (`id_opmawa`);
+
+--
 -- Indexes for table `user_tbl`
 --
 ALTER TABLE `user_tbl`
@@ -440,7 +487,7 @@ ALTER TABLE `user_tbl`
 -- AUTO_INCREMENT for table `berkas_tbl`
 --
 ALTER TABLE `berkas_tbl`
-  MODIFY `berkas_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `berkas_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `departemen_tbl`
@@ -458,13 +505,13 @@ ALTER TABLE `opmawa_tbl`
 -- AUTO_INCREMENT for table `pemasukan_tbl`
 --
 ALTER TABLE `pemasukan_tbl`
-  MODIFY `pemasukan_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pemasukan_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran_tbl`
 --
 ALTER TABLE `pengeluaran_tbl`
-  MODIFY `pengeluaran_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pengeluaran_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `posisi_tbl`
@@ -500,13 +547,19 @@ ALTER TABLE `prokertugas_tbl`
 -- AUTO_INCREMENT for table `proker_tbl`
 --
 ALTER TABLE `proker_tbl`
-  MODIFY `proker_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `proker_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `rapat_tbl`
+--
+ALTER TABLE `rapat_tbl`
+  MODIFY `rapat_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_tbl`
 --
 ALTER TABLE `user_tbl`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables
@@ -562,6 +615,12 @@ ALTER TABLE `prokerposisi_tbl`
 --
 ALTER TABLE `prokertugas_tbl`
   ADD CONSTRAINT `namaProker` FOREIGN KEY (`id_proker`) REFERENCES `proker_tbl` (`proker_ID`);
+
+--
+-- Constraints for table `rapat_tbl`
+--
+ALTER TABLE `rapat_tbl`
+  ADD CONSTRAINT `getOpmawa_rapat` FOREIGN KEY (`id_opmawa`) REFERENCES `opmawa_tbl` (`opmawa_ID`);
 
 --
 -- Constraints for table `user_tbl`

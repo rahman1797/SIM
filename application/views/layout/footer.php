@@ -42,6 +42,9 @@
     <script src="<?php echo base_url('assets/js/pages/index.js')?>"></script>
 
     
+    <!-- FullCalendar -->
+    <!-- <script src="<?php echo base_url('assets/fullcalendar/packages/core/main.js') ?>"></script>
+    <script src="<?php echo base_url('assets/fullcalendar/packages/daygrid/main.js') ?>"></script> -->
 
     <!-- Demo Js -->
     <script src="<?php echo base_url('assets/js/demo.js')?>"></script>
