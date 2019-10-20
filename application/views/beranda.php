@@ -153,6 +153,10 @@
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
 
+      // setInterval(function() {
+      //  $('#refTugasSaya').load(document.URL +  ' #refTugasSaya');
+      // }, 3000);
+      
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
 

@@ -31,7 +31,7 @@ body {
             <a href="javascript:void(0);">Login <b>SIM</b></a>
             <small>Sistem Informasi Manajemen OPMAWA FMIPA</small>
         </div>
-        <div class="card">
+        <div class="card"  style="border-radius: 15px; hover">
             <div class="body">
                 <form id="sign_in" method="POST" onsubmit="return Login()" name="loginForm">
                     
