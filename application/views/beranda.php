@@ -114,14 +114,17 @@
                                         ?>
                                         <tr onclick="return check(<?php echo $idTugas ?>, <?php echo $statusTugas ?>)" style="cursor: pointer;">
                                             <td><?php echo $idToProker['0']['proker_nama'];  ?></td>
-                                            <td><?php echo $ts->prokerTugas_deskripsi; ?></td>
                                             <td><?php if ($statusTugas == 0) {
-                                                         echo "<span class='label bg-red'>Belum</span>";
-                                                      }
-                                                      elseif ($statusTugas == 1) {
-                                                         echo "<span class='label bg-green'>Clear</span>";
-                                                      }
-                                                    ?>
+                                                echo $ts->prokerTugas_deskripsi ?></td>
+                                            <td><?php 
+                                                 echo "<span class='label bg-red'>Belum</span>";
+                                                 }
+                                                  elseif ($statusTugas == 1) {
+                                                     echo '<del>'.$ts->prokerTugas_deskripsi.'</del>' ?></td>
+                                            <td><?php 
+                                                 echo "<span class='label bg-green'>Clear</span>";
+                                                  }
+                                                ?>
                                             </td>
                                         </tr>
                                         <?php } ?>                                       
@@ -195,13 +198,14 @@
             type: "POST",
 
             success: function(){  
-                console.log("***********Success***************"); //You can remove here
+                $('#refTugasSaya').load(document.URL +  ' #refTugasSaya');
+                 //You can remove here
             },
             //on error
             error: function(){
                     console.log("***********Error***************"); //You can remove here
             }
         });
-         $('#refTugasSaya').load(document.URL +  ' #refTugasSaya');
+         
     }
     </script>
