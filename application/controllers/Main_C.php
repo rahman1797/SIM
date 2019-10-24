@@ -12,7 +12,7 @@ class Main_C extends CI_Controller {
         $this->load->model('M_keuangan');
     }
 	
-	public function index()
+	function index()
 	{	
 		$data['data_proker'] = $this->M_proker->tampil_proker()->result();
 		$data['data_tugasSaya'] = $this->M_proker->tampil_prokerTugasSaya()->result();
@@ -30,7 +30,7 @@ class Main_C extends CI_Controller {
 		$this->load->view('user/profil');
 	}
 
-	public function regProdi()
+	function regProdi()
 	{
 		$data['data_prodi'] = $this->M_sys->tampil_regis_prodi()->result();
 		$this->load->view('layout/header');
@@ -38,7 +38,7 @@ class Main_C extends CI_Controller {
 		$this->load->view('System_Regis/regProdi', $data);		
 	}
 
-	public function regPosisi()
+	function regPosisi()
 	{
 		$data['data_posisi'] = $this->M_sys->tampil_regis_posisi_byLembaga()->result();
 		$this->load->view('layout/header');
@@ -46,7 +46,7 @@ class Main_C extends CI_Controller {
 		$this->load->view('System_Regis/regPosisi', $data);		
 	}
 
-	public function regOpmawa()
+	function regOpmawa()
 	{
 		$data['data_opmawa'] = $this->M_sys->tampil_regis_opmawa()->result();
 		$data['prodi_data'] = $this->M_sys->tampil_regis_prodi()->result();
@@ -56,7 +56,7 @@ class Main_C extends CI_Controller {
 		$this->load->view('System_Regis/regOpmawa', $data);		
 	}
 
-			public function opmawaDetail()
+			function opmawaDetail()
 			{
 				$data['detail_opmawa'] = $this->M_sys->tampil_opmawaDetail()->result();
 				$data['detail_departemenOpmawa'] = $this->M_sys->tampil_departemenOpmawaDetail()->result();
@@ -70,7 +70,7 @@ class Main_C extends CI_Controller {
 // ON PROGGRESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 //	SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 //	SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-	public function addOPMAWA()
+	function addOPMAWA()
 	{
 
 		$namaKetua = $this->input->post('nama_user');
@@ -99,7 +99,7 @@ class Main_C extends CI_Controller {
 // SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 
 
-	public function addProdi()
+	function addProdi()
 	{
 		$nama = $this->input->post('nama_prodi');
 		$data = array(
@@ -108,7 +108,7 @@ class Main_C extends CI_Controller {
 		$this->M_sys->inputProdi($data);
 	}
 
-	public function addPosisi()
+	function addPosisi()
 	{
 		$namaPosisi = $this->input->post('nama_posisi');
 		$namaLembaga = $this->input->post('nama_lembaga');
@@ -119,14 +119,14 @@ class Main_C extends CI_Controller {
 		$this->M_sys->inputPosisi($data);		
 	}
 
-	public function delProdi($id)
+	function delProdi($id)
 	{
 		$idPro = array('prodi_ID' => $id);
 		$this->M_sys->deleteProdi($idPro,'prodi_tbl');
 		redirect(base_url('Main_C/regProdi'));
 	}
 
-	public function delPosisi($id)
+	function delPosisi($id)
 	{
 		$idPos = array('posisi_ID' => $id);
 		$this->M_sys->deletePosisi($idPos,'posisi_tbl');
