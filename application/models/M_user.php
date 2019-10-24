@@ -23,14 +23,14 @@ class M_user extends CI_Model{
 				
 			}
 
-	public function getProdi($id_prodi){
+	function getProdi($id_prodi){
         
         $query = $this->db->get_where('prodi_tbl', array('prodi_ID' => $id_prodi));
 
         return $query->result_array();
 	}
 
-	public function getPosisi($id_posisi){
+	function getPosisi($id_posisi){
         
         $query = $this->db->get_where('posisi_tbl', array('posisi_ID' => $id_posisi));
 

@@ -9,8 +9,7 @@ class User_C extends CI_Controller {
         $this->load->model('M_sys');
     }
 
-	//controller default
-	public function index()
+	function index()
 	{	
 		$data['user_data'] = $this->M_user->tampil_user_byLembaga()->result();
 		$data['prodi_data'] = $this->M_sys->tampil_regis_prodi()->result();
@@ -22,7 +21,7 @@ class User_C extends CI_Controller {
 		
 	}
 
-	public function addAnggota()
+	function addAnggota()
 	{
 		$nama = $this->input->post('user_nama');
 		$NIM = $this->input->post('user_NIM');
@@ -47,14 +46,11 @@ class User_C extends CI_Controller {
 		$this->M_user->inputAnggota($data);
 	}
 
-	public function delAnggota($id)
+	function delAnggota($id)
 	{
 		$idUser = array('user_ID' => $id);
 		$this->M_user->deleteAnggota($idUser,'user_tbl');
 		redirect(base_url('User_C/index'));
 	}
-
-	
-	//**controller default
 
 }

@@ -12,8 +12,8 @@ class Berkas_C extends CI_Controller {
         $this->load->helper('download');
         $this->load->library('upload');
     }
-	//controller default
-	public function index()
+	
+	function index()
 	{	
 		$data['berkas_data'] = $this->M_berkas->tampil_berkas()->result();
 		$this->load->view('layout/header');
@@ -22,8 +22,7 @@ class Berkas_C extends CI_Controller {
 
 	}
 	
-
-	public function allBerkas()
+	function allBerkas()
 	{	
 		$data['berkas_data'] = $this->M_berkas->tampil_berkas()->result();
 		
@@ -35,44 +34,45 @@ class Berkas_C extends CI_Controller {
 		
 	function uploadBerkas(){
          		
-         		 $config['upload_path']= 'uploads/';
-			     $config['allowed_types'] = 'gif|jpg|png|txt|pdf|xlsx|csv|xls|bmp|doc|docx'; 
-			     $config['max_size']      = 10000; 
+		 $config['upload_path']= 'uploads/';
+	     $config['allowed_types'] = 'gif|jpg|png|txt|pdf|xlsx|csv|xls|bmp|doc|docx'; 
+	     $config['max_size']      = 10000; 
 
-			     $this->upload->initialize($config);
+	     $this->upload->initialize($config);
 
-			     $this->load->library('upload', $config); 
-			     if ($this->upload->do_upload('userfile')) { //use this function
+	     $this->load->library('upload', $config); 
+	     if ($this->upload->do_upload('userfile')) { //use this function
 
-			        $data['error'] = false;
-			        $upload_data = $this->upload->data();
-			        $data['data'] = $upload_data;
-			        $data['msg'] = 'Image Successfully Uploaded.';
+	        $data['error'] = false;
+	        $upload_data = $this->upload->data();
+	        $data['data'] = $upload_data;
+	        $data['msg'] = 'Image Successfully Uploaded.';
 
-			        $file_name = $data['data']['file_name'];
+	        $file_name = $data['data']['file_name'];
 
-			        $database = array(
-			            'berkas_nama' => $file_name,
-			            'id_user' => $_SESSION['user_ID'],
-			            'id_proker' => $_GET['id_proker'],
-			            'berkas_lembaga' => $_SESSION['user_role'] 
-			            );
+	        $database = array(
+	            'berkas_nama' => $file_name,
+	            'id_user' => $_SESSION['user_ID'],
+	            'id_proker' => $_GET['id_proker'],
+	            'berkas_lembaga' => $_SESSION['user_role'] 
+	            );
 
-			        $result = $this->db->insert('berkas_tbl', $database);
+	        $result = $this->db->insert('berkas_tbl', $database);
 
-			        echo $file_name;
+	        echo $file_name;
 
-			     } else {
+	     } else {
 
-			        $data['msg'] = $this->upload->display_errors('', '<br>');
+	        $data['msg'] = $this->upload->display_errors('', '<br>');
 
-			     }
-
-			    
+	     }			    
 			                 
     }
 
-
+    function download(){
+    	$nama_file = $_GET['name'];
+    	force_download("uploads/".$nama_file,NULL);
+    }
     // function upload(){
     // 	$config = array(
     // 				'upload_path' => 'uploads/',
@@ -98,10 +98,4 @@ class Berkas_C extends CI_Controller {
         
     //     print_r($database);
     // }
-
-    function download(){
-    	$nama_file = $_GET['name'];
-    	force_download("uploads/".$nama_file,NULL);
-    }
-
 }

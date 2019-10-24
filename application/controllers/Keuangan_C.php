@@ -11,7 +11,7 @@ class Keuangan_C extends CI_Controller {
         $this->load->library('upload');
     }
 	
-	public function index()
+	function index()
 	{	
 		$data['proker_pemasukan'] = $this->M_keuangan->tampil_pemasukan()->result();
 		$data['proker_pengeluaran'] = $this->M_keuangan->tampil_pengeluaran()->result();
@@ -89,13 +89,10 @@ class Keuangan_C extends CI_Controller {
 				print_r($error);
 
 		     }
-		
 
 		// END UPLOAD
 		
 	}
-
-
 
 	function inputPengeluaran(){
 		$nominal = $this->input->post('pengeluaran_nominal');

@@ -9,8 +9,8 @@ class Proker_C extends CI_Controller {
         $this->load->model('M_user');
         $this->load->model('M_berkas');
     }
-	//controller default
-	public function index()
+	
+	function index()
 	{	
 		$data['proker_data'] = $this->M_proker->tampil_proker()->result();
 		$this->load->view('layout/header');
@@ -21,7 +21,7 @@ class Proker_C extends CI_Controller {
 
 
 // TAMPIL PROKER
-	public function prokerDetail()
+	function prokerDetail()
 	{	
 		$data['proker_data'] = $this->M_proker->tampil_prokerDetail()->result();
 		$data['totalPosisiKepanitiaan'] = $this->M_proker->JumlahProkerPosisi();
@@ -88,7 +88,7 @@ class Proker_C extends CI_Controller {
 
 
 // CRUD PROKER
-	public function addProker()
+	function addProker()
 	{
 		$namaProker = $this->input->post('proker_nama');
 		$tanggalProker = $this->input->post('proker_tanggal');
@@ -140,14 +140,14 @@ class Proker_C extends CI_Controller {
 				$this->M_proker->inputProkerTugas($data);
 			}
 
-	public function delProker($id)
+	function delProker($id)
 	{
 		$idProker = array('proker_ID' => $id);
 		$this->M_proker->deleteProker($idProker,'proker_tbl');
 		redirect(base_url('Proker_C/index'));
 	}
 
-			public function delProkerPosisi($id)
+			function delProkerPosisi($id)
 			{
 				$idPosisi = array('prokerPosisi_ID' => $id);
 				$this->M_proker->deleteProkerPosisi($idPosisi,'prokerPosisi_tbl');
@@ -156,7 +156,7 @@ class Proker_C extends CI_Controller {
 				</script>";
 			}
 
-			public function delProkerAnggota($id)
+			function delProkerAnggota($id)
 			{
 				$idAnggota = array('prokerAnggota_ID' => $id);
 				$this->M_proker->deleteProkerAnggota($idAnggota,'prokerAnggota_tbl');
@@ -165,7 +165,7 @@ class Proker_C extends CI_Controller {
 				</script>";
 			}
 
-			public function delProkerTugas($id)
+			function delProkerTugas($id)
 			{
 				$idTugas = array('prokerTugas_ID' => $id);
 				$this->M_proker->deleteProkerTugas($idTugas,'prokerTugas_tbl');
@@ -174,6 +174,5 @@ class Proker_C extends CI_Controller {
 				</script>";
 			}
  #END# CRUD PROKER
-	
 
 }

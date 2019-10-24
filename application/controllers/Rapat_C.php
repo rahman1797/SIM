@@ -33,5 +33,4 @@ class Rapat_C extends CI_Controller {
 		$this->M_rapat->inputJadwalRapat($data);
 	}
 
-
 }

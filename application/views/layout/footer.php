@@ -32,23 +32,14 @@
     <script src="<?php echo base_url('assets/plugins/jquery-datatable/jquery.dataTables.js')?>"></script>
     <script src="<?php echo base_url('assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.min.js')?>"></script>
 
-    <!-- ChartJs -->
-    <script src="<?php echo base_url('assets/plugins/chartjs/Chart.bundle.min.js')?>"></script>
-
     <!-- Custom Js -->
     <script src="<?php echo base_url('assets/js/admin.js')?>"></script>
     <script src="<?php echo base_url('assets/js/pages/tables/jquery-datatable.js')?>"></script>
     <script src="<?php echo base_url('assets/js/pages/ui/modals.js')?>"></script>
     <script src="<?php echo base_url('assets/js/pages/index.js')?>"></script>
 
-    
-    <!-- FullCalendar -->
-    <!-- <script src="<?php echo base_url('assets/fullcalendar/packages/core/main.js') ?>"></script>
-    <script src="<?php echo base_url('assets/fullcalendar/packages/daygrid/main.js') ?>"></script> -->
-
     <!-- Demo Js -->
-    <script src="<?php echo base_url('assets/js/demo.js')?>"></script>
-    <script src="<?php echo base_url('assets/js/canvasjs.min.js')?>"></script>
+    <!-- <script src="<?php echo base_url('assets/js/demo.js')?>"></script> -->
     <script src="<?php echo base_url('assets/js/pages/forms/basic-form-elements.js')?>"></script>
 </body>
 

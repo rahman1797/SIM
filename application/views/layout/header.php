@@ -40,10 +40,6 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url('assets/css/themes/all-themes.min.css')?>" rel="stylesheet" />
 
-    <!-- FullCalendar -->
-  <!--   <link href="<?php echo base_url('assets/fullcalendar/packages/core/main.css') ?>" rel='stylesheet' />
-    <link href="<?php echo base_url('assets/fullcalendar/packages/daygrid/main.css') ?>" rel='stylesheet' /> -->
-
     <style type="text/css">
       #round {
         border-radius: 12px;
@@ -219,8 +215,7 @@
                         </ul>
                     </li>
                     <!-- #END# Notifications -->
-                    <!-- Tasks -->
-                    
+                    <!-- Tasks -->             
 
                     
                     <!-- #END# Tasks -->
@@ -325,25 +320,6 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="header">HISTORY</li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-red">donut_large</i>
-                            <span>Important</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-amber">donut_large</i>
-                            <span>Warning</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-light-blue">donut_large</i>
-                            <span>Information</span>
-                        </a>
-                    </li>
                 </ul>
             </div>
             <!-- #Menu -->
@@ -362,43 +338,7 @@
                         <p>PENGATURAN</p>
                         <ul class="setting-list">
                             <li>
-                                <span>Report Panel Usage</span>
-                                <div class="switch">
-                                    <label><input type="checkbox" checked><span class="lever"></span></label>
-                                </div>
-                            </li>
-                            <li>
-                                <span>Email Redirect</span>
-                                <div class="switch">
-                                    <label><input type="checkbox"><span class="lever"></span></label>
-                                </div>
-                            </li>
-                        </ul>
-                        <p>SYSTEM SETTINGS</p>
-                        <ul class="setting-list">
-                            <li>
-                                <span>Notifications</span>
-                                <div class="switch">
-                                    <label><input type="checkbox" checked><span class="lever"></span></label>
-                                </div>
-                            </li>
-                            <li>
-                                <span>Auto Updates</span>
-                                <div class="switch">
-                                    <label><input type="checkbox" checked><span class="lever"></span></label>
-                                </div>
-                            </li>
-                        </ul>
-                        <p>ACCOUNT SETTINGS</p>
-                        <ul class="setting-list">
-                            <li>
-                                <span>Offline</span>
-                                <div class="switch">
-                                    <label><input type="checkbox"><span class="lever"></span></label>
-                                </div>
-                            </li>
-                            <li>
-                                <span>Location Permission</span>
+                                <span>Reminder Backup</span>
                                 <div class="switch">
                                     <label><input type="checkbox" checked><span class="lever"></span></label>
                                 </div>

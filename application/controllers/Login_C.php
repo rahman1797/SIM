@@ -12,8 +12,7 @@ class Login_C extends CI_Controller {
         $this->load->view('login');
     }
 
-//controller cek akun
-	public function exeLogin(){
+	function exeLogin(){
         $NIM = $this->input->post('user_NIM');
         $pass = $this->input->post('user_pass');
         $where = array(
@@ -41,18 +40,10 @@ class Login_C extends CI_Controller {
                 $this->session->set_userdata($sess_data);
                 echo "sukses";
             }
-            else{
-                echo " <script>
-                         alert('NIM atau password salah!');
-                         
-                        </script>";
-                        print_r($_SESSION);
-            }
 
         }
-        //**controller cek akun
-
-        public function exeLogout() {
+        
+        function exeLogout() {
             $this->session->sess_destroy();
             redirect(base_url('Login_C'));
         }
