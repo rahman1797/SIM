@@ -33,4 +33,11 @@ class Rapat_C extends CI_Controller {
 		$this->M_rapat->inputJadwalRapat($data);
 	}
 
+	function hapusJadwal()
+	{
+		$idRapat = array('rapat_ID' => $_GET['id']);
+		$this->M_rapat->deleteJadwal($idRapat,'rapat_tbl');
+		redirect(base_url('Rapat_C'));
+	}
+
 }

@@ -16,6 +16,10 @@ class M_rapat extends CI_Model
 		$this->db->insert('rapat_tbl', $data);
 	}
 
+	function deleteJadwal($data) {
+		$this->db->delete('rapat_tbl', $data);
+	}
+
 }
 
 ?>
