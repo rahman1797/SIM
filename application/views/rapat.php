@@ -60,7 +60,7 @@
                                                     <?php } ?>
                                             </div>
                                             <div class="col-lg-12">
-                                                "<?php echo $jadwal->rapat_deskripsi; ?>"" 
+                                                <h4>"<?php echo $jadwal->rapat_deskripsi; ?>" </h4>
                                             </div>
                                         </div>                                                
                                         <a class="btn btn-danger" id="round" href="<?php echo base_url('Rapat_C/hapusJadwal?id='.$jadwal->rapat_ID) ?>">Hapus</a>
