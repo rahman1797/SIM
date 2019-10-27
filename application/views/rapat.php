@@ -64,6 +64,7 @@
                                             </div>
                                         </div>                                                
                                         <a class="btn btn-danger" id="round" href="<?php echo base_url('Rapat_C/hapusJadwal?id='.$jadwal->rapat_ID) ?>">Hapus</a>
+                                        <button class="btn btn-danger" id="round" value="<?php echo $jadwal->rapat_ID ?>" onclick="konfirmasiHapus(this.value)">Hapus</button>
                                     </div>
                                 </div>
                             </div>
@@ -110,5 +111,32 @@
             
             return false;
         }  
+
+
+        function konfirmasiHapus(id){
+            alert(id);
+        }
+
+     function konfirmasiHapus(id)
+        {
+
+            job = confirm("Are you sure to delete permanently?");
+            
+            if(job != true)
+            {
+                return false;
+            }
+
+            else
+            {
+                $.ajax({
+                    idKonfirmasi: id,
+                    url: "<?php echo base_url('Rapat_C/hapusJadwal?id=') ?>" + idKonfirmasi,
+                    success: function() {
+                        $('#refJadwalRapat').load(document.URL +  ' #refJadwalRapat');
+                    }
+                })
+            }
+        }
 
 </script>
