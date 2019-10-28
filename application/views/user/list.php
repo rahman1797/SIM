@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" name="user_prodi">
+                                            <select class="form-control show-tick" name="user_prodi" data-live-search="true">
                                                 <option value="">-- Prodi --</option>
                                                 <?php 
                                                     foreach ($prodi_data as $pd) {
@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" name="user_departemen">
+                                            <select class="form-control show-tick" name="user_departemen" data-live-search="true">
                                                 <option value="">-- Departemen --</option>
                                                 <?php 
                                                     foreach ($departemen_data as $dd) {
@@ -158,7 +158,7 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" name="user_posisi">
+                                            <select class="form-control show-tick" name="user_posisi" data-live-search="true">
                                                 <option value="">-- Posisi --</option>
                                                 <?php 
                                                     foreach ($posisi_data as $pod) {

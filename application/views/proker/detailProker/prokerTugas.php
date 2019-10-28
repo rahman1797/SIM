@@ -89,7 +89,7 @@
                                 <form id="form_validation" name="formProkerTugas" class="formProkerTugas" method="POST" style="margin: 20px" onsubmit="return submitProkerTugas()">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" name="prokerTugas_pj">
+                                            <select class="form-control show-tick" name="prokerTugas_pj" data-live-search="true">
                                                 <option value="">-- Penanggung Jawab --</option>
                                                 <?php 
                                                     foreach ($anggota_data as $ad) {

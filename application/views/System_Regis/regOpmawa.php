@@ -102,7 +102,7 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" name="nama_user">
+                                            <select class="form-control show-tick" name="nama_user" data-live-search="true">
                                                 <option value="">-- Nama Ketua --</option>
                                                 <?php 
                                                     foreach ($user_data as $ud) {

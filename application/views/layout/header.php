@@ -91,8 +91,7 @@
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
                 <div class="navbar-brand">Sistem Informasi Manajemen OPMAWA</div> 
-
-
+ 
                <?php
                     if (!isset($_SESSION['logged_in'])) {
                         Redirect(base_url('Login_C'));

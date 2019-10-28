@@ -89,7 +89,7 @@
                                 <form id="form_validation" name="formProkerAnggota" class="formProkerAnggota" method="POST" style="margin: 20px" onsubmit="return submitProkerAnggota()">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" name="prokerAnggota_nama">
+                                            <select class="form-control show-tick" name="prokerAnggota_nama" data-live-search="true">
                                                 <option value="">-- Nama Anggota Kepanitiaan --</option>
                                                 <?php 
                                                     foreach ($user_data as $ud) {
@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" name="prokerAnggota_posisi">
+                                            <select class="form-control show-tick" name="prokerAnggota_posisi" data-live-search="true">
                                                 <option value="">-- Posisi Kepanitiaan --</option>
                                                 <?php 
                                                     foreach ($proker_posisi as $pp) {

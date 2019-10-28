@@ -123,7 +123,6 @@
 
             else
             {
-
                 $.ajax({
                     data: id,
                     type: "GET",
