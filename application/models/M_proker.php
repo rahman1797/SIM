@@ -3,7 +3,7 @@
 class M_proker extends CI_Model{
 
 	function tampil_proker(){
-		return $this->db->get_where('proker_tbl');
+		return $this->db->get_where('proker_tbl', array('proker_lembaga' => $_SESSION['user_role'] ));
 	}
 
 
@@ -29,11 +29,11 @@ class M_proker extends CI_Model{
 						return $this->db->get_where('prokerTugas_tbl', array('id_user' => $_SESSION['user_ID'] ));
 					}
 
-						function updateData($where,$data,$table)
-						{
-							$this->db->where($where);
-							$this->db->update($table,$data);
-						}
+						// function updateData($where,$data,$table)
+						// {
+						// 	$this->db->where($where);
+						// 	$this->db->update($table,$data);
+						// }
 
 
 			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu

@@ -10,7 +10,7 @@
                               <strong>Informasi!</strong> Tabel ini merupakan daftar posisi/jabatan yang terdaftar di dalam OPMAWA.
                             </div>
                             
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalPosisi" id="round">Tambah Posisi</button>  
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalPosisi" id="round"><i class="material-icons">group_add</i> Posisi</button>  
                         </div>
                         
                         <div class="body refresh">
@@ -42,7 +42,7 @@
                                                 <td><?php echo $no++ ?></td>
                                                 <td><?php echo $dt_pos->posisi_nama ?></td>
                                                 <td>
-                                                    <a href="<?php echo site_url();?>/Main_C/delPosisi/<?php print($dt_pos->posisi_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                    <a href="<?php echo site_url();?>/Main_C/delPosisi/<?php print($dt_pos->posisi_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -58,8 +58,6 @@
             <!-- #END# Tabel Posisi -->
         </div>
     </section>
-
-
 
 
  <!-- Modal Posisi -->

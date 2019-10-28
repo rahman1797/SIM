@@ -8,9 +8,9 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                         <div class="header" align="center">
-                            <h2><strong>DAFTAR TUGAS DAN CATATAN</strong></h2>
+                            <h2><strong>TUGAS DAN CATATAN</strong></h2>
                             <p></p>
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerAnggota" id="round">Tambah Tugas/Catatan</button>  
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerAnggota" id="round"><i class="material-icons">note_add</i> Tugas / Catatan</button>  
                         </div>
                         
                         <div class="body">
@@ -54,7 +54,7 @@
                                                           }
                                                  ?> </td>
                                                 <td>
-                                                    <a href="<?php echo site_url();?>/Proker_C/delProkerTugas/<?php print($id_tugas);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                    <a href="<?php echo site_url();?>/Proker_C/delProkerTugas/<?php print($id_tugas);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
                                                 </td>
                                             </tr>
                                         <?php } 

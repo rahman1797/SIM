@@ -7,11 +7,11 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                         <div class="header" align="center">
-                            <div class="alert alert-warning" id="round">
+<!--                             <div class="alert alert-warning" id="round">
                               <strong>Informasi!</strong> Menghapus salah satu prodi, maka seluruh user yang merupakan prodi tersebut akan otomatis terhapus.
                             </div>
-
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalKabinet" id="round">Registrasi Kabinet OPMAWA</button>  
+ -->
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalKabinet" id="round"><i class="material-icons">library_add</i> Registrasi Kabinet OPMAWA</button>  
                         </div>
                         
                         <div class="body">
@@ -59,7 +59,7 @@
                                                         <button class="btn btn-info" id="round">Detail</button>
                                                     </a>
                                                     <?php if ($_SESSION['user_posisi'] == 1) { ?>
-                                                            <a href="<?php echo site_url();?>/Main_C/delOpmawa/<?php print($do->opmawa_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                            <a href="<?php echo site_url();?>/Main_C/delOpmawa/<?php print($do->opmawa_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
                                                     
                                                     <?php }
                                                           else {

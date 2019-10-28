@@ -7,9 +7,26 @@
                     <div class="card" id="round">
                         
                         <div class="body">
-                            <div id="totalPemasukan"></div>
-                            <div id="totalPengeluaran"></div>
-                            <div id="saldo"></div>
+                            <table class="table">
+                                <tr>
+                                    <th>Pemasukan</th>
+                                    <td>:</td>
+                                    <td> <div id="totalPemasukan"></div></td>
+                                </tr>
+                                <tr>
+                                    <th>Pengeluaran</th>
+                                    <td>:</td>
+                                    <td> <div id="totalPengeluaran"></div></td>
+                                </tr>
+                                <tr>
+                                    <th>Saldo</th>
+                                    <td>:</td>
+                                    <td><div id="saldo"></div></td>
+                                </tr>
+                            </table>
+                           
+                           
+                            
                         </div>
                     </div>
                 </div>
@@ -23,9 +40,9 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                         <div class="header" align="center">
-                            <h2><strong>DATA PEMASUKAN PROKER</strong></h2>
+                            <h2><strong>PEMASUKAN</strong></h2>
                             <p></p>
-                            <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round">Tambah Pemasukan</button>  
+                            <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round"><i class="material-icons">add_circle_outline</i> Pemasukan</button>  
                         </div>
                         
                         <div class="body">
@@ -59,10 +76,10 @@
                                                 <td><?php echo $masuk->pemasukan_nominal ?></td>
                                                 <td><?php echo $masuk->pemasukan_deskripsi ?></td>
                                                 <td><?php if (isset($masuk->pemasukan_file)) { ?>
-                                                    <a href="<?php echo base_url('uploads/keuangan/'. $masuk->pemasukan_file) ?>" class="btn btn-sm btn-success" id="round">Lihat</a>
+                                                    <a href="<?php echo base_url('uploads/keuangan/'. $masuk->pemasukan_file) ?>" class="btn btn-sm btn-success" id="round"><i class="material-icons">image_search</i></a>
                                                 <?php } 
                                                 else { ?>
-                                                    <a href="javascript:void(0)" class="btn btn-sm" disabled id="round">Lihat</a>
+                                                    <a href="javascript:void(0)" class="btn btn-sm" disabled id="round"><i class="material-icons">image_search</i></a>
                                                 <?php }
                                                 ?></td>                                                
                                             </tr>
@@ -82,9 +99,9 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                         <div class="header" align="center">
-                            <h2><strong>DATA PENGELUARAN PROKER</strong></h2>
+                            <h2><strong>PENGELUARAN</strong></h2>
                             <p></p>
-                            <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round">Tambah Pengeluaran</button>  
+                            <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round"><i class="material-icons">add_circle_outline</i> Pengeluaran</button>  
                         </div>
                         
                         <div class="body">
@@ -118,10 +135,10 @@
                                                 <td><?php echo $keluar->pengeluaran_nominal ?></td>
                                                 <td><?php echo $keluar->pengeluaran_deskripsi ?></td>
                                                 <td><?php if (isset($keluar->pengeluaran_file)) { ?>
-                                                    <a href="<?php echo base_url('uploads/keuangan/'. $keluar->pengeluaran_file) ?>" class="btn btn-sm btn-success" id="round">Lihat</a>
+                                                    <a href="<?php echo base_url('uploads/keuangan/'. $keluar->pengeluaran_file) ?>" class="btn btn-sm btn-success" id="round"><i class="material-icons">image_search</i></a>
                                                 <?php } 
                                                 else { ?>
-                                                    <a href="javascript:void(0)" class="btn btn-sm" disabled id="round">Lihat</a>
+                                                    <a href="javascript:void(0)" class="btn btn-sm" disabled id="round"><i class="material-icons">image_search</i></a>
                                                 <?php }
                                                 ?></td>
                                                 
@@ -294,9 +311,9 @@
                 }
             }
 
-        document.getElementById('totalPemasukan').innerHTML = "Pemasukan Rp" + <?php echo $totalPemasukan ?>;
-        document.getElementById('totalPengeluaran').innerHTML = "Pengeluaran Rp" + <?php echo $totalPengeluaran ?>;
-        document.getElementById('saldo').innerHTML = "Saldo Rp" + <?php echo $totalPemasukan - $totalPengeluaran ?>;
+        document.getElementById('totalPemasukan').innerHTML = "Rp" + <?php echo $totalPemasukan ?>;
+        document.getElementById('totalPengeluaran').innerHTML = "Rp" + <?php echo $totalPengeluaran ?>;
+        document.getElementById('saldo').innerHTML = "Rp" + <?php echo $totalPemasukan - $totalPengeluaran ?>;
 
 
 </script>

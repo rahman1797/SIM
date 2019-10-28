@@ -19,7 +19,7 @@
                             <div class="row">
                                 <div class="col-lg-3">
                                     <?php 
-                                        echo "<strong>Rencana Tanggal Pelaksanaan : </strong>" .date_format($date,"d M Y");
+                                        echo "<strong>Rencana Pelaksanaan : </strong>" .date_format($date,"d M Y");
                                     ?>
                                 </div>
                                 <div class="col-lg-3">
@@ -27,23 +27,23 @@
                                                 
                                       if ($pd->proker_nilai) 
                                         {
-                                            echo "<strong>Penilaian Proker : </strong>" . $pd->proker_nilai;
+                                            echo "<strong>Penilaian : </strong>" . $pd->proker_nilai;
                                         }
 
                                       else 
                                         {
-                                            echo "<strong>Penilaian Proker : </strong>" . "<font color='red'>Proker belum dinilai</font>";
+                                            echo "<strong>Penilaian : </strong>" . "<font color='red'>Proker belum dinilai</font>";
                                         };
                                     ?>
                                 </div>
                                 <div class="col-lg-3">
                                     <?php 
-                                        echo "<strong>Jumlah Panitia Terdaftar : </strong>" . "100"; 
+                                        echo "<strong>Jumlah Panitia : </strong>" . "100"; 
                                     ?>
                                 </div>
                                 <div class="col-lg-3">
                                     <?php 
-                                        echo "<strong>Status Pelaksanaan : </strong>" ."Sedang Berjalan";
+                                        echo "<strong>Status : </strong>" ."Sedang Berjalan";
                                     }
                                     ?>
                                 </div>

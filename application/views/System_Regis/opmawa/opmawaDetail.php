@@ -20,17 +20,17 @@
                                 <div class="col-lg-3">
                                     <?php 
                                     
-                                        echo "<strong>Nama Ketua : </strong>" . $idToNama['0']['user_nama'];
+                                        echo "<strong>Ketua : </strong>" . $idToNama['0']['user_nama'];
                                     
                                     ?>
                                 </div>
-                                <div class="col-lg-3">
+                                <!-- <div class="col-lg-3">
                                     <?php 
                                                 
                                         echo "<strong>Penilaian Kabinet : </strong>"  ;
                                       
                                     ?>
-                                </div>
+                                </div> -->
                                 
                                 <div class="col-lg-3">
                                     <?php 
@@ -46,7 +46,7 @@
                                   <strong>Informasi!</strong> Tabel ini merupakan daftar posisi/jabatan yang terdaftar di dalam OPMAWA.
                                 </div>
                                 
-                                <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalDepartemen" id="round">Tambah Departemen</button>  
+                                <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalDepartemen" id="round"><i class="material-icons">library_add</i> Departemen</button>  
                             </div>
                       
                             <div class="table-responsive">
@@ -77,7 +77,7 @@
                                                 <td><?php echo "2" ?></td>
                                                 <td>
        
-                                                    <a href="<?php echo site_url();?>/Main_C/delDepartemen/<?php print($ddo->departemen_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>                                                
+                                                    <a href="<?php echo site_url();?>/Main_C/delDepartemen/<?php print($ddo->departemen_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>                                                
                                                 </td>
                                             </tr>
                                         <?php } ?>

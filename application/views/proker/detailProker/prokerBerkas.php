@@ -15,7 +15,7 @@
                             <input type="hidden" name="id_proker" value="<?php $_GET['id_proker'] ?>">      
                           </div>
              
-                          <button type="submit" class="btn btn-primary">Upload</button>
+                          <button type="submit" class="btn btn-primary"><i class="material-icons">cloud_upload</i></button>
                         </form>
 
 
@@ -26,7 +26,7 @@
                     <div class="card" id="round">
 
                         <div class="header" align="center">
-                            <h2><strong>DAFTAR BERKAS FILE</strong></h2>
+                            <h2><strong>BERKAS (FILE) PROGRAM KERJA</strong></h2>
                        
                         </div>
                         
@@ -35,19 +35,19 @@
                                 <table id="refAng" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
-                                            <th>Nama File</th>
-                                            <th>Di upload oleh</th>
+                                            <th>Nama</th>
+                                            <th>Oleh</th>
                                             <th>Program kerja</th>
-                                            <th>Tanggal di upload</th>
+                                            <th>Tanggal</th>
                                             <th>Kelola</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Nama File</th>
-                                            <th>Di upload oleh</th>
+                                            <th>Nama</th>
+                                            <th>Oleh</th>
                                             <th>Program kerja</th>
-                                            <th>Tanggal di upload</th>
+                                            <th>Tanggal</th>
                                             <th>Kelola</th>
                                         </tr>
                                     </tfoot>
@@ -85,10 +85,10 @@
                                                
                                                 <td>
 
-                                                    <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round">Unduh</button></a>
+                                                    <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
                                                      
                                                     <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
-                                                         <a href="<?php echo site_url();?>/Berkas_C/delBerkas/<?php print($bd->berkas_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                         <a href="<?php echo site_url();?>/Berkas_C/delBerkas/<?php print($bd->berkas_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
                                                  <?php } 
                                                     else {
                                                         echo "Locked";

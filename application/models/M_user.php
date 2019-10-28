@@ -7,7 +7,7 @@ class M_user extends CI_Model{
 	}
 
 	function tampil_user(){
-		return $this->db->get_where('user_tbl');
+		return $this->db->get_where('user_tbl', array('user_role' => $_SESSION['user_role']));
 	}
 
 			function tampil_user_byLembaga(){

@@ -8,10 +8,10 @@
                     <div class="card" id="round">
                         <div class="header" align="center">
                             <div class="alert alert-warning" id="round">
-                              <strong>Informasi!</strong> Menghapus salah satu prodi, maka seluruh user yang merupakan prodi tersebut akan otomatis terhapus.
+                              <strong>Peringatan!</strong> Menghapus salah satu prodi, maka seluruh user yang merupakan prodi tersebut akan otomatis terhapus.
                             </div>
 
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProdi" id="round">Tambah Prodi</button>  
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProdi" id="round"><i class="material-icons">add_box</i> Prodi</button>  
                         </div>
                         
                         <div class="body">
@@ -43,7 +43,7 @@
                                                 <td><?php echo $no++ ?></td>
                                                 <td><?php echo $dt_pro->prodi_nama ?></td>
                                                 <td>
-                                                    <a href="<?php echo site_url();?>/Main_C/delProdi/<?php print($dt_pro->prodi_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                    <a href="<?php echo site_url();?>/Main_C/delProdi/<?php print($dt_pro->prodi_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

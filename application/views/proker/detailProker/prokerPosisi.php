@@ -5,19 +5,17 @@
         
             <!-- Basic Examples -->
             <div class="row clearfix">
-
-<!-- <?php echo $_SERVER['REQUEST_URI']; ?> --> 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                         <div class="header" align="center">
                             <h2><strong>DAFTAR KEPANITIAAN</strong></h2>
                             <p></p>
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerPosisi" id="round">Tambah Posisi Kepanitiaan</button>  
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerPosisi" id="round"><i class="material-icons">group_add</i> Posisi Kepanitiaan</button>  
                         </div>
                         
                         <div class="body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge" id="refProkerPosisi">
                                     <thead>
                                         <tr>
                                             <th>Posisi Terdaftar</th>
@@ -46,7 +44,7 @@
                                                 <td><?php echo $pp->prokerPosisi_nama ?></td>
                                                 <td></td>
                                                 <td>
-                                                    <a href="<?php echo site_url();?>/Proker_C/delProkerPosisi/<?php print($id_posisi);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
+                                                    <a href="<?php echo site_url();?>/Proker_C/delProkerPosisi/<?php print($id_posisi);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
                                                 </td>
                                             </tr>
                                         <?php } 
@@ -96,9 +94,6 @@
 
 <script type="text/javascript">
 
-    // setTimeout(function(){
-    //    $( "#refProkerPosisi").load( "<?php echo $_SERVER['REQUEST_URI'] ?> #refProkerPosisi" );
-    // }, 2000);
 
      function submitProkerPosisi() {
 

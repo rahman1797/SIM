@@ -7,9 +7,9 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                         <div class="header" align="center">
-                            <h2><strong>ANGGOTA OPMAWA</strong></h2>
+                            <h2><strong>DAFTAR ANGGOTA OPMAWA</strong></h2>
                             <p></p>
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalAnggota" id="round"><i class="material-icons">person_add</i> Tambah </button>  
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalAnggota" id="round">Tambah Anggota</button>  
                         </div>
                         
                         <div class="body">
@@ -70,9 +70,12 @@
                                                         elseif ($_SESSION['user_role'] == $u->user_role) {
                                                             ?>
                                                             
-                                                            <a href="<?php echo site_url();?>/User_C/delAnggota/<?php print($u->user_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
+                                                            <a href="<?php echo site_url();?>/User_C/delAnggota/<?php print($u->user_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()">Delete</button></a>
                                                             
-                                                    <?php } ?>
+                                                            <?php
+                                                        }
+
+                                                     ?>
                                                 </td>
                                             </tr>
                                         <?php } ?>
