@@ -63,7 +63,6 @@
                                                 <h4>"<?php echo $jadwal->rapat_deskripsi; ?>" </h4>
                                             </div>
                                         </div>                                                
-                                        <a class="btn btn-danger" id="round" href="<?php echo base_url('Rapat_C/hapusJadwal?id='.$jadwal->rapat_ID) ?>">Hapus</a>
                                         <button class="btn btn-danger" id="round" value="<?php echo $jadwal->rapat_ID ?>" onclick="konfirmasiHapus(this.value)">Hapus</button>
                                     </div>
                                 </div>
@@ -112,11 +111,6 @@
             return false;
         }  
 
-
-        function konfirmasiHapus(id){
-            alert(id);
-        }
-
      function konfirmasiHapus(id)
         {
 
@@ -129,12 +123,25 @@
 
             else
             {
+
                 $.ajax({
-                    idKonfirmasi: id,
-                    url: "<?php echo base_url('Rapat_C/hapusJadwal?id=') ?>" + idKonfirmasi,
-                    success: function() {
-                        $('#refJadwalRapat').load(document.URL +  ' #refJadwalRapat');
-                    }
+                    data: id,
+                    type: "GET",
+                    url: "<?php echo base_url('Rapat_C/hapusJadwal?id=') ?>" + id,
+                    success: function(data){
+                        Swal.fire({
+                          position: 'top-end',
+                          type: 'success',
+                          title: 'Berhasil Menghapus Jadwal',
+                          showConfirmButton: false,
+                          timer: 1300
+                        }).then(function(){
+                            $('#refJadwalRapat').load(document.URL +  ' #refJadwalRapat');
+                        }) 
+                      },
+                      error: function(data){
+                        alert('Failed deleting data ');
+                      }
                 })
             }
         }
