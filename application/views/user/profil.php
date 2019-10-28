@@ -59,6 +59,17 @@
                                 <td>:</td>
                                 <td><?php echo $idToKabinet['0']['opmawa_kabinet'];; ?></td>
                             </tr>
+                            <tr>
+                                <th>Lembaga </th>
+                                <td>:</td>
+                                <td><?php if ($p->user_role == 1) {
+                                            echo "Eksekutif";
+                                            }
+                                          else {
+                                            echo "Legislatif";
+                                            }; ?>                
+                                </td>
+                            </tr>
                             <?php } ?>
                         </table>
                     </div>
