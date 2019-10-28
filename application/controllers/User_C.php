@@ -21,6 +21,14 @@ class User_C extends CI_Controller {
 		
 	}
 
+	function profil()
+	{
+		$data['profil'] = $this->M_user->getProfil()->result();
+		$this->load->view('layout/header');
+		$this->load->view('layout/footer');
+		$this->load->view('user/profil', $data);
+	}
+
 	function addAnggota()
 	{
 		$nama = $this->input->post('user_nama');

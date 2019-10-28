@@ -23,6 +23,10 @@ class M_user extends CI_Model{
 				
 			}
 
+	function getProfil(){
+		return $this->db->get_where('user_tbl', array('user_NIM' => $_SESSION['user_NIM']));
+	}
+
 	function getProdi($id_prodi){
         
         $query = $this->db->get_where('prodi_tbl', array('prodi_ID' => $id_prodi));
@@ -33,6 +37,20 @@ class M_user extends CI_Model{
 	function getPosisi($id_posisi){
         
         $query = $this->db->get_where('posisi_tbl', array('posisi_ID' => $id_posisi));
+
+        return $query->result_array();
+	}
+
+	function getKabinet($id_opmawa){
+        
+        $query = $this->db->get_where('opmawa_tbl', array('opmawa_ID' => $id_opmawa));
+
+        return $query->result_array();
+	}
+
+	function getDepartemen($id_departemen){
+        
+        $query = $this->db->get_where('departemen_tbl', array('departemen_ID' => $id_departemen));
 
         return $query->result_array();
 	}

@@ -23,13 +23,6 @@ class Main_C extends CI_Controller {
 
 	}
 
-	function profil()
-	{
-		$this->load->view('layout/header');
-		$this->load->view('layout/footer');
-		$this->load->view('user/profil');
-	}
-
 	function regProdi()
 	{
 		$data['data_prodi'] = $this->M_sys->tampil_regis_prodi()->result();

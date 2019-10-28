@@ -239,7 +239,7 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right" id="round">
-                            <li><a href="<?php echo base_url('Main_C/profil') ?>"><i class="material-icons">person</i>Profil</a></li>
+                            <li><a href="<?php echo base_url('User_C/profil') ?>"><i class="material-icons">person</i>Profil</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="<?php echo base_url('Login_C/exeLogout') ?>"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
