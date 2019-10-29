@@ -104,38 +104,29 @@
                                 </a>
                             </div>
                             
-                                <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                    <a href="<?php echo base_url('Proker_C/prokerPosisi?id_proker='.$_GET['id_proker']) ?>">
-                                    <div style="cursor: pointer;" class="info-box bg-light-green hover-zoom-effect" id="round">
-                                        <div class="icon">
-                                            <i class="material-icons">people</i>
-                                        </div>
-                                        <div class="content">
-                                            <div class="text">Posisi Kepanitiaan</div>
-                                            <div class="number count-to" data-from="0" data-to="<?php echo $totalPosisiKepanitiaan; ?>" data-speed="1000" data-fresh-interval="20"></div>
-                                        </div>
+                            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                                <a href="<?php echo base_url('Proker_C/prokerPosisi?id_proker='.$_GET['id_proker']) ?>">
+                                <div style="cursor: pointer;" class="info-box bg-light-green hover-zoom-effect" id="round">
+                                    <div class="icon">
+                                        <i class="material-icons">people</i>
                                     </div>
-                                    </a>
+                                    <div class="content">
+                                        <div class="text">Posisi Kepanitiaan</div>
+                                        <div class="number count-to" data-from="0" data-to="<?php echo $totalPosisiKepanitiaan; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                                    </div>
                                 </div>
+                                </a>
+                            </div>
                             
                         </div>
-
-
 
                         </div>
                     </div>
                 </div>
             </div> 
-
             <!-- #END# Basic Examples -->
         </div>
     </section>
-
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
 

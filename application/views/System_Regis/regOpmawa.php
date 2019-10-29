@@ -1,17 +1,14 @@
       <section class="content">
         <div class="container-fluid">
 
-
                  <!-- Tabel OPMAWA -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                         <div class="header" align="center">
-<!--                             <div class="alert alert-warning" id="round">
-                              <strong>Informasi!</strong> Menghapus salah satu prodi, maka seluruh user yang merupakan prodi tersebut akan otomatis terhapus.
-                            </div>
- -->
+
                             <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalKabinet" id="round"><i class="material-icons">library_add</i> Registrasi Kabinet OPMAWA</button>  
+
                         </div>
                         
                         <div class="body">
@@ -40,7 +37,6 @@
                                     <tbody>
 
                                         <?php 
-
                                             $no = 1;
                                             foreach($data_opmawa as $do){ 
                                                 $idUser = $do->id_user;
@@ -65,8 +61,7 @@
                                                           else {
                                                             echo "Locked";
                                                           }
-                                                     ?>
-                                                    
+                                                     ?>             
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -78,12 +73,9 @@
                     </div>
                 </div>
             </div> 
-
             <!-- #END# Tabel OPMAWA -->
-        
         </div>
     </section>
-
 
 <!-- Modal Kabinet -->
             <div class="modal fade" id="ModalKabinet" tabindex="-1" role="dialog">
@@ -91,8 +83,7 @@
                     <div class="modal-content" id="round">
                        <center>
                         <div class="modal-body">
-                              <!-- Form Prodi -->
-                          
+                              <!-- Form Prodi -->          
                                 <form id="form_validation" class="formKabinet" method="POST" style="margin: 20px" onsubmit="return submitOpmawa()">
                                     <div class="form-group form-float">
                                         <div class="form-line">
@@ -138,7 +129,6 @@
         }
     }
 
-
     function submitOpmawa() {
 
          var data = $('.formKabinet').serialize();
@@ -159,8 +149,7 @@
                        
                 }
             });
-            return false;
-            
+            return false;           
         }            
 
     </script>

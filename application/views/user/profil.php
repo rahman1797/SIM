@@ -15,13 +15,11 @@
 
                         <table class="table">
                             <?php foreach ($profil as $p) { 
-
                                  $idToProdi = $this->M_user->getProdi($p->id_prodi);
                                  $idToPosisi = $this->M_user->getPosisi($p->id_posisi);
                                  $idToKabinet = $this->M_user->getKabinet($p->id_opmawa);
                                  $idToDepartemen = $this->M_user->getDepartemen($p->id_departemen);
                                  $tahun = $p->user_tahun;
-
                                 ?>
                             <tr>
                                 <th width="30%">Nama</th>
@@ -61,12 +59,13 @@
                             <tr>
                                 <th>Lembaga </th>
                                 <td>:</td>
-                                <td><?php if ($p->user_role == 1) {
-                                            echo "Eksekutif";
-                                            }
-                                          else {
-                                            echo "Legislatif";
-                                            }; ?>                
+                                <td><?php 
+                                    if ($p->user_role == 1) {
+                                        echo "Eksekutif";
+                                    }
+                                    else {
+                                        echo "Legislatif";
+                                    } ?>                
                                 </td>
                             </tr>
                             <?php } ?>

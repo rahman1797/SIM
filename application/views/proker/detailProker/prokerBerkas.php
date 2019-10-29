@@ -5,8 +5,7 @@
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
-                        
-                        
+                             
                         <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker='.$_GET['id_proker']);?>" method="post" enctype="multipart/form-data" name="userfile">
 
                           <div class="form-group">
@@ -18,18 +17,14 @@
                           <button type="submit" class="btn btn-primary"><i class="material-icons">cloud_upload</i></button>
                         </form>
 
-
                     </div>
                  </div> 
 
                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
-
                         <div class="header" align="center">
                             <h2><strong>BERKAS (FILE) PROGRAM KERJA</strong></h2>
-                       
-                        </div>
-                        
+                        </div>       
                         <div class="body">
                             <div class="table-responsive">
                                 <table id="refAng" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
@@ -53,19 +48,16 @@
                                     </tfoot>
                                     <tbody>
 
-                                        <?php 
-                                       
+                                        <?php                     
                                             foreach($berkas_data as $bd){ 
                                                 $idUser = $bd->id_user;
                                                 $idProker = $bd->id_proker;
                                                 $idToUser = $this->M_user->getUserNama($idUser);
                                                 $idToProker = $this->M_proker->getProkerNama($idProker);
                                             
-                                                if ($idProker == $_GET['id_proker']) {
-                                                 
+                                                if ($idProker == $_GET['id_proker']) {           
                                                 
                                             ?>
-
 
                                             <tr>
                                                 <td><?php echo $bd->berkas_nama; ?></td>
@@ -79,10 +71,8 @@
                                                                 echo "Umum";
                                                             }
                                                  ?>    
-                                                </td>
-                                                
-                                                <td><?php echo $bd->berkas_tanggal; ?></td>
-                                               
+                                                </td>            
+                                                <td><?php echo $bd->berkas_tanggal; ?></td>           
                                                 <td>
 
                                                     <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
@@ -93,9 +83,7 @@
                                                     else {
                                                         echo "Locked";
                                                     }
-                                                 ?>               
-                                                   
-                                         
+                                                 ?>                        
                                                 </td>
                                             </tr>
                                     
@@ -108,11 +96,8 @@
                             </div>
                         </div>
 
-
-
                     </div>
                  </div>
-
 
             </div>
             <!-- #END# Basic Examples -->
@@ -120,7 +105,6 @@
     </section>
 
 <script type="text/javascript">
-
 
          function delConfirm()
             {

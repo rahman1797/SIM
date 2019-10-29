@@ -24,22 +24,13 @@
                                     
                                     ?>
                                 </div>
-                                <!-- <div class="col-lg-3">
-                                    <?php 
-                                                
-                                        echo "<strong>Penilaian Kabinet : </strong>"  ;
-                                      
-                                    ?>
-                                </div> -->
-                                
+
                                 <div class="col-lg-3">
                                     <?php 
                                         echo "<strong>Penilaian Opmawa : </strong>" ."78";
-                                    }
-                                    ?>
+                                    } ?>
                                 </div>
                             </div>
-
 
                             <div class="header" align="center">
                                 <div class="alert alert-warning" id="round">
@@ -66,18 +57,14 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-
                                         <?php 
                                        
-                                            foreach($detail_departemenOpmawa as $ddo){ 
-                                                
-                                            ?>
+                                            foreach($detail_departemenOpmawa as $ddo) { ?>
                                             <tr>
                                                 <td><?php echo $ddo->departemen_nama ?></td>
                                                 <td><?php echo "2" ?></td>
                                                 <td>
-       
-                                                    <a href="<?php echo site_url();?>/Main_C/delDepartemen/<?php print($ddo->departemen_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>                                                
+                                                    <a href="<?php echo site_url();?>/Main_C/delDepartemen/<?php print($ddo->departemen_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -85,9 +72,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                       
-
-
 
                         </div>
                     </div>
@@ -97,11 +81,6 @@
             <!-- #END# Basic Examples -->
         </div>
     </section>
-
-
-
-
-
 
 <!-- Modal Kabinet -->
             <div class="modal fade" id="ModalDepartemen" tabindex="-1" role="dialog">
@@ -130,8 +109,6 @@
             </div>
 
 
-
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 
@@ -146,7 +123,6 @@
             return false;
         }
     }
-
 
     function submitDepart() {
 

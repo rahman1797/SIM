@@ -1,7 +1,6 @@
       <section class="content">
         <div class="container-fluid">
 
-        
             <!-- Tabel Prodi -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -34,11 +33,8 @@
                                     <tbody>
 
                                         <?php 
-
                                             $no = 1;
-                                            foreach($data_prodi as $dt_pro){ 
-                                                
-                                            ?>
+                                            foreach($data_prodi as $dt_pro){ ?>
                                             <tr>
                                                 <td><?php echo $no++ ?></td>
                                                 <td><?php echo $dt_pro->prodi_nama ?></td>
@@ -55,15 +51,9 @@
                     </div>
                 </div>
             </div> 
-
             <!-- #END# Tabel Prodi -->
-
         </div>
     </section>
-
-
-
-
 
  <!-- Modal Prodi -->
             <div class="modal fade" id="ModalProdi" tabindex="-1" role="dialog">
@@ -106,7 +96,6 @@
         }
     }
 
-
     function submitProdi() {
 
          var data = $('.formProdi').serialize();
@@ -127,8 +116,7 @@
                        
                 }
             });
-            return false;
-            
+            return false; 
         }
 
     </script>

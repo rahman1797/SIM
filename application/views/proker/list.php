@@ -97,52 +97,45 @@
         </div>
     </section>
 
-
-
 <!-- Modal Tambah Anggota -->
-            <div class="modal fade" id="ModalProker" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content" id="round">
-                       <center>
-                        <div class="modal-body">
-                              <!-- Form Angggota -->
-                          <div class="alert alert-warning" id="round">
-                              <strong>Informasi!</strong> Tahun periode kepengurusan dan lembaga akan menyesuaikan dengan ketua/ sekretaris yang meng-input.
-                            </div>
-                                <form id="form_validation" name="formProker" class="formProker" method="POST" style="margin: 20px" onsubmit="return submitProker()">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="proker_nama" id="Proker_nama" required>
-                                            <label class="form-label">Nama Proker</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                         <div class="form-group">
-                                        <div class="form-line" id="inputDate">
-                                            <input type="date" class="form-control" name="proker_tanggal" placeholder="Please choose a date...">
-                                        </div>
-                                    </div>
-                                    </div>
-                                     <input type="hidden" name="proker_tahun" value="<?php echo $_SESSION['user_tahun'] ?>">
-                                     <input type="hidden" name="proker_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
-                                    <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
-                                </form>
-
-                            <!-- #END# Form Anggota -->
+        <div class="modal fade" id="ModalProker" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" id="round">
+                   <center>
+                    <div class="modal-body">
+                          <!-- Form Angggota -->
+                      <div class="alert alert-warning" id="round">
+                          <strong>Informasi!</strong> Tahun periode kepengurusan dan lembaga akan menyesuaikan dengan ketua/ sekretaris yang meng-input.
                         </div>
-                        </center>
+                            <form id="form_validation" name="formProker" class="formProker" method="POST" style="margin: 20px" onsubmit="return submitProker()">
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" name="proker_nama" id="Proker_nama" required>
+                                        <label class="form-label">Nama Proker</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                     <div class="form-group">
+                                    <div class="form-line" id="inputDate">
+                                        <input type="date" class="form-control" name="proker_tanggal" placeholder="Please choose a date...">
+                                    </div>
+                                </div>
+                                </div>
+                                 <input type="hidden" name="proker_tahun" value="<?php echo $_SESSION['user_tahun'] ?>">
+                                 <input type="hidden" name="proker_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
+                                <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                            </form>
+
+                        <!-- #END# Form Anggota -->
                     </div>
+                    </center>
                 </div>
             </div>
+        </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
-     $(function () {
-                $('#inputDate').datetimepicker({
-                    format: 'LT'
-                });
-            });
 
      function submitProker() {
 

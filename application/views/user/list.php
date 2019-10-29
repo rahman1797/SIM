@@ -1,4 +1,3 @@
-
       <section class="content">
         <div class="container-fluid">
         
@@ -40,7 +39,6 @@
                                     <tbody>
 
                                         <?php 
-                                       
                                             foreach($user_data as $u){ 
                                                 $idToProdi = $this->M_user->getProdi($u->id_prodi);
                                                 $idToPosisi = $this->M_user->getPosisi($u->id_posisi);
@@ -63,15 +61,11 @@
                                                  ?></td>
                                                  <td>
                                                     <?php 
-
                                                         if ($_SESSION['user_role'] != $u->user_role) {
                                                             echo "Locked";
                                                         }
-                                                        elseif ($_SESSION['user_role'] == $u->user_role) {
-                                                            ?>
-                                                            
-                                                            <a href="<?php echo site_url();?>/User_C/delAnggota/<?php print($u->user_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
-                                                            
+                                                        elseif ($_SESSION['user_role'] == $u->user_role) { ?> 
+                                                            <a href="<?php echo site_url();?>/User_C/delAnggota/<?php print($u->user_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>  
                                                     <?php } ?>
                                                 </td>
                                             </tr>
@@ -177,8 +171,6 @@
                     </div>
                 </div>
             </div>
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 

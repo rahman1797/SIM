@@ -155,10 +155,6 @@
 
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-
-      // setInterval(function() {
-      //  $('#refTugasSaya').load(document.URL +  ' #refTugasSaya');
-      // }, 3000);
       
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
@@ -193,7 +189,10 @@
 
         $.ajax({
 
-            data: {prokerTugas_ID : $idTugas, prokerTugas_status : $statusTugas},
+            data: {
+                prokerTugas_ID : $idTugas, 
+                prokerTugas_status : $statusTugas
+            },
             url: "<?php echo base_url('Proker_C/checkTugas') ?>",
             type: "POST",
 
@@ -206,6 +205,5 @@
                     console.log("***********Error***************"); //You can remove here
             }
         });
-         
     }
-    </script>
+</script>

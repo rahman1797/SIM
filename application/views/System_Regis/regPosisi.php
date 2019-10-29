@@ -33,10 +33,8 @@
                                     <tbody>
 
                                         <?php 
-
                                             $no = 1;
-                                            foreach($data_posisi as $dt_pos){ 
-                                                
+                                            foreach($data_posisi as $dt_pos){                 
                                             ?>
                                             <tr>
                                                 <td><?php echo $no++ ?></td>
@@ -86,9 +84,6 @@
                 </div>
             </div>
 
-    
-
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 
@@ -105,28 +100,27 @@
     }  
 
 
-        function submitPosisi() {
+    function submitPosisi() {
 
-         var data = $('.formPosisi').serialize();
-            $.ajax({
-                type: 'POST',
-                url: "<?php echo base_url('Main_C/addPosisi') ?>",
-                data: data,
-                success: function() {
-                    Swal.fire({
-                      position: 'top-end',
-                      type: 'success',
-                      title: 'Berhasil menambah posisi',
-                      showConfirmButton: false,
-                      timer: 1500
-                    }).then(function(){
-                        $('#refPos').load(document.URL +  ' #refPos');
-                    })
-                       
-                }
-            });
-            return false;
-            
-        }
+     var data = $('.formPosisi').serialize();
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo base_url('Main_C/addPosisi') ?>",
+            data: data,
+            success: function() {
+                Swal.fire({
+                  position: 'top-end',
+                  type: 'success',
+                  title: 'Berhasil menambah posisi',
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then(function(){
+                    $('#refPos').load(document.URL +  ' #refPos');
+                })     
+            }
+        });
+        return false;
+        
+    }
 
     </script>

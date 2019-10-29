@@ -2,10 +2,8 @@
         <div class="container-fluid">
         
             <div class="row clearfix">
-
                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card" id="round">
-                        
+                    <div class="card" id="round"> 
                         <div class="body">
                             <table class="table">
                                 <tr>
@@ -23,19 +21,14 @@
                                     <td>:</td>
                                     <td><div id="saldo"></div></td>
                                 </tr>
-                            </table>
-                           
-                           
-                            
+                            </table>   
                         </div>
                     </div>
-                </div>
-
-                
+                </div> 
             </div>
-            <div class="row clearfix">
 
-               
+            <div class="row clearfix">
+     
 <!-- TABEL DATA PEMASUKAN -->
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
@@ -83,11 +76,8 @@
                                                 <?php }
                                                 ?></td>                                                
                                             </tr>
-                                        <?php } 
-       
-                                        ?>
-
-                                        
+                                        <?php } ?>
+                               
                                     </tbody>
                                 </table>
                             </div>
@@ -145,7 +135,6 @@
                                             </tr>
                                         <?php } 
                                         ?>
-
                                         
                                     </tbody>
                                 </table>
@@ -202,7 +191,6 @@
                     </div>
                 </div>
             </div>
-
 
 
             <!-- Modal Pengeluaran -->
@@ -267,7 +255,7 @@
                       type: 'success',
                       title: 'Berhasil',
                       showConfirmButton: false,
-                      timer: 1500
+                      timer: 1300
                     }).then(function(){
                         $('#refPemasukan').load(document.URL +  ' #refPemasukan');
                     })     
@@ -291,7 +279,7 @@
                       type: 'success',
                       title: 'Berhasil',
                       showConfirmButton: false,
-                      timer: 1500
+                      timer: 1300
                     }).then(function(){
                         $('#refPengeluaran').load(document.URL +  ' #refPengeluaran');
                     })     

@@ -1,6 +1,4 @@
-     <?php error_reporting(0); ?>
-
-      <section class="content">
+    <section class="content">
         <div class="container-fluid">
         
             <!-- Basic Examples -->
@@ -39,8 +37,7 @@
                                             $id_posisi = $pp->prokerPosisi_ID;
                                             $idToProker = $this->M_proker->getProkerNama($idProker);
                                             ?>
-                                            <tr>
-                                                
+                                            <tr>                
                                                 <td><?php echo $pp->prokerPosisi_nama ?></td>
                                                 <td></td>
                                                 <td>
@@ -50,8 +47,7 @@
                                         <?php } 
                                              echo "<div class='alert alert-warning' id='round'>Pendaftaran Struktur Kepanitiaan Untuk Program Kerja <font size='5'>".$idToProker['0']['proker_nama']."</font></div>";
                                         ?>
-
-                                        
+                                 
                                     </tbody>
                                 </table>
                             </div>
@@ -82,7 +78,6 @@
                                      <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
                                     <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
                                 </form>
-
                             <!-- #END# Form Anggota -->
                         </div>
                         </center>

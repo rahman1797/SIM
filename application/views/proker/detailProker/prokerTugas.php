@@ -1,5 +1,3 @@
-<?php error_reporting(0); ?>
-
       <section class="content">
         <div class="container-fluid">
         
@@ -61,7 +59,6 @@
                                              echo "<div class='alert alert-warning' id='round'>Pendaftaran Anggota Kepanitiaan Untuk Program Kerja <font size='5'>".$idToProker['0']['proker_nama']."</font></div>";
                                         ?>
 
-                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -69,11 +66,9 @@
                     </div>
                 </div>
             </div> 
-
             <!-- #END# Basic Examples -->
         </div>
     </section>
-
 
 
 <!-- Modal Tambah Anggota -->
