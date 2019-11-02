@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2019 at 11:29 AM
+-- Generation Time: Nov 02, 2019 at 03:12 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -43,14 +43,7 @@ CREATE TABLE `berkas_tbl` (
 --
 
 INSERT INTO `berkas_tbl` (`berkas_ID`, `berkas_kode`, `berkas_nama`, `id_user`, `id_proker`, `berkas_tanggal`, `berkas_lembaga`) VALUES
-(10, NULL, 'Untitled.png', 1, 5, '2019-07-08 09:23:13', 1),
-(11, NULL, 'Curriculum_Vitae.docx', 1, 5, '2019-07-08 09:56:37', 1),
-(12, NULL, 'CYMERA_20180201_093054.jpg', 25, 2, '2019-07-12 09:43:39', 1),
-(13, NULL, 'IMG_20180322_214821.png', 1, 5, '2019-08-25 14:41:58', 1),
-(14, NULL, 'IMG_20180322_2148211.png', 1, 5, '2019-08-25 14:44:09', 1),
-(15, NULL, '4K-Wallpaper-Desktop.jpg', 1, 5, '2019-08-25 14:51:01', 1),
-(16, NULL, '5_201501310830372.jpg', 1, NULL, '2019-10-03 05:40:43', 1),
-(17, NULL, 'IMG_0263.JPG', 1, 5, '2019-10-11 07:09:14', 1);
+(18, NULL, 'semnas_template_full_paper-edited.docx', 1, 5, '2019-10-18 17:28:51', 1);
 
 -- --------------------------------------------------------
 
@@ -69,9 +62,26 @@ CREATE TABLE `departemen_tbl` (
 --
 
 INSERT INTO `departemen_tbl` (`departemen_ID`, `departemen_nama`, `id_opmawa`) VALUES
-(1, 'BPH', 1),
-(2, 'Informasi dan teknologi', 1),
-(3, 'BPH', 3);
+(4, 'Badan Pengurus Harian', 1),
+(5, 'Kesekretariatan', 1),
+(6, 'Kaderisasi', 1),
+(7, 'Informasi dan Komunikasi', 1),
+(8, 'Profesi dan Keilmiahan', 1),
+(9, 'Biro Kewirausahaan', 1),
+(10, 'Seni dan Keolahragaan', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `evaluasirapat_tbl`
+--
+
+CREATE TABLE `evaluasirapat_tbl` (
+  `evaluasiRapat_ID` int(11) NOT NULL,
+  `id_rapat` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `evaluasiRapat_deskripsi` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -92,8 +102,7 @@ CREATE TABLE `opmawa_tbl` (
 
 INSERT INTO `opmawa_tbl` (`opmawa_ID`, `opmawa_kabinet`, `id_user`, `opmawa_tahun`) VALUES
 (1, 'Bersatu', 1, 2018),
-(2, 'Berdua', 9, 2019),
-(3, 'Bertiga', 10, 2019);
+(4, 'Madani', 28, 2019);
 
 -- --------------------------------------------------------
 
@@ -117,18 +126,8 @@ CREATE TABLE `pemasukan_tbl` (
 --
 
 INSERT INTO `pemasukan_tbl` (`pemasukan_ID`, `pemasukan_nominal`, `pemasukan_deskripsi`, `pemasukan_tanggal`, `pemasukan_file`, `id_proker`, `pemasukan_lembaga`, `id_opmawa`) VALUES
-(1, '150000', 'Sumbangan panitia', '2019-09-18', NULL, 5, 1, 1),
-(2, '80000', 'Keuntungan Jualan', '2019-10-02', NULL, 5, 1, 1),
-(3, '20000', 'Nemu duit dijalan', '2019-10-03', NULL, 5, 1, 1),
-(4, '50000', 'aadsada', '2019-10-04', NULL, 8, 1, 1),
-(5, '7000', '7', '2019-10-09', NULL, 1, 1, 1),
-(6, '77787', 'jhkhkjh', '2019-10-08', NULL, 2, 1, 1),
-(7, '7000', '7', '2019-10-09', NULL, 7, 1, 1),
-(9, '89000', 'hghjg', '2019-10-22', NULL, 3, 1, 1),
-(21, '9999', '9999', '2019-10-19', NULL, 5, 1, 1),
-(30, '1', '1', '0001-01-01', '1570949244.jpg', 5, 1, 1),
-(31, '2', '2', '0002-02-02', '1570949287.JPG', 5, 1, 1),
-(32, '250000', 'Modal', '2019-10-15', NULL, 9, 1, 1);
+(33, '100000', 'Dana awal sumbangan panitia', '2019-10-19', NULL, 5, 1, 1),
+(34, '1000000', 'Beli Laptop', '2019-10-16', NULL, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -152,13 +151,8 @@ CREATE TABLE `pengeluaran_tbl` (
 --
 
 INSERT INTO `pengeluaran_tbl` (`pengeluaran_ID`, `pengeluaran_nominal`, `pengeluaran_deskripsi`, `pengeluaran_tanggal`, `pengeluaran_file`, `id_proker`, `pengeluaran_lembaga`, `id_opmawa`) VALUES
-(1, '100000', 'Mengembalikan dana awal panitia', '2019-10-01', NULL, 5, 1, 1),
-(2, '120000', 'Pembelian peralatan', '2019-10-22', NULL, 5, 1, 1),
-(3, '1000', '11', '2019-10-08', NULL, 1, 1, 1),
-(4, '1000', '1', '2019-10-16', NULL, 2, 1, 1),
-(5, '1000', '1', '2019-10-16', NULL, 3, 1, 1),
-(6, '10000', 'ghjgjh', '2019-10-15', NULL, 7, 1, 1),
-(7, '1', '1', '0001-01-01', '1571036921.JPG', 5, 1, 1);
+(8, '50000', 'Modal usaha danus', '2019-10-20', '1571419689.jpg', 5, 1, 1),
+(9, '300000', 'bayar makanan', '2019-10-15', NULL, 3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -184,7 +178,10 @@ INSERT INTO `posisi_tbl` (`posisi_ID`, `posisi_nama`, `posisi_lembaga`) VALUES
 (5, 'Bendahara Umum', 1),
 (6, 'Bendahara Umum', 2),
 (7, 'Ketua Departemen', 1),
-(8, 'Ketua Komisi', 2);
+(8, 'Ketua Komisi', 2),
+(9, 'Sekretaris Departemen', 1),
+(10, 'Bendahara Departemen', 1),
+(11, 'Anggota Departemen', 1);
 
 -- --------------------------------------------------------
 
@@ -212,12 +209,7 @@ INSERT INTO `prodi_tbl` (`prodi_ID`, `prodi_nama`) VALUES
 (10, 'Biologi'),
 (11, 'Kimia'),
 (12, 'Pendidikan Biologi'),
-(13, 'Pendidikan Kimia'),
-(14, 'Pendidikan Sejarah'),
-(15, 'Statistika'),
-(17, 'X'),
-(18, 'C'),
-(19, 'A');
+(13, 'Pendidikan Kimia');
 
 -- --------------------------------------------------------
 
@@ -237,11 +229,7 @@ CREATE TABLE `prokeranggota_tbl` (
 --
 
 INSERT INTO `prokeranggota_tbl` (`prokerAnggota_ID`, `id_proker`, `id_posisi`, `id_user`) VALUES
-(9, 5, 1, 1),
-(11, 1, 13, 7),
-(12, 7, 19, 10),
-(14, 5, 2, 7),
-(15, 5, 2, 1);
+(16, 5, 25, 1);
 
 -- --------------------------------------------------------
 
@@ -260,16 +248,11 @@ CREATE TABLE `prokerposisi_tbl` (
 --
 
 INSERT INTO `prokerposisi_tbl` (`prokerPosisi_ID`, `id_proker`, `prokerPosisi_nama`) VALUES
-(1, 5, 'Konsumsi'),
-(2, 5, 'HPD'),
-(9, 5, 'Acara'),
-(13, 1, 'Konsumsi'),
-(19, 7, 'Ketua Pelaksana'),
-(20, 7, 'HPD'),
-(21, 7, 'Konsumsi'),
-(22, 7, 'Perlengkapan'),
-(23, 7, 'Transportasi'),
-(24, 7, 'Acara');
+(25, 5, 'Ketua Pelaksana'),
+(26, 6, 'Ketua Pelaksana'),
+(27, 6, 'HPD'),
+(28, 2, 'Ketua Pelaksana'),
+(29, 2, 'HPD');
 
 -- --------------------------------------------------------
 
@@ -290,11 +273,8 @@ CREATE TABLE `prokertugas_tbl` (
 --
 
 INSERT INTO `prokertugas_tbl` (`prokerTugas_ID`, `id_user`, `id_proker`, `prokerTugas_deskripsi`, `prokerTugas_status`) VALUES
-(1, 11, 5, 'Beli Makakanan', 0),
-(2, 12, 5, 'Membuat Banner ukuran 200x300 cm. jangan lupa cari yang paling murah', 0),
-(34, 1, 3, 'Bawa cemilan\r\n', 0),
-(35, 1, 7, 'Bawa kompor', 1),
-(36, 7, 5, 'Beli minuman', 0);
+(37, 1, 5, 'Membuat tema acara yang berkaitan dengan perkuliahan', 0),
+(41, 1, 5, 'Membuat Kepanitiaan', 1);
 
 -- --------------------------------------------------------
 
@@ -320,7 +300,7 @@ INSERT INTO `proker_tbl` (`proker_ID`, `proker_nama`, `proker_tanggal`, `proker_
 (2, 'BINER 3.0', '2019-06-03', 1, 2017, '100'),
 (3, 'BINER 2.0', '2019-06-02', 1, 2018, NULL),
 (5, 'BINER', '2019-05-22', 1, 2018, NULL),
-(7, 'Tuk Tuk', '2019-06-28', 1, 2018, NULL);
+(6, 'Bulan Legislatif', '2020-03-28', 2, 2018, NULL);
 
 -- --------------------------------------------------------
 
@@ -341,9 +321,8 @@ CREATE TABLE `rapat_tbl` (
 --
 
 INSERT INTO `rapat_tbl` (`rapat_ID`, `rapat_tanggal`, `rapat_deskripsi`, `rapat_lembaga`, `id_opmawa`) VALUES
-(1, '2019-10-23', 'Rapat pembentukan panitia BINER 5.0', 1, 1),
-(2, '2019-10-25', 'Rapat penentuan jobdesc', 1, 1),
-(3, '2019-10-31', 'Penutupan panitia', 1, 1);
+(3, '2019-10-31', 'Rapat konsep acara', 1, 1),
+(5, '2019-10-28', 'Kumpul Biasa', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -369,16 +348,9 @@ CREATE TABLE `user_tbl` (
 --
 
 INSERT INTO `user_tbl` (`user_ID`, `user_nama`, `user_NIM`, `user_pass`, `id_prodi`, `id_posisi`, `id_opmawa`, `id_departemen`, `user_tahun`, `user_role`) VALUES
-(1, 'Maulana', '1', '1', 1, 1, 1, 1, 2018, 1),
-(7, 'Rahman', '2', '2', 2, 2, 1, 1, 2018, 2),
-(9, 'Firly', '441515', 'TEST', 14, 3, 1, 1, 2018, 1),
-(10, 'Kelik', '4415151073', '1234', 9, 1, 1, 1, 2018, 1),
-(11, 'Budi', '9090909', '999', 12, 8, 1, 1, 2018, 2),
-(13, 'fulan', '1234', '1234', 6, 4, 1, 1, 2018, 2),
-(24, 'Farhan', '123', '123', 6, 7, 3, 2, 2018, 1),
-(25, 'Aksan', '1237', '123', 6, 3, 3, 2, 2018, 1),
-(26, 'jshkdjhkjJ', '768768', 'hhhh', 10, 1, 1, 2, 2018, 1),
-(27, 'Afif', '768768', 'evitacantik', 9, 1, 1, 1, 2018, 1);
+(1, 'Maulana Rahman Nur', '1', '1', 6, 1, 1, 4, 2018, 1),
+(7, 'M Rahman N', '2', '2', 2, 2, 1, 1, 2018, 2),
+(28, 'Saulia Karina', '3', '3', 6, 1, 1, 4, 2018, 1);
 
 --
 -- Indexes for dumped tables
@@ -398,6 +370,12 @@ ALTER TABLE `berkas_tbl`
 ALTER TABLE `departemen_tbl`
   ADD PRIMARY KEY (`departemen_ID`),
   ADD KEY `id_opmawa` (`id_opmawa`);
+
+--
+-- Indexes for table `evaluasirapat_tbl`
+--
+ALTER TABLE `evaluasirapat_tbl`
+  ADD PRIMARY KEY (`evaluasiRapat_ID`);
 
 --
 -- Indexes for table `opmawa_tbl`
@@ -476,8 +454,8 @@ ALTER TABLE `user_tbl`
   ADD PRIMARY KEY (`user_ID`),
   ADD KEY `getPosisi` (`id_posisi`),
   ADD KEY `getProdi` (`id_prodi`),
-  ADD KEY `getOpmawa` (`id_opmawa`),
-  ADD KEY `getDepartemen` (`id_departemen`);
+  ADD KEY `getDepartemen` (`id_departemen`),
+  ADD KEY `getOpmawa` (`id_opmawa`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -487,79 +465,85 @@ ALTER TABLE `user_tbl`
 -- AUTO_INCREMENT for table `berkas_tbl`
 --
 ALTER TABLE `berkas_tbl`
-  MODIFY `berkas_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `berkas_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `departemen_tbl`
 --
 ALTER TABLE `departemen_tbl`
-  MODIFY `departemen_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `departemen_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `evaluasirapat_tbl`
+--
+ALTER TABLE `evaluasirapat_tbl`
+  MODIFY `evaluasiRapat_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `opmawa_tbl`
 --
 ALTER TABLE `opmawa_tbl`
-  MODIFY `opmawa_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `opmawa_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pemasukan_tbl`
 --
 ALTER TABLE `pemasukan_tbl`
-  MODIFY `pemasukan_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `pemasukan_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran_tbl`
 --
 ALTER TABLE `pengeluaran_tbl`
-  MODIFY `pengeluaran_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `pengeluaran_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `posisi_tbl`
 --
 ALTER TABLE `posisi_tbl`
-  MODIFY `posisi_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `posisi_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `prodi_tbl`
 --
 ALTER TABLE `prodi_tbl`
-  MODIFY `prodi_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `prodi_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `prokeranggota_tbl`
 --
 ALTER TABLE `prokeranggota_tbl`
-  MODIFY `prokerAnggota_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `prokerAnggota_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `prokerposisi_tbl`
 --
 ALTER TABLE `prokerposisi_tbl`
-  MODIFY `prokerPosisi_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `prokerPosisi_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `prokertugas_tbl`
 --
 ALTER TABLE `prokertugas_tbl`
-  MODIFY `prokerTugas_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `prokerTugas_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `proker_tbl`
 --
 ALTER TABLE `proker_tbl`
-  MODIFY `proker_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `proker_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `rapat_tbl`
 --
 ALTER TABLE `rapat_tbl`
-  MODIFY `rapat_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `rapat_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_tbl`
 --
 ALTER TABLE `user_tbl`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables
@@ -569,20 +553,7 @@ ALTER TABLE `user_tbl`
 -- Constraints for table `berkas_tbl`
 --
 ALTER TABLE `berkas_tbl`
-  ADD CONSTRAINT `berkasProker` FOREIGN KEY (`id_proker`) REFERENCES `proker_tbl` (`proker_ID`),
-  ADD CONSTRAINT `uploadOleh` FOREIGN KEY (`id_user`) REFERENCES `user_tbl` (`user_ID`);
-
---
--- Constraints for table `departemen_tbl`
---
-ALTER TABLE `departemen_tbl`
-  ADD CONSTRAINT `id_opmawa` FOREIGN KEY (`id_opmawa`) REFERENCES `opmawa_tbl` (`opmawa_ID`);
-
---
--- Constraints for table `opmawa_tbl`
---
-ALTER TABLE `opmawa_tbl`
-  ADD CONSTRAINT `getKetuaNama` FOREIGN KEY (`id_user`) REFERENCES `user_tbl` (`user_ID`);
+  ADD CONSTRAINT `berkasProker` FOREIGN KEY (`id_proker`) REFERENCES `proker_tbl` (`proker_ID`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Constraints for table `pemasukan_tbl`
@@ -626,9 +597,7 @@ ALTER TABLE `rapat_tbl`
 -- Constraints for table `user_tbl`
 --
 ALTER TABLE `user_tbl`
-  ADD CONSTRAINT `getDepartemen` FOREIGN KEY (`id_departemen`) REFERENCES `departemen_tbl` (`departemen_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `getOpmawa` FOREIGN KEY (`id_opmawa`) REFERENCES `opmawa_tbl` (`opmawa_ID`),
-  ADD CONSTRAINT `getPosisi` FOREIGN KEY (`id_posisi`) REFERENCES `posisi_tbl` (`posisi_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `getOpmawa` FOREIGN KEY (`id_opmawa`) REFERENCES `opmawa_tbl` (`opmawa_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `getProdi` FOREIGN KEY (`id_prodi`) REFERENCES `prodi_tbl` (`prodi_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
