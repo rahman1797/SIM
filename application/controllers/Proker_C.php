@@ -28,6 +28,7 @@ class Proker_C extends CI_Controller {
 		$data['totalAnggotaKepanitiaan'] = $this->M_proker->JumlahProkerAnggota();
 		$data['totalTugas'] = $this->M_proker->JumlahProkerTugas();
 		$data['totalBerkas'] = $this->M_berkas->JumlahBerkasProker();
+		$data['totalEvaluasi'] = $this->M_proker->JumlahEvaluasiProker();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('proker/prokerDetail',$data);

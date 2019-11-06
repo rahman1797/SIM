@@ -1,4 +1,3 @@
-
       <section class="content">
         <div class="container-fluid">
         
@@ -47,7 +46,7 @@
                                             <div class="col-lg-12">
                                                 <?php
                                                   if (time() > $date) { ?>
-                                                    <a href="#">
+                                                    <a href="<?php echo base_url('Rapat_C/evaluasiRapat?id_rapat='.$jadwal->rapat_ID) ?>">
                                                         <div class="bg-green" style="padding: 5px; width: auto" id="round">
                                                             <i class="material-icons">event_note</i> Evaluasi
                                                         </div>

@@ -69,6 +69,20 @@ class M_proker extends CI_Model{
 			}
 
 			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
+			function JumlahEvaluasiProker()
+			{   
+			    $query = $this->db->get_where('prokerEvaluasi_tbl', array('id_proker' => $_GET['id_proker']));
+			    if($query->num_rows()>0)
+			    {
+			      return $query->num_rows();
+			    }
+			    else
+			    {
+			      return 0;
+			    }
+			}
+
+			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
 			function JumlahProkerAnggota()
 			{   
 			    $query = $this->db->get_where('prokerAnggota_tbl', array('id_proker' => $_GET['id_proker']));
