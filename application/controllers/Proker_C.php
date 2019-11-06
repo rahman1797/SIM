@@ -64,6 +64,15 @@ class Proker_C extends CI_Controller {
 
 			}
 
+			function prokerEvaluasi()
+			{
+				$data['proker_evaluasi'] = $this->M_proker->tampil_prokerEvaluasi()->result();
+
+				$this->load->view('layout/header');
+				$this->load->view('layout/footer');
+				$this->load->view('proker/detailProker/prokerEvaluasi',$data);				
+			}
+
 				function checkTugas() {
 					$status  = $this->input->post('prokerTugas_status');
 					$idTugas = $this->input->post('prokerTugas_ID');
@@ -103,7 +112,7 @@ class Proker_C extends CI_Controller {
 		$this->M_proker->inputProker($data);
 	}
 
-			public function addProkerPosisi()
+			function addProkerPosisi()
 			{
 				$namaPosisi = $this->input->post('prokerPosisi_nama');
 				$idProker = $this->input->post('id_proker');
@@ -114,7 +123,7 @@ class Proker_C extends CI_Controller {
 				$this->M_proker->inputProkerPosisi($data);
 			}
 
-			public function addProkerAnggota()
+			function addProkerAnggota()
 			{
 				$anggotaNama = $this->input->post('prokerAnggota_nama');
 				$anggotaPosisi = $this->input->post('prokerAnggota_posisi');
@@ -127,7 +136,7 @@ class Proker_C extends CI_Controller {
 				$this->M_proker->inputProkerAnggota($data);
 			}
 
-			public function addProkerTugas()
+			function addProkerTugas()
 			{
 				$tugasPj = $this->input->post('prokerTugas_pj');
 				$tugasDeskripsi = $this->input->post('prokerTugas_deskripsi');
@@ -138,6 +147,19 @@ class Proker_C extends CI_Controller {
 					'prokerTugas_deskripsi' => $tugasDeskripsi
 				);
 				$this->M_proker->inputProkerTugas($data);
+			}
+
+			function addProkerEvaluasi()
+			{
+				$isi = $this->input->post('prokerEvaluasi_isi');
+				$idUser = $this->input->post('id_user');
+				$idProker = $this->input->post('id_proker');
+				$data = array(
+					'id_user' => $idUser,
+					'id_proker' => $idProker,
+					'prokerEvaluasi_isi' => $isi
+				);
+				$this->M_proker->inputProkerEvaluasi($data);
 			}
 
 	function delProker($id)
@@ -169,6 +191,15 @@ class Proker_C extends CI_Controller {
 			{
 				$idTugas = array('prokerTugas_ID' => $id);
 				$this->M_proker->deleteProkerTugas($idTugas,'prokerTugas_tbl');
+				echo "<script>
+					window.history.back();
+				</script>";
+			}
+
+			function delProkerEvaluasi($id)
+			{
+				$idEvaluasi = array('prokerEvaluasi_ID' => $id);
+				$this->M_proker->deleteProkerEvaluasi($idEvaluasi,'prokerEvaluasi_tbl');
 				echo "<script>
 					window.history.back();
 				</script>";

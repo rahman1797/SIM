@@ -24,6 +24,10 @@ class M_proker extends CI_Model{
 				return $this->db->get_where('prokerTugas_tbl', array('id_proker' => $_GET['id_proker']));	
 			}
 
+			function tampil_prokerEvaluasi(){
+				return $this->db->get_where('prokerEvaluasi_tbl', array('id_proker' => $_GET['id_proker']));	
+			}
+
 					function tampil_prokerTugasSaya()
 					{
 						return $this->db->get_where('prokerTugas_tbl', array('id_user' => $_SESSION['user_ID'] ));
@@ -114,6 +118,10 @@ class M_proker extends CI_Model{
 				$this->db->insert('prokerTugas_tbl', $data);
 			}
 
+			function inputProkerEvaluasi($data) {
+				$this->db->insert('prokerEvaluasi_tbl', $data);
+			}
+
 
 // Delete Proker yang terdaftar beserta sub function nya
 	function deleteProker($data) {
@@ -130,6 +138,10 @@ class M_proker extends CI_Model{
 
 			function deleteProkerTugas($data) {
 				$this->db->delete('prokerTugas_tbl', $data);
+			}
+
+			function deleteProkerEvaluasi($data) {
+				$this->db->delete('prokerEvaluasi_tbl', $data);
 			}
 
 }
