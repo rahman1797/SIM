@@ -1,4 +1,4 @@
-
+<?php $getProkerData = $this->M_proker->getProkerNama($_GET['id_proker']);?>
 
       <section class="content">
         <div class="container-fluid">
@@ -10,7 +10,15 @@
                         <div class="header" align="center">
                             <h2><strong>ANGGOTA KEPANITIAAN</strong></h2>
                             <p></p>
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerAnggota" id="round"><i class="material-icons">person_add</i> Anggota Kepanitiaan</button>  
+                            <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+
+
+                            <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerAnggota" id="round"><i class="material-icons">person_add</i> Anggota Kepanitiaan</button> 
+                            <?php } ?>
+
+
+                            <?php } ?> 
                         </div>
                         
                         <div class="body">
@@ -48,15 +56,17 @@
                                                 <td><?php echo $idToNama['0']['user_nama']; ?></td>
                                                 <td><?php echo $idToPosisi['0']['prokerPosisi_nama']; ?> </td>
                                                 <td>
-                                                    <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
-                                                        <a href="<?php echo site_url();?>/Proker_C/delProkerAnggota/<?php print($id_anggota);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
-                                                    
-                                                    <?php } 
-                                                        else {
-                                                            echo "Locked";
-                                                        }
+                                                    <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+                                                        <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
+                                                            <a href="<?php echo site_url();?>/Proker_C/delProkerAnggota/<?php print($id_anggota);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
+                                                        
+                                                        <?php } 
+                                                            else {
+                                                                echo "Locked";
+                                                            }
+                                                        ?>
 
-                                                    ?>
+                                                <?php } ?>
                                                     
                                                 </td>
                                             </tr>

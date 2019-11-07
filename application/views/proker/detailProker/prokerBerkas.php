@@ -4,6 +4,8 @@
             <!-- Basic Examples -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                    <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                     <div class="card" id="round">
                              
                         <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker='.$_GET['id_proker']);?>" method="post" enctype="multipart/form-data" name="userfile">
@@ -18,6 +20,7 @@
                         </form>
 
                     </div>
+                    <?php } ?>
                  </div> 
 
                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

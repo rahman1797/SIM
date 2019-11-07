@@ -1,3 +1,4 @@
+     <?php $getProkerData = $this->M_proker->getProkerNama($_GET['id_proker']);?>
       <section class="content">
         <div class="container-fluid">
         
@@ -77,6 +78,8 @@
                                     </div>
                                 </a>
                             </div>
+
+                            <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
                             <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
                                 <a href="<?php echo base_url('Berkas_C/index?id_proker='.$_GET['id_proker']) ?>">
                                     <div style="cursor: pointer;" class="info-box bg-orange hover-zoom-effect" id="round">
@@ -90,6 +93,7 @@
                                     </div>
                                 </a>
                             </div>
+                            <?php } ?>
                             <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
                                 <a href="<?php echo base_url('Keuangan_C/index?id_proker='.$_GET['id_proker']) ?>">
                                 <div style="cursor: pointer;" class="info-box bg-green hover-zoom-effect" id="round">
@@ -141,7 +145,3 @@
             <!-- #END# Basic Examples -->
         </div>
     </section>
-
-<script type="text/javascript">
-
-</script>

@@ -54,4 +54,11 @@ class M_sys extends CI_Model{
 		$this->db->delete('posisi_tbl', $data);
 	}
 
+
+	function updateData($where,$data,$table)
+	{
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+
 }

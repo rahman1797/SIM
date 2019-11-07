@@ -1,3 +1,5 @@
+<?php $getProkerData = $this->M_proker->getProkerNama($_GET['id_proker']);?>
+
     <section class="content">
         <div class="container-fluid">
         
@@ -6,9 +8,19 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                         <div class="header" align="center">
+
                             <h2><strong>DAFTAR KEPANITIAAN</strong></h2>
                             <p></p>
+
+                            <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+
+
+                            <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                             <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerPosisi" id="round"><i class="material-icons">group_add</i> Posisi Kepanitiaan</button>  
+                            <?php } ?>
+
+
+                            <?php } ?>
                         </div>
                         
                         <div class="body">
@@ -36,12 +48,21 @@
                                             $idProker = $pp->id_proker;
                                             $id_posisi = $pp->prokerPosisi_ID;
                                             $idToProker = $this->M_proker->getProkerNama($idProker);
+
                                             ?>
                                             <tr>                
                                                 <td><?php echo $pp->prokerPosisi_nama ?></td>
                                                 <td></td>
                                                 <td>
+                                                    <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+                                                        <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                                                     <a href="<?php echo site_url();?>/Proker_C/delProkerPosisi/<?php print($id_posisi);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
+                                                     <?php } 
+                                                            else {
+                                                                echo "Locked";
+                                                            }
+                                                        ?>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                         <?php } 
@@ -88,6 +109,12 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
+
+    //
+
+        document.getElementById("round").style.visibility = "collapse";
+    
+    
 
 
      function submitProkerPosisi() {

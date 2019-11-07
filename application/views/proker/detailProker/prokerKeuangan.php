@@ -1,3 +1,5 @@
+<?php $getProkerData = $this->M_proker->getProkerNama($_GET['id_proker']);?>
+
       <section class="content">
         <div class="container-fluid">
         
@@ -35,7 +37,13 @@
                         <div class="header" align="center">
                             <h2><strong>PEMASUKAN</strong></h2>
                             <p></p>
+                            <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+
+                            <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                             <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round"><i class="material-icons">add_circle_outline</i> Pemasukan</button>  
+                            <?php } ?>
+
+                            <?php } ?>
                         </div>
                         
                         <div class="body">
@@ -91,7 +99,13 @@
                         <div class="header" align="center">
                             <h2><strong>PENGELUARAN</strong></h2>
                             <p></p>
+                            <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+
+                            <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                             <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round"><i class="material-icons">add_circle_outline</i> Pengeluaran</button>  
+                            <?php } ?>
+
+                            <?php } ?>
                         </div>
                         
                         <div class="body">

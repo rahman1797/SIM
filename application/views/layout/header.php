@@ -275,7 +275,7 @@
                     
                     <li class="header">Pengawasan</li>
                     <li class="active">
-                        <a href="<?php echo base_url('Main_C') ?>">
+                        <a href="<?php echo base_url('Proker_C/proker_bem') ?>">
                             <i class="material-icons">home</i>
                             <span>Penilaian Program Kerja BEM</span>
                         </a>
