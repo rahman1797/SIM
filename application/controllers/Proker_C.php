@@ -8,6 +8,7 @@ class Proker_C extends CI_Controller {
         $this->load->model('M_proker');
         $this->load->model('M_user');
         $this->load->model('M_berkas');
+        $this->load->model('M_keuangan');
         $this->load->model('M_sys');
     }
 	
@@ -36,8 +37,23 @@ class Proker_C extends CI_Controller {
 			$where = array('proker_ID' => $idProker);
 			$data = array('proker_nilai' => $nilai);
 			$this->M_sys->updateData($where, $data, 'proker_tbl');
-				
-					
+								
+		}
+
+		function proker_bem_detail()
+		{
+			$data['proker_data'] = $this->M_proker->tampil_prokerDetail()->result();
+			$data['proker_anggota'] = $this->M_proker->tampil_prokerAnggota()->result();
+			$data['proker_posisi'] = $this->M_proker->tampil_prokerPosisi()->result();
+			$data['user_data'] = $this->M_user->tampil_user()->result();
+			$data['proker_pemasukan'] = $this->M_keuangan->tampil_pemasukan()->result();
+			$data['proker_pengeluaran'] = $this->M_keuangan->tampil_pengeluaran()->result();
+			$data['proker_evaluasi'] = $this->M_proker->tampil_prokerEvaluasi()->result();
+
+			$this->load->view('layout/header');
+			$this->load->view('layout/footer');
+			$this->load->view('proker/legis/proker_bem_detail', $data);
+		
 		}
 
 

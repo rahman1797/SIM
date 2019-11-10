@@ -74,7 +74,7 @@
 
                                                     else { ?>
                                                      
-                                                     <a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>">
+                                                     <a href="<?php echo base_url('Proker_C/proker_bem_detail?id_proker='.$id_proker)?>">
                                                         <button class="btn btn-info" id="round"><i class="material-icons">more_horiz</i></button>
                                                     </a>
                                                     
