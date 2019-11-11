@@ -1,3 +1,4 @@
+  <?php $idToProker = $this->M_proker->getProkerNama($_GET['id_proker']); ?>
     <section class="content">
         <div class="container-fluid">
         
@@ -56,7 +57,6 @@
                                                 $idUser = $bd->id_user;
                                                 $idProker = $bd->id_proker;
                                                 $idToUser = $this->M_user->getUserNama($idUser);
-                                                $idToProker = $this->M_proker->getProkerNama($idProker);
                                             
                                                 if ($idProker == $_GET['id_proker']) {           
                                                 

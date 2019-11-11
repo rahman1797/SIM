@@ -68,6 +68,9 @@ class Keuangan_C extends CI_Controller {
 	           );
 
 	       $this->db->insert('pemasukan_tbl', $database);
+	       echo "<script>
+					window.history.back();
+				</script>";
 
 		}
 
@@ -85,10 +88,12 @@ class Keuangan_C extends CI_Controller {
 
 	       $this->db->insert('pemasukan_tbl', $database);
 
-				echo "BBBBBBB";
-		       $error = array('error' => $this->upload->display_errors());
-				print_r($error);
-
+				// echo "BBBBBBB";
+		  //      $error = array('error' => $this->upload->display_errors());
+				// print_r($error);
+				echo "<script>
+					window.history.back();
+				</script>";
 		     }
 
 		// END UPLOAD
@@ -141,6 +146,10 @@ class Keuangan_C extends CI_Controller {
 
 	       $this->db->insert('pengeluaran_tbl', $database);
 
+	       echo "<script>
+					window.history.back();
+				</script>";
+
 		}
 
 		else {
@@ -157,9 +166,13 @@ class Keuangan_C extends CI_Controller {
 
 	       $this->db->insert('pengeluaran_tbl', $database);
 
-				echo "BBBBBBB";
-		       $error = array('error' => $this->upload->display_errors());
-				print_r($error);
+				// echo "BBBBBBB";
+		  //      $error = array('error' => $this->upload->display_errors());
+				// print_r($error);
+
+				echo "<script>
+					window.history.back();
+				</script>";
 
 		     }
 		

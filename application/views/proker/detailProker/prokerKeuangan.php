@@ -1,4 +1,4 @@
-<?php $getProkerData = $this->M_proker->getProkerNama($_GET['id_proker']);?>
+<?php $idToProker = $this->M_proker->getProkerNama($_GET['id_proker']);?>
 
       <section class="content">
         <div class="container-fluid">
@@ -37,7 +37,7 @@
                         <div class="header" align="center">
                             <h2><strong>PEMASUKAN</strong></h2>
                             <p></p>
-                            <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+                            <?php if ($idToProker['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
 
                             <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                             <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round"><i class="material-icons">add_circle_outline</i> Pemasukan</button>  
@@ -71,9 +71,10 @@
                                             $totalPemasukan = 0;
                                             foreach($proker_pemasukan as $masuk){ 
                                             $totalPemasukan += $masuk->pemasukan_nominal; 
+                                            $date = date_create($masuk->pemasukan_tanggal)
                                             ?>
                                             <tr>
-                                                <td><?php echo date(" d M Y", $masuk->pemasukan_tanggal) ?></td>
+                                                <td><?php echo date_format($date, "d M Y") ?></td>
                                                 <td><?php echo $masuk->pemasukan_nominal ?></td>
                                                 <td><?php echo $masuk->pemasukan_deskripsi ?></td>
                                                 <td><?php if (isset($masuk->pemasukan_file)) { ?>
@@ -99,7 +100,7 @@
                         <div class="header" align="center">
                             <h2><strong>PENGELUARAN</strong></h2>
                             <p></p>
-                            <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+                            <?php if ($idToProker['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
 
                             <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                             <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round"><i class="material-icons">add_circle_outline</i> Pengeluaran</button>  
@@ -133,9 +134,11 @@
                                             $totalPengeluaran = 0;
                                             foreach($proker_pengeluaran as $keluar){ 
                                             $totalPengeluaran += $keluar->pengeluaran_nominal; 
+                                            $date = date_create($keluar->pengeluaran_tanggal)
+
                                             ?>
                                             <tr>
-                                                <td><?php echo date(" d M Y", $keluar->pengeluaran_tanggal)  ?></td>
+                                                <td><?php echo date_format($date, "d M Y") ?></td>
                                                 <td><?php echo $keluar->pengeluaran_nominal ?></td>
                                                 <td><?php echo $keluar->pengeluaran_deskripsi ?></td>
                                                 <td><?php if (isset($keluar->pengeluaran_file)) { ?>
@@ -214,8 +217,8 @@
                        <center>
                         <div class="modal-body">
                               <!-- Form Angggota -->
-                                <!-- <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()"> -->
-                                <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPengeluaran') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
+                                <form id="form_validation" name="formPengeluaran" class="formPengeluaran" method="POST" style="margin: 20px" onsubmit="return submitPengeluaran()">
+                               <!--  <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPengeluaran') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px"> -->
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <input class="form-control" type="text" id="pengeluaran_nominal" name="pengeluaran_nominal">

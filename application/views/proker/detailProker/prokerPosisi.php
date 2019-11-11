@@ -1,4 +1,4 @@
-<?php $getProkerData = $this->M_proker->getProkerNama($_GET['id_proker']);?>
+<?php $idToProker = $this->M_proker->getProkerNama($_GET['id_proker']);?>
 
     <section class="content">
         <div class="container-fluid">
@@ -12,7 +12,7 @@
                             <h2><strong>DAFTAR KEPANITIAAN</strong></h2>
                             <p></p>
 
-                            <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+                            <?php if ($idToProker['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
 
 
                             <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
@@ -29,14 +29,12 @@
                                     <thead>
                                         <tr>
                                             <th>Posisi Terdaftar</th>
-                                            <th>Jumlah Panitia Terdaftar</th>
                                             <th>Kelola</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Posisi Terdaftar</th>
-                                            <th>Jumlah Panitia Terdaftar</th>
                                             <th>Kelola</th>
                                         </tr>
                                     </tfoot>
@@ -47,14 +45,14 @@
                                             foreach($proker_posisi as $pp){ 
                                             $idProker = $pp->id_proker;
                                             $id_posisi = $pp->prokerPosisi_ID;
-                                            $idToProker = $this->M_proker->getProkerNama($idProker);
+                                            // $idToProker = $this->M_proker->getProkerNama($idProker);
 
                                             ?>
                                             <tr>                
                                                 <td><?php echo $pp->prokerPosisi_nama ?></td>
-                                                <td></td>
+                                                
                                                 <td>
-                                                    <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+                                                    <?php if ($idToProker['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
                                                         <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                                                     <a href="<?php echo site_url();?>/Proker_C/delProkerPosisi/<?php print($id_posisi);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
                                                      <?php } 

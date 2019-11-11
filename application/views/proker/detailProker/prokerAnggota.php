@@ -1,4 +1,4 @@
-<?php $getProkerData = $this->M_proker->getProkerNama($_GET['id_proker']);?>
+<?php $idToProker = $this->M_proker->getProkerNama($_GET['id_proker']);?>
 
       <section class="content">
         <div class="container-fluid">
@@ -10,7 +10,7 @@
                         <div class="header" align="center">
                             <h2><strong>ANGGOTA KEPANITIAAN</strong></h2>
                             <p></p>
-                            <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+                            <?php if ($idToProker['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
 
 
                             <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
@@ -48,7 +48,7 @@
                                             $idUser = $pa->id_user;
                                             $id_anggota = $pa->prokerAnggota_ID;
                                             $idToPosisi = $this->M_proker->getPosisiNama($idPosisi);
-                                            $idToProker = $this->M_proker->getProkerNama($idProker);
+                                            // $idToProker = $this->M_proker->getProkerNama($idProker);
                                             $idToNama = $this->M_user->getUserNama($idUser);
                                             ?>
                                             <tr>
@@ -56,7 +56,7 @@
                                                 <td><?php echo $idToNama['0']['user_nama']; ?></td>
                                                 <td><?php echo $idToPosisi['0']['prokerPosisi_nama']; ?> </td>
                                                 <td>
-                                                    <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+                                                    <?php if ($idToProker['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
                                                         <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                                                             <a href="<?php echo site_url();?>/Proker_C/delProkerAnggota/<?php print($id_anggota);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
                                                         
