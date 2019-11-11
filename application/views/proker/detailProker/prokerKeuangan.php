@@ -151,15 +151,13 @@
                                                 
                                             </tr>
                                         <?php } 
-                                        ?>
-                                        
+                                        ?>                  
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div> 
 
             <!-- #END# Basic Examples -->
@@ -217,8 +215,8 @@
                        <center>
                         <div class="modal-body">
                               <!-- Form Angggota -->
-                                <form id="form_validation" name="formPengeluaran" class="formPengeluaran" method="POST" style="margin: 20px" onsubmit="return submitPengeluaran()">
-                               <!--  <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPengeluaran') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px"> -->
+                                <!-- <form id="form_validation" name="formPengeluaran" class="formPengeluaran" method="POST" style="margin: 20px" onsubmit="return submitPengeluaran()"> -->
+                               <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPengeluaran') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <input class="form-control" type="text" id="pengeluaran_nominal" name="pengeluaran_nominal">
