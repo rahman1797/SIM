@@ -73,6 +73,22 @@ class Berkas_C extends CI_Controller {
     	$nama_file = $_GET['name'];
     	force_download("uploads/".$nama_file,NULL);
     }
+
+    function delBerkas($id){
+
+    	$idBerkas = array('berkas_ID' => $id);
+
+    	$nama_file = $this->M_berkas->getBerkasData($id);
+
+    	$delete_file = unlink('uploads/'.$nama_file['0']['berkas_nama']);
+
+    	if ($delete_file) {
+    		$this->M_berkas->deleteBerkas($idBerkas);
+    		echo "berhasil";
+    	}
+
+
+    }
     // function upload(){
     // 	$config = array(
     // 				'upload_path' => 'uploads/',

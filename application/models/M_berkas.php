@@ -39,5 +39,19 @@ class M_berkas extends CI_Model{
 	    }
 	}
 
+	function getBerkasData($id)
+	{
+		
+		 $query = $this->db->get_where('berkas_tbl', array('berkas_ID' => $id));
+
+		 return $query->result_array();
+		
+	}
+
+
+	function deleteBerkas($data) {
+		$this->db->delete('berkas_tbl', $data);
+	}
+
 
 }

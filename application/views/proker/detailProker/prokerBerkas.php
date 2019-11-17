@@ -1,24 +1,104 @@
-  <?php $idToProker = $this->M_proker->getProkerNama($_GET['id_proker']); ?>
+  <style type="text/css">
+    .box-header {
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .box-tools {
+      right: 10px;
+      top: 5px;
+    }
+    .dropzone-wrapper {
+    
+      border: 2px dashed #91b0b3;
+      color: #92b0b3;
+      position: relative;
+      height: 150px;
+    }
+    .dropzone-desc {
+    position: absolute;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      text-align: center;
+      width: 40%;
+      top: 50px;
+      font-size: 16px;
+    }
+    .dropzone,
+    .dropzone:focus {
+      outline: none !important;
+      width: 100%;
+      height: 150px;
+      cursor: pointer;
+      opacity: 0;
+    }
+    .dropzone-wrapper:hover,
+    .dropzone-wrapper.dragover {
+      background: #ecf0f5;
+    }
+    .preview-zone {
+      text-align: center;
+    }
+    .preview-zone .box {
+      box-shadow: none;
+      border-radius: 0;
+      margin-bottom: 0;
+    }
+  </style>
+
+
+
+
+  <?php $idToProker = $this->M_proker->getProkerNama($_GET['id_proker']);?>
     <section class="content">
         <div class="container-fluid">
         
             <!-- Basic Examples -->
             <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              
 
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                     <div class="card" id="round">
-                             
-                        <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker='.$_GET['id_proker']);?>" method="post" enctype="multipart/form-data" name="userfile">
 
-                          <div class="form-group">
-                            <label for="userfile">Upload berkas berupa file</label>
-                            <input type="file" class="form-control-file" name="userfile" id="userfile">
-                            <input type="hidden" name="id_proker" value="<?php $_GET['id_proker'] ?>">      
-                          </div>
-             
-                          <button type="submit" class="btn btn-primary"><i class="material-icons">cloud_upload</i></button>
-                        </form>
+                          <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker='.$_GET['id_proker']);?>" method="POST" enctype="multipart/form-data" >
+                           
+                            <div class="row" style="padding: 20px">
+                             <div class="col-lg-6">
+                              <div class="form-group">
+                               <label class="control-label">Upload File</label>
+                               <div class="preview-zone hidden">
+                                <div class="box box-solid">
+                                 <div class="box-header with-border">
+                                 
+                                  <div class="box-tools pull-right">
+                                   <button type="button" class="btn btn-danger btn-xs remove-preview">
+                                    <i class="material-icons">autorenew</i> Reset
+                                   </button>
+                                  </div>
+                                 </div>
+                                 <div class="box-body"></div>
+                                </div>
+                               </div>
+                               <div class="dropzone-wrapper">
+                                <div class="dropzone-desc">
+                                 <i class="glyphicon glyphicon-download-alt"></i>
+                                 <p>Pilih file yang akan di upload.</p>
+                                </div>
+                                <input type="file" name="userfile" class="dropzone" id="userfile">
+                                <input type="hidden" name="id_proker" value="<?php $_GET['id_proker'] ?>">
+                               </div>
+                              </div>
+                               <button type="submit" class="btn btn-primary">Upload</button>
+                             </div>
+                            
+                            
+                            <!--  <div class="row"> -->
+                             
+                             </div>
+                            
+                         
+                          </form> 
 
                     </div>
                     <?php } ?>
@@ -28,6 +108,7 @@
                     <div class="card" id="round">
                         <div class="header" align="center">
                             <h2><strong>BERKAS (FILE) PROGRAM KERJA</strong></h2>
+                            <?php echo $idToProker['0']['proker_nama']; ?>
                         </div>       
                         <div class="body">
                             <div class="table-responsive">
@@ -36,7 +117,6 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>Oleh</th>
-                                            <th>Program kerja</th>
                                             <th>Tanggal</th>
                                             <th>Kelola</th>
                                         </tr>
@@ -45,7 +125,6 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>Oleh</th>
-                                            <th>Program kerja</th>
                                             <th>Tanggal</th>
                                             <th>Kelola</th>
                                         </tr>
@@ -64,17 +143,7 @@
 
                                             <tr>
                                                 <td><?php echo $bd->berkas_nama; ?></td>
-                                                <td><?php echo $idToUser['0']['user_nama']; ?></td>
-                                                <td><?php if ($idToProker['0']['proker_nama']) 
-                                                            {
-                                                                echo $idToProker['0']['proker_nama'];
-                                                            }
-                                                            else 
-                                                            {
-                                                                echo "Umum";
-                                                            }
-                                                 ?>    
-                                                </td>            
+                                                <td><?php echo $idToUser['0']['user_nama']; ?></td>           
                                                 <td><?php echo $bd->berkas_tanggal; ?></td>           
                                                 <td>
 
@@ -118,6 +187,58 @@
                     return false;
                 }
             }
+
+
+
+
+
+
+
+
+            function readFile(input) {
+ if (input.files && input.files[0]) {
+ var reader = new FileReader();
+ 
+ reader.onload = function (e) {
+ var htmlPreview = input.files[0].name;
+ var wrapperZone = $(input).parent();
+ var previewZone = $(input).parent().parent().find('.preview-zone');
+ var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
+ 
+ wrapperZone.removeClass('dragover');
+ previewZone.removeClass('hidden');
+ boxZone.empty();
+ boxZone.append(htmlPreview);
+ };
+ 
+ reader.readAsDataURL(input.files[0]);
+ }
+}
+function reset(e) {
+ e.wrap('<form>').closest('form').get(0).reset();
+ e.unwrap();
+}
+$(".dropzone").change(function(){
+ readFile(this);
+});
+$('.dropzone-wrapper').on('dragover', function(e) {
+ e.preventDefault();
+ e.stopPropagation();
+ $(this).addClass('dragover');
+});
+$('.dropzone-wrapper').on('dragleave', function(e) {
+ e.preventDefault();
+ e.stopPropagation();
+ $(this).removeClass('dragover');
+});
+$('.remove-preview').on('click', function() {
+ var boxZone = $(this).parents('.preview-zone').find('.box-body');
+ var previewZone = $(this).parents('.preview-zone');
+ var dropzone = $(this).parents('.form-group').find('.dropzone');
+ boxZone.empty();
+ previewZone.addClass('hidden');
+ reset(dropzone);
+});
 
 </script>
 
