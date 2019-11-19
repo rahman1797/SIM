@@ -140,10 +140,14 @@ class Proker_C extends CI_Controller {
 		$namaProker = $this->input->post('proker_nama');
 		$tanggalProker = $this->input->post('proker_tanggal');
 		$tahunProker = $this->input->post('proker_tahun');
+		$deskripsiProker = $this->input->post('proker_deskripsi');
+		$jenisProker = $this->input->post('proker_jenis');
 		$lembagaProker = $this->input->post('proker_lembaga');
 		$data = array(
 			'proker_nama' => $namaProker,
 			'proker_tanggal' => $tanggalProker,
+			'proker_deskripsi' => $deskripsiProker,
+			'proker_jenis' => $jenisProker,
 			'proker_tahun' => $tahunProker,
 			'proker_lembaga' => $lembagaProker
 		);

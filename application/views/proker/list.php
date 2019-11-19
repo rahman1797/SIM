@@ -114,12 +114,27 @@
                                         <label class="form-label">Nama Proker</label>
                                     </div>
                                 </div>
-                                <div class="form-group form-float">
-                                     <div class="form-group">
-                                    <div class="form-line" id="inputDate">
-                                        <input type="date" class="form-control" name="proker_tanggal" placeholder="Please choose a date...">
+                                 <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <textarea type="text" class="form-control" name="proker_deskripsi" id="Proker_nama" required></textarea>
+                                        <label class="form-label">Deskripsi Proker</label>
                                     </div>
                                 </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <select class="form-control" name="proker_jenis" onchange="date_hide_show(this.value)">
+                                            <option value="">- Jenis Proker -</option>
+                                            <option value="event">Event</option>
+                                            <option value="non_event">Non Event</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float hidden" id="date">
+                                     <div class="form-group">
+                                        <div class="form-line" id="inputDate">
+                                            <input type="date" class="form-control" name="proker_tanggal" placeholder="Please choose a date...">
+                                        </div>
+                                    </div>
                                 </div>
                                  <input type="hidden" name="proker_tahun" value="<?php echo $_SESSION['user_tahun'] ?>">
                                  <input type="hidden" name="proker_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
@@ -137,7 +152,13 @@
 
 <script type="text/javascript">
 
-     function submitProker() {
+    function date_hide_show($value){
+        if ($value == 'event') {
+            $('#date').removeClass('hidden');
+        }
+    }
+
+    function submitProker() {
 
          var data = $('.formProker').serialize();
                   
