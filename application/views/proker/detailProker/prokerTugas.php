@@ -109,7 +109,8 @@
                                                 <?php 
                                                     foreach ($anggota_data as $ad) {
                                                         $idToNama = $this->M_user->getUserNama($ad->id_user);
-                                                        echo "<option value='$ad->id_user'>".$idToNama['0']['user_nama'] ."</option>";
+                                                        $idToPosisi = $this->M_proker->getPosisiPanitia($ad->id_posisi);
+                                                        echo "<option value='$ad->id_user'>".$idToNama['0']['user_nama']." -- (".$idToPosisi['0']['prokerPosisi_nama'].")</option>";
                                                     }
                                                 ?>
                                             </select>

@@ -31,6 +31,12 @@ class M_proker extends CI_Model{
 			function tampil_prokerEvaluasi(){
 				return $this->db->get_where('prokerEvaluasi_tbl', array('id_proker' => $_GET['id_proker']));	
 			}
+					function getPosisiPanitia($id_posisi)
+					{
+						$query = $this->db->get_where('prokerPosisi_tbl', array('prokerPosisi_ID' => $id_posisi));
+
+						return $query->result_array();
+					}
 
 					function tampil_prokerTugasSaya()
 					{
