@@ -24,13 +24,13 @@
                                         <h3><?= $p->user_nama; ?></h3>
                                         <p><?php 
                                             if ($p->user_role == 1) {
-                                               echo "Eksekutif";
+                                               echo "Lembaga Eksekutif";
                                             }
                                             else {
-                                               echo "Legislatif";
+                                               echo "Lembaga Legislatif";
                                             } ?> 
                                         </p>
-                                        <p><?= $idToKabinet['0']['opmawa_kabinet']; ?></p>
+                                        <p><?= "Kabinet ". $idToKabinet['0']['opmawa_kabinet']; ?></p>
                                     </div>
                                 </div>
                                 <!-- <div class="profile-footer">
