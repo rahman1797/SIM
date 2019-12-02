@@ -87,6 +87,7 @@
                                 </div>
                                 <input type="file" name="userfile" class="dropzone" id="userfile">
                                 <input type="hidden" name="id_proker" value="<?php $_GET['id_proker'] ?>">
+                                <input type="hidden" name="berkas_jenis" value="umum">
                                </div>
                               </div>
                                <button type="submit" class="btn btn-primary">Upload</button>
@@ -121,6 +122,7 @@
                                 </div>
                                 <input type="file" name="userfile" class="dropzone" id="userfile">
                                 <input type="hidden" name="id_proker" value="<?php $_GET['id_proker'] ?>">
+                                <input type="hidden" name="berkas_jenis" value="lpj">
                                </div>
                               </div>
                                <button type="submit" class="btn btn-primary">Upload</button>
@@ -146,7 +148,7 @@
                         </div>       
                         <div class="body">
                             <div class="table-responsive">
-                                <table id="refAng" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                                <table id="refBerkas" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
@@ -175,7 +177,14 @@
                                                 
                                             ?>
 
-                                            <tr>
+                                            <?php if ($bd->berkas_jenis == 'lpj') {      
+                                                echo "<tr style='background-color: #13fc03'>";
+                                             } 
+                                              else {
+                                                echo "<tr>";
+                                              }
+                                            ?>
+
                                                 <td><?php echo $bd->berkas_nama; ?></td>
                                                 <td><?php echo $idToUser['0']['user_nama']; ?></td>           
                                                 <td><?php echo $bd->berkas_tanggal; ?></td>           
@@ -184,7 +193,7 @@
                                                     <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
                                                      
                                                     <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
-                                                         <a href="<?php echo site_url();?>/Berkas_C/delBerkas/<?php print($bd->berkas_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
+                                                         <button class="btn btn-danger" value="<?php echo $bd->berkas_ID ?>" id="round" onclick="return konfirmasiHapus(this.value)"><i class="material-icons">delete_forever</i></button>
                                                  <?php } 
                                                     else {
                                                         echo "Locked";
@@ -210,48 +219,35 @@
         </div>
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
 <script type="text/javascript">
 
-         function delConfirm()
-            {
-                job = confirm("Are you sure to delete permanently?");
-                
-                if(job != true)
-                {
-                    return false;
-                }
-            }
-
-
-
-
-
-
-
-
 function readFile(input) {
- if (input.files && input.files[0]) {
- var reader = new FileReader();
- 
- reader.onload = function (e) {
- var htmlPreview = input.files[0].name;
- var wrapperZone = $(input).parent();
- var previewZone = $(input).parent().parent().find('.preview-zone');
- var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
- 
- wrapperZone.removeClass('dragover');
- previewZone.removeClass('hidden');
- boxZone.empty();
- boxZone.append(htmlPreview);
- };
- 
+   if (input.files && input.files[0]) {
+   var reader = new FileReader();
+   
+   reader.onload = function (e) {
+   var htmlPreview = input.files[0].name;
+   var wrapperZone = $(input).parent();
+   var previewZone = $(input).parent().parent().find('.preview-zone');
+   var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
+   
+   wrapperZone.removeClass('dragover');
+   previewZone.removeClass('hidden');
+   boxZone.empty();
+   boxZone.append(htmlPreview);
+   };
+   
  reader.readAsDataURL(input.files[0]);
  }
 }
+
 function reset(e) {
- e.wrap('<form>').closest('form').get(0).reset();
- e.unwrap();
+   e.wrap('<form>').closest('form').get(0).reset();
+   e.unwrap();
 }
+
 $(".dropzone").change(function(){
  readFile(this);
 });
@@ -273,6 +269,42 @@ $('.remove-preview').on('click', function() {
  previewZone.addClass('hidden');
  reset(dropzone);
 });
+
+
+
+function konfirmasiHapus(id)
+        {
+
+            job = confirm("Are you sure to delete permanently?");
+            
+            if(job != true)
+            {
+                return false;
+            }
+
+            else
+            {   
+                $.ajax({
+                    data: id,
+                    type: "GET",
+                    url: "<?php echo base_url('Berkas_C/delBerkas/') ?>" + id,
+                    success: function(data){
+                        Swal.fire({
+                          position: 'top-end',
+                          type: 'success',
+                          title: 'Berhasil Menghapus Berkas',
+                          showConfirmButton: false,
+                          timer: 1200
+                        }).then(function(){
+                            $('#refBerkas').load(document.URL +  ' #refBerkas');
+                        }) 
+                      },
+                      error: function(data){
+                        alert('Failed deleting data ');
+                      }
+                })
+            }
+        }
 
 </script>
 

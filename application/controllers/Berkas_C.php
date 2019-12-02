@@ -49,17 +49,21 @@ class Berkas_C extends CI_Controller {
 	        $data['msg'] = 'Image Successfully Uploaded.';
 
 	        $file_name = $data['data']['file_name'];
+	        $jenis = $this->input->post('berkas_jenis');
 
 	        $database = array(
 	            'berkas_nama' => $file_name,
 	            'id_user' => $_SESSION['user_ID'],
 	            'id_proker' => $_GET['id_proker'],
-	            'berkas_lembaga' => $_SESSION['user_role'] 
+	            'berkas_lembaga' => $_SESSION['user_role'],
+	            'berkas_jenis' =>  $jenis
 	            );
 
 	        $result = $this->db->insert('berkas_tbl', $database);
 
-	        echo $file_name;
+	        // echo $file_name;
+
+	        redirect(base_url('Berkas_C/index?id_proker='.$_GET['id_proker']));
 
 	     } else {
 
@@ -84,11 +88,12 @@ class Berkas_C extends CI_Controller {
 
     	if ($delete_file) {
     		$this->M_berkas->deleteBerkas($idBerkas);
-    		echo "berhasil";
+    	
     	}
 
 
     }
+
     // function upload(){
     // 	$config = array(
     // 				'upload_path' => 'uploads/',

@@ -24,6 +24,9 @@ class User_C extends CI_Controller {
 	function profil()
 	{
 		$data['profil'] = $this->M_user->getProfil()->result();
+		$data['prodi_data'] = $this->M_sys->tampil_regis_prodi()->result();
+		$data['posisi_data'] = $this->M_sys->tampil_regis_posisi_byLembaga()->result();
+		$data['departemen_data'] = $this->M_sys->tampil_departemenOpmawa()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('user/profil', $data);
