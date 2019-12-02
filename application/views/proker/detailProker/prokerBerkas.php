@@ -61,9 +61,9 @@
                     <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                     <div class="card" id="round">
 
-                          <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker='.$_GET['id_proker']);?>" method="POST" enctype="multipart/form-data" >
-                           
+                        
                             <div class="row" style="padding: 20px">
+                            <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker='.$_GET['id_proker']);?>" method="POST" enctype="multipart/form-data" >
                              <div class="col-lg-6">
                               <div class="form-group">
                                <label class="control-label">Upload File</label>
@@ -92,14 +92,48 @@
                                <button type="submit" class="btn btn-primary">Upload</button>
                              </div>
                             
+                            </form> 
+
+
+
+
+                            <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker='.$_GET['id_proker']);?>" method="POST" enctype="multipart/form-data" >
+                             <div class="col-lg-6">
+                              <div class="form-group">
+                               <label class="control-label">Upload Khusus Lembar Pertanggung Jawaban (LPJ)</label>
+                               <div class="preview-zone hidden">
+                                <div class="box box-solid">
+                                 <div class="box-header with-border">
+                                 
+                                  <div class="box-tools pull-right">
+                                   <button type="button" class="btn btn-danger btn-xs remove-preview">
+                                    <i class="material-icons">autorenew</i> Reset
+                                   </button>
+                                  </div>
+                                 </div>
+                                 <div class="box-body"></div>
+                                </div>
+                               </div>
+                               <div class="dropzone-wrapper">
+                                <div class="dropzone-desc">
+                                 <i class="glyphicon glyphicon-download-alt"></i>
+                                 <p>Pilih file LPJ yang akan di upload.</p>
+                                </div>
+                                <input type="file" name="userfile" class="dropzone" id="userfile">
+                                <input type="hidden" name="id_proker" value="<?php $_GET['id_proker'] ?>">
+                               </div>
+                              </div>
+                               <button type="submit" class="btn btn-primary">Upload</button>
+                             </div>
                             
+                            </form> 
+
                             <!--  <div class="row"> -->
                              
                              </div>
                             
                          
-                          </form> 
-
+                          
                     </div>
                     <?php } ?>
                  </div> 
@@ -195,7 +229,7 @@
 
 
 
-            function readFile(input) {
+function readFile(input) {
  if (input.files && input.files[0]) {
  var reader = new FileReader();
  
