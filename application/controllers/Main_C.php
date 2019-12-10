@@ -23,6 +23,21 @@ class Main_C extends CI_Controller {
 
 	}
 
+	function backup_database() {
+		$this->load->dbutil();
+		$prefs = array(
+			'format' => 'zip',
+			'filename' => 'sim.sql'
+		);
+		$backup = & $this->dbutil->backup($prefs);
+		$db_name = 'crm-on-' . date("Y-m-d-H-i-s") . '.zip';
+		$save = 'assets/sql/' . $db_name;
+		$this->load->helper('file');
+		write_file($save, $backup);
+		$this->load->helper('download');
+		force_download($db_name, $backup);
+	}
+
 	function regProdi()
 	{
 		$data['data_prodi'] = $this->M_sys->tampil_regis_prodi()->result();

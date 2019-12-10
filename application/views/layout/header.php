@@ -131,7 +131,7 @@
                                     </li>
                                     
                                     <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="<?php echo base_url('Main_C/backup_database') ?>">
                                             <div class="icon-circle bg-light-green">
                                                 <i class="material-icons">cached</i>
                                             </div>
