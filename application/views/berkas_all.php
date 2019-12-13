@@ -149,13 +149,20 @@
                                 
                                 foreach($proker_data as $pd){ 
                                     $date = date_create($pd->proker_tanggal);
-                                    $id_proker = $pd->proker_ID ?>
+                                    $id_proker = $pd->proker_ID;
+                                    $jumlah = $this->M_berkas->JumlahBerkasAll($id_proker); ?>
                                 <a href="<?php echo base_url('Berkas_C/proker?id_proker='.$id_proker) ?>">
                                     <div class="col-lg-3">
-                                        <img width="70px" src="<?php echo base_url('assets/images/folderx.png') ?>">
-                                        <?= $pd->proker_nama; ?>
-                                        <hr>
-                                        Jumlah Dokumen : <?= $this->M_berkas->JumlahBerkasAll($id_proker); ?>
+
+                                        <div style="cursor: pointer;" class="info-box bg-orange hover-zoom-effect" id="round">
+                                            <div class="icon">
+                                                <i class="material-icons">description</i>
+                                            </div>
+                                            <div class="content">
+                                                <div class="text"> <?= $pd->proker_nama; ?> </div>
+                                                <div class="number count-to" data-from="0" data-to="<?= $jumlah; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                                            </div>
+                                        </div>                                  
                                     </div>
 
                                     <?php } ?>

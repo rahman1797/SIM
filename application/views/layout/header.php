@@ -49,11 +49,15 @@
       .round_edge {
         border-radius: 12px; 
       }
+
+      .hide_scroll::-webkit-scrollbar {
+         display: none;
+      }
     </style>
 
 </head>
 
-<body class="theme-red">
+<body class="theme-red hide_scroll">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
