@@ -16,22 +16,22 @@ class Berkas_C extends CI_Controller {
 	function index()
 	{	
 		$data['berkas_data'] = $this->M_berkas->tampil_berkas()->result();
-		$this->load->view('layout/header');
-		$this->load->view('layout/footer');
-		$this->load->view('proker/detailProker/prokerBerkas',$data);
-
-	}
-	
-	function allBerkas()
-	{	
-		$data['berkas_data'] = $this->M_berkas->tampil_berkas()->result();
 		
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('berkas_all',$data);
 
 	}
-		
+
+	function proker()
+	{	
+		$data['berkas_data'] = $this->M_berkas->tampil_berkas()->result();
+		$this->load->view('layout/header');
+		$this->load->view('layout/footer');
+		$this->load->view('proker/detailProker/prokerBerkas',$data);
+
+	}
+			
 	function uploadBerkas(){
          		
 		 $config['upload_path']= 'uploads/';
@@ -63,7 +63,7 @@ class Berkas_C extends CI_Controller {
 
 	        // echo $file_name;
 
-	        redirect(base_url('Berkas_C/index?id_proker='.$_GET['id_proker']));
+	        echo "<script>history.go(-1)</script>";
 
 	     } else {
 
@@ -71,6 +71,27 @@ class Berkas_C extends CI_Controller {
 
 	     }			    
 			                 
+    }
+
+    function berkas_link(){
+    	$link = $this->input->post('link');
+    	$jenis = $this->input->post('berkas_jenis');
+
+    	if ($link != "") {
+    		$database = array(
+	            'berkas_nama' => $link,
+	            'id_user' => $_SESSION['user_ID'],
+	            'id_proker' => $_GET['id_proker'],
+	            'berkas_lembaga' => $_SESSION['user_role'],
+	            'berkas_jenis' =>  $jenis
+	            );
+
+	    	$result = $this->db->insert('berkas_tbl', $database);
+		}
+
+		else {
+			echo "Terjadi Kesalahan";
+		}
     }
 
     function download(){
@@ -91,6 +112,13 @@ class Berkas_C extends CI_Controller {
     	
     	}
 
+    }
+
+    function delLink($id){
+
+    	$idBerkas = array('berkas_ID' => $id);
+    	
+    	$this->M_berkas->deleteBerkas($idBerkas);
 
     }
 

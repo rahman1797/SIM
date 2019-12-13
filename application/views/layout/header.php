@@ -233,18 +233,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
+                        <a href="<?php echo base_url('Berkas_C') ?>">
                             <i class="material-icons">attach_file</i>
                             <span>Berkas</span>
                         </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#">Program Kerja</a>
-                            </li>
-                            <li>
-                                <a href="#">Lain-lain</a>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <a href="<?php echo base_url('Rapat_C') ?>">
