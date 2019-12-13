@@ -91,7 +91,7 @@
                                 <table id="refBerkas" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
-                                            <th>Nama</th>
+                                            <th>Nama / Link</th>
                                             <th>Oleh</th>
                                             <th>Tanggal</th>
                                             <th>Kelola</th>
@@ -99,7 +99,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Nama</th>
+                                            <th>Nama / Link</th>
                                             <th>Oleh</th>
                                             <th>Tanggal</th>
                                             <th>Kelola</th>

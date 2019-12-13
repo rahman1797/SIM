@@ -219,18 +219,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
+                        <a href="<?php echo base_url('Berkas_C') ?>">
                             <i class="material-icons">monetization_on</i>
                             <span>Keuangan</span>
                         </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#">Umum</a>
-                            </li>
-                            <li>
-                                <a href="#">Program Kerja</a>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <a href="<?php echo base_url('Berkas_C') ?>">

@@ -139,7 +139,33 @@
              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" id="round">
                     <div class="header" align="center">
-                        <h2><strong>DAFTAR BERKAS FILE</strong></h2>
+                        <h2><strong>DAFTAR BERKAS FILE PROKER</strong></h2>
+                    </div>
+
+                    <div class="body">
+                        <div class="row">
+                            <center>
+                                <?php 
+                                
+                                foreach($proker_data as $pd){ 
+                                    $date = date_create($pd->proker_tanggal);
+                                    $id_proker = $pd->proker_ID ?>
+                                <a href="<?php echo base_url('Berkas_C/proker?id_proker='.$id_proker) ?>">
+                                    <div class="col-lg-3">
+                                        <img width="70px" src="<?php echo base_url('assets/images/folderx.png') ?>">
+                                        <?= $pd->proker_nama; ?>
+                                        <hr>
+                                        Jumlah Dokumen : <?= $this->M_berkas->JumlahBerkasAll($id_proker); ?>
+                                    </div>
+
+                                    <?php } ?>
+                                </a>
+                            </center>
+                        </div>    
+                    </div>
+                    
+                    <div class="header" align="center">
+                        <h2><strong>DAFTAR BERKAS NON PROKER</strong></h2>
                     </div>
                     <div class="body">
                         <div class="table-responsive">
@@ -148,7 +174,7 @@
                                     <tr>
                                         <th>Nama File</th>
                                         <th>Di upload oleh</th>
-                                        <th>Program kerja</th>
+                                      <!--   <th>Program kerja</th> -->
                                         <th>Tanggal di upload</th>
                                         <th>Kelola</th>
                                     </tr>
@@ -157,7 +183,7 @@
                                     <tr>
                                         <th>Nama File</th>
                                         <th>Di upload oleh</th>
-                                        <th>Program kerja</th>
+                                       <!--  <th>Program kerja</th> -->
                                         <th>Tanggal di upload</th>
                                         <th>Kelola</th>
                                     </tr>
@@ -169,11 +195,11 @@
                                             $idProker = $bd->id_proker;
                                             $idToUser = $this->M_user->getUserNama($idUser);
                                             $idToProker = $this->M_proker->getProkerNama($idProker);
-                                    ?>
+                                            if ($idProker == '0') { ?>
                                     <tr>
                                         <td><?php echo $bd->berkas_nama; ?></td>
                                         <td><?php echo $idToUser['0']['user_nama']; ?></td>
-                                        <td><?php 
+                                        <!-- <td><?php 
                                             if ($idToProker['0']['proker_nama']) 
                                             {
                                                 echo $idToProker['0']['proker_nama'];
@@ -183,17 +209,23 @@
                                                 echo "<font color='red'>Umum</font>";
                                             }
                                          ?>    
-                                        </td>
+                                        </td> -->
                                         <td><?php echo $bd->berkas_tanggal; ?></td>
                                         <td>
                                             <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round">Unduh</button></a>
                                         </td>
                                     </tr>
-                                    <?php } ?>      
+                                    <?php   }
+                                    } ?>      
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
+
+
+
+
                 </div>
              </div>
         </div>

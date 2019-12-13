@@ -16,6 +16,8 @@ class Berkas_C extends CI_Controller {
 	function index()
 	{	
 		$data['berkas_data'] = $this->M_berkas->tampil_berkas()->result();
+		$data['proker_data'] = $this->M_proker->tampil_proker()->result();
+		// $data['totalBerkas'] = $this->M_berkas->JumlahBerkasAll($id_proker);
 		
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
@@ -117,7 +119,7 @@ class Berkas_C extends CI_Controller {
     function delLink($id){
 
     	$idBerkas = array('berkas_ID' => $id);
-    	
+
     	$this->M_berkas->deleteBerkas($idBerkas);
 
     }
