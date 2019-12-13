@@ -54,75 +54,19 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" id="round"> 
 
-                    <div class="row" style="padding: 20px">
-                        <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker=0');?>" method="POST" enctype="multipart/form-data" >
-                         <div class="col-lg-6">
-                          <div class="form-group">
-                           <label class="control-label">Upload File</label>
-                           <div class="preview-zone hidden">
-                            <div class="box box-solid">
-                             <div class="box-header with-border">
-                             
-                              <div class="box-tools pull-right">
-                               <button type="button" class="btn btn-danger btn-xs remove-preview">
-                                <i class="material-icons">autorenew</i> Reset
-                               </button>
-                              </div>
-                             </div>
-                             <div class="box-body"></div>
+                     <center>
+                          <div class="row" style="padding: 20px">
+                            <div class="col-lg-4">
+                              <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalUmum" id="round"><i class="material-icons">library_add</i> Berkas non-LPJ</button>  
                             </div>
-                           </div>
-                           <div class="dropzone-wrapper">
-                            <div class="dropzone-desc">
-                             <i class="glyphicon glyphicon-download-alt"></i>
-                             <p>Pilih file yang akan di upload.</p>
+                            <div class="col-lg-4">
+                              <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalLpj" id="round"><i class="material-icons">library_add</i> Berkas LPJ</button>
                             </div>
-                            <input type="file" name="userfile" class="dropzone" id="userfile">
-                            <input type="hidden" name="id_proker" value="<?php $_GET['id_proker'] ?>">
-                            <input type="hidden" name="berkas_jenis" value="umum">
-                           </div>
+                            <div class="col-lg-4">
+                              <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalLink" id="round"><i class="material-icons">library_add</i> Link</button>
+                            </div>                                                                  
                           </div>
-                           <button type="submit" class="btn btn-primary">Upload</button>
-                         </div>
-                        
-                        </form> 
-
-
-
-
-                        <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker=0');?>" method="POST" enctype="multipart/form-data" >
-                         <div class="col-lg-6">
-                          <div class="form-group">
-                           <label class="control-label">Upload Khusus Lembar Pertanggung Jawaban (LPJ)</label>
-                           <div class="preview-zone hidden">
-                            <div class="box box-solid">
-                             <div class="box-header with-border">
-                             
-                              <div class="box-tools pull-right">
-                               <button type="button" class="btn btn-danger btn-xs remove-preview">
-                                <i class="material-icons">autorenew</i> Reset
-                               </button>
-                              </div>
-                             </div>
-                             <div class="box-body"></div>
-                            </div>
-                           </div>
-                           <div class="dropzone-wrapper">
-                            <div class="dropzone-desc">
-                             <i class="glyphicon glyphicon-download-alt"></i>
-                             <p>Pilih file LPJ yang akan di upload.</p>
-                            </div>
-                            <input type="file" name="userfile" class="dropzone" id="userfile">
-                            <input type="hidden" name="id_proker" value="<?php $_GET['id_proker'] ?>">
-                            <input type="hidden" name="berkas_jenis" value="lpj">
-                           </div>
-                          </div>
-                           <button type="submit" class="btn btn-primary">Upload</button>
-                         </div>
-                        
-                        </form> 
-
-                     </div>
+                        </center>
 
                     <!-- <form action="<?php echo site_url('Berkas_C/uploadBerkas') ?>" method="post" enctype="multipart/form-data" name="userfile">
                       <div class="form-group">
@@ -176,7 +120,7 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table id="refAng" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                            <table id="refBerkas" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                 <thead>
                                     <tr>
                                         <th>Nama File</th>
@@ -219,7 +163,31 @@
                                         </td> -->
                                         <td><?php echo $bd->berkas_tanggal; ?></td>
                                         <td>
-                                            <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round">Unduh</button></a>
+                                            <?php 
+                                                if($bd->berkas_jenis != 'link') { ?>
+                                                  
+                                                  <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
+                                                 
+                                                <?php }
+                                           
+                                                if ($idUser == $_SESSION['user_ID']) {
+
+                                                  if ($bd->berkas_jenis == 'link') { ?>
+                                                    <button class="btn btn-danger" value="<?php echo $bd->berkas_ID ?>" id="round" onclick="return konfirmasiHapus_link(this.value)"><i class="material-icons">delete_forever</i></button>
+                                                  <?php }
+
+                                                  elseif ($bd->berkas_jenis != 'link') { ?>
+
+                                                     <button class="btn btn-danger" value="<?php echo $bd->berkas_ID ?>" id="round" onclick="return konfirmasiHapus(this.value)"><i class="material-icons">delete_forever</i></button>
+                                                  
+                                                  <?php } 
+                                                }
+                                                
+                                                else {
+                                                    echo "<button class='btn btn-danger' id='round' disabled><i class='material-icons'>delete_forever</i></button>";
+                                                }
+                                             ?> 
+
                                         </td>
                                     </tr>
                                     <?php   }
@@ -240,7 +208,178 @@
     </div>
 </section>
 
+
+
+
+
+
+<!-- Modal Area -->
+<div class="modal fade" id="ModalUmum" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="round">
+           <center>
+            <div class="modal-body">
+                  <!-- Form Berkas Umum -->
+              <div class="alert alert-warning" id="round">
+                  <strong>Informasi!</strong> Form peng-inputan dokumen / berkas non-LPJ.
+              </div>
+                
+              <div class="row" style="padding: 20px">
+                <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker='.$_GET['id_proker']);?>" method="POST" enctype="multipart/form-data" >
+                 <div class="col-lg-12">
+                  <div class="form-group">
+                   <div class="preview-zone hidden">
+                    <div class="box box-solid">
+                     <div class="box-header with-border">
+                     
+                      <div class="box-tools pull-right">
+                       <button type="button" class="btn btn-danger btn-xs remove-preview">
+                        <i class="material-icons">autorenew</i> Reset
+                       </button>
+                      </div>
+                     </div>
+                     <div class="box-body"></div>
+                    </div>
+                   </div>
+                   <div class="dropzone-wrapper">
+                    <div class="dropzone-desc">
+                     <i class="glyphicon glyphicon-download-alt"></i>
+                     <p>Pilih file yang akan di upload.</p>
+                    </div>
+                    <input type="file" name="userfile" class="dropzone" id="userfile">
+                    <input type="hidden" name="id_proker" value="0">
+                    <input type="hidden" name="berkas_jenis" value="umum">
+                   </div>
+                  </div>
+                   <button type="submit" class="btn btn-primary" id="round">Upload</button>
+                 </div>
+                </form> 
+              </div>
+
+                <!-- #END# Form Berkas Umum -->
+            </div>
+            </center>
+        </div>
+    </div>
+</div>
+<!-- #END# Modal Area -->
+
+
+<!-- Modal Area -->
+<div class="modal fade" id="ModalLpj" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="round">
+           <center>
+            <div class="modal-body">
+                  <!-- Form Berkas Umum -->
+              <div class="alert alert-warning" id="round">
+                  <strong>Informasi!</strong> Form peng-inputan dokumen / berkas khusus LPJ.
+              </div>
+                
+              <div class="row" style="padding: 20px">
+                <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker='.$_GET['id_proker']);?>" method="POST" enctype="multipart/form-data" >
+                 <div class="col-lg-12">
+                  <div class="form-group">
+                   <div class="preview-zone hidden">
+                    <div class="box box-solid">
+                     <div class="box-header with-border">
+                     
+                      <div class="box-tools pull-right">
+                       <button type="button" class="btn btn-danger btn-xs remove-preview">
+                        <i class="material-icons">autorenew</i> Reset
+                       </button>
+                      </div>
+                     </div>
+                     <div class="box-body"></div>
+                    </div>
+                   </div>
+                   <div class="dropzone-wrapper">
+                    <div class="dropzone-desc">
+                     <i class="glyphicon glyphicon-download-alt"></i>
+                     <p>Pilih file LPJ yang akan di upload.</p>
+                    </div>
+                    <input type="file" name="userfile" class="dropzone" id="userfile">
+                    <input type="hidden" name="id_proker" value="0">
+                    <input type="hidden" name="berkas_jenis" value="lpj">
+                   </div>
+                  </div>
+                   <button type="submit" class="btn btn-primary" id="round">Upload</button>
+                 </div>
+                </form>  
+              </div>
+
+                <!-- #END# Form Berkas Umum -->
+            </div>
+            </center>
+        </div>
+    </div>
+</div>
+<!-- #END# Modal Area -->
+
+
+
+<!-- Modal Area -->
+<div class="modal fade" id="ModalLink" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="round">
+           <center>
+            <div class="modal-body">
+                  <!-- Form Berkas Umum -->
+              <div class="alert alert-warning" id="round">
+                  <strong>Informasi!</strong> Form peng-inputan dokumen / berkas dalam bentuk link.
+              </div>
+                
+              <div class="row" style="padding: 20px">
+                <!-- <form id="form_validation" name="formLink" class="formLink" action="<?php echo site_url('Berkas_C/berkas_link?id_proker=');?>" method="POST" > -->
+
+                <form id="form_validation" name="formLink" class="formLink" onsubmit="return submit_link()" method="POST" >
+                  <div class="form-group form-float">
+                      <div class="form-line">
+                          <input type="text" class="form-control" name="berkas_nama" id="link" required>
+                          <label class="form-label">Masukan link</label>
+                      </div>
+                  </div>
+                  <input type="hidden" name="id_proker" value="<?php echo '0' ?>">
+                  <input type="hidden" name="berkas_jenis" value="link">
+                  <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                </form>  
+              </div>
+
+                <!-- #END# Form Berkas Umum -->
+            </div>
+            </center>
+        </div>
+    </div>
+</div>
+<!-- #END# Modal Area -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
 <script type="text/javascript">
+
+function submit_link(){
+  var data = $('.formLink').serialize();
+   
+  $.ajax({
+      type: 'POST',
+      data: data,
+      url: "<?php echo base_url('Berkas_C/berkas_link') ?>",
+      success: function() {
+          Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title: 'Berhasil Menambah Link',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(function(){
+              $('#refBerkas').load(document.URL +  ' #refBerkas');
+          })     
+      }
+  });
+  
+  return false;
+}
 
 function readFile(input) {
    if (input.files && input.files[0]) {
@@ -311,6 +450,41 @@ function konfirmasiHapus(id)
                   position: 'top-end',
                   type: 'success',
                   title: 'Berhasil Menghapus Berkas',
+                  showConfirmButton: false,
+                  timer: 1200
+                }).then(function(){
+                    $('#refBerkas').load(document.URL +  ' #refBerkas');
+                }) 
+              },
+              error: function(data){
+                alert('Failed deleting data ');
+              }
+        })
+    }
+}
+
+
+function konfirmasiHapus_link(id)
+{
+
+    job = confirm("Are you sure to delete permanently?");
+    
+    if(job != true)
+    {
+        return false;
+    }
+
+    else
+    {   
+        $.ajax({
+            data: id,
+            type: "GET",
+            url: "<?php echo base_url('Berkas_C/delLink/') ?>" + id,
+            success: function(data){
+                Swal.fire({
+                  position: 'top-end',
+                  type: 'success',
+                  title: 'Berhasil Menghapus Link',
                   showConfirmButton: false,
                   timer: 1200
                 }).then(function(){

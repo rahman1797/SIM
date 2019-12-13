@@ -48,7 +48,6 @@
 
 
 
-
   <?php $idToProker = $this->M_proker->getProkerNama($_GET['id_proker']);?>
     <section class="content">
         <div class="container-fluid">
@@ -125,16 +124,25 @@
                                               }
                                             ?>
 
-                                                <td><?php echo $bd->berkas_nama; ?></td>
+                                                <td><?php 
+                                                  if ($bd->berkas_jenis == 'link') { ?>
+                                                    <a href="<?php echo($bd->berkas_nama) ?>">
+                                                  <?php }
+                                                    echo $bd->berkas_nama; ?>
+                                                    </a>
+                                                    
+                                                </td>
                                                 <td><?php echo $idToUser['0']['user_nama']; ?></td>           
                                                 <td><?php echo $bd->berkas_tanggal; ?></td>           
                                                 <td>
-
-                                                    <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
-                                                     
                                                     <?php 
+                                                    if($bd->berkas_jenis != 'link') { ?>
+                                                      
+                                                      <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
+                                                     
+                                                    <?php }
 
-                                                    if (($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) && ($idUser == $_SESSION['user_ID'])) { 
+                                                    if ($idUser == $_SESSION['user_ID']) {
 
                                                       if ($bd->berkas_jenis == 'link') { ?>
                                                         <button class="btn btn-danger" value="<?php echo $bd->berkas_ID ?>" id="round" onclick="return konfirmasiHapus_link(this.value)"><i class="material-icons">delete_forever</i></button>
@@ -290,14 +298,16 @@
               </div>
                 
               <div class="row" style="padding: 20px">
-                <form id="form_validation" name="formLink" class="formLink" action="<?php echo site_url('Berkas_C/berkas_link?id_proker='.$_GET['id_proker']);?>" method="POST" >
+                <!-- <form id="form_validation" name="formLink" class="formLink" action="<?php echo site_url('Berkas_C/berkas_link?id_proker='.$_GET['id_proker']);?>" method="POST" > -->
+
+                  <form id="form_validation" name="formLink" class="formLink" onsubmit="return submit_link()" method="POST" >
                   <div class="form-group form-float">
                       <div class="form-line">
-                          <input type="text" class="form-control" name="link" id="link" required>
+                          <input type="text" class="form-control" name="berkas_nama" id="link" required>
                           <label class="form-label">Masukan link</label>
                       </div>
                   </div>
-                  <input type="hidden" name="id_proker" value="<?php $_GET['id_proker'] ?>">
+                  <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
                   <input type="hidden" name="berkas_jenis" value="link">
                   <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
                 </form>  
@@ -318,20 +328,20 @@
 
 function submit_link(){
   var data = $('.formLink').serialize();
-                  
+         
   $.ajax({
       type: 'POST',
       data: data,
-      url: "<?php echo base_url('Proker_C/addProker') ?>",
+      url: "<?php echo base_url('Berkas_C/berkas_link') ?>",
       success: function() {
           Swal.fire({
             position: 'top-end',
             type: 'success',
-            title: 'Berhasil Menambah Proker',
+            title: 'Berhasil Menambah Link',
             showConfirmButton: false,
             timer: 1500
           }).then(function(){
-              $('#refProker').load(document.URL +  ' #refProker');
+              $('#refBerkas').load(document.URL +  ' #refBerkas');
           })     
       }
   });

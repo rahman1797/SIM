@@ -8,7 +8,7 @@ class Berkas_C extends CI_Controller {
         $this->load->model('M_proker');
         $this->load->model('M_user');
         $this->load->model('M_berkas');
-        $this->load->helper('url');
+        // $this->load->helper('url');
         $this->load->helper('download');
         $this->load->library('upload');
     }
@@ -76,14 +76,15 @@ class Berkas_C extends CI_Controller {
     }
 
     function berkas_link(){
-    	$link = $this->input->post('link');
+    	$link = $this->input->post('berkas_nama');
     	$jenis = $this->input->post('berkas_jenis');
+    	$id_proker = $this->input->post('id_proker');
 
     	if ($link != "") {
     		$database = array(
 	            'berkas_nama' => $link,
 	            'id_user' => $_SESSION['user_ID'],
-	            'id_proker' => $_GET['id_proker'],
+	            'id_proker' => $id_proker,
 	            'berkas_lembaga' => $_SESSION['user_role'],
 	            'berkas_jenis' =>  $jenis
 	            );
