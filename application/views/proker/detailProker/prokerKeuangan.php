@@ -6,6 +6,20 @@
             <div class="row clearfix">
                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round"> 
+
+                            <div class="dropdown">
+                              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Kelola lainnya
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                <li><a href="<?php echo base_url('Proker_C/prokerTugas?id_proker='.$_GET['id_proker']) ?>">Daftar Tugas</a></li>
+                                <li><a href="<?php echo base_url('Proker_C/prokerAnggota?id_proker='.$_GET['id_proker']) ?>">Daftar Anggota Panitia</a></li>
+                                <li><a href="<?php echo base_url('Berkas_C/proker?id_proker='.$_GET['id_proker']) ?>">Dokumen/berkas</a></li>
+                                <li><a href="<?php echo base_url('Keuangan_C/index?id_proker='.$_GET['id_proker']) ?>">Keuangan</a></li>
+                                <li><a href="<?php echo base_url('Proker_C/prokerPosisi?id_proker='.$_GET['id_proker']) ?>">Posisi Kepanitiaan</a></li>
+                                <li><a href="<?php echo base_url('Proker_C/prokerEvaluasi?id_proker='.$_GET['id_proker']) ?>">Evaluasi</a></li>
+                              </ul>
+                            </div>
+                        
                         <div class="body">
                             <table class="table">
                                 <tr>

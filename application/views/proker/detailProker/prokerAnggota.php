@@ -7,9 +7,24 @@
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
+                        
+                            <div class="dropdown">
+                              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Kelola lainnya
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                <li><a href="<?php echo base_url('Proker_C/prokerTugas?id_proker='.$_GET['id_proker']) ?>">Daftar Tugas</a></li>
+                                <li><a href="<?php echo base_url('Proker_C/prokerAnggota?id_proker='.$_GET['id_proker']) ?>">Daftar Anggota Panitia</a></li>
+                                <li><a href="<?php echo base_url('Berkas_C/proker?id_proker='.$_GET['id_proker']) ?>">Dokumen/berkas</a></li>
+                                <li><a href="<?php echo base_url('Keuangan_C/index?id_proker='.$_GET['id_proker']) ?>">Keuangan</a></li>
+                                <li><a href="<?php echo base_url('Proker_C/prokerPosisi?id_proker='.$_GET['id_proker']) ?>">Posisi Kepanitiaan</a></li>
+                                <li><a href="<?php echo base_url('Proker_C/prokerEvaluasi?id_proker='.$_GET['id_proker']) ?>">Evaluasi</a></li>
+                              </ul>
+                            </div>
+                        
                         <div class="header" align="center">
                             <h2><strong>ANGGOTA KEPANITIAAN</strong></h2>
-                            <p></p>
+                            <p>
+                            </p>
                             <?php if ($idToProker['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
 
 
@@ -18,7 +33,7 @@
                             <?php } ?>
 
 
-                            <?php } ?> 
+                            <?php } ?>
                         </div>
                         
                         <div class="body">
@@ -119,7 +134,7 @@
                                                     }
                                                 ?>
                                             </select>
-                                        </div> Posisi kepanitiaan belum terdafar ? <a href="#" data-toggle="modal" data-target="#ModalProkerPosisi"> daftarkan </a>
+                                        </div> Posisi kepanitiaan belum terdafar ? <a href="#" onclick="hide_modal_panitia()" data-toggle="modal" data-target="#ModalProkerPosisi"> daftarkan </a>
                                     </div>
                                      <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
                                     <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
@@ -152,6 +167,8 @@
                         </div>
                          <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
                         <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                        <hr>
+                        <a href="#" onclick="return show_modal_panitia()" data-toggle="modal" data-target="#ModalProkerAnggota"> Daftarkan panitia </a>
                     </form>
                 <!-- #END# Form Posisi Panitia -->
             </div>
@@ -163,6 +180,17 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
+
+    function hide_modal_panitia() {
+        $('#ModalProkerAnggota').modal('hide');
+        return false;
+    }
+
+    function show_modal_panitia() {
+        $('#ModalProkerPosisi').modal('hide');
+        // $('#ModalProkerAnggota').modal('toggle');
+        return false;
+    }
 
     function submitProkerPosisi() {
 
@@ -180,7 +208,9 @@
                       showConfirmButton: false,
                       timer: 1500
                     }).then(function(){
+
                         $('#select_posisi').load(document.URL +  ' #select_posisi');
+
                     })     
                 }
             });
