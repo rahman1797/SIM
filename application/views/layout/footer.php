@@ -29,7 +29,7 @@
     <script src="<?php echo base_url('assets/plugins/jquery-countto/jquery.countTo.js')?>"></script>
 
      <!-- Jquery DataTable Plugin Js -->
-    <script src="<?php echo base_url('assets/plugins/jquery-datatable/jquery.dataTables.js')?>"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url('assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.min.js')?>"></script>
 
     <!-- Custom Js -->

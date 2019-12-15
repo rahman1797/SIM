@@ -35,10 +35,14 @@ class Berkas_C extends CI_Controller {
 	}
 			
 	function uploadBerkas(){
-         		
-		 $config['upload_path']= 'uploads/';
+         
+		 $config['upload_path']= 'uploads/'.$_GET['id_proker'].'/';
 	     $config['allowed_types'] = 'gif|jpg|png|txt|pdf|xlsx|csv|xls|bmp|doc|docx'; 
 	     $config['max_size']      = 10000; 
+
+	    if (!is_dir('uploads/' . $_GET['id_proker'])) {
+			mkdir('./uploads/' . $_GET['id_proker'], 0777, TRUE);
+		}
 
 	     $this->upload->initialize($config);
 
@@ -99,18 +103,24 @@ class Berkas_C extends CI_Controller {
 
     function download(){
     	$nama_file = $_GET['name'];
-    	force_download("uploads/".$nama_file,NULL);
+    	force_download('uploads/' . $_GET['id_proker'] . '/' . $nama_file,NULL);
     }
 
     function delBerkas($id){
 
+
     	$idBerkas = array('berkas_ID' => $id);
+
+    	$idProker = $_GET['id_proker'];
+
+    	// $idProker = $id_proker;
 
     	$nama_file = $this->M_berkas->getBerkasData($id);
 
-    	$delete_file = unlink('uploads/'.$nama_file['0']['berkas_nama']);
+    	$delete_file = unlink('uploads/'. $idProker . '/' . $nama_file['0']['berkas_nama']);
 
     	if ($delete_file) {
+    		
     		$this->M_berkas->deleteBerkas($idBerkas);
     	
     	}

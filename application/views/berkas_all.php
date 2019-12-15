@@ -147,7 +147,13 @@
                                             $idToUser = $this->M_user->getUserNama($idUser);
                                             $idToProker = $this->M_proker->getProkerNama($idProker);
                                             if ($idProker == '0') { ?>
-                                    <tr>
+                                    <?php if ($bd->berkas_jenis == 'lpj') {      
+                                                echo "<tr style='background-color: #13fc03'>";
+                                             } 
+                                              else {
+                                                echo "<tr>";
+                                              }
+                                            ?>
                                         <td><?php echo $bd->berkas_nama; ?></td>
                                         <td><?php echo $idToUser['0']['user_nama']; ?></td>
                                         <!-- <td><?php 

@@ -124,12 +124,8 @@
                                               }
                                             ?>
 
-                                                <td><?php 
-                                                  if ($bd->berkas_jenis == 'link') { ?>
-                                                    <a href="<?php echo($bd->berkas_nama) ?>">
-                                                  <?php }
-                                                    echo $bd->berkas_nama; ?>
-                                                    </a>
+                                                <td><?php echo $bd->berkas_nama; ?>
+                                                   
                                                     
                                                 </td>
                                                 <td><?php echo $idToUser['0']['user_nama']; ?></td>           
@@ -138,7 +134,7 @@
                                                     <?php 
                                                     if($bd->berkas_jenis != 'link') { ?>
                                                       
-                                                      <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
+                                                      <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama.'&id_proker='.$idProker) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
                                                      
                                                     <?php }
 
@@ -150,7 +146,7 @@
 
                                                       elseif ($bd->berkas_jenis != 'link') { ?>
 
-                                                         <button class="btn btn-danger" value="<?php echo $bd->berkas_ID ?>" id="round" onclick="return konfirmasiHapus(this.value)"><i class="material-icons">delete_forever</i></button>
+                                                         <button class="btn btn-danger" value="<?php echo $bd->berkas_ID ?>" id="round" onclick="return konfirmasiHapus(this.value, <?= $idProker ?>)"><i class="material-icons">delete_forever</i></button>
                                                       
                                                       <?php } 
                                                     }
@@ -398,10 +394,12 @@ $('.remove-preview').on('click', function() {
 
 
 
-function konfirmasiHapus(id)
+function konfirmasiHapus(id, id_proker)
 {
 
     job = confirm("Are you sure to delete permanently?");
+
+    alert(id);
     
     if(job != true)
     {
@@ -411,9 +409,9 @@ function konfirmasiHapus(id)
     else
     {   
         $.ajax({
-            data: id,
+            data: [id, id_proker],
             type: "GET",
-            url: "<?php echo base_url('Berkas_C/delBerkas/') ?>" + id,
+            url: "<?php echo base_url('Berkas_C/delBerkas/') ?>" + id + "?id_proker=" + id_proker,
             success: function(data){
                 Swal.fire({
                   position: 'top-end',
