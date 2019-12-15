@@ -80,7 +80,7 @@
     </section>
 
 
-<!-- Modal Tambah Anggota -->
+<!-- Modal Tambah Posisi Panitia -->
             <div class="modal fade" id="ModalProkerPosisi" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" id="round">
@@ -97,7 +97,7 @@
                                      <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
                                     <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
                                 </form>
-                            <!-- #END# Form Anggota -->
+                            <!-- #END# Form Posisi Panitia -->
                         </div>
                         </center>
                     </div>

@@ -109,7 +109,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group form-float">
+                                    <div class="form-group form-float" id="select_posisi">
                                         <div class="form-line">
                                             <select class="form-control show-tick" name="prokerAnggota_posisi" data-live-search="true">
                                                 <option value="">-- Posisi Kepanitiaan --</option>
@@ -119,7 +119,7 @@
                                                     }
                                                 ?>
                                             </select>
-                                        </div>
+                                        </div> Posisi kepanitiaan belum terdafar ? <a href="#" data-toggle="modal" data-target="#ModalProkerPosisi"> daftarkan </a>
                                     </div>
                                      <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
                                     <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
@@ -132,9 +132,61 @@
                 </div>
             </div>
 
+
+
+
+
+<!-- Modal Tambah Posisi Panitia -->
+<div class="modal fade" id="ModalProkerPosisi" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="round">
+           <center>
+            <div class="modal-body">
+                  <!-- Form Angggota -->
+                    <form id="form_validation" name="formProkerPosisi" class="formProkerPosisi" method="POST" style="margin: 20px" onsubmit="return submitProkerPosisi()">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="prokerPosisi_nama" id="ProkerPosisi_nama" required>
+                                <label class="form-label">Nama Posisi Kepanitiaan</label>
+                            </div>
+                        </div>
+                         <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
+                        <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                    </form>
+                <!-- #END# Form Posisi Panitia -->
+            </div>
+            </center>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
+
+    function submitProkerPosisi() {
+
+         var data = $('.formProkerPosisi').serialize();
+                  
+            $.ajax({
+                type: 'POST',
+                data: data,
+                url: "<?php echo base_url('Proker_C/addProkerPosisi') ?>",
+                success: function() {
+                    Swal.fire({
+                      position: 'top-end',
+                      type: 'success',
+                      title: 'Berhasil Posisi Kepanitiaan Proker',
+                      showConfirmButton: false,
+                      timer: 1500
+                    }).then(function(){
+                        $('#select_posisi').load(document.URL +  ' #select_posisi');
+                    })     
+                }
+            });
+            
+            return false;
+        }
 
      function submitProkerAnggota() {
 
