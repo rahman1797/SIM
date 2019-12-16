@@ -57,7 +57,7 @@
                                             <th>#</th>
                                             <th>Proker</th>
                                             <th>Status</th>
-                                            <th>Ketua Pelaksana</th>
+                                            <th>Tanggal Pelaksanaan</th>
                                             <th>Progres</th>
                                         </tr>
                                     </thead>
@@ -66,15 +66,16 @@
                                         $no = 1;
                                         foreach ($data_proker as $dp) {
                                         $id_proker = $dp->proker_ID;
+                                        $progress = $this->M_proker->Progress_proker($id_proker);
                                         ?>
                                         <tr>
                                             <td><?php echo $no++; ?></td>
                                             <td><a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>"><?php echo $dp->proker_nama . "</a>"; ?></a></td>
                                             <td><span class="label bg-green">Pending</span></td>
-                                            <td>Orang 1</td>
+                                            <td><?= $dp->proker_tanggal; ?></td>
                                             <td>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-orange" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
+                                                    <div id="progress" class="progress-bar bg-orange" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $progress; ?>%"></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -206,4 +207,8 @@
             }
         });
     }
+
+
+
+// $('#progress').attr("style","width:"+ <?= $progress ?> + ""); 
 </script>

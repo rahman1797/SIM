@@ -58,6 +58,40 @@ class M_proker extends CI_Model{
 			    }
 			}
 
+				function Progress_proker($id_proker)
+				{   
+
+				    $query1 = $this->db->get_where('prokerTugas_tbl', array('id_proker' => $id_proker));
+
+				    if($query1->num_rows()>0)
+				    {
+				      $total = $query1->num_rows();
+				    }
+				    else
+				    {
+				      $total = 0;
+				    }
+
+				    $query2 = $this->db->get_where('prokerTugas_tbl', array(
+				    	'id_proker' => $id_proker,
+				    	'prokerTugas_status' => '1' 
+				    ));
+
+				    if($query2->num_rows()>0)
+				    {
+				      $done = $query2->num_rows();
+				    }
+				    else
+				    {
+				      $done = 0;
+				    }
+
+				    $count_progress = ($done / $total) * 100;
+
+				    return $count_progress;
+
+				}
+
 			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
 			function JumlahProkerPosisi()
 			{   
