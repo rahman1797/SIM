@@ -20,7 +20,7 @@
                                     <div class="image-area">
                                         <img style="width: 70%" src="<?php echo base_url('assets/images/user.png')?>" />
                                     </div>
-                                    <div class="content-area" style="padding: 5px">
+                                    <div class="content-area" style="padding: 5px" id="refProfil1">
                                         <h3><?= $p->user_nama; ?></h3>
                                         <p><?php 
                                             if ($p->user_role == 1) {
@@ -64,7 +64,7 @@
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade in active" id="home">
                                         
-                                            <table class="table">
+                                            <table class="table" id="refProfil2">
 
                                             <tr>
                                                 <th>Nomor Induk Mahasiswa </th>
@@ -113,7 +113,11 @@
                                     </div>
 
                                     <div role="tabpanel" class="tab-pane fade in" id="profile_settings">
-                                        <form class="form-horizontal" onsubmit="#">
+                                        
+                                        <!-- <form class="form-horizontal" class="form_edit_profil" action="<?php echo base_url('User_C/ubah_profil') ?>" method="post"> -->
+
+                                        <form class="form-horizontal form_edit_profil" id="form_edit_profil" onsubmit="return ubah_profil()">
+
                                             <div class="form-group">
                                                 <label for="nama" class="col-lg-2 control-label">Nama</label>
                                                 <div class="col-lg-10">
@@ -126,14 +130,14 @@
                                                 <label for="NIM" class="col-lg-2 control-label">NIM</label>
                                                 <div class="col-lg-10">
                                                     <div class="form-line">
-                                                        <input type="email" class="form-control" id="NIM" name="user_NIM" value="<?= $p->user_NIM ?>" required>
+                                                        <input type="text" class="form-control" id="NIM" name="user_NIM" value="<?= $p->user_NIM ?>" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="prodi" class="col-lg-2 control-label">Prodi</label>
                                                 <div class="col-lg-10">
-                                                    <select class="form-control show-tick" id="prodi" name="user_prodi" data-live-search="true">
+                                                    <select class="form-control show-tick" id="prodi" name="id_prodi" data-live-search="true">
                                                         <option value="<?php echo $p->id_prodi ?>"><?= $idToProdi['0']['prodi_nama']; ?></option>
                                                         <?php 
                                                             foreach ($prodi_data as $pd) {
@@ -146,7 +150,7 @@
                                             <div class="form-group">
                                                 <label for="departemen" class="col-lg-2 control-label">Departemen</label>
                                                 <div class="col-lg-10">
-                                                    <select class="form-control show-tick" id="departemen" name="user_departemen" data-live-search="true">
+                                                    <select class="form-control show-tick" id="departemen" name="id_departemen" data-live-search="true">
                                                         <option value="<?php echo $p->id_departemen ?>"><?= $idToDepartemen['0']['departemen_nama']; ?></option>
                                                         <?php 
                                                             foreach ($departemen_data as $dd) {
@@ -159,7 +163,7 @@
                                             <div class="form-group">
                                                 <label for="departemen" class="col-lg-2 control-label">Posisi</label>
                                                 <div class="col-lg-10">
-                                                    <select class="form-control show-tick" id="departemen" name="user_departemen" data-live-search="true">
+                                                    <select class="form-control show-tick" id="posisi" name="id_posisi" data-live-search="true">
                                                         <option value="<?php echo $p->id_posisi ?>"><?= $idToPosisi['0']['posisi_nama']; ?></option>
                                                         <?php 
                                                             foreach ($posisi_data as $pd) {
@@ -175,13 +179,24 @@
                                                     <button type="submit" id="round" class="btn btn-success">Simpan</button>
                                                 </div>
                                             </div>
+
+                                            <input type="hidden" name="user_ID" value="<?= $_SESSION['user_ID'] ?>">
+                                            <!-- <input type="hidden" name="user_pass" value="<?= $_SESSION['user_pass'] ?>">
+                                            <input type="hidden" name="user_tahun" value="<?= $_SESSION['user_tahun'] ?>">
+                                            <input type="hidden" name="user_role" value="<?= $_SESSION['user_role'] ?>"> -->
+                                            
+
                                         </form>
                                     </div>
 
                                     <?php } ?>
 
                                     <div role="tabpanel" class="tab-pane fade in" id="change_password_settings">
-                                        <form class="form-horizontal">
+
+                                        <!-- <form class="form-horizontal" method="post" action="<?php echo base_url('User_C/ubah_password') ?>"> -->
+
+                                        <form class="form-horizontal form_edit_password" onsubmit="return ubah_password()"> 
+                                            
                                             <div class="form-group">
                                                 <label for="OldPassword" class="col-sm-3 control-label">Password Lama</label>
                                                 <div class="col-sm-9">
@@ -206,73 +221,20 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="form-group">
                                                 <div class="col-sm-offset-3 col-sm-9">
                                                     <button type="submit" id="round" class="btn btn-success">Simpan</button>
                                                 </div>
                                             </div>
+
+                                            <input type="hidden" name="user_ID" value="<?= $_SESSION['user_ID'] ?>">
+
                                         </form>
                                     </div>
                                 </div>
                           <!--   </div> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
-
-
-
-
-
-                        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 </div>
             </div>
@@ -280,3 +242,81 @@
             <!-- #END# Basic Examples -->
         </div>
     </section>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+<script type="text/javascript">
+    
+function ubah_profil() {
+
+ var data = $('.form_edit_profil').serialize();
+ 
+ alert(data);
+ 
+    $.ajax({
+        type: 'POST',
+        data: data,
+        url: "<?php echo base_url('User_C/ubah_profil') ?>",
+        success: function() {
+            Swal.fire({
+              position: 'top-end',
+              type: 'success',
+              title: 'Profil diubah',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(function(){
+                $('#refProfil1').load(document.URL +  ' #refProfil1');
+                $('#refProfil2').load(document.URL +  ' #refProfil2');
+                // $('#form_edit_profil').trigger("reset");
+                $("form_edit_profil")[0].reset();
+            })     
+        }
+    });
+    
+    return false;
+}
+
+
+
+
+function ubah_password() {
+
+ var data = $('.form_edit_password').serialize();
+
+ alert(data);
+          
+    $.ajax({
+        type: 'POST',
+        data: data,
+        url: "<?php echo base_url('User_C/ubah_password') ?>",
+        success: function(response) {
+            if (response=='berhasil') {
+                Swal.fire({
+                      position: 'top-end',
+                      type: 'success',
+                      title: 'Password diubah',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+                    // .then(function(){
+                    //     $('#refProfil').load(document.URL +  ' #refProfil');
+                    // })     
+                }
+
+            else if (response=='password lama salah') {
+
+                Swal.fire({
+                  title: 'Oops...',
+                  text: 'Password lama salah!'
+                })
+            
+            }
+            
+        }
+            
+    });
+    
+    return false;
+}
+
+</script>

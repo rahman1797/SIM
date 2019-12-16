@@ -32,6 +32,72 @@ class User_C extends CI_Controller {
 		$this->load->view('user/profil', $data);
 	}
 
+		function ubah_profil()
+		{
+			$idUser = $this->input->post('user_ID');
+			$nama = $this->input->post('user_nama');
+			$NIM = $this->input->post('user_NIM');
+			$prodi = $this->input->post('id_prodi');
+			$departemen = $this->input->post('id_departemen');
+			$posisi = $this->input->post('id_posisi');
+
+			$where = array('user_ID' => $idUser);
+
+			$data = array(
+
+				'user_nama' => $nama,
+				'user_NIM' => $NIM,
+				'id_prodi' => $prodi,
+				'id_departemen' => $departemen,
+				'id_posisi' => $posisi
+				
+			);
+			
+			return $this->M_sys->updateData($where, $data, 'user_tbl');
+
+			// if ($result) {
+			// 	echo "berhasil";
+			// }
+
+			// else {
+			// 	echo "tidak  berhasil";
+			// }
+
+		}
+
+		function ubah_password()
+		{
+
+			$OldPass = $this->input->post('OldPassword');
+			$NewPass = $this->input->post('NewPasswordConfirm');
+
+			$idUser = $this->input->post('user_ID');
+
+			$check_pass = $this->M_user->getProfil()->result_array();
+
+			$check_old_pass = $check_pass['0']['user_pass'];
+
+			if ($OldPass == $check_old_pass) {
+
+				$where = array('user_ID' => $idUser);
+
+				$data = array('user_pass' => $NewPass);
+				
+				$this->M_sys->updateData($where, $data, 'user_tbl');
+				
+				echo "berhasil";
+			}
+
+			else {
+
+				echo "password lama salah";
+
+			}
+
+			return false;
+
+		}
+
 	function addAnggota()
 	{
 		$nama = $this->input->post('user_nama');

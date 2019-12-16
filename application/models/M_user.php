@@ -24,7 +24,7 @@ class M_user extends CI_Model{
 			}
 
 	function getProfil(){
-		return $this->db->get_where('user_tbl', array('user_NIM' => $_SESSION['user_NIM']));
+		return $this->db->get_where('user_tbl', array('user_ID' => $_SESSION['user_ID']));
 	}
 
 	function getProdi($id_prodi){

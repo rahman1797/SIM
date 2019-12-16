@@ -58,6 +58,7 @@ class M_sys extends CI_Model{
 	function updateData($where,$data,$table)
 	{
 		$this->db->where($where);
+		
 		$this->db->update($table,$data);
 	}
 
