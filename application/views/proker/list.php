@@ -97,56 +97,56 @@
         </div>
     </section>
 
-<!-- Modal Tambah Anggota -->
-        <div class="modal fade" id="ModalProker" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" id="round">
-                   <center>
-                    <div class="modal-body">
-                          <!-- Form Angggota -->
-                      <div class="alert alert-warning" id="round">
-                          <strong>Informasi!</strong> Tahun periode kepengurusan dan lembaga akan menyesuaikan dengan ketua/ sekretaris yang meng-input.
-                        </div>
-                            <form id="form_validation" name="formProker" class="formProker" method="POST" style="margin: 20px" onsubmit="return submitProker()">
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="proker_nama" id="Proker_nama" required>
-                                        <label class="form-label">Nama Proker</label>
-                                    </div>
-                                </div>
-                                 <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <textarea type="text" class="form-control" name="proker_deskripsi" id="Proker_nama" required></textarea>
-                                        <label class="form-label">Deskripsi Proker</label>
-                                    </div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <select class="form-control" name="proker_jenis" onchange="date_hide_show(this.value)">
-                                            <option value="">- Jenis Proker -</option>
-                                            <option value="event">Event</option>
-                                            <option value="non_event">Non Event</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group form-float hidden" id="date">
-                                     <div class="form-group">
-                                        <div class="form-line" id="inputDate">
-                                            <input type="date" class="form-control" name="proker_tanggal" placeholder="Please choose a date...">
-                                        </div>
-                                    </div>
-                                </div>
-                                 <input type="hidden" name="proker_tahun" value="<?php echo $_SESSION['user_tahun'] ?>">
-                                 <input type="hidden" name="proker_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
-                                <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
-                            </form>
-
-                        <!-- #END# Form Anggota -->
-                    </div>
-                    </center>
+<!-- Modal Tambah Proker -->
+<div class="modal fade" id="ModalProker" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="round">
+           <center>
+            <div class="modal-body">
+                  <!-- Form Proker -->
+              <div class="alert alert-warning" id="round">
+                  <strong>Informasi!</strong> Tahun periode kepengurusan dan lembaga akan menyesuaikan dengan ketua/ sekretaris yang meng-input.
                 </div>
+                    <form id="form_validation" name="formProker" class="formProker" method="POST" style="margin: 20px" onsubmit="return submitProker()">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="proker_nama" id="Proker_nama" required>
+                                <label class="form-label">Nama Proker</label>
+                            </div>
+                        </div>
+                         <div class="form-group form-float">
+                            <div class="form-line">
+                                <textarea type="text" class="form-control" name="proker_deskripsi" id="Proker_nama" required></textarea>
+                                <label class="form-label">Deskripsi Proker</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <select class="form-control" name="proker_jenis" onchange="date_hide_show(this.value)">
+                                    <option value="">- Jenis Proker -</option>
+                                    <option value="event">Event</option>
+                                    <option value="non_event">Non Event</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group form-float hidden" id="date">
+                             <div class="form-group">
+                                <div class="form-line" id="inputDate">
+                                    <input type="date" class="form-control" name="proker_tanggal" placeholder="Please choose a date...">
+                                </div>
+                            </div>
+                        </div>
+                         <input type="hidden" name="proker_tahun" value="<?php echo $_SESSION['user_tahun'] ?>">
+                         <input type="hidden" name="proker_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
+                        <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                    </form>
+
+                <!-- #END# Form Proker -->
             </div>
+            </center>
         </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 

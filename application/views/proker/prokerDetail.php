@@ -10,44 +10,68 @@
                             <h1><strong>
                                 <?php 
                                     foreach ($proker_data as $pd) {
-                                        $date = date_create($pd->proker_tanggal);
-                                        echo $pd->proker_nama;
+                                        $default_date = date_create($pd->proker_tanggal);
+                                        $date = date_format($default_date,"d M Y");
+                                        $date_selection = date_format($default_date,"Y-m-d");
+
+                                        $nama_proker = $pd->proker_nama;
+                                        $deskripsi = $pd->proker_deskripsi;
+                                        $proker_jenis = $pd->proker_jenis;
+
+                                        echo $nama_proker;
+
+
                                 ?>
-                            </h1></strong>  
+                                
+                                <button class="btn btn-info get-id" data-toggle="modal" data-target="#Modal_edit_proker" id="round" value="<?php echo $nama_proker . ',' . $proker_jenis . ',' . $date_selection . ','. $deskripsi  ?>" onclick="return getValue(this.value)" ><i class="material-icons">edit</i></button>
+
+                            </h1></strong> 
+
                         </div>
                         
                         <div class="body">
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
+                                    
                                     <?php 
-                                        echo "<strong>Rencana Pelaksanaan : </strong>" .date_format($date,"d M Y");
+                                    
+                                    if ($proker_jenis == "event") {
+                                     
+                                        echo "<strong>Rencana Pelaksanaan : </strong>" . $date;
+                                    
+                                    }
+
+                                    else {
+                                    
+                                        echo "<strong>Rencana Pelaksanaan : </strong>" . "<font color='red'> non-event </font>";
+                                    
+                                    }    
+                                    
                                     ?>
+                                    
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     <?php 
                                                 
-                                      if ($pd->proker_nilai) 
-                                        {
+                                      if ($pd->proker_nilai) {
+                                         
                                             echo "<strong>Penilaian : </strong>" . $pd->proker_nilai;
+                                        
                                         }
 
                                       else 
                                         {
+                                        
                                             echo "<strong>Penilaian : </strong>" . "<font color='red'>Proker belum dinilai</font>";
-                                        };
+                                        
+                                        }
                                     ?>
                                 </div>
-                                <div class="col-lg-3">
-                                    <?php 
-                                        echo "<strong>Jumlah Panitia : </strong>" . "100"; 
-                                    ?>
+                                <div class="col-lg-4">
+                                    <?= "<strong>Deskripsi : </strong>" . $deskripsi; 
+                                } ?>
                                 </div>
-                                <div class="col-lg-3">
-                                    <?php 
-                                        echo "<strong>Status : </strong>" ."Sedang Berjalan";
-                                    }
-                                    ?>
-                                </div>
+                                
                             </div>
 
                             <!-- Widgets -->
@@ -145,3 +169,109 @@
             <!-- #END# Basic Examples -->
         </div>
     </section>
+
+
+
+
+
+<!-- Modal Tambah Proker -->
+<div class="modal fade" id="Modal_edit_proker" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="round">
+           <center>
+            <div class="modal-body">
+                  <!-- Form Proker -->
+              <div class="alert alert-warning" id="round">
+                  <strong>Informasi!</strong> Tahun periode kepengurusan dan lembaga akan menyesuaikan dengan ketua/ sekretaris yang meng-input.
+                </div>
+                    <form id="form_validation" name="form_edit_proker" class="form_edit_proker" method="POST" style="margin: 20px" onsubmit="return edit_proker()">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="proker_nama" id="proker_nama" required>
+                               <!--  <label class="form-label">Nama Proker</label> -->
+                            </div>
+                        </div>
+                         <div class="form-group form-float">
+                            <div class="form-line">
+                                <textarea type="text" class="form-control" name="proker_deskripsi" id="proker_deskripsi" required></textarea>
+                               <!--  <label class="form-label">Deskripsi Proker</label> -->
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <select class="form-control" name="proker_jenis" id="proker_jenis" onchange="return date_hide_show(this.value)">
+                                    <option id="test"></option>
+                                    <option value="event">Event</option>
+                                    <option value="non_event">Non Event</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group form-float hidden" id="date">
+                             <div class="form-group">
+                                <div class="form-line">
+                                    <input type="date" class="form-control" id="proker_tanggal" name="proker_tanggal" >
+                                </div>
+                            </div>
+                        </div>
+                         <input type="hidden" name="proker_tahun" value="<?php echo $_SESSION['user_tahun'] ?>">
+                         <input type="hidden" name="proker_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
+                        <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                    </form>
+
+                <!-- #END# Form Proker -->
+            </div>
+            </center>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script type="text/javascript">
+
+      
+        
+        function getValue(value) {
+                
+            var val = value;
+            var split = val.split(",");
+        
+            document.getElementById('proker_nama').value = split[0];
+            document.getElementById('proker_jenis').value = split[1];
+            document.getElementById('proker_tanggal').value = split[2];
+            document.getElementById('proker_deskripsi').value = split[3];
+            
+            if (split[1] == 'event') {
+                $('#date').removeClass('hidden');
+            }
+
+            return false;
+            
+        }
+
+        function date_hide_show(value){
+            
+            // alert(value);
+            
+            if (value == 'event') {
+            
+                $('#date').removeClass('hidden');
+            
+                return false;
+            
+            }
+
+            else if (value == 'non_event') {
+                $('#date').addClass('hidden');
+            
+                return false;    
+            }
+        
+        }
+
+        function edit_proker() {
+            var data = $('.form_edit_proker').serialize();
+            alert(data);
+        }
+    </script>

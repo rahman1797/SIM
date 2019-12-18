@@ -99,7 +99,7 @@
         </div>
     </section>
 
-<!-- Modal Tambah Anggota -->
+<!-- Modal Penilaian -->
         <div class="modal fade" id="ModalNilai" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" id="round">
@@ -117,7 +117,7 @@
                                 <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
                             </form>
 
-                        <!-- #END# Form Anggota -->
+                        <!-- #END# Form Penilaian -->
                     </div>
                     </center>
                 </div>
