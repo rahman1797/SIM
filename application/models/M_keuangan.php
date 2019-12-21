@@ -50,13 +50,31 @@ class M_keuangan extends CI_Model{
 	}
 
 
-	function getKeuanganAll()
+	function getPemasukanAll()
 	{
 		
-		 $query = $this->db->get_where('proker_tbl', array('proker_ID' => 0));
+		 $query = $this->db->get_where('pemasukan_tbl', array('id_proker' => 0));
 
 		 return $query->result_array();
 		
+	}
+
+	function getPengeluaranAll()
+	{
+		
+		 $query = $this->db->get_where('pengeluaran_tbl', array('id_proker' => 0));
+
+		 return $query->result_array();
+		
+	}
+
+	function delete_pemasukan_pengeluaran($where, $table) {
+		
+		$this->db->where($where);
+
+		
+		return $this->db->delete($table);
+	
 	}
 
 

@@ -69,6 +69,7 @@
                                             <th>Nominal</th>
                                             <th>Deskripsi</th>
                                             <th>Bukti File</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -77,6 +78,7 @@
                                             <th>Nominal</th>
                                             <th>Deskripsi</th>
                                             <th>Bukti File</th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -97,7 +99,10 @@
                                                 else { ?>
                                                     <a href="javascript:void(0)" class="btn btn-sm" disabled id="round"><i class="material-icons">image_search</i></a>
                                                 <?php }
-                                                ?></td>                                                
+                                                ?></td>   
+                                                <td>
+                                                  <button class="btn btn-danger" id="round" value="<?= $masuk->pemasukan_ID ?>" onclick="return hapus_pemasukan(this.value)"><i class="material-icons">delete_forever</i>
+                                                </td>                                               
                                             </tr>
                                         <?php } ?>
                                
@@ -132,6 +137,7 @@
                                             <th>Nominal</th>
                                             <th>Deskripsi</th>
                                             <th>Bukti File</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -140,6 +146,7 @@
                                             <th>Nominal</th>
                                             <th>Deskripsi</th>
                                             <th>Bukti File</th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -162,6 +169,9 @@
                                                     <a href="javascript:void(0)" class="btn btn-sm" disabled id="round"><i class="material-icons">image_search</i></a>
                                                 <?php }
                                                 ?></td>
+                                                <td>
+                                                  <button class="btn btn-danger" id="round" value="<?= $keluar->pengeluaran_ID ?>" onclick="return hapus_pengeluaran(this.value)"><i class="material-icons">delete_forever</i>
+                                                </td>  
                                                 
                                             </tr>
                                         <?php } 
@@ -318,15 +328,74 @@
             return false;
         }
 
-         function delConfirm()
-            {
-                job = confirm("Are you sure to delete permanently?");
-                
-                if(job != true)
-                {
-                    return false;
-                }
-            }
+function hapus_pemasukan(id)
+  {
+      job = confirm("Are you sure to delete permanently?");
+      
+      if(job != true)
+      {
+          return false;
+      }
+
+      else
+      {
+        
+        $.ajax({
+            data: id,
+            type: "GET",
+            url: "<?php echo base_url('Keuangan_C/delete_pemasukan?id=') ?>" + id,
+            success: function(data){
+                Swal.fire({
+                  position: 'top-end',
+                  type: 'success',
+                  title: 'Berhasil Menghapus pemasukan',
+                  showConfirmButton: false,
+                  timer: 1300
+                }).then(function(){
+                    $('#refPemasukan').load(document.URL +  ' #refPemasukan');
+                }) 
+              },
+              error: function(data){
+                alert('Failed deleting data ');
+              }
+        })
+      
+      }
+  }
+   
+ function hapus_pengeluaran(id)
+  
+  {
+      job = confirm("Are you sure to delete permanently?");
+      
+      if(job != true)
+      {
+          return false;
+      }
+
+      else
+      {
+        $.ajax({
+            data: id,
+            type: "GET",
+            url: "<?php echo base_url('Keuangan_C/delete_pengeluaran?id=') ?>" + id,
+            success: function(data){
+                Swal.fire({
+                  position: 'top-end',
+                  type: 'success',
+                  title: 'Berhasil Menghapus pengeluaran',
+                  showConfirmButton: false,
+                  timer: 1300
+                }).then(function(){
+                    $('#refPengeluaran').load(document.URL +  ' #refPengeluaran');
+                }) 
+              },
+              error: function(data){
+                alert('Failed deleting data ');
+              }
+        })
+      }
+  }
 
         document.getElementById('totalPemasukan').innerHTML = "Rp" + <?php echo $totalPemasukan ?>;
         document.getElementById('totalPengeluaran').innerHTML = "Rp" + <?php echo $totalPengeluaran ?>;

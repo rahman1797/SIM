@@ -193,4 +193,29 @@ class Keuangan_C extends CI_Controller {
 		
 	}
 
+	function delete_pemasukan()
+	{
+		$id = array('pemasukan_ID' => $_GET['id']);
+
+		$query = $this->M_keuangan->delete_pemasukan_pengeluaran($id,'pemasukan_tbl');
+		
+		if ($query) {
+
+			echo "delete berhasil";
+		
+		}
+	}
+
+	function delete_pengeluaran()
+	{
+		$id = array('pengeluaran_ID' => $_GET['id']);
+
+		$query = $this->M_keuangan->delete_pemasukan_pengeluaran($id,'pengeluaran_tbl');
+		if ($query) {
+
+			echo "delete berhasil";
+		
+		}
+	}
+
 }
