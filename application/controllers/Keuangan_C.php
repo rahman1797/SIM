@@ -14,6 +14,18 @@ class Keuangan_C extends CI_Controller {
 	
 	function index()
 	{	
+		$data['proker_pemasukan'] = $this->M_keuangan->tampil_pemasukan_all()->result();
+		$data['proker_pengeluaran'] = $this->M_keuangan->tampil_pengeluaran_all()->result();
+		$data['data_proker'] = $this->M_proker->tampil_proker()->result();
+		
+		$this->load->view('layout/header');
+		$this->load->view('keuangan_all', $data);
+		$this->load->view('layout/footer');
+
+	}
+
+	function keuangan_proker()
+	{	
 		$data['proker_pemasukan'] = $this->M_keuangan->tampil_pemasukan()->result();
 		$data['proker_pengeluaran'] = $this->M_keuangan->tampil_pengeluaran()->result();
 		

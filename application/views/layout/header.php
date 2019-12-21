@@ -223,7 +223,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('Berkas_C') ?>">
+                        <a href="<?php echo base_url('Keuangan_c') ?>">
                             <i class="material-icons">monetization_on</i>
                             <span>Keuangan</span>
                         </a>

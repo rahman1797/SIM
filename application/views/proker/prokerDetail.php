@@ -119,7 +119,7 @@
                             </div>
                             <?php } ?>
                             <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                <a href="<?php echo base_url('Keuangan_C/index?id_proker='.$_GET['id_proker']) ?>">
+                                <a href="<?php echo base_url('Keuangan_C/keuangan_proker?id_proker='.$_GET['id_proker']) ?>">
                                 <div style="cursor: pointer;" class="info-box bg-green hover-zoom-effect" id="round">
                                     <div class="icon">
                                         <i class="material-icons">timeline</i>
