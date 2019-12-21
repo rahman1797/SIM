@@ -116,7 +116,7 @@
                         </div>
                          <div class="form-group form-float">
                             <div class="form-line">
-                                <textarea type="text" class="form-control" name="proker_deskripsi" id="Proker_nama" required></textarea>
+                                <textarea type="text" class="form-control" name="proker_deskripsi" id="proker_deskripsi" required></textarea>
                                 <label class="form-label">Deskripsi Proker</label>
                             </div>
                         </div>
