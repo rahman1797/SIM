@@ -50,20 +50,14 @@ class M_keuangan extends CI_Model{
 	}
 
 
-	function getKeuanganAll($id_proker)
+	function getKeuanganAll()
 	{
 		
-		 $query = $this->db->get_where('proker_tbl', array('proker_ID' => $id_proker));
+		 $query = $this->db->get_where('proker_tbl', array('proker_ID' => 0));
 
 		 return $query->result_array();
 		
 	}
 
-	// function hitungPemasukan($id){
-	// 	$this->db->select('pemasukan_nominal');
-	// 	$this->db->get_where('pemasukan_tbl', array(
-	// 		'id_proker' => $id
-	// 	));
-	// }
 
 }

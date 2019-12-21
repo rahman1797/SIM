@@ -1,6 +1,8 @@
-<?php $idToKeuangan = $this->M_keuangan->getKeuanganAll(0);?>
+<?php $idToKeuangan = $this->M_keuangan->getKeuanganAll(); 
+  print_r($idToKeuangan);
+?>
 
-  <style type="text/css">
+  <!-- <style type="text/css">
     .box-header {
       padding: 10px;
       margin-bottom: 10px;
@@ -46,7 +48,7 @@
       border-radius: 0;
       margin-bottom: 0;
     }
-  </style>
+  </style> -->
 
 
 
@@ -350,61 +352,58 @@
 
 
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
 <script type="text/javascript">
 
-
-
-function readFile(input) {
-   if (input.files && input.files[0]) {
-   var reader = new FileReader();
+// function readFile(input) {
+//    if (input.files && input.files[0]) {
+//    var reader = new FileReader();
    
-   reader.onload = function (e) {
-   var htmlPreview = input.files[0].name;
-   var wrapperZone = $(input).parent();
-   var previewZone = $(input).parent().parent().find('.preview-zone');
-   var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
+//    reader.onload = function (e) {
+//    var htmlPreview = input.files[0].name;
+//    var wrapperZone = $(input).parent();
+//    var previewZone = $(input).parent().parent().find('.preview-zone');
+//    var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
    
-   wrapperZone.removeClass('dragover');
-   previewZone.removeClass('hidden');
-   boxZone.empty();
-   boxZone.append(htmlPreview);
-   };
+//    wrapperZone.removeClass('dragover');
+//    previewZone.removeClass('hidden');
+//    boxZone.empty();
+//    boxZone.append(htmlPreview);
+//    };
    
- reader.readAsDataURL(input.files[0]);
- }
-}
+//  reader.readAsDataURL(input.files[0]);
+//  }
+// }
 
-function reset(e) {
-   e.wrap('<form>').closest('form').get(0).reset();
-   e.unwrap();
-}
+// function reset(e) {
+//    e.wrap('<form>').closest('form').get(0).reset();
+//    e.unwrap();
+// }
 
-$(".dropzone").change(function(){
- readFile(this);
-});
-$('.dropzone-wrapper').on('dragover', function(e) {
- e.preventDefault();
- e.stopPropagation();
- $(this).addClass('dragover');
-});
-$('.dropzone-wrapper').on('dragleave', function(e) {
- e.preventDefault();
- e.stopPropagation();
- $(this).removeClass('dragover');
-});
-$('.remove-preview').on('click', function() {
- var boxZone = $(this).parents('.preview-zone').find('.box-body');
- var previewZone = $(this).parents('.preview-zone');
- var dropzone = $(this).parents('.form-group').find('.dropzone');
- boxZone.empty();
- previewZone.addClass('hidden');
- reset(dropzone);
-});
+// $(".dropzone").change(function(){
+//  readFile(this);
+// });
+// $('.dropzone-wrapper').on('dragover', function(e) {
+//  e.preventDefault();
+//  e.stopPropagation();
+//  $(this).addClass('dragover');
+// });
+// $('.dropzone-wrapper').on('dragleave', function(e) {
+//  e.preventDefault();
+//  e.stopPropagation();
+//  $(this).removeClass('dragover');
+// });
+// $('.remove-preview').on('click', function() {
+//  var boxZone = $(this).parents('.preview-zone').find('.box-body');
+//  var previewZone = $(this).parents('.preview-zone');
+//  var dropzone = $(this).parents('.form-group').find('.dropzone');
+//  boxZone.empty();
+//  previewZone.addClass('hidden');
+//  reset(dropzone);
+// });
 
 
 
