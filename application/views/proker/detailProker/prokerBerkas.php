@@ -86,7 +86,7 @@
                     <div class="card" id="round">
                       
                             <div class="dropdown" align="center">
-                              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">Kelola lainnya
+                              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%; background-color: #FF9800 !important">Kelola lainnya
                               <span class="caret"></span></button>
                               <ul class="dropdown-menu">
                                 <li><a href="<?php echo base_url('Proker_C/prokerTugas?id_proker='.$_GET['id_proker']) ?>">Daftar Tugas</a></li>

@@ -18,7 +18,7 @@
                                         <tr>
                                             <th>Nama Proker</th>
                                             <th>Tanggal</th>
-                                            <th>Lembaga</th>
+                                            <!-- <th>Lembaga</th> -->
                                             <th>Tahun Kepengurusan</th>
                                             <th>Nilai</th>
                                             <th>Kelola</th>
@@ -28,7 +28,7 @@
                                         <tr>
                                             <th>Nama Proker</th>
                                             <th>Tanggal</th>
-                                            <th>Lembaga</th>
+                                            <!-- <th>Lembaga</th> -->
                                             <th>Tahun Kepengurusan</th>
                                             <th>Nilai</th>
                                             <th>Kelola</th>
@@ -44,7 +44,7 @@
                                             <tr>
                                                 <td><?php echo $pd->proker_nama ?></td>
                                                 <td><?php echo date_format($date,"d M Y"); ?></td>
-                                                <td><?php if ($pd->proker_lembaga == 1) 
+                                                <!-- <td><?php if ($pd->proker_lembaga == 1) 
                                                             {
                                                                 echo "Eksekutif";
                                                             }
@@ -52,7 +52,7 @@
                                                             {
                                                                 echo "Legislatif";
                                                             }
-                                                 ?></td>
+                                                 ?></td> -->
                                                  <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
                                                  <td><?php if ($pd->proker_nilai && ($_SESSION['user_role'] == 1)) 
                                                             {
