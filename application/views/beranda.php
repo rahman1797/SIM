@@ -137,55 +137,12 @@
                 </div>
                 <!-- #END# Info Tugas Saya -->
 
-                  <!-- Keuangan Chart -->
-                <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
-                    <div class="card" id="round">
-                        <div class="header">
-                            <h2>Grafik Keuangan</h2>
-                        </div>
-                        <div class="body">
-                            <div id="barchart_material" style="height: 300px; max-width: 800px; margin: 0px auto;"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Keuangan Chart -->
-
             </div>           
         </div>
     </section>
-
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   
     <script>
       
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          
-          ['Program Kerja', 'Pemasukan', 'Pengeluaran'],
-         
-          <?php foreach ($data_proker as $dp) {   
-            $masuk = $this->M_keuangan->pemasukan($dp->proker_ID);
-            $keluar = $this->M_keuangan->pengeluaran($dp->proker_ID);
-          ?>
-
-          ['<?php echo $dp->proker_nama; ?>',  <?php if(is_null($masuk)){echo 0;}else{echo $masuk;}?> , <?php if(is_null($keluar)){echo 0;}else{echo $keluar;} ?>],
-          
-         <?php } ?>
-       
-        ]);
-
-        var options = {
-          hAxis: {format: 'decimal',
-          title: 'Total nominal (Rp)'},
-          bars: 'horizontal' // Required for Material Bar Charts.
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
 
       function check($idTugas, $statusTugas){
 

@@ -108,6 +108,18 @@ body {
                 window.location = "Main_C";
             });  
           }
+
+          else if(response=='dosen')
+          {
+            swal({
+            title: "Sukses!",
+              text: "Selamat Datang di SIM OPMAWA!",
+              icon: "success",
+              button: "Lanjutkan!"
+            }).then(function() {
+                window.location = "Dosen_C";
+            });  
+          }
           
           else
           {

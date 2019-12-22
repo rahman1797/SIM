@@ -38,7 +38,15 @@ class Login_C extends CI_Controller {
         
             }
                 $this->session->set_userdata($sess_data);
-                echo "sukses";
+                
+                if ($_SESSION['user_role'] == 0) {
+                    echo "dosen";
+                }
+                else {
+                    echo "sukses";    
+                }
+                
+
             }
 
         }

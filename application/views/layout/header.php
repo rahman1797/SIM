@@ -204,6 +204,25 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">NAVIGASI UTAMA</li>
+
+                    <?php if ($_SESSION['user_role'] == 0) { ?>
+
+                    <li class="active">
+                        <a href="<?php echo base_url('Dosen_C') ?>">
+                            <i class="material-icons">home</i>
+                            <span>Beranda</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">home</i>
+                            <span>Print data dalam bentuk PDF</span>
+                        </a>
+                    </li>
+                        
+                    <?php } else { ?>
+
                     <li class="active">
                         <a href="<?php echo base_url('Main_C') ?>">
                             <i class="material-icons">home</i>
@@ -270,7 +289,7 @@
                         </a>
                     </li>
 
-                     <?php } ?>
+                     <?php } }?>
                 </ul>
             </div>
             <!-- #Menu -->

@@ -23,8 +23,11 @@
 
                                 ?>
                                 
+                                <?php if (($pd->proker_tahun == $_SESSION['user_tahun']) && $pd->proker_lembaga == $_SESSION['user_role'] ) {
+                                   
+                                 ?>
                                 <button class="btn btn-info get-id" data-toggle="modal" data-target="#Modal_edit_proker" id="round" value="<?php echo $nama_proker . ',' . $proker_jenis . ',' . $date_selection . ','. $deskripsi  ?>" onclick="return getValue(this.value)" ><i class="material-icons">edit</i></button>
-
+                                <?php } ?>
                             </h1></strong> 
 
                         </div>
