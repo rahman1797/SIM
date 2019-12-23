@@ -40,7 +40,7 @@
                                                
                                                  <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
                                                  <td>
-                                                     <a href="<?php echo base_url('Dosen_C/prokerDetail?id_proker='.$id_proker)?>">
+                                                     <a href="<?php echo base_url('Dosen_C/proker_opmawa_detail?id_proker='.$id_proker)?>">
                                                         <button class="btn btn-info" id="round"><i class="material-icons">more_horiz</i></button>
                                                     </a>
                                                  
@@ -92,7 +92,7 @@
                                                
                                                  <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
                                                  <td>
-                                                     <a href="<?php echo base_url('Dosen_C/prokerDetail?id_proker='.$id_proker)?>">
+                                                     <a href="<?php echo base_url('Dosen_C/proker_opmawa_detail?id_proker='.$id_proker)?>">
                                                         <button class="btn btn-info" id="round"><i class="material-icons">more_horiz</i></button>
                                                     </a>
                                                  

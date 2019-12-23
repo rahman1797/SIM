@@ -28,7 +28,7 @@ class M_dosen extends CI_Model{
 			}
 
 	function getProfil(){
-		return $this->db->get_where('user_tbl', array('user_ID' => $_SESSION['user_ID']));
+		return $this->db->get_where('dosen_tbl', array('dosen_ID' => $_SESSION['user_ID']));
 	}
 
 	function getProdi($id_prodi){

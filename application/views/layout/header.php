@@ -192,7 +192,11 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right" id="round">
+                            <?php if($_SESSION['user_role'] == 0) { ?>
+                            <li><a href="<?php echo base_url('Dosen_C/profil') ?>"><i class="material-icons">person</i>Profil</a></li>
+                            <?php } else { ?>
                             <li><a href="<?php echo base_url('User_C/profil') ?>"><i class="material-icons">person</i>Profil</a></li>
+                            <?php } ?>
                             <li role="separator" class="divider"></li>
                             <li><a href="<?php echo base_url('Login_C/exeLogout') ?>"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
@@ -215,10 +219,36 @@
                     </li>
 
                     <li>
-                        <a href="#">
-                            <i class="material-icons">home</i>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">settings</i>
                             <span>Print data dalam bentuk PDF</span>
                         </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="javascript:void(0);" class="menu-toggle">Data program kerja Eksekutif</a>
+                                <ul class="ml-menu">
+                                    <?php for ($i=0; $i < 5; $i++) { ?>
+                                    <li>
+                                         
+                                         <a href="<?php echo base_url('Dosen_C/print_to_pdf?tahun=' . (date('Y') - $i). '&&role=1' ) ?>"> <?= date("Y") - $i; ?> </a>
+                                          
+                                    </li>
+                                    <?php } ?> 
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class="menu-toggle">Data program kerja Legislatif</a>
+                                <ul class="ml-menu">
+                                    <?php for ($i=0; $i < 5; $i++) { ?>
+                                    <li>
+                                         
+                                         <a href="#"> <?= date("Y") - $i; ?> </a>
+                                          
+                                    </li>
+                                    <?php } ?> 
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
                         
                     <?php } else { ?>
