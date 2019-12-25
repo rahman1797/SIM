@@ -18,6 +18,8 @@
                                         $deskripsi = $pd->proker_deskripsi;
                                         $proker_jenis = $pd->proker_jenis;
 
+                                        $output = $pd->proker_output;
+
                                         echo $nama_proker;
 
 
@@ -78,94 +80,139 @@
                             </div>
 
                             <!-- Widgets -->
-                        <div class="row clearfix">
-                            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                <a href="<?php echo base_url('Proker_C/prokerTugas?id_proker='.$_GET['id_proker']) ?>">
-                                    <div style="cursor: pointer;" class="info-box bg-pink hover-zoom-effect" id="round">
+                            <div class="row clearfix">
+                                <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                                    <a href="<?php echo base_url('Proker_C/prokerTugas?id_proker='.$_GET['id_proker']) ?>">
+                                        <div style="cursor: pointer;" class="info-box bg-pink hover-zoom-effect" id="round">
+                                            <div class="icon">
+                                                <i class="material-icons">assignment_turned_in</i>
+                                            </div>
+                                            <div class="content">
+                                                <div class="text">DAFTAR TUGAS</div>
+                                                <div class="number count-to" data-from="0" data-to="<?php echo $totalTugas; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                                    <a href="<?php echo base_url('Proker_C/prokerAnggota?id_proker='.$_GET['id_proker']) ?>">
+                                        <div style="cursor: pointer;" class="info-box bg-light-blue hover-zoom-effect" id="round">
+                                            <div class="icon">
+                                                <i class="material-icons">people</i>
+                                            </div>
+                                            <div class="content">
+                                                <div class="text">Daftar Panitia</div>
+                                                <div class="number count-to" data-from="0" data-to="<?php echo $totalAnggotaKepanitiaan; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+                                <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                                    <a href="<?php echo base_url('Berkas_C/proker?id_proker='.$_GET['id_proker']) ?>">
+                                        <div style="cursor: pointer;" class="info-box bg-orange hover-zoom-effect" id="round">
+                                            <div class="icon">
+                                                <i class="material-icons">description</i>
+                                            </div>
+                                            <div class="content">
+                                                <div class="text">Dokumen</div>
+                                                <div class="number count-to" data-from="0" data-to="<?php echo $totalBerkas; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <?php } ?>
+                                <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                                    <a href="<?php echo base_url('Keuangan_C/keuangan_proker?id_proker='.$_GET['id_proker']) ?>">
+                                    <div style="cursor: pointer;" class="info-box bg-green hover-zoom-effect" id="round">
                                         <div class="icon">
-                                            <i class="material-icons">assignment_turned_in</i>
+                                            <i class="material-icons">timeline</i>
                                         </div>
                                         <div class="content">
-                                            <div class="text">DAFTAR TUGAS</div>
-                                            <div class="number count-to" data-from="0" data-to="<?php echo $totalTugas; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                                            <div class="text">Laporan Keuangan</div>
+                                            <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                <a href="<?php echo base_url('Proker_C/prokerAnggota?id_proker='.$_GET['id_proker']) ?>">
-                                    <div style="cursor: pointer;" class="info-box bg-light-blue hover-zoom-effect" id="round">
+                                    </a>
+                                </div>
+                                
+                                <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                                    <a href="<?php echo base_url('Proker_C/prokerPosisi?id_proker='.$_GET['id_proker']) ?>">
+                                    <div style="cursor: pointer;" class="info-box bg-light-green hover-zoom-effect" id="round">
                                         <div class="icon">
                                             <i class="material-icons">people</i>
                                         </div>
                                         <div class="content">
-                                            <div class="text">Daftar Panitia</div>
-                                            <div class="number count-to" data-from="0" data-to="<?php echo $totalAnggotaKepanitiaan; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                                            <div class="text">Posisi Kepanitiaan</div>
+                                            <div class="number count-to" data-from="0" data-to="<?php echo $totalPosisiKepanitiaan; ?>" data-speed="1000" data-fresh-interval="20"></div>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
 
-                            <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
-                            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                <a href="<?php echo base_url('Berkas_C/proker?id_proker='.$_GET['id_proker']) ?>">
-                                    <div style="cursor: pointer;" class="info-box bg-orange hover-zoom-effect" id="round">
+                                <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                                    <a href="<?php echo base_url('Proker_C/prokerEvaluasi?id_proker='.$_GET['id_proker']) ?>">
+                                    <div style="cursor: pointer;" class="info-box bg-light-green hover-zoom-effect" id="round">
                                         <div class="icon">
-                                            <i class="material-icons">description</i>
+                                            <i class="material-icons">people</i>
                                         </div>
                                         <div class="content">
-                                            <div class="text">Dokumen</div>
-                                            <div class="number count-to" data-from="0" data-to="<?php echo $totalBerkas; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                                            <div class="text">Evaluasi Proker</div>
+                                            <div class="number count-to" data-from="0" data-to="<?php echo $totalEvaluasi; ?>" data-speed="1000" data-fresh-interval="20"></div>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                            <?php } ?>
-                            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                <a href="<?php echo base_url('Keuangan_C/keuangan_proker?id_proker='.$_GET['id_proker']) ?>">
-                                <div style="cursor: pointer;" class="info-box bg-green hover-zoom-effect" id="round">
-                                    <div class="icon">
-                                        <i class="material-icons">timeline</i>
-                                    </div>
-                                    <div class="content">
-                                        <div class="text">Laporan Keuangan</div>
-                                        <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
-                                    </div>
+                                    </a>
                                 </div>
-                                </a>
-                            </div>
-                            
-                            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                <a href="<?php echo base_url('Proker_C/prokerPosisi?id_proker='.$_GET['id_proker']) ?>">
-                                <div style="cursor: pointer;" class="info-box bg-light-green hover-zoom-effect" id="round">
-                                    <div class="icon">
-                                        <i class="material-icons">people</i>
-                                    </div>
-                                    <div class="content">
-                                        <div class="text">Posisi Kepanitiaan</div>
-                                        <div class="number count-to" data-from="0" data-to="<?php echo $totalPosisiKepanitiaan; ?>" data-speed="1000" data-fresh-interval="20"></div>
-                                    </div>
-                                </div>
-                                </a>
                             </div>
 
-                            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                                <a href="<?php echo base_url('Proker_C/prokerEvaluasi?id_proker='.$_GET['id_proker']) ?>">
-                                <div style="cursor: pointer;" class="info-box bg-light-green hover-zoom-effect" id="round">
-                                    <div class="icon">
-                                        <i class="material-icons">people</i>
-                                    </div>
-                                    <div class="content">
-                                        <div class="text">Evaluasi Proker</div>
-                                        <div class="number count-to" data-from="0" data-to="<?php echo $totalEvaluasi; ?>" data-speed="1000" data-fresh-interval="20"></div>
-                                    </div>
-                                </div>
-                                </a>
-                            </div>
-                            
                         </div>
 
-                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="header" align="center">
+    <h3>
+       <i>Output</i> dari program kerja
+                        <!-- <button class="btn btn-info get-id" data-toggle="modal" data-target="#Modal_edit_proker" id="round" value="<?php echo $nama_proker . ',' . $proker_jenis . ',' . $date_selection . ','. $deskripsi  ?>" onclick="return getValue(this.value)" ><i class="material-icons">edit</i></button> -->
+                 
+    </h3> 
+    <div class="alert alert-warning" id="round">
+        <strong>Informasi!</strong> Output program kerja merupakan penjelasan mengenai akhir/hasil dari terlaksananya program kerja. 
+    </div>
+    <button class="btn btn-info get-id" data-toggle="modal" data-target="#Modal_edit_proker" id="round" value="<?php echo $nama_proker . ',' . $proker_jenis . ',' . $date_selection . ','. $deskripsi  ?>" onclick="return getValue(this.value)" ><i class="material-icons">edit</i></button>
+</div>
+
+<div class="body"><textarea name="proker_output" id="output" readonly><?= $output; ?></textarea></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div> 
