@@ -1,4 +1,4 @@
-     <?php $getProkerData = $this->M_proker->getProkerNama($_GET['id_proker']);?>
+<?php $getProkerData = $this->M_proker->getProkerNama($_GET['id_proker']);?>
       <section class="content">
         <div class="container-fluid">
         
@@ -187,12 +187,14 @@
                  
     </h3> 
     <div class="alert alert-warning" id="round">
-        <strong>Informasi!</strong> Output program kerja merupakan penjelasan mengenai akhir/hasil dari terlaksananya program kerja. 
+        <strong>Informasi!</strong> Output program kerja merupakan penjelasan mengenai akhir/hasil dari terlaksananya program kerja. Untuk penjelasan lebih lanjut bisa <a href="javascript:void(0)" data-toggle="modal" data-target="#Modal_informasi">klik disini</a> 
     </div>
-    <button class="btn btn-info get-id" data-toggle="modal" data-target="#Modal_edit_proker" id="round" value="<?php echo $nama_proker . ',' . $proker_jenis . ',' . $date_selection . ','. $deskripsi  ?>" onclick="return getValue(this.value)" ><i class="material-icons">edit</i></button>
+    <button class="btn btn-info get-id" data-toggle="modal" data-target="#Modal_output" id="round" ><i class="material-icons">edit</i></button>
 </div>
 
-<div class="body"><textarea name="proker_output" id="output" readonly><?= $output; ?></textarea></div>
+<div class="body" id="refOutput">
+    <textarea name="proker_output" id="output" readonly><?= $output; ?></textarea>
+</div>
 
 
 
@@ -277,6 +279,83 @@
 
 
 
+<!-- Modal -->
+  <div class="modal fade" id="Modal_informasi" role="dialog" id="round">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Informasi detail mengenai output program kerja</h4>
+        </div>
+        <hr>
+        <div class="modal-body">
+           <strong>Penjelasan singkat</strong><br>
+              Output dari proker adalah sebuah penjelasan mengenai tujuan dari program kerja yang telah tercapai atau akan tercapai.
+              <p>
+              <hr>
+              <strong>Mengapa disarankan untuk diisi ?</strong><br>
+              Penjelasan yang dibuat dapat memudahkan para pengurus Opmawa terutama pada periode berikutnya untuk mengetahui hasil / prestasi dari pelaksanaan program kerja. Selain itu, informasi mengenai output program kerja juga dapat mempermudah dosen dalam memeroleh informasi mengenai program kerja Opmawa yang nantinya informasi tersebut akan digunakan untuk kepentingan peningkatan kualitas dan sangat berguna pada saat dilaksanakannya akreditasi jurusan / program studi.
+              <p>
+              <hr>
+              <strong>Saran tata cara mengisi yang disarankan</strong><br>
+              Dalam pengisian, bisa dilakukan berdasarkan jenis proker.
+              <ul>
+                  <li>Event</li>
+                  Pada program kerja event, pengisian dapat dengan cara menjelaskan apa yang dilakukan dan siapa yang mengikuti acara tersebut. Jika acara tersebut berupa kompetisi, dapat ditambahkan informasi mengenai kontestan dan siapa saja yang memeroleh penghargaan.
+                  <li>Non event</li>
+                  Pada program kerja non event, pengisian dapat dengan cara hanya menjelaskan tujuan dan hasil yang telah didapatkan dari pelaksanaan program kerja tersebut. 
+              </ul>
+              Dalam kata lain, pengisian output program kerja hampir sama dengan field report dari program kerja. Hanya saja sebagai informasi yang lebih ringkas dan mudah untuk dipahami.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+  <div class="modal fade" id="Modal_output" role="dialog" id="round">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Informasi detail mengenai output program kerja</h4>
+        </div>
+        <hr>
+        <div class="modal-body">
+          <form class="form_output_proker" method="post" onsubmit="return output_proker()">
+              <textarea name="proker_output"><?= $output ?></textarea>
+              <input type="hidden" name="id_proker" value="<?= $_GET['id_proker'] ?>">
+
+              <button type="submit">Simpan</button>
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+
 
     <script type="text/javascript">
 
@@ -323,5 +402,32 @@
         function edit_proker() {
             var data = $('.form_edit_proker').serialize();
             alert(data);
+        }
+
+
+        function output_proker() {
+
+            var data = $('.form_output_proker').serialize();
+
+            alert(data);
+
+            $.ajax({
+                type: 'POST',
+                data: data,
+                url: "<?php echo base_url('Proker_C/ubah_output') ?>",
+                success: function() {
+                    Swal.fire({
+                      position: 'top-end',
+                      type: 'success',
+                      title: 'Output diubah',
+                      showConfirmButton: false,
+                      timer: 1500
+                    }).then(function(){
+                        $('#refOutput').load(document.URL +  ' #refOutput');
+                    })     
+                }
+            });
+
+            return false;
         }
     </script>

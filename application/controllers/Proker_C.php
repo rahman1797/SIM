@@ -29,6 +29,22 @@ class Proker_C extends CI_Controller {
 
 	}
 
+	function ubah_output()
+	{
+		$idProker = $this->input->post('id_proker');
+		$output = $this->input->post('proker_output');
+
+		$where = array('proker_ID' => $idProker);
+
+		$data = array(
+
+			'proker_output' => $output
+				
+		);
+			
+			return $this->M_sys->updateData($where, $data, 'proker_tbl');
+	}
+
 		function nilai_proker_bem()
 		{
 			$idProker  = $this->input->post('proker_ID');
