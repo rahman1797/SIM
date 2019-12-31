@@ -1,3 +1,7 @@
+<?php if ($_SESSION['user_role'] == 0) {
+    redirect(base_url('Dosen_C'));
+} ?>
+
 <section class="content">
         <div class="container-fluid">
             
@@ -26,7 +30,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                    <a href="<?php echo base_url('Berkas_C/allBerkas') ?>">
+                    <a href="<?php echo base_url('Berkas_C') ?>">
                     <div class="info-box bg-orange hover-zoom-effect" id="round">
                         <div class="icon">
                             <i class="material-icons">attachment</i>

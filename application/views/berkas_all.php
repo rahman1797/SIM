@@ -54,8 +54,11 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" id="round"> 
 
-                     <center>
+                     <center>                      
                           <div class="row" style="padding: 20px">
+                            <div class="alert alert-warning" id="round">
+                              Sebelum mengupload berkas, disarankan untuk me-rename file yang akan di upload agar mempermudah proses pencarian kembali.
+                            </div>
                             <div class="col-lg-4">
                               <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalUmum" id="round"><i class="material-icons">library_add</i> Berkas non-LPJ</button>  
                             </div>

@@ -6,7 +6,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                         <div class="header" align="center">
-                            <h2><strong>PROGRAM KERJA</strong></h2>
+                            <h2><strong>PROGRAM KERJA PERIODE SAAT INI</strong></h2>
                             <p></p>
                             <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProker" id="round"><i class="material-icons">library_add</i> Program Kerja</button>  
                         </div>
@@ -18,7 +18,6 @@
                                         <tr>
                                             <th>Nama Proker</th>
                                             <th>Tanggal</th>
-                                            <!-- <th>Lembaga</th> -->
                                             <th>Tahun Kepengurusan</th>
                                             <th>Nilai</th>
                                             <th>Kelola</th>
@@ -28,7 +27,6 @@
                                         <tr>
                                             <th>Nama Proker</th>
                                             <th>Tanggal</th>
-                                            <!-- <th>Lembaga</th> -->
                                             <th>Tahun Kepengurusan</th>
                                             <th>Nilai</th>
                                             <th>Kelola</th>
@@ -37,22 +35,15 @@
                                     <tbody>
 
                                         <?php 
-                                            foreach($proker_data as $pd){ 
+                                            foreach($proker_data as $pd){
+                                            if ($pd->proker_tahun == $_SESSION['user_tahun']) {
+                                         
                                             $date = date_create($pd->proker_tanggal);
                                             $id_proker = $pd->proker_ID
                                             ?>
                                             <tr>
                                                 <td><?php echo $pd->proker_nama ?></td>
                                                 <td><?php echo date_format($date,"d M Y"); ?></td>
-                                                <!-- <td><?php if ($pd->proker_lembaga == 1) 
-                                                            {
-                                                                echo "Eksekutif";
-                                                            }
-                                                          elseif ($pd->proker_lembaga == 2) 
-                                                            {
-                                                                echo "Legislatif";
-                                                            }
-                                                 ?></td> -->
                                                  <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
                                                  <td><?php if ($pd->proker_nilai && ($_SESSION['user_role'] == 1)) 
                                                             {
@@ -80,7 +71,7 @@
                                                         {  ?>
                                                            <a href='<?php echo site_url();?>/Proker_C/delProker/<?php print($pd->proker_ID);?>'><button class='btn btn-danger' id='round' onclick='return delConfirm()'><i class="material-icons">delete_forever</i></button></a>
                                                        <?php }
-                                            } ?>
+                                            } } ?>
                                                  
                                                  </td>
                                             </tr>
@@ -91,6 +82,75 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card" id="round">
+                        <div class="header" align="center">
+                            <h2><strong>PROGRAM KERJA PERIODE LAINNYA</strong></h2>  
+                        </div>
+                        
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Proker</th>
+                                            <th>Tanggal</th>
+                                            <th>Tahun Kepengurusan</th>
+                                            <th>Nilai</th>
+                                            <th>Kelola</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Nama Proker</th>
+                                            <th>Tanggal</th>
+                                            <th>Tahun Kepengurusan</th>
+                                            <th>Nilai</th>
+                                            <th>Kelola</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                        <?php 
+                                            foreach($proker_data as $pd){
+                                            if ($pd->proker_tahun != $_SESSION['user_tahun']) {
+                                         
+                                            $date = date_create($pd->proker_tanggal);
+                                            $id_proker = $pd->proker_ID
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $pd->proker_nama ?></td>
+                                                <td><?php echo date_format($date,"d M Y"); ?></td>
+                                                 <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
+                                                 <td><?php if ($pd->proker_nilai && ($_SESSION['user_role'] == 1)) 
+                                                            {
+                                                                echo $pd->proker_nilai;
+                                                            }
+                                                            elseif ($_SESSION['user_role'] == 2) {
+                                                                echo "<font color='red'>Nan</font>";
+                                                            }
+                                                          else 
+                                                            {
+                                                                echo "<font color='red'>Proker belum dinilai</font>";
+                                                            }
+                                                 ?></td>
+                                                 <td>
+                                                     <a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>">
+                                                        <button class="btn btn-info" id="round"><i class="material-icons">more_horiz</i></button>
+                                                    </a>
+                                                <?php } } ?>
+                                                 
+                                                 </td>
+                                            </tr>
+                                            
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div> 
 
             <!-- #END# Basic Examples -->

@@ -29,13 +29,6 @@
 
 
 
-
-
-
-
-
-
-
 <!-- <body>
     <div class="wrapper">
         <div id="konten">
@@ -48,11 +41,6 @@
 </body>
 
  -->
-
-
-
-
-
 
         
             <!-- Basic Examples -->
@@ -100,6 +88,10 @@
                                             <tr>
                                                 <th>Deskripsi</th>
                                                 <td><?php echo $pd->proker_deskripsi; ?></td>
+                                            </tr>   
+                                            <tr>
+                                                <th>Output</th>
+                                                <td><?php echo $pd->proker_output; ?></td>
                                             </tr>             
 
                                         <?php } ?>
