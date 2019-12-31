@@ -90,7 +90,7 @@
                                                 <td><?php echo $pd->proker_deskripsi; ?></td>
                                             </tr>   
                                             <tr>
-                                                <th>Output</th>
+                                                <th>Output / Tujuan</th>
                                                 <td><?php echo $pd->proker_output; ?></td>
                                             </tr>             
 
@@ -149,7 +149,80 @@
 
 
 
+
+
+<div class="row clearfix">
+               
+                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card" id="round"> 
+                        <div class="header" align="center">
+                            <h2><strong>BERKAS LEMBAR PERTANGGUNG JAWABAN PROKER</strong></h2>
+                        </div>
+                        <div class="body">
+                            <table id="refBerkas" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama / Link</th>
+                                            <th>Oleh</th>
+                                            <th>Tanggal</th>
+                                            <th>Kelola</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Nama / Link</th>
+                                            <th>Diupload Oleh</th>
+                                            <th>Tanggal upload</th>
+                                            <th>Kelola</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                        <?php                     
+                                            foreach($proker_berkas_lpj as $bd){ 
+                                                $idUser = $bd->id_user;
+                                                $idProker = $bd->id_proker;
+                                                $idToUser = $this->M_user->getUserNama($idUser);
+                                            
+                                                if ($idProker == $_GET['id_proker']) {           
+                                                
+                                            ?>
+
+                                            <tr>
+
+                                                <td><?php echo $bd->berkas_nama; ?>
+                                                   
+                                                    
+                                                </td>
+                                                <td><?php echo $idToUser['0']['user_nama']; ?></td>           
+                                                <td><?php echo $bd->berkas_tanggal; ?></td>           
+                                                <td>
+                                                    <?php 
+                                                    if($bd->berkas_jenis != 'link') { ?>
+                                                      
+                                                      <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama.'&id_proker='.$idProker) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
+                                                     
+                                                    <?php }
+
+                                                   
+                                                 ?>                        
+                                                </td>
+                                            </tr>
+                                    
+                                        <?php } 
+
+                                          } ?>
+                                        
+                                    </tbody>
+                                </table> 
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+
             <div class="row clearfix">
+               
                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round"> 
                         <div class="body">

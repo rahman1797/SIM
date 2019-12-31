@@ -107,6 +107,7 @@ class Dosen_C extends CI_Controller {
 			$data['user_data'] = $this->M_user->tampil_user()->result();
 			$data['proker_pemasukan'] = $this->M_keuangan->tampil_pemasukan()->result();
 			$data['proker_pengeluaran'] = $this->M_keuangan->tampil_pengeluaran()->result();
+			$data['proker_berkas_lpj'] = $this->M_dosen->tampil_berkas_opmawa()->result();
 			// $data['proker_evaluasi'] = $this->M_proker->tampil_prokerEvaluasi()->result();
 
 			$this->load->view('layout/header');

@@ -6,6 +6,10 @@ class M_dosen extends CI_Model{
 		return $this->db->get_where('proker_tbl');
 	}
 
+	function tampil_berkas_opmawa(){
+		return $this->db->get_where('berkas_tbl', array('berkas_jenis' => 'lpj'));
+	}
+
 	function cekLogin($table,$where){		
 		return $this->db->get_where($table,$where);
 	}
