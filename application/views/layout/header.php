@@ -324,8 +324,11 @@
             </div>
             <!-- #Menu -->
             <!-- Footer -->
-            <div class="container-fluid">
-             
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2019 - Now <a href="javascript:void(0);"></a>
+                </div>
+                
             </div>
             <!-- #Footer -->
         </aside>
@@ -338,10 +341,7 @@
                         <p>PENGATURAN</p>
                         <ul class="setting-list">
                             <li>
-                                <span>Reminder Backup</span>
-                                <div class="switch">
-                                    <label><input type="checkbox" checked><span class="lever"></span></label>
-                                </div>
+                                <a class="btn btn-info" href="<?php echo base_url('Main_C/backup_database') ?>">Backup Database</a>
                             </li>
                         </ul>
                     </div>

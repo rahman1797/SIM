@@ -50,6 +50,14 @@ class M_sys extends CI_Model{
 		$this->db->delete('prodi_tbl', $data);
 	}
 
+	function deleteOpmawa($data) {
+		$this->db->delete('opmawa_tbl', $data);
+	}
+
+	function deleteDepartemen($data) {
+		$this->db->delete('departemen_tbl', $data);
+	}
+
 	function deletePosisi($data) {
 		$this->db->delete('posisi_tbl', $data);
 	}

@@ -92,6 +92,9 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
 
              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" id="round"> 
+                    <div class="header" align="center">
+                        <h2><strong>DATA KEUANGAN NON PROKER</strong></h2>
+                    </div>
                     
                     <div class="body">
                         <table class="table">
@@ -106,7 +109,7 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                                 <td> <div id="totalPengeluaran"></div></td>
                             </tr>
                             <tr>
-                                <th>Saldo</th>
+                                <th>Selisih</th>
                                 <td>:</td>
                                 <td><div id="saldo"></div></td>
                             </tr>

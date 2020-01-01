@@ -11,6 +11,14 @@ class M_rapat extends CI_Model
 		));	
 	}
 
+	// function rapat_terdekat(){
+	// 		$this->db->order_by('rapat_tanggal', 'ASC');
+	// 	return $this->db->get_where('rapat_tbl', array(
+	// 		'rapat_lembaga' => $_SESSION['user_role'],
+	// 		'id_opmawa' => $_SESSION['user_opmawa']
+	// 	));	
+	// }
+
 		function tampil_evaluasi(){
 			// $this->db->order_by('rapat_tanggal', 'ASC');
 			return $this->db->get_where('evaluasirapat_tbl', array(

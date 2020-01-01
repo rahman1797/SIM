@@ -126,7 +126,7 @@
                             <table id="refBerkas" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                 <thead>
                                     <tr>
-                                        <th>Nama File</th>
+                                        <th>Nama File / Link</th>
                                         <th>Di upload oleh</th>
                                       <!--   <th>Program kerja</th> -->
                                         <th>Tanggal di upload</th>

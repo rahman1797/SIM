@@ -28,11 +28,9 @@
 
                             <?php if ($idToProker['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
 
-
                             <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                             <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerPosisi" id="round"><i class="material-icons">group_add</i> Posisi Kepanitiaan</button>  
                             <?php } ?>
-
 
                             <?php } ?>
                         </div>
@@ -54,9 +52,7 @@
                                     </tfoot>
                                     <tbody>
 
-                                        <?php 
-                                       
-                                            foreach($proker_posisi as $pp){ 
+                                        <?php foreach($proker_posisi as $pp){ 
                                             $idProker = $pp->id_proker;
                                             $id_posisi = $pp->prokerPosisi_ID;
                                             // $idToProker = $this->M_proker->getProkerNama($idProker);
@@ -122,44 +118,41 @@
 
 <script type="text/javascript">
 
-    //
+document.getElementById("round").style.visibility = "collapse";
 
-        document.getElementById("round").style.visibility = "collapse";
-    
-    
+function submitProkerPosisi() {
 
-
-     function submitProkerPosisi() {
-
-         var data = $('.formProkerPosisi').serialize();
-                  
-            $.ajax({
-                type: 'POST',
-                data: data,
-                url: "<?php echo base_url('Proker_C/addProkerPosisi') ?>",
-                success: function() {
-                    Swal.fire({
-                      position: 'top-end',
-                      type: 'success',
-                      title: 'Berhasil Posisi Kepanitiaan Proker',
-                      showConfirmButton: false,
-                      timer: 1500
-                    }).then(function(){
-                        $('#refProkerPosisi').load(document.URL +  ' #refProkerPosisi');
-                    })     
-                }
-            });
-            
-            return false;
+ var data = $('.formProkerPosisi').serialize();
+          
+    $.ajax({
+        type: 'POST',
+        data: data,
+        url: "<?php echo base_url('Proker_C/addProkerPosisi') ?>",
+        success: function() {
+            Swal.fire({
+              position: 'top-end',
+              type: 'success',
+              title: 'Berhasil Posisi Kepanitiaan Proker',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(function(){
+                var ref = $('#refProkerPosisi');
+                $('#refProkerPosisi').load(document.URL +  ' #refProkerPosisi' , function() {
+                ref.children('#refProkerPosisi').unwrap();});
+            })     
         }
+    });
+    
+    return false;
+}
 
-         function delConfirm()
-            {
-                job = confirm("Are you sure to delete permanently?");
-                
-                if(job != true)
-                {
-                    return false;
-                }
-            }
+function delConfirm() {
+
+    job = confirm("Are you sure to delete permanently?");
+    
+    if(job != true)
+    {
+        return false;
+    }
+}
 </script>

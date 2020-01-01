@@ -29,6 +29,32 @@ class Proker_C extends CI_Controller {
 
 	}
 
+	function ubah_proker()
+	{	
+		$idProker = $this->input->post('id_proker');
+		$nama = $this->input->post('proker_nama');
+		$deskripsi = $this->input->post('proker_deskripsi');
+		$jenis = $this->input->post('proker_jenis');
+		$tanggal = $this->input->post('proker_tanggal');
+		$lembaga = $this->input->post('proker_lembaga');
+		$tahun = $this->input->post('proker_tahun');
+
+		$where = array('proker_ID' => $idProker);
+
+		$data = array(
+
+			'proker_nama' => $nama,
+			'proker_deskripsi' => $deskripsi,
+			'proker_jenis' => $jenis,
+			'proker_tanggal' => $tanggal,
+			'proker_lembaga' => $lembaga,
+			'proker_tahun' => $tahun
+				
+		);
+			
+			return $this->M_sys->updateData($where, $data, 'proker_tbl');
+	}
+
 	function ubah_output()
 	{
 		$idProker = $this->input->post('id_proker');

@@ -9,6 +9,7 @@ class Main_C extends CI_Controller {
         $this->load->model('M_proker');
         $this->load->model('M_berkas');
         $this->load->model('M_user');
+        $this->load->model('M_rapat');
         $this->load->model('M_keuangan');
     }
 	
@@ -16,7 +17,9 @@ class Main_C extends CI_Controller {
 	{	
 		$data['data_proker'] = $this->M_proker->tampil_proker()->result();
 		$data['data_tugasSaya'] = $this->M_proker->tampil_prokerTugasSaya()->result();
+		$data['rapat_terdekat'] = $this->M_rapat->tampil_jadwal()->result();
 		$data['allBerkas'] = $this->M_berkas->JumlahBerkas();
+
 		$this->load->view('layout/header');
 		$this->load->view('beranda', $data);
 		$this->load->view('layout/footer');
@@ -78,9 +81,8 @@ class Main_C extends CI_Controller {
 // ON PROGGRESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 //	SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 //	SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-	function addOPMAWA()
+	function addOpmawa()
 	{
-
 		$namaKetua = $this->input->post('nama_user');
 		$namaKabinet = $this->input->post('nama_kabinet');
 		$tahunKepengurusan = $_SESSION['user_tahun'] + 1;
@@ -132,6 +134,21 @@ class Main_C extends CI_Controller {
 		$idPro = array('prodi_ID' => $id);
 		$this->M_sys->deleteProdi($idPro,'prodi_tbl');
 		redirect(base_url('Main_C/regProdi'));
+	}
+
+	function delOpmawa($id)
+	{
+		$idOp = array('opmawa_ID' => $id);
+		$this->M_sys->deleteOpmawa($idOp,'opmawa_tbl');
+		redirect(base_url('Main_C/regOpmawa'));
+	}
+
+	function delDepartemen($id)
+	{
+		$idDep = array('departemen_ID' => $id);
+		$this->M_sys->deleteDepartemen($idDep,'departemen_tbl');
+		// redirect(base_url('Main_C/opmawaDetail?id_opmawa=' + $idOp));
+		echo "<script>window.history.back()</script>";
 	}
 
 	function delPosisi($id)
