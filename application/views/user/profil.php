@@ -249,10 +249,8 @@
     
 function ubah_profil() {
 
- var data = $('.form_edit_profil').serialize();
- 
- alert(data);
- 
+    var data = $('.form_edit_profil').serialize();
+
     $.ajax({
         type: 'POST',
         data: data,
@@ -265,7 +263,9 @@ function ubah_profil() {
               showConfirmButton: false,
               timer: 1500
             }).then(function(){
-                $('#refProfil1').load(document.URL +  ' #refProfil1');
+                var ref = $('#refProfil1');
+                $('#refProfil1').load(document.URL +  ' #refProfil1', function() {
+                ref.children('#refProfil1').unwrap();});
                 $('#refProfil2').load(document.URL +  ' #refProfil2');
                 // $('#form_edit_profil').trigger("reset");
                 $("form_edit_profil")[0].reset();
@@ -277,14 +277,10 @@ function ubah_profil() {
 }
 
 
-
-
 function ubah_password() {
 
- var data = $('.form_edit_password').serialize();
-
- alert(data);
-          
+    var data = $('.form_edit_password').serialize();
+      
     $.ajax({
         type: 'POST',
         data: data,
@@ -318,5 +314,4 @@ function ubah_password() {
     
     return false;
 }
-
 </script>

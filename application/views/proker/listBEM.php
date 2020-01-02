@@ -152,7 +152,9 @@
                       showConfirmButton: false,
                       timer: 1500
                     }).then(function(){
-                        $('#refProker').load(document.URL +  ' #refProker');
+                        var ref = $('#refProker');
+                        $('#refProker').load(document.URL +  ' #refProker', function() {
+                        ref.children('#refProker').unwrap();});
                     })     
                 }
             });
