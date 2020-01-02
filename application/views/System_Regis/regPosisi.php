@@ -55,7 +55,6 @@
     </div>
 </section>
 
-
  <!-- Modal Posisi -->
 <div class="modal fade" id="ModalPosisi" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

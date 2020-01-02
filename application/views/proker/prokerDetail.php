@@ -260,10 +260,10 @@
         <hr>
         <div class="modal-body">
           <form class="form_output_proker" method="post" onsubmit="return output_proker()">
-              <textarea name="proker_output"><?= $output ?></textarea>
+              <textarea style="width: 100%; min-height: 300px" name="proker_output"><?= $output ?></textarea>
               <input type="hidden" name="id_proker" value="<?= $_GET['id_proker'] ?>">
 
-              <button type="submit">Simpan</button>
+              <button class="btn btn-info" id="round" type="submit">Simpan</button>
           </form>
         </div>
         <div class="modal-footer">

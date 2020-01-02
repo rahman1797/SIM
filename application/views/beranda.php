@@ -13,8 +13,8 @@
                             <i class="material-icons">playlist_add_check</i>
                         </div>
                         <div class="content">
-                            <div class="text">DAFTAR TUGAS</div>
-                            <div class="number count-to" data-from="0" data-to="10" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text"></div>
+                            <div class="number count-to" data-from="0" data-to="0" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -65,12 +65,12 @@
                         </div>
                         <div class="body">
                             <div class="table-responsive">
-                                <table class="table table-hover dashboard-task-infos">
+                                <table id="refDaftarProker" class="table table-hover dashboard-task-infos">
                                     <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Proker</th>
-                                            <th>Status</th>
+                                            <!-- <th>Status</th> -->
                                             <th>Tanggal Pelaksanaan</th>
                                             <th>Progres</th>
                                         </tr>
@@ -85,17 +85,26 @@
                                         <tr>
                                             <td><?php echo $no++; ?></td>
                                             <td><a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>"><?php echo $dp->proker_nama . "</a>"; ?></a></td>
-                                            <td><span class="label bg-green">Pending</span></td>
-                                            <td><?= $dp->proker_tanggal; ?></td>
+                                            <!-- <td><span class="label bg-green">Pending</span></td> -->
+                                            <td><?php if ($dp->proker_jenis == "event") {
+                                                    echo date('d F Y', strtotime($dp->proker_tanggal));
+                                                }
+                                                else {
+                                                    echo "<font color='red'>non-event</font>";
+                                                } ?>
+                                            </td>
                                             <td>
                                                 <div class="progress">
-                                                    <div id="progress" class="progress-bar bg-orange" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $progress; ?>%"></div>
+                                                    <?php if (is_nan($progress)) {
+                                                        $progress = 100 ?>
+                                                        <div id="progress" class="progress-bar bg-orange" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?= $progress; ?>%"></div>
+                                                    <?php } else { ?>
+                                                        <div id="progress" class="progress-bar bg-green" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?= $progress; ?>%"></div>
+                                                    <?php } ?>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <?php    
-                                            }
-                                        ?>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -171,6 +180,9 @@
 
             success: function(){  
                 $('#refTugasSaya').load(document.URL +  ' #refTugasSaya');
+                var ref = $('#refDaftarProker'); 
+                $('#refDaftarProker').load(document.URL +  ' #refDaftarProker', function() {
+                ref.children('#refDaftarProker').unwrap();});
                  //You can remove here
             },
             //on error
