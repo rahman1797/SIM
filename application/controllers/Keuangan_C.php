@@ -114,6 +114,7 @@ class Keuangan_C extends CI_Controller {
 
 	function inputPengeluaran(){
 		$nominal = $this->input->post('pengeluaran_nominal');
+		$nominal = str_replace(',', '', $nominal);
 		$deskripsi = $this->input->post('pengeluaran_deskripsi');
 		$tanggal = $this->input->post('pengeluaran_tanggal');
 		$file = $this->input->post('pengeluaran_file');
