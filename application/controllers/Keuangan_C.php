@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Keuangan_C extends CI_Controller {
 
-	function __Construct(){
+	function __Construct() {
         parent ::__construct();
         $this->load->model('M_keuangan');
         $this->load->model('M_proker');
@@ -37,6 +37,7 @@ class Keuangan_C extends CI_Controller {
 
 	function inputPemasukan(){
 		$nominal = $this->input->post('pemasukan_nominal');
+		$nominal = str_replace(',','', $nominal);
 		$deskripsi = $this->input->post('pemasukan_deskripsi');
 		$tanggal = $this->input->post('pemasukan_tanggal');
 		$file = $this->input->post('pemasukan_file');
@@ -45,7 +46,6 @@ class Keuangan_C extends CI_Controller {
 		$idOpmawa = $this->input->post('id_opmawa');
 
 		// START UPLOAD
-
 		$config['upload_path']	 = 'uploads/keuangan/';
 	    $config['allowed_types'] = 'jpg|png|jpeg';
 	    $config['max_size'] 	 = 20000; 

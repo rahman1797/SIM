@@ -1,6 +1,15 @@
  <!-- Jquery Core Js -->
     <script src="<?php echo base_url('assets/plugins/jquery/jquery.min.js')?>"></script>
 
+    <script src="<?php echo base_url('assets/js/jquery.masknumber.js')?>"></script>
+
+    <script type="text/javascript">
+         $(document).ready(function () {
+            $('[name=pengeluaran_nominal]').maskNumber({integer: true});
+            $('[name=pemasukan_nominal]').maskNumber({integer: true});
+        });
+    </script>
+
     <!-- Bootstrap Core Js -->
     <script src="<?php echo base_url('assets/plugins/bootstrap/js/bootstrap.min.js')?>"></script>
 

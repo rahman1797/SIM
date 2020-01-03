@@ -129,12 +129,10 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                         <div class="header" align="center">
                             <h2><strong>PEMASUKAN</strong></h2>
                             <p></p>
-                            <?php if ($idToPemasukan['0']['pemasukan_lembaga'] == $_SESSION['user_role']) { ?>
-
                             <?php if ($idToPemasukan['0']['id_opmawa'] == $_SESSION['user_opmawa']) { ?>
-                            <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round"><i class="material-icons">add_circle_outline</i> Pemasukan</button>  
-                            <?php } ?>
-
+                                      <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round"><i class="material-icons">add_circle_outline</i> Pemasukan</button>  
+                            <?php } elseif (isset($idToPemasukan)) { ?>
+                                      <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round"><i class="material-icons">add_circle_outline</i> Pemasukan</button>
                             <?php } ?>
                         </div>
                         
@@ -166,7 +164,7 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                                             foreach($proker_pemasukan as $masuk){ 
                                             $totalPemasukan += $masuk->pemasukan_nominal; 
                                             $date = date_create($masuk->pemasukan_tanggal);
-                                            if ($masuk->id_opmawa == $_SESSION['user_opmawa']) {
+                                            if (($masuk->id_opmawa == $_SESSION['user_opmawa']) && ($masuk->pemasukan_lembaga == $_SESSION['user_role'])) {
                                             ?>
                                             <tr>
                                                 <td><?php echo date_format($date, "d M Y") ?></td>
@@ -197,12 +195,10 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                         <div class="header" align="center">
                             <h2><strong>PENGELUARAN</strong></h2>
                             <p></p>
-                            <?php if ($idToPengeluaran['0']['pengeluaran_lembaga'] == $_SESSION['user_role']) { ?>
-
                             <?php if ($idToPengeluaran['0']['id_opmawa'] == $_SESSION['user_opmawa']) { ?>
-                            <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round"><i class="material-icons">add_circle_outline</i> Pengeluaran</button>  
-                            <?php } ?>
-
+                                      <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round"><i class="material-icons">add_circle_outline</i> Pengeluaran</button>  
+                            <?php } elseif (isset($idToPengeluaran)) { ?>
+                                      <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round"><i class="material-icons">add_circle_outline</i> Pengeluaran</button>
                             <?php } ?>
                         </div>
                         
@@ -251,10 +247,8 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                                                 <td>
                                                   <button class="btn btn-danger" id="round" value="<?= $keluar->pengeluaran_ID ?>" onclick="return hapus_pengeluaran(this.value)"><i class="material-icons">delete_forever</i>
                                                 </td>   
-                                                
                                             </tr>
-                                        <?php } }
-                                        ?>                  
+                                        <?php } } ?>                  
                                     </tbody>
                                 </table>
                             </div>
@@ -360,6 +354,7 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
+
 
 // function readFile(input) {
 //    if (input.files && input.files[0]) {

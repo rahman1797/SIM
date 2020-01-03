@@ -137,7 +137,7 @@ function submitProkerPosisi() {
               timer: 1500
             }).then(function(){
                 var ref = $('#refProkerPosisi');
-                $('#refProkerPosisi').load(document.URL +  ' #refProkerPosisi' , function() {
+                $('#refProkerPosisi').load(document.URL +  ' #refProkerPosisi', function() {
                 ref.children('#refProkerPosisi').unwrap();});
             })     
         }

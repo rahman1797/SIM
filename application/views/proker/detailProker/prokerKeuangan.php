@@ -1,5 +1,4 @@
 <?php $idToProker = $this->M_proker->getProkerNama($_GET['id_proker']); ?>
-
       <section class="content">
         <div class="container-fluid">
         
@@ -82,7 +81,6 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-
                                         <?php 
                                             $totalPemasukan = 0;
                                             foreach($proker_pemasukan as $masuk){ 
@@ -150,14 +148,11 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-
                                         <?php 
                                             $totalPengeluaran = 0;
                                             foreach($proker_pengeluaran as $keluar){ 
                                             $totalPengeluaran += $keluar->pengeluaran_nominal; 
-                                            $date = date_create($keluar->pengeluaran_tanggal)
-
-                                            ?>
+                                            $date = date_create($keluar->pengeluaran_tanggal) ?>
                                             <tr>
                                                 <td><?php echo date_format($date, "d M Y") ?></td>
                                                 <td><?php echo $keluar->pengeluaran_nominal ?></td>
@@ -189,144 +184,143 @@
     </section>
 
 <!-- Modal Pemasukan -->
-            <div class="modal fade" id="ModalPemasukan" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content" id="round">
-                       <center>
-                        <div class="modal-body">
-                              <!-- Form Angggota -->
-                                <!-- <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()"> -->
-                                <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPemasukan') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input class="form-control" type="text" id="pemasukan_nominal" name="pemasukan_nominal">
-                                            <label class="form-label">Nominal</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input class="form-control" type="text" name="pemasukan_deskripsi">
-                                            <label class="form-label">Deskripsi</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input class="form-control" type="date" name="pemasukan_tanggal">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input class="form-control-file" type="file" id="pemasukan_file" name="pemasukan_file">
-                                        </div>
-                                    </div>
-                                     <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
-                                     <input type="hidden" name="pemasukan_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
-                                     <input type="hidden" name="id_opmawa" value="<?php echo $_SESSION['user_opmawa'] ?>">
-                                    <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
-                                </form>
+<div class="modal fade" id="ModalPemasukan" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="round">
+           <center>
+            <div class="modal-body">
+                  <!-- Form Angggota -->
+                    <!-- <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()"> -->
+                    <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPemasukan') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input class="form-control" type="text" id="pemasukan_nominal" name="pemasukan_nominal">
+                                <label class="form-label">Nominal</label>
+                            </div>
                         </div>
-                        </center>
-                    </div>
-                </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input class="form-control" type="text" name="pemasukan_deskripsi">
+                                <label class="form-label">Deskripsi</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input class="form-control" type="date" name="pemasukan_tanggal">
+                                
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input class="form-control-file" type="file" id="pemasukan_file" name="pemasukan_file">
+                            </div>
+                        </div>
+                         <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
+                         <input type="hidden" name="pemasukan_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
+                         <input type="hidden" name="id_opmawa" value="<?php echo $_SESSION['user_opmawa'] ?>">
+                        <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                    </form>
             </div>
+            </center>
+        </div>
+    </div>
+</div>
 
 
-            <!-- Modal Pengeluaran -->
-            <div class="modal fade" id="ModalPengeluaran" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content" id="round">
-                       <center>
-                        <div class="modal-body">
-                              <!-- Form Angggota -->
-                                <!-- <form id="form_validation" name="formPengeluaran" class="formPengeluaran" method="POST" style="margin: 20px" onsubmit="return submitPengeluaran()"> -->
-                               <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPengeluaran') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input class="form-control" type="text" id="pengeluaran_nominal" name="pengeluaran_nominal">
-                                            <label class="form-label">Nominal</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input class="form-control" type="text" name="pengeluaran_deskripsi">
-                                            <label class="form-label">Deskripsi</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input class="form-control" type="date" name="pengeluaran_tanggal">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input class="form-control-file" type="file" id="pengeluaran_file" name="pengeluaran_file">
-                                        </div>
-                                    </div>
-                                     <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
-                                     <input type="hidden" name="pengeluaran_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
-                                     <input type="hidden" name="id_opmawa" value="<?php echo $_SESSION['user_opmawa'] ?>">
-                                    <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
-                                </form>
+<!-- Modal Pengeluaran -->
+<div class="modal fade" id="ModalPengeluaran" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="round">
+           <center>
+            <div class="modal-body">
+                  <!-- Form Angggota -->
+                    <!-- <form id="form_validation" name="formPengeluaran" class="formPengeluaran" method="POST" style="margin: 20px" onsubmit="return submitPengeluaran()"> -->
+                   <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPengeluaran') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input class="form-control" type="text" id="pengeluaran_nominal" name="pengeluaran_nominal">
+                                <label class="form-label">Nominal</label>
+                            </div>
                         </div>
-                        </center>
-                    </div>
-                </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input class="form-control" type="text" name="pengeluaran_deskripsi">
+                                <label class="form-label">Deskripsi</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input class="form-control" type="date" name="pengeluaran_tanggal">
+                                
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input class="form-control-file" type="file" id="pengeluaran_file" name="pengeluaran_file">
+                            </div>
+                        </div>
+                         <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
+                         <input type="hidden" name="pengeluaran_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
+                         <input type="hidden" name="id_opmawa" value="<?php echo $_SESSION['user_opmawa'] ?>">
+                        <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                    </form>
             </div>
+            </center>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
 
-     function submitPemasukan() {
+// function submitPemasukan() {
 
-         var data = $('.formPemasukan').serialize();
-         alert(data);
+//     var data = $('.formPemasukan').serialize();
 
-            $.ajax({
-                type: 'POST',
-                data: data,
-                url: "<?php echo base_url('Keuangan_C/inputPemasukan') ?>",
-                success: function() {
-                    Swal.fire({
-                      position: 'top-end',
-                      type: 'success',
-                      title: 'Berhasil',
-                      showConfirmButton: false,
-                      timer: 1300
-                    }).then(function(){
-                        $('#refPemasukan').load(document.URL +  ' #refPemasukan');
-                    })     
-                }
-            });
-            
-            return false;
-        }
+//     $.ajax({
+//         type: 'POST',
+//         data: data,
+//         url: "<?php echo base_url('Keuangan_C/inputPemasukan') ?>",
+//         success: function() {
+//             Swal.fire({
+//               position: 'top-end',
+//               type: 'success',
+//               title: 'Berhasil',
+//               showConfirmButton: false,
+//               timer: 1300
+//             }).then(function(){
+//                 $('#refPemasukan').load(document.URL +  ' #refPemasukan');
+//             })     
+//         }
+//     });
+    
+//     return false;
+// }
 
-        function submitPengeluaran() {
+// function submitPengeluaran() {
 
-         var data = $('.formPengeluaran').serialize();
-                  
-            $.ajax({
-                type: 'POST',
-                data: data,
-                url: "<?php echo base_url('Keuangan_C/inputPengeluaran') ?>",
-                success: function() {
-                    Swal.fire({
-                      position: 'top-end',
-                      type: 'success',
-                      title: 'Berhasil',
-                      showConfirmButton: false,
-                      timer: 1300
-                    }).then(function(){
-                        $('#refPengeluaran').load(document.URL +  ' #refPengeluaran');
-                    })     
-                }
-            });
-            
-            return false;
-        }
+//     var data = $('.formPengeluaran').serialize();
+          
+//     $.ajax({
+//         type: 'POST',
+//         data: data,
+//         url: "<?php echo base_url('Keuangan_C/inputPengeluaran') ?>",
+//         success: function() {
+//             Swal.fire({
+//               position: 'top-end',
+//               type: 'success',
+//               title: 'Berhasil',
+//               showConfirmButton: false,
+//               timer: 1300
+//             }).then(function(){
+//                 $('#refPengeluaran').load(document.URL +  ' #refPengeluaran');
+//             })     
+//         }
+//     });
+    
+//     return false;
+// }
 
 function hapus_pemasukan(id)
   {
@@ -337,8 +331,7 @@ function hapus_pemasukan(id)
           return false;
       }
 
-      else
-      {
+      else {
         
         $.ajax({
             data: id,
@@ -352,7 +345,9 @@ function hapus_pemasukan(id)
                   showConfirmButton: false,
                   timer: 1300
                 }).then(function(){
-                    $('#refPemasukan').load(document.URL +  ' #refPemasukan');
+                    var ref = $('$refPemasukan');
+                    $('#refPemasukan').load(document.URL +  ' #refPemasukan', function() {
+                    ref.children('#refPemasukan').unwrap();});
                 }) 
               },
               error: function(data){
@@ -387,7 +382,9 @@ function hapus_pemasukan(id)
                   showConfirmButton: false,
                   timer: 1300
                 }).then(function(){
-                    $('#refPengeluaran').load(document.URL +  ' #refPengeluaran');
+                    var ref = $('#refPengeluaran');
+                    $('#refPengeluaran').load(document.URL +  ' #refPengeluaran', function() {
+                    ref.children('#refPengeluaran').unwrap();});
                 }) 
               },
               error: function(data){
@@ -397,9 +394,7 @@ function hapus_pemasukan(id)
       }
   }
 
-        document.getElementById('totalPemasukan').innerHTML = "Rp" + <?php echo $totalPemasukan ?>;
-        document.getElementById('totalPengeluaran').innerHTML = "Rp" + <?php echo $totalPengeluaran ?>;
-        document.getElementById('saldo').innerHTML = "Rp" + <?php echo $totalPemasukan - $totalPengeluaran ?>;
-
-
+document.getElementById('totalPemasukan').innerHTML = "Rp" + <?php echo $totalPemasukan ?>;
+document.getElementById('totalPengeluaran').innerHTML = "Rp" + <?php echo $totalPengeluaran ?>;
+document.getElementById('saldo').innerHTML = "Rp" + <?php echo $totalPemasukan - $totalPengeluaran ?>;
 </script>

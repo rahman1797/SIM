@@ -17,37 +17,37 @@ class M_proker extends CI_Model{
 	}
 
 			function tampil_prokerPosisi(){
-				return $this->db->get_where('prokerPosisi_tbl', array('id_proker' => $_GET['id_proker']));
+				return $this->db->get_where('prokerposisi_tbl', array('id_proker' => $_GET['id_proker']));
 			}
 
 			function tampil_prokerAnggota(){
-				return $this->db->get_where('prokerAnggota_tbl', array('id_proker' => $_GET['id_proker']));	
+				return $this->db->get_where('prokeranggota_tbl', array('id_proker' => $_GET['id_proker']));	
 			}
 
 			function tampil_prokerTugas(){
-				return $this->db->get_where('prokerTugas_tbl', array('id_proker' => $_GET['id_proker']));	
+				return $this->db->get_where('prokertugas_tbl', array('id_proker' => $_GET['id_proker']));	
 			}
 
 			function tampil_prokerEvaluasi(){
-				return $this->db->get_where('prokerEvaluasi_tbl', array('id_proker' => $_GET['id_proker']));	
+				return $this->db->get_where('prokerevaluasi_tbl', array('id_proker' => $_GET['id_proker']));	
 			}
 					function getPosisiPanitia($id_posisi)
 					{
-						$query = $this->db->get_where('prokerPosisi_tbl', array('prokerPosisi_ID' => $id_posisi));
+						$query = $this->db->get_where('prokerposisi_tbl', array('prokerposisi_ID' => $id_posisi));
 
 						return $query->result_array();
 					}
 
 					function tampil_prokerTugasSaya()
 					{
-						return $this->db->get_where('prokerTugas_tbl', array('id_user' => $_SESSION['user_ID'] ));
+						return $this->db->get_where('prokertugas_tbl', array('id_user' => $_SESSION['user_ID'] ));
 					}
 
 
 			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
 			function JumlahProkerTugas()
 			{   
-			    $query = $this->db->get_where('prokerTugas_tbl', array('id_proker' => $_GET['id_proker']));
+			    $query = $this->db->get_where('prokertugas_tbl', array('id_proker' => $_GET['id_proker']));
 			    if($query->num_rows()>0)
 			    {
 			      return $query->num_rows();
@@ -61,7 +61,7 @@ class M_proker extends CI_Model{
 				function Progress_proker($id_proker)
 				{   
 
-				    $query1 = $this->db->get_where('prokerTugas_tbl', array('id_proker' => $id_proker));
+				    $query1 = $this->db->get_where('prokertugas_tbl', array('id_proker' => $id_proker));
 
 				    if($query1->num_rows()>0)
 				    {
@@ -72,7 +72,7 @@ class M_proker extends CI_Model{
 				      $total = 0;
 				    }
 
-				    $query2 = $this->db->get_where('prokerTugas_tbl', array(
+				    $query2 = $this->db->get_where('prokertugas_tbl', array(
 				    	'id_proker' => $id_proker,
 				    	'prokerTugas_status' => '1' 
 				    ));
@@ -95,7 +95,7 @@ class M_proker extends CI_Model{
 			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
 			function JumlahProkerPosisi()
 			{   
-			    $query = $this->db->get_where('prokerPosisi_tbl', array('id_proker' => $_GET['id_proker']));
+			    $query = $this->db->get_where('prokerposisi_tbl', array('id_proker' => $_GET['id_proker']));
 			    if($query->num_rows()>0)
 			    {
 			      return $query->num_rows();
@@ -109,7 +109,7 @@ class M_proker extends CI_Model{
 			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
 			function JumlahEvaluasiProker()
 			{   
-			    $query = $this->db->get_where('prokerEvaluasi_tbl', array('id_proker' => $_GET['id_proker']));
+			    $query = $this->db->get_where('prokerevaluasi_tbl', array('id_proker' => $_GET['id_proker']));
 			    if($query->num_rows()>0)
 			    {
 			      return $query->num_rows();
@@ -123,7 +123,7 @@ class M_proker extends CI_Model{
 			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
 			function JumlahProkerAnggota()
 			{   
-			    $query = $this->db->get_where('prokerAnggota_tbl', array('id_proker' => $_GET['id_proker']));
+			    $query = $this->db->get_where('prokeranggota_tbl', array('id_proker' => $_GET['id_proker']));
 			    if($query->num_rows()>0)
 			    {
 			      return $query->num_rows();
@@ -146,7 +146,7 @@ class M_proker extends CI_Model{
 			function getPosisiNama($id_posisi)
 			{
 				
-				 $query = $this->db->get_where('prokerPosisi_tbl', array('prokerPosisi_ID' => $id_posisi));
+				 $query = $this->db->get_where('prokerposisi_tbl', array('prokerposisi_ID' => $id_posisi));
 
         		 return $query->result_array();
 				
@@ -159,19 +159,19 @@ class M_proker extends CI_Model{
 	}
 
 			function inputProkerPosisi($data) {
-				$this->db->insert('prokerPosisi_tbl', $data);
+				$this->db->insert('prokerposisi_tbl', $data);
 			}
 
 			function inputProkerAnggota($data) {
-				$this->db->insert('prokerAnggota_tbl', $data);
+				$this->db->insert('prokeranggota_tbl', $data);
 			}
 
 			function inputProkerTugas($data) {
-				$this->db->insert('prokerTugas_tbl', $data);
+				$this->db->insert('prokertugas_tbl', $data);
 			}
 
 			function inputProkerEvaluasi($data) {
-				$this->db->insert('prokerEvaluasi_tbl', $data);
+				$this->db->insert('prokerevaluasi_tbl', $data);
 			}
 
 
@@ -181,19 +181,18 @@ class M_proker extends CI_Model{
 	}
 
 			function deleteProkerPosisi($data) {
-				$this->db->delete('prokerPosisi_tbl', $data);
+				$this->db->delete('prokerposisi_tbl', $data);
 			}
 
 			function deleteProkerAnggota($data) {
-				$this->db->delete('prokerAnggota_tbl', $data);
+				$this->db->delete('prokeranggota_tbl', $data);
 			}
 
 			function deleteProkerTugas($data) {
-				$this->db->delete('prokerTugas_tbl', $data);
+				$this->db->delete('prokertugas_tbl', $data);
 			}
 
 			function deleteProkerEvaluasi($data) {
-				$this->db->delete('prokerEvaluasi_tbl', $data);
+				$this->db->delete('prokerevaluasi_tbl', $data);
 			}
-
 }

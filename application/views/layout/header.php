@@ -8,9 +8,7 @@
     <title>SIM OPMAWA</title>
 
     <link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" type="image/x-icon">
-    
-    <!-- Google Fonts -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css"> -->
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
    
 
@@ -49,15 +47,10 @@
       .round_edge {
         border-radius: 12px; 
       }
-
-      .hide_scroll::-webkit-scrollbar {
-         display: none;
-      }
     </style>
-
 </head>
 
-<body class="theme-red hide_scroll">
+<body class="theme-red">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -272,7 +265,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('Keuangan_c') ?>">
+                        <a href="<?php echo base_url('Keuangan_C') ?>">
                             <i class="material-icons">monetization_on</i>
                             <span>Keuangan</span>
                         </a>

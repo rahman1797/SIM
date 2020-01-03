@@ -53,7 +53,10 @@ class M_keuangan extends CI_Model{
 	function getPemasukanAll()
 	{
 		
-		 $query = $this->db->get_where('pemasukan_tbl', array('id_proker' => 0));
+		 $query = $this->db->get_where('pemasukan_tbl', array(
+		 	'id_proker' => 0,
+		 	'pemasukan_lembaga' => $_SESSION['user_role']
+		 ));
 
 		 return $query->result_array();
 		
@@ -62,7 +65,10 @@ class M_keuangan extends CI_Model{
 	function getPengeluaranAll()
 	{
 		
-		 $query = $this->db->get_where('pengeluaran_tbl', array('id_proker' => 0));
+		 $query = $this->db->get_where('pengeluaran_tbl', array(
+		 	'id_proker' => 0,
+		 	'pengeluaran_lembaga' => $_SESSION['user_role']
+		 ));
 
 		 return $query->result_array();
 		
