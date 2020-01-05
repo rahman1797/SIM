@@ -1,5 +1,5 @@
 <?php 
- 
+error_reporting(0);
 class M_proker extends CI_Model{
 
 	function tampil_proker(){

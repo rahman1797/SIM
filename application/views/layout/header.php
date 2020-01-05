@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
-<?php error_reporting(0) ?> 
+<?php 
+if (!isset($_SESSION['logged_in'])) {
+    Redirect(base_url('Login_C'));
+}
+error_reporting(0); ?> 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -89,14 +93,6 @@
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
                 <div class="navbar-brand">Sistem Informasi Manajemen OPMAWA</div> 
- 
-               <?php
-                    if (!isset($_SESSION['logged_in'])) {
-                        Redirect(base_url('Login_C'));
-                    }
-                    
-                ?> 
-
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -162,7 +158,6 @@
                     </li>
                     <!-- #END# Notifications -->
                     <!-- Tasks -->             
-
                     
                     <!-- #END# Tasks -->
                     <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
@@ -201,16 +196,13 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">NAVIGASI UTAMA</li>
-
                     <?php if ($_SESSION['user_role'] == 0) { ?>
-
                     <li class="active">
                         <a href="<?php echo base_url('Dosen_C') ?>">
                             <i class="material-icons">home</i>
                             <span>Beranda</span>
                         </a>
                     </li>
-
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">settings</i>
@@ -221,10 +213,8 @@
                                 <a href="javascript:void(0);" class="menu-toggle">Data program kerja Eksekutif</a>
                                 <ul class="ml-menu">
                                     <?php for ($i=0; $i < 5; $i++) { ?>
-                                    <li>
-                                         
-                                         <a href="<?php echo base_url('Dosen_C/print_to_pdf?tahun=' . (date('Y') - $i). '&&role=1' ) ?>"> <?= date("Y") - $i; ?> </a>
-                                          
+                                    <li>             
+                                        <a href="<?php echo base_url('Dosen_C/print_to_pdf?tahun=' . (date('Y') - $i). '&&role=1' ) ?>"> <?= date("Y") - $i; ?> </a>  
                                     </li>
                                     <?php } ?> 
                                 </ul>
@@ -234,18 +224,14 @@
                                 <ul class="ml-menu">
                                     <?php for ($i=0; $i < 5; $i++) { ?>
                                     <li>
-                                         
-                                         <a href="#"> <?= date("Y") - $i; ?> </a>
-                                          
+                                        <a href="#"> <?= date("Y") - $i; ?> </a>  
                                     </li>
                                     <?php } ?> 
                                 </ul>
                             </li>
                         </ul>
                     </li>
-                        
                     <?php } else { ?>
-
                     <li class="active">
                         <a href="<?php echo base_url('Main_C') ?>">
                             <i class="material-icons">home</i>
@@ -303,7 +289,6 @@
                         </ul>
                     </li>
                     <?php if ($_SESSION['user_role'] == 2) { ?>
-                    
                     <li class="header">Pengawasan</li>
                     <li class="active">
                         <a href="<?php echo base_url('Proker_C/proker_bem') ?>">
@@ -311,8 +296,7 @@
                             <span>Penilaian Program Kerja BEM</span>
                         </a>
                     </li>
-
-                     <?php } }?>
+                    <?php } }?>
                 </ul>
             </div>
             <!-- #Menu -->
@@ -320,8 +304,7 @@
             <div class="legal">
                 <div class="copyright">
                     &copy; 2019 - Now <a href="javascript:void(0);"></a>
-                </div>
-                
+                </div> 
             </div>
             <!-- #Footer -->
         </aside>
