@@ -122,7 +122,9 @@ function submitProkerEvaluasi() {
               showConfirmButton: false,
               timer: 1500
             }).then(function(){
-                $('#refProkerEvaluasi').load(document.URL +  ' #refProkerEvaluasi');
+                var ref = $('#refProkerEvaluasi');
+                $('#refProkerEvaluasi').load(document.URL +  ' #refProkerEvaluasi', function() {
+                ref.children('#refProkerEvaluasi').unwrap();});
             })     
         }
     });

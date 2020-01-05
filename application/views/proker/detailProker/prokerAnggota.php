@@ -169,7 +169,6 @@ function hide_modal_panitia() {
 
 function show_modal_panitia() {
     $('#ModalProkerPosisi').modal('hide');
-    // $('#ModalProkerAnggota').modal('toggle');
     return false;
 }
 
@@ -189,8 +188,9 @@ function submitProkerPosisi() {
               showConfirmButton: false,
               timer: 1500
             }).then(function(){
-
-                $('#select_posisi').load(document.URL +  ' #select_posisi');
+                var ref = $('#select_posisi');
+                $('#select_posisi').load(document.URL +  ' #select_posisi', function() {
+                ref.children('#select_posisi').unwrap();});
 
             })     
         }

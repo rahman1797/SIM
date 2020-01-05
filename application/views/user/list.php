@@ -195,7 +195,9 @@
                           showConfirmButton: false,
                           timer: 1500
                         }).then(function(){
-                            $('#refAng').load(document.URL +  ' #refAng');
+                            var ref = $('#refAng');
+                            $('#refAng').load(document.URL +  ' #refAng', function() {
+                            ref.children('#refAng').unwrap();});
                         })     
                     }
                 });

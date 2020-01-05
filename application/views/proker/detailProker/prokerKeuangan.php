@@ -322,8 +322,7 @@
 //     return false;
 // }
 
-function hapus_pemasukan(id)
-  {
+function hapus_pemasukan(id){
       job = confirm("Are you sure to delete permanently?");
       
       if(job != true)
@@ -332,7 +331,6 @@ function hapus_pemasukan(id)
       }
 
       else {
-        
         $.ajax({
             data: id,
             type: "GET",
@@ -346,7 +344,7 @@ function hapus_pemasukan(id)
                   timer: 1300
                 }).then(function(){
                     var ref = $('$refPemasukan');
-                    $('#refPemasukan').load(document.URL +  ' #refPemasukan', function() {
+                    $('#refPemasukan').load(document.URL + ' #refPemasukan', function() {
                     ref.children('#refPemasukan').unwrap();});
                 }) 
               },
@@ -354,13 +352,13 @@ function hapus_pemasukan(id)
                 alert('Failed deleting data ');
               }
         })
+
+        return false;
       
       }
   }
    
- function hapus_pengeluaran(id)
-  
-  {
+function hapus_pengeluaran(id){
       job = confirm("Are you sure to delete permanently?");
       
       if(job != true)
@@ -368,8 +366,7 @@ function hapus_pemasukan(id)
           return false;
       }
 
-      else
-      {
+      else {
         $.ajax({
             data: id,
             type: "GET",
@@ -391,6 +388,8 @@ function hapus_pemasukan(id)
                 alert('Failed deleting data ');
               }
         })
+
+        return false;
       }
   }
 
