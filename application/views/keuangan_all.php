@@ -1,64 +1,10 @@
-
-  <!-- <style type="text/css">
-    .box-header {
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-    .box-tools {
-      right: 10px;
-      top: 5px;
-    }
-    .dropzone-wrapper {
-    
-      border: 2px dashed #91b0b3;
-      color: #92b0b3;
-      position: relative;
-      height: 150px;
-    }
-    .dropzone-desc {
-    position: absolute;
-      margin: 0 auto;
-      left: 0;
-      right: 0;
-      text-align: center;
-      width: 40%;
-      top: 50px;
-      font-size: 16px;
-    }
-    .dropzone,
-    .dropzone:focus {
-      outline: none !important;
-      width: 100%;
-      height: 150px;
-      cursor: pointer;
-      opacity: 0;
-    }
-    .dropzone-wrapper:hover,
-    .dropzone-wrapper.dragover {
-      background: #ecf0f5;
-    }
-    .preview-zone {
-      text-align: center;
-    }
-    .preview-zone .box {
-      box-shadow: none;
-      border-radius: 0;
-      margin-bottom: 0;
-    }
-  </style> -->
-
-<?php 
-$idToPemasukan = $this->M_keuangan->getPemasukanAll(); 
-$idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
-?>
-
+<?php $idToPemasukan = $this->M_keuangan->getPemasukanAll(); 
+$idToPengeluaran = $this->M_keuangan->getPengeluaranAll(); ?>
 <section class="content">
-        <div class="container-fluid">
-        
+        <div class="container-fluid">     
             <div class="row clearfix">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" id="round"> 
-
                   <div class="body">
                       <div class="row">
                           <center>
@@ -81,12 +27,9 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                           </center>
                       </div>    
                   </div>
-
                   <div class="body">
                       <div id="barchart_material" style="height: 300px; max-width: 800px; margin: 0px auto;"></div>
                   </div>
-
-        
                 </div>
              </div> 
 
@@ -101,12 +44,13 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                             <tr>
                                 <th>Pemasukan</th>
                                 <td>:</td>
-                                <td> <div id="totalPemasukan"></div></td>
+                                <td><div id="totalPemasukan"></div></td>
+                                
                             </tr>
                             <tr>
                                 <th>Pengeluaran</th>
                                 <td>:</td>
-                                <td> <div id="totalPengeluaran"></div></td>
+                                <td><div id="totalPengeluaran"></div></td>
                             </tr>
                             <tr>
                                 <th>Selisih</th>
@@ -256,7 +200,6 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                     </div>
                 </div>
             </div> 
-
             <!-- #END# Basic Examples -->
         </div>
     </section>
@@ -267,6 +210,9 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                     <div class="modal-content" id="round">
                        <center>
                         <div class="modal-body">
+                          <div class="alert alert-success" id="round">
+                            <strong>FORM PEMASUKAN
+                          </div>
                               <!-- Form Angggota -->
                                 <!-- <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()"> -->
                                 <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPemasukan') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
@@ -304,13 +250,15 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                 </div>
             </div>
 
-
             <!-- Modal Pengeluaran -->
             <div class="modal fade" id="ModalPengeluaran" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" id="round">
                        <center>
                         <div class="modal-body">
+                          <div class="alert alert-danger" id="round">
+                            <strong>FORM PENGELUARAN
+                          </div>
                               <!-- Form Angggota -->
                                 <!-- <form id="form_validation" name="formPengeluaran" class="formPengeluaran" method="POST" style="margin: 20px" onsubmit="return submitPengeluaran()"> -->
                                <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPengeluaran') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
@@ -348,13 +296,11 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                 </div>
             </div>
 
-
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script type="text/javascript">
-
 
 // function readFile(input) {
 //    if (input.files && input.files[0]) {
@@ -403,123 +349,120 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
 //  reset(dropzone);
 // });
 
- function submitPemasukan() {
+function submitPemasukan() {
 
-   var data = $('.formPemasukan').serialize();
-   alert(data);
+ var data = $('.formPemasukan').serialize();
+ alert(data);
 
+    $.ajax({
+        type: 'POST',
+        data: data,
+        url: "<?php echo base_url('Keuangan_C/inputPemasukan') ?>",
+        success: function() {
+            Swal.fire({
+              position: 'top-end',
+              type: 'success',
+              title: 'Berhasil',
+              showConfirmButton: false,
+              timer: 1300
+            }).then(function(){
+                $('#refPemasukan').load(document.URL +  ' #refPemasukan');
+            })     
+        }
+    });
+    
+    return false;
+}
+
+function submitPengeluaran() {
+
+ var data = $('.formPengeluaran').serialize();
+          
+    $.ajax({
+        type: 'POST',
+        data: data,
+        url: "<?php echo base_url('Keuangan_C/inputPengeluaran') ?>",
+        success: function() {
+            Swal.fire({
+              position: 'top-end',
+              type: 'success',
+              title: 'Berhasil',
+              showConfirmButton: false,
+              timer: 1300
+            }).then(function(){
+                $('#refPengeluaran').load(document.URL +  ' #refPengeluaran');
+            })     
+        }
+    });
+    
+    return false;
+}
+
+function hapus_pemasukan(id){
+    job = confirm("Are you sure to delete permanently?");
+    
+    if(job != true)
+    {
+        return false;
+    }
+
+    else
+    {   
       $.ajax({
-          type: 'POST',
-          data: data,
-          url: "<?php echo base_url('Keuangan_C/inputPemasukan') ?>",
-          success: function() {
+          data: id,
+          type: "GET",
+          url: "<?php echo base_url('Keuangan_C/delete_pemasukan?id=') ?>" + id,
+          success: function(data){
               Swal.fire({
                 position: 'top-end',
                 type: 'success',
-                title: 'Berhasil',
+                title: 'Berhasil Menghapus pemasukan',
                 showConfirmButton: false,
                 timer: 1300
               }).then(function(){
                   $('#refPemasukan').load(document.URL +  ' #refPemasukan');
-              })     
-          }
-      });
-      
-      return false;
-  }
+              }) 
+            },
+            error: function(data){
+              alert('Failed deleting data ');
+            }
+      })
+    
+    }
+}
+   
+function hapus_pengeluaran(id)
+{
+    job = confirm("Are you sure to delete permanently?");
+    
+    if(job != true)
+    {
+        return false;
+    }
 
-  function submitPengeluaran() {
-
-   var data = $('.formPengeluaran').serialize();
-            
+    else
+    {
       $.ajax({
-          type: 'POST',
-          data: data,
-          url: "<?php echo base_url('Keuangan_C/inputPengeluaran') ?>",
-          success: function() {
+          data: id,
+          type: "GET",
+          url: "<?php echo base_url('Keuangan_C/delete_pengeluaran?id=') ?>" + id,
+          success: function(data){
               Swal.fire({
                 position: 'top-end',
                 type: 'success',
-                title: 'Berhasil',
+                title: 'Berhasil Menghapus pengeluaran',
                 showConfirmButton: false,
                 timer: 1300
               }).then(function(){
                   $('#refPengeluaran').load(document.URL +  ' #refPengeluaran');
-              })     
-          }
-      });
-      
-      return false;
-  }
-
-
-function hapus_pemasukan(id)
-  {
-      job = confirm("Are you sure to delete permanently?");
-      
-      if(job != true)
-      {
-          return false;
-      }
-
-      else
-      {
-        
-        $.ajax({
-            data: id,
-            type: "GET",
-            url: "<?php echo base_url('Keuangan_C/delete_pemasukan?id=') ?>" + id,
-            success: function(data){
-                Swal.fire({
-                  position: 'top-end',
-                  type: 'success',
-                  title: 'Berhasil Menghapus pemasukan',
-                  showConfirmButton: false,
-                  timer: 1300
-                }).then(function(){
-                    $('#refPemasukan').load(document.URL +  ' #refPemasukan');
-                }) 
-              },
-              error: function(data){
-                alert('Failed deleting data ');
-              }
-        })
-      
-      }
-  }
-   
- function hapus_pengeluaran(id)
-  {
-      job = confirm("Are you sure to delete permanently?");
-      
-      if(job != true)
-      {
-          return false;
-      }
-
-      else
-      {
-        $.ajax({
-            data: id,
-            type: "GET",
-            url: "<?php echo base_url('Keuangan_C/delete_pengeluaran?id=') ?>" + id,
-            success: function(data){
-                Swal.fire({
-                  position: 'top-end',
-                  type: 'success',
-                  title: 'Berhasil Menghapus pengeluaran',
-                  showConfirmButton: false,
-                  timer: 1300
-                }).then(function(){
-                    $('#refPengeluaran').load(document.URL +  ' #refPengeluaran');
-                }) 
-              },
-              error: function(data){
-                alert('Failed deleting data ');
-              }
-        })
-      }
-  }
+              }) 
+            },
+            error: function(data){
+              alert('Failed deleting data ');
+            }
+      })
+    }
+}
     
 google.charts.load('current', {'packages':['bar']});
 google.charts.setOnLoadCallback(drawChart);
@@ -531,13 +474,10 @@ function drawChart() {
    
     <?php foreach ($data_proker as $dp) {   
       $masuk = $this->M_keuangan->pemasukan($dp->proker_ID);
-      $keluar = $this->M_keuangan->pengeluaran($dp->proker_ID);
-    ?>
-
+      $keluar = $this->M_keuangan->pengeluaran($dp->proker_ID); ?>
+      
     ['<?php echo $dp->proker_nama; ?>',  <?php if(is_null($masuk)){echo 0;}else{echo $masuk;}?> , <?php if(is_null($keluar)){echo 0;}else{echo $keluar;} ?>],
-    
    <?php } ?>
- 
   ]);
 
   var options = {
@@ -550,8 +490,7 @@ function drawChart() {
   chart.draw(data, google.charts.Bar.convertOptions(options));
 }
 
-document.getElementById('totalPemasukan').innerHTML = "Rp" + <?php echo $totalPemasukan ?>;
-document.getElementById('totalPengeluaran').innerHTML = "Rp" + <?php echo $totalPengeluaran ?>;
-document.getElementById('saldo').innerHTML = "Rp" + <?php echo $totalPemasukan - $totalPengeluaran ?>;
-
+document.getElementById('totalPemasukan').innerHTML = "Rp" + <?= $totalPemasukan ?>;
+document.getElementById('totalPengeluaran').innerHTML = "Rp" + <?= $totalPengeluaran ?>;
+document.getElementById('saldo').innerHTML = "Rp" + <?= $totalPemasukan - $totalPengeluaran ?>;
 </script>

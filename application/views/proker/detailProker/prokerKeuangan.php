@@ -20,6 +20,10 @@
                             </div>
                         
                         <div class="body">
+                            <div class="header" align="center">
+                                <h2><strong>KEUANGAN UNTUK PROGRAM KERJA</strong></h2>
+                                <?php echo $idToProker['0']['proker_nama']; ?>
+                            </div> 
                             <table class="table">
                                 <tr>
                                     <th>Pemasukan</th>
@@ -189,6 +193,9 @@
         <div class="modal-content" id="round">
            <center>
             <div class="modal-body">
+                <div class="alert alert-success" id="round">
+                  <strong>FORM PEMASUKAN
+                </div>
                   <!-- Form Angggota -->
                     <!-- <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()"> -->
                     <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPemasukan') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
@@ -233,6 +240,9 @@
         <div class="modal-content" id="round">
            <center>
             <div class="modal-body">
+                <div class="alert alert-danger" id="round">
+                  <strong>FORM PENGELUARAN
+                </div>
                   <!-- Form Angggota -->
                     <!-- <form id="form_validation" name="formPengeluaran" class="formPengeluaran" method="POST" style="margin: 20px" onsubmit="return submitPengeluaran()"> -->
                    <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPengeluaran') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
@@ -352,9 +362,7 @@ function hapus_pemasukan(id){
                 alert('Failed deleting data ');
               }
         })
-
         return false;
-      
       }
   }
    

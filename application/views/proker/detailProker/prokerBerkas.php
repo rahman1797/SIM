@@ -46,8 +46,6 @@
     }
   </style>
 
-
-
   <?php $idToProker = $this->M_proker->getProkerNama($_GET['id_proker']);?>
     <section class="content">
         <div class="container-fluid">
