@@ -85,7 +85,8 @@ class Dosen_C extends CI_Controller {
 			$this->load->view('dosen/info_proker', $data);
 		}
 
-		function print_to_pdf(){		
+		function print_to_pdf(){	
+
 				$tahun = $_GET['tahun'];
 				$role = $_GET['role'];
 				if ($role == 1) {
@@ -95,6 +96,7 @@ class Dosen_C extends CI_Controller {
 					$lembaga = "Legislatif";
 				}
 				$pdf = new FPDF('p','mm','A4');
+				$pdf->SetRightMargin(20);
 			    // membuat halaman baru
 			    $pdf->AddPage();
 
@@ -105,33 +107,32 @@ class Dosen_C extends CI_Controller {
 			    $pdf->Cell(190,7, 'Diadakan oleh Lembaga ' . $lembaga  ,0,1,'C');
 
 			    $result = $this->db->get_where('proker_tbl', array('proker_tahun' => $tahun, 'proker_lembaga' => $role))->result();
-
+			    $no = 0;
 			    foreach ($result as $r){
-				    $pdf->Ln(50);
+				    $pdf->Ln(15);
+				    $no++;
 
 				    $pdf->SetFont('Arial','B',12);
-				    $pdf->Cell(190,6,'Nama Program Kerja',0,0);
-				    $pdf->ln(5);
+				    $pdf->Cell(190,6,'Nama Program Kerja '. $no ,0);
+				    $pdf->ln(4);
 				    $pdf->SetFont('Arial','',12);
 				    $pdf->Cell(190,12,$r->proker_nama,0,0);
-				    $pdf->ln(5);
-				    $pdf->line(7,0,0,0);
+				    $pdf->ln(7);
+		
 
 				    $pdf->SetFont('Arial','B',12);	
-				    $pdf->Cell(85,12,'Deskripsi :',0,0);
+				    $pdf->Cell(85,12,'Deskripsi :',0);
 				    $pdf->ln(5);
 				    $pdf->SetFont('Arial','',12);
+				    $pdf->ln(6);
+
 				    if ($r->proker_deskripsi == "") {
-				    	$pdf->Cell(190,12,'Tidak ada deskripsi',0,0);
+				    	$pdf->Cell(190,12,'Tidak ada deskripsi',0);
 				    }
 				    else {
-				    	$pdf->Cell(190,12,$r->proker_deskripsi,0,0);
+				    	$pdf->Multicell(170,5,$r->proker_deskripsi,0);
 				    }
-				    
-			    
-			        $pdf->Cell(85,6,$r->proker_deskripsi,0,0);
-			        $pdf->Cell(27,6,$r->proker_ID,0,0);
-			        $pdf->Cell(25,6,$r->proker_tanggal,0,0); 
+
 			    }
 			    $pdf->Output();	
 		}

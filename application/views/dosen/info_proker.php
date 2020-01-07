@@ -315,12 +315,17 @@ function generate() {
 
     doc.autoTable({
         head: [['Periode Opmawa Pelaksana']],
-        body: [["<?php echo $pd->proker_tahun ?> - <?php echo $pd->proker_tahun ?>"]]
+        body: [["<?php echo $pd->proker_tahun ?> - <?php echo ($pd->proker_tahun + 1) ?>"]]
     });
 
     doc.autoTable({
         head: [['Deskripsi Program Kerja']],
         body: [["<?php echo $pd->proker_deskripsi ?>"]]
+    });
+
+    doc.autoTable({
+        head: [['Output / Tujuan Dari Program Kerja']],
+        body: [["<?php echo $pd->proker_output ?>"]]
     });
 
     doc.autoTable({html: '#refProkerAnggota'});
