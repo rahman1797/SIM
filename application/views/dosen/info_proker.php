@@ -108,7 +108,6 @@
                 </div>
             </div> 
 
-
 <div class="row clearfix">          
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card" id="round"> 
@@ -134,186 +133,165 @@
                             </tr>
                         </tfoot>
                         <tbody>
-
                             <?php                     
                                 foreach($proker_berkas_lpj as $bd){ 
                                     $idUser = $bd->id_user;
                                     $idProker = $bd->id_proker;
                                     $idToUser = $this->M_user->getUserNama($idUser);
-                                
-                                    if ($idProker == $_GET['id_proker']) {           
-                                    
-                                ?>
-
+                                    if ($idProker == $_GET['id_proker']) { ?>
                                 <tr>
-
-                                    <td><?php echo $bd->berkas_nama; ?>
-                                       
-                                        
-                                    </td>
+                                    <td><?php echo $bd->berkas_nama; ?></td>
                                     <td><?php echo $idToUser['0']['user_nama']; ?></td>           
                                     <td><?php echo $bd->berkas_tanggal; ?></td>           
                                     <td>
-                                        <?php 
-                                        if($bd->berkas_jenis != 'link') { ?>
-                                          
+                                        <?php if($bd->berkas_jenis != 'link') { ?>
                                           <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama.'&id_proker='.$idProker) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
-                                         
-                                        <?php }
-
-                                       
-                                     ?>                        
+                                        <?php } ?>                        
                                     </td>
                                 </tr>
-                        
-                            <?php } 
-
-                              } ?>
-                            
+                            <?php } } ?>
                         </tbody>
-                    </table> 
+                </table> 
             </div>
         </div>
     </div> 
 </div>
 
 
-            <div class="row clearfix">
-               
-                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card" id="round"> 
-                        <div class="body">
-                            <table class="table">
-                                <tr>
-                                    <th>Pemasukan</th>
-                                    <td>:</td>
-                                    <td> <div id="totalPemasukan"></div></td>
-                                </tr>
-                                <tr>
-                                    <th>Pengeluaran</th>
-                                    <td>:</td>
-                                    <td> <div id="totalPengeluaran"></div></td>
-                                </tr>
-                                <tr>
-                                    <th>Saldo</th>
-                                    <td>:</td>
-                                    <td><div id="saldo"></div></td>
-                                </tr>
-                            </table>   
-                        </div>
-                    </div>
-                </div> 
+<div class="row clearfix">
+   
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card" id="round"> 
+            <div class="body">
+                <table class="table">
+                    <tr>
+                        <th>Pemasukan</th>
+                        <td>:</td>
+                        <td> <div id="totalPemasukan"></div></td>
+                    </tr>
+                    <tr>
+                        <th>Pengeluaran</th>
+                        <td>:</td>
+                        <td> <div id="totalPengeluaran"></div></td>
+                    </tr>
+                    <tr>
+                        <th>Saldo</th>
+                        <td>:</td>
+                        <td><div id="saldo"></div></td>
+                    </tr>
+                </table>   
+            </div>
+        </div>
+    </div> 
 
      
 <!-- TABEL DATA PEMASUKAN -->
-                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card" id="round">
-                        <div class="header" align="center">
-                            <h2><strong>PEMASUKAN</strong></h2>
-                            <p></p>
-                            <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="card" id="round">
+            <div class="header" align="center">
+                <h2><strong>PEMASUKAN</strong></h2>
+                <p></p>
+                <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
 
-                            <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
-                            <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round"><i class="material-icons">add_circle_outline</i> Pemasukan</button>  
+                <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
+                <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round"><i class="material-icons">add_circle_outline</i> Pemasukan</button>  
+                <?php } ?>
+
+                <?php } ?>
+            </div>
+            
+            <div class="body">
+                <div class="table-responsive">
+                    <table id="refPemasukan" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Nominal</th>
+                                <th>Deskripsi</th>
+                                <th>Bukti File</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php 
+                                $totalPemasukan = 0;
+                                foreach($proker_pemasukan as $masuk){ 
+                                $totalPemasukan += $masuk->pemasukan_nominal; 
+                                ?>
+                                <tr>
+                                    <td><?php echo date(" d M Y", $masuk->pemasukan_tanggal) ?></td>
+                                    <td><?php echo $masuk->pemasukan_nominal ?></td>
+                                    <td><?php echo $masuk->pemasukan_deskripsi ?></td>
+                                    <td><?php if (isset($masuk->pemasukan_file)) { ?>
+                                        <a href="<?php echo base_url('uploads/keuangan/'. $masuk->pemasukan_file) ?>" class="btn btn-sm btn-success" id="round"><i class="material-icons">image_search</i></a>
+                                    <?php } 
+                                    else { ?>
+                                        <a href="javascript:void(0)" class="btn btn-sm" disabled id="round"><i class="material-icons">image_search</i></a>
+                                    <?php }
+                                    ?></td>                                                
+                                </tr>
                             <?php } ?>
-
-                            <?php } ?>
-                        </div>
-                        
-                        <div class="body">
-                            <div class="table-responsive">
-                                <table id="refPemasukan" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
-                                    <thead>
-                                        <tr>
-                                            <th>Tanggal</th>
-                                            <th>Nominal</th>
-                                            <th>Deskripsi</th>
-                                            <th>Bukti File</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <?php 
-                                            $totalPemasukan = 0;
-                                            foreach($proker_pemasukan as $masuk){ 
-                                            $totalPemasukan += $masuk->pemasukan_nominal; 
-                                            ?>
-                                            <tr>
-                                                <td><?php echo date(" d M Y", $masuk->pemasukan_tanggal) ?></td>
-                                                <td><?php echo $masuk->pemasukan_nominal ?></td>
-                                                <td><?php echo $masuk->pemasukan_deskripsi ?></td>
-                                                <td><?php if (isset($masuk->pemasukan_file)) { ?>
-                                                    <a href="<?php echo base_url('uploads/keuangan/'. $masuk->pemasukan_file) ?>" class="btn btn-sm btn-success" id="round"><i class="material-icons">image_search</i></a>
-                                                <?php } 
-                                                else { ?>
-                                                    <a href="javascript:void(0)" class="btn btn-sm" disabled id="round"><i class="material-icons">image_search</i></a>
-                                                <?php }
-                                                ?></td>                                                
-                                            </tr>
-                                        <?php } ?>
-                               
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                   
+                        </tbody>
+                    </table>
                 </div>
+            </div>
+        </div>
+    </div>
 
 <!-- TABEL DATA PENGELUARAN -->
-                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card" id="round">
-                        <div class="header" align="center">
-                            <h2><strong>PENGELUARAN</strong></h2>
-                            <p></p>
-                            <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" id="round">
+                    <div class="header" align="center">
+                        <h2><strong>PENGELUARAN</strong></h2>
+                        <p></p>
+                        <?php if ($getProkerData['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
 
-                            <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
-                            <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round"><i class="material-icons">add_circle_outline</i> Pengeluaran</button>  
-                            <?php } ?>
-
-                            <?php } ?>
-                        </div>
-                        
-                        <div class="body">
-                            <div class="table-responsive">
-                                <table id="refPengeluaran" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
-                                    <thead>
+                        <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
+                        <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round"><i class="material-icons">add_circle_outline</i> Pengeluaran</button>  
+                        <?php } } ?>
+                    </div>
+                    
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table id="refPengeluaran" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Nominal</th>
+                                        <th>Deskripsi</th>
+                                        <th>Bukti File</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                        $totalPengeluaran = 0;
+                                        foreach($proker_pengeluaran as $keluar){ 
+                                        $totalPengeluaran += $keluar->pengeluaran_nominal; 
+                                        ?>
                                         <tr>
-                                            <th>Tanggal</th>
-                                            <th>Nominal</th>
-                                            <th>Deskripsi</th>
-                                            <th>Bukti File</th>
+                                            <td><?php echo date(" d M Y", $keluar->pengeluaran_tanggal)  ?></td>
+                                            <td><?php echo $keluar->pengeluaran_nominal ?></td>
+                                            <td><?php echo $keluar->pengeluaran_deskripsi ?></td>
+                                            <td><?php if (isset($keluar->pengeluaran_file)) { ?>
+                                                <a href="<?php echo base_url('uploads/keuangan/'. $keluar->pengeluaran_file) ?>" class="btn btn-sm btn-success" id="round"><i class="material-icons">image_search</i></a>
+                                            <?php } 
+                                            else { ?>
+                                                <a href="javascript:void(0)" class="btn btn-sm" disabled id="round"><i class="material-icons">image_search</i></a>
+                                            <?php } ?>
+                                            </td>  
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php 
-                                            $totalPengeluaran = 0;
-                                            foreach($proker_pengeluaran as $keluar){ 
-                                            $totalPengeluaran += $keluar->pengeluaran_nominal; 
-                                            ?>
-                                            <tr>
-                                                <td><?php echo date(" d M Y", $keluar->pengeluaran_tanggal)  ?></td>
-                                                <td><?php echo $keluar->pengeluaran_nominal ?></td>
-                                                <td><?php echo $keluar->pengeluaran_deskripsi ?></td>
-                                                <td><?php if (isset($keluar->pengeluaran_file)) { ?>
-                                                    <a href="<?php echo base_url('uploads/keuangan/'. $keluar->pengeluaran_file) ?>" class="btn btn-sm btn-success" id="round"><i class="material-icons">image_search</i></a>
-                                                <?php } 
-                                                else { ?>
-                                                    <a href="javascript:void(0)" class="btn btn-sm" disabled id="round"><i class="material-icons">image_search</i></a>
-                                                <?php } ?>
-                                                </td>  
-                                            </tr>
-                                        <?php } ?>  
-                                    </tbody>
-                                </table>
-                            </div>
+                                    <?php } ?>  
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- #END# Basic Examples -->
         </div>
-    </section>
+        <!-- #END# Basic Examples -->
+    </div>
+</section>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
@@ -323,34 +301,15 @@
 
 <script type="text/javascript">
 
-    //  var doc = new jsPDF();
-    //     var specialElementHandlers = {
-    //         '#editor': function (element, renderer) {
-    //         return true;
-    //     }
-    // }
-
-    // $('#konvert').click(function () {   
-    //     doc.fromHTML($('#konten').html(), 15, 15, {
-    //         'width': 170,
-    //             'elementHandlers': specialElementHandlers
-    //     });
-    //     doc.save('contoh-file.pdf');
-    // });
 function generate() {
     var doc = new jsPDF();
-    // Simple data example
-    // var head = [["Nama Proker / Kegiatan", "Deskripsi"]];
-    // var body = [
-    //     ['<?php echo $pd->proker_nama ?>', "<?php echo $pd->proker_deskripsi ?>"],
-    // ];
     
     doc.autoTable({
         margin: {top: 30},
         head: [['Nama Program Kerja / Kegiatan Opmawa']],
         body: [["<?php echo $pd->proker_nama ?>"]],
         beforePageContent: function(data) {
-            doc.text("Data Program Kerja <?php echo $pd->proker_nama ?>", 20, 20);
+            doc.text("Data Program Kerja <?php echo $pd->proker_nama ?>", 15, 20);
         }
     });
 
@@ -369,18 +328,9 @@ function generate() {
     doc.save('<?php echo $pd->proker_nama ?> - <?php echo $pd->proker_tahun ?>.pdf');
 }
 
-
-// function printContent(el) {
-//         var restorepage = document.body.innerHTML;
-//         var printcontent = document.getElementById(el).innerHTML;
-//         document.body.innerHTML = printcontent;
-//         window.print();
-//         document.body.innerHTML = restorepage;
-//     }
-
-    document.getElementById('totalPemasukan').innerHTML = "Rp" + <?php echo $totalPemasukan ?>;
-    document.getElementById('totalPengeluaran').innerHTML = "Rp" + <?php echo $totalPengeluaran ?>;
-    document.getElementById('saldo').innerHTML = "Rp" + <?php echo $totalPemasukan - $totalPengeluaran ?>;
+document.getElementById('totalPemasukan').innerHTML = "Rp" + <?php echo $totalPemasukan ?>;
+document.getElementById('totalPengeluaran').innerHTML = "Rp" + <?php echo $totalPengeluaran ?>;
+document.getElementById('saldo').innerHTML = "Rp" + <?php echo $totalPemasukan - $totalPengeluaran ?>;
 
    
 </script>
