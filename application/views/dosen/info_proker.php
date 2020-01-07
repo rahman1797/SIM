@@ -19,30 +19,9 @@
         }
      </style>
 
-
-
-
       <section class="content">
         <div class="container-fluid">
-
-
-
-
-
-<!-- <body>
-    <div class="wrapper">
-        <div id="konten">
-            <h2 class="hidden">Hello, Lorem Ipsum is simply dummy text</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-        </div>
-        <div id="editor"></div>
-        <button id="konvert">Generate PDF</button>
-    </div>
-</body>
-
- -->
-
-        
+      
             <!-- Basic Examples -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -50,11 +29,9 @@
                         <div class="header" align="center">
                             <h2><strong>DATA PROGRAM KERJA</strong></h2>
                         </div>
-                        
                         <div class="row clearfix">
                            <div class="body col-lg-6">
-                             
-                            <div class="table-responsive">
+                            <div class="table-responsive" id="examples">
                                 <table id="refProker" class="table table-bordered table-striped round_edge"> 
                                         <?php 
                                             foreach($proker_data as $pd) { 
@@ -82,7 +59,7 @@
                                                  ?></td>
                                             </tr>
                                             <tr>
-                                                <th>Tahun pelaksana</th>
+                                                <th>Periode Opmawa pelaksana</th>
                                                 <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
                                             </tr>
                                             <tr>
@@ -93,15 +70,13 @@
                                                 <th>Output / Tujuan</th>
                                                 <td><?php echo $pd->proker_output; ?></td>
                                             </tr>             
-
-                                        <?php } ?>
-                                            
+                                        <?php } ?>  
+                                        <tr>
+                                            <th><button class="btn btn-warning" onclick="generate()">Generate pdf</button></th>
+                                        </tr>                  
                                 </table>
                             </div>
-
                             </div> 
-
-
 
                             <div class="body col-lg-6">
                                 <div class="table-responsive">
@@ -112,113 +87,95 @@
                                                 <th>Sie Kepanitiaan</th>
                                             </tr>
                                         </thead>
-
                                         <tbody>
-
-                                            <?php 
-                                           
-                                                foreach($proker_anggota as $pa){ 
+                                            <?php foreach($proker_anggota as $pa){ 
                                                 $idPosisi = $pa->id_posisi;
                                                 $idUser = $pa->id_user;
                                                 $id_anggota = $pa->prokerAnggota_ID;
                                                 $idToPosisi = $this->M_proker->getPosisiNama($idPosisi);
-                                                $idToNama = $this->M_user->getUserNama($idUser);
-                                                ?>
+                                                $idToNama = $this->M_user->getUserNama($idUser); ?>
                                                 <tr>
-                                                    
                                                     <td><?php echo $idToNama['0']['user_nama']; ?></td>
-                                                    <td><?php echo $idToPosisi['0']['prokerPosisi_nama']; ?> </td>
-                                                  
+                                                    <td><?php echo $idToPosisi['0']['prokerPosisi_nama']; ?> </td>              
                                                 </tr>
-                                            <?php } 
-                                                
-                                            ?>
-
-                                            
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
-
             </div> 
 
 
-
-
-
-<div class="row clearfix">
-               
-                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card" id="round"> 
-                        <div class="header" align="center">
-                            <h2><strong>BERKAS LEMBAR PERTANGGUNG JAWABAN PROKER</strong></h2>
-                        </div>
-                        <div class="body">
-                            <table id="refBerkas" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama / Link</th>
-                                            <th>Oleh</th>
-                                            <th>Tanggal</th>
-                                            <th>Kelola</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Nama / Link</th>
-                                            <th>Diupload Oleh</th>
-                                            <th>Tanggal upload</th>
-                                            <th>Kelola</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-
-                                        <?php                     
-                                            foreach($proker_berkas_lpj as $bd){ 
-                                                $idUser = $bd->id_user;
-                                                $idProker = $bd->id_proker;
-                                                $idToUser = $this->M_user->getUserNama($idUser);
-                                            
-                                                if ($idProker == $_GET['id_proker']) {           
-                                                
-                                            ?>
-
-                                            <tr>
-
-                                                <td><?php echo $bd->berkas_nama; ?>
-                                                   
-                                                    
-                                                </td>
-                                                <td><?php echo $idToUser['0']['user_nama']; ?></td>           
-                                                <td><?php echo $bd->berkas_tanggal; ?></td>           
-                                                <td>
-                                                    <?php 
-                                                    if($bd->berkas_jenis != 'link') { ?>
-                                                      
-                                                      <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama.'&id_proker='.$idProker) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
-                                                     
-                                                    <?php }
-
-                                                   
-                                                 ?>                        
-                                                </td>
-                                            </tr>
-                                    
-                                        <?php } 
-
-                                          } ?>
-                                        
-                                    </tbody>
-                                </table> 
-                        </div>
-                    </div>
-                </div> 
+<div class="row clearfix">          
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card" id="round"> 
+            <div class="header" align="center">
+                <h2><strong>BERKAS LEMBAR PERTANGGUNG JAWABAN PROKER</strong></h2>
             </div>
+            <div class="body">
+                <table id="refBerkas" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
+                        <thead>
+                            <tr>
+                                <th>Nama / Link</th>
+                                <th>Oleh</th>
+                                <th>Tanggal</th>
+                                <th>Kelola</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Nama / Link</th>
+                                <th>Diupload Oleh</th>
+                                <th>Tanggal upload</th>
+                                <th>Kelola</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+
+                            <?php                     
+                                foreach($proker_berkas_lpj as $bd){ 
+                                    $idUser = $bd->id_user;
+                                    $idProker = $bd->id_proker;
+                                    $idToUser = $this->M_user->getUserNama($idUser);
+                                
+                                    if ($idProker == $_GET['id_proker']) {           
+                                    
+                                ?>
+
+                                <tr>
+
+                                    <td><?php echo $bd->berkas_nama; ?>
+                                       
+                                        
+                                    </td>
+                                    <td><?php echo $idToUser['0']['user_nama']; ?></td>           
+                                    <td><?php echo $bd->berkas_tanggal; ?></td>           
+                                    <td>
+                                        <?php 
+                                        if($bd->berkas_jenis != 'link') { ?>
+                                          
+                                          <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama.'&id_proker='.$idProker) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
+                                         
+                                        <?php }
+
+                                       
+                                     ?>                        
+                                    </td>
+                                </tr>
+                        
+                            <?php } 
+
+                              } ?>
+                            
+                        </tbody>
+                    </table> 
+            </div>
+        </div>
+    </div> 
+</div>
 
 
             <div class="row clearfix">
@@ -329,7 +286,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                         <?php 
                                             $totalPengeluaran = 0;
                                             foreach($proker_pengeluaran as $keluar){ 
@@ -344,47 +300,83 @@
                                                 <?php } 
                                                 else { ?>
                                                     <a href="javascript:void(0)" class="btn btn-sm" disabled id="round"><i class="material-icons">image_search</i></a>
-                                                <?php }
-                                                ?></td>
-                                                
+                                                <?php } ?>
+                                                </td>  
                                             </tr>
-                                        <?php } 
-                                        ?>
-                                        
+                                        <?php } ?>  
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
             <!-- #END# Basic Examples -->
         </div>
     </section>
 
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+
+<script src="<?php echo base_url('assets/js/jspdf.debug.js')?>"></script>
+<script src="<?php echo base_url('assets/js/jspdf.plugin.autotable.min.js')?>"></script>
 
 <script type="text/javascript">
 
-     var doc = new jsPDF();
-        var specialElementHandlers = {
-            '#editor': function (element, renderer) {
-            return true;
-        }
-    };
+    //  var doc = new jsPDF();
+    //     var specialElementHandlers = {
+    //         '#editor': function (element, renderer) {
+    //         return true;
+    //     }
+    // }
 
-    $('#konvert').click(function () {   
-        doc.fromHTML($('#konten').html(), 15, 15, {
-            'width': 170,
-                'elementHandlers': specialElementHandlers
-        });
-        doc.save('contoh-file.pdf');
+    // $('#konvert').click(function () {   
+    //     doc.fromHTML($('#konten').html(), 15, 15, {
+    //         'width': 170,
+    //             'elementHandlers': specialElementHandlers
+    //     });
+    //     doc.save('contoh-file.pdf');
+    // });
+function generate() {
+    var doc = new jsPDF();
+    // Simple data example
+    // var head = [["Nama Proker / Kegiatan", "Deskripsi"]];
+    // var body = [
+    //     ['<?php echo $pd->proker_nama ?>', "<?php echo $pd->proker_deskripsi ?>"],
+    // ];
+    
+    doc.autoTable({
+        margin: {top: 30},
+        head: [['Nama Program Kerja / Kegiatan Opmawa']],
+        body: [["<?php echo $pd->proker_nama ?>"]],
+        beforePageContent: function(data) {
+            doc.text("Data Program Kerja <?php echo $pd->proker_nama ?>", 20, 20);
+        }
     });
 
+    doc.autoTable({
+        head: [['Periode Opmawa Pelaksana']],
+        body: [["<?php echo $pd->proker_tahun ?> - <?php echo $pd->proker_tahun ?>"]]
+    });
+
+    doc.autoTable({
+        head: [['Deskripsi Program Kerja']],
+        body: [["<?php echo $pd->proker_deskripsi ?>"]]
+    });
+
+    doc.autoTable({html: '#refProkerAnggota'});
+
+    doc.save('<?php echo $pd->proker_nama ?> - <?php echo $pd->proker_tahun ?>.pdf');
+}
+
+
+// function printContent(el) {
+//         var restorepage = document.body.innerHTML;
+//         var printcontent = document.getElementById(el).innerHTML;
+//         document.body.innerHTML = printcontent;
+//         window.print();
+//         document.body.innerHTML = restorepage;
+//     }
 
     document.getElementById('totalPemasukan').innerHTML = "Rp" + <?php echo $totalPemasukan ?>;
     document.getElementById('totalPengeluaran').innerHTML = "Rp" + <?php echo $totalPengeluaran ?>;
