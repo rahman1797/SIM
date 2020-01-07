@@ -106,9 +106,10 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll(); ?>
                                         <?php 
                                             $totalPemasukan = 0;
                                             foreach($proker_pemasukan as $masuk){ 
-                                            $totalPemasukan += $masuk->pemasukan_nominal; 
+                                            
                                             $date = date_create($masuk->pemasukan_tanggal);
                                             if (($masuk->id_opmawa == $_SESSION['user_opmawa']) && ($masuk->pemasukan_lembaga == $_SESSION['user_role'])) {
+                                              $totalPemasukan += $masuk->pemasukan_nominal; 
                                             ?>
                                             <tr>
                                                 <td><?php echo date_format($date, "d M Y") ?></td>
@@ -172,10 +173,10 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll(); ?>
                                         <?php 
                                             $totalPengeluaran = 0;
                                             foreach($proker_pengeluaran as $keluar){ 
-                                            $totalPengeluaran += $keluar->pengeluaran_nominal; 
-                                            $date = date_create($keluar->pengeluaran_tanggal);
-                                            if ($keluar->id_opmawa == $_SESSION['user_opmawa']) {
                                             
+                                            $date = date_create($keluar->pengeluaran_tanggal);
+                                            if (($keluar->id_opmawa == $_SESSION['user_opmawa']) && ($keluar->pengeluaran_lembaga == $_SESSION['user_role'])) {
+                                              $totalPengeluaran += $keluar->pengeluaran_nominal; 
                                             ?>
                                             <tr>
                                                 <td><?php echo date_format($date, "d M Y") ?></td>
@@ -211,7 +212,7 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll(); ?>
                        <center>
                         <div class="modal-body">
                           <div class="alert alert-success" id="round">
-                            <strong>FORM PEMASUKAN
+                            <strong>FORM PEMASUKAN</strong>
                           </div>
                               <!-- Form Angggota -->
                                 <!-- <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()"> -->
@@ -257,7 +258,7 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll(); ?>
                        <center>
                         <div class="modal-body">
                           <div class="alert alert-danger" id="round">
-                            <strong>FORM PENGELUARAN
+                            <strong>FORM PENGELUARAN</strong>
                           </div>
                               <!-- Form Angggota -->
                                 <!-- <form id="form_validation" name="formPengeluaran" class="formPengeluaran" method="POST" style="margin: 20px" onsubmit="return submitPengeluaran()"> -->
@@ -431,8 +432,7 @@ function hapus_pemasukan(id){
     }
 }
    
-function hapus_pengeluaran(id)
-{
+function hapus_pengeluaran(id){
     job = confirm("Are you sure to delete permanently?");
     
     if(job != true)
