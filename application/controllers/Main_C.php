@@ -83,15 +83,47 @@ class Main_C extends CI_Controller {
 //	SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 	function addOpmawa()
 	{
-		$namaKetua = $this->input->post('nama_user');
-		$namaKabinet = $this->input->post('nama_kabinet');
-		$tahunKepengurusan = $_SESSION['user_tahun'] + 1;
-		$data = array(
-			'opmawa_kabinet' => $namaKabinet,
-			'id_user' => $namaKetua,
-			'opmawa_tahun' => $tahunKepengurusan
-		);
-		$this->M_sys->inputOpmawa($data);	
+		// $namaKetua = $this->input->post('nama_user');
+		// $namaKabinet = $this->input->post('nama_kabinet');
+		// $tahunKepengurusan = $_SESSION['user_tahun'] + 1;
+		// $level = $this->input->post('opmawa_level');
+		// $data = array(
+		// 	'opmawa_kabinet' => $namaKabinet,
+		// 	'id_user' => $namaKetua,
+		// 	'opmawa_tahun' => $tahunKepengurusan,
+		// 	'opmawa_level' => $level
+		// );
+		// $this->M_sys->inputOpmawa($data);	
+
+		$opmawa = $this->M_sys->tampil_regis_opmawa()->result();
+		echo $opmawa["0"]->opmawa_ID;
+		print_r($opmawa);
+
+		// $idToUser = $this->M_user->getUserNama($namaKetua);
+
+		// $nama = $idToUser['0']['user_nama'];
+		// $NIM = $idToUser['0']['user_NIM'];
+		// $pass = $idToUser['0']['user_pass'];
+		// $prodi = $idToUser['0']['id_prodi'];
+		// $posisi = 1;
+		// $idOpmawa = $Opmawa;
+		// $idDepartemen = $idToUser['0']['id_departemen'];
+		// $tahun = $idToUser['0']['user_tahun'] + 1;
+		// $role = $idToUser['0']['user_role'];
+		// $data = array(
+		// 	'user_nama' => $nama,
+		// 	'user_NIM' => $NIM,
+		// 	'user_pass' => $pass,
+		// 	'id_prodi' => $prodi,
+		// 	'id_posisi' => $posisi,
+		// 	'id_opmawa' => $idOpmawa,
+		// 	'id_departemen' => $idDepartemen,
+		// 	'user_tahun' => $tahun,
+		// 	'user_role' => $role
+		// );
+		// $this->M_user->inputAnggota($data);
+
+
 	}
 
 			function addDepartemen()

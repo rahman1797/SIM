@@ -13,24 +13,17 @@ class Dosen_C extends CI_Controller {
         $this->load->library('pdf');
     }
 
-	function index()
-	{	
+	function index(){	
 		$data['data_proker_opmawa'] = $this->M_dosen->tampil_proker_opmawa()->result();
-		// $data['prodi_data'] = $this->M_sys->tampil_regis_prodi()->result();
-		// $data['posisi_data'] = $this->M_sys->tampil_regis_posisi_byLembaga()->result();
-		// $data['departemen_data'] = $this->M_sys->tampil_departemenOpmawa()->result();
+		$data['proker_berkas_lpj'] = $this->M_dosen->tampil_berkas_opmawa()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
-		$this->load->view('dosen/index', $data);
-		
+		$this->load->view('dosen/index', $data);	
 	}
 
-	function profil()
-	{
+	function profil(){
 		$data['profil'] = $this->M_dosen->getProfil()->result();
 		$data['prodi_data'] = $this->M_sys->tampil_regis_prodi()->result();
-		// $data['posisi_data'] = $this->M_sys->tampil_regis_posisi_byLembaga()->result();
-		// $data['departemen_data'] = $this->M_sys->tampil_departemenOpmawa()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('dosen/profil', $data);
@@ -49,7 +42,6 @@ class Dosen_C extends CI_Controller {
 				'user_NIM' => $NIM,
 				'id_prodi' => $prodi
 			);
-			
 			return $this->M_sys->updateData($where, $data, 'dosen_tbl');
 		}
 
@@ -119,7 +111,6 @@ class Dosen_C extends CI_Controller {
 				    $pdf->Cell(190,12,$r->proker_nama,0,0);
 				    $pdf->ln(7);
 		
-
 				    $pdf->SetFont('Arial','B',12);	
 				    $pdf->Cell(85,12,'Deskripsi :',0);
 				    $pdf->ln(5);
@@ -132,7 +123,6 @@ class Dosen_C extends CI_Controller {
 				    else {
 				    	$pdf->Multicell(170,5,$r->proker_deskripsi,0);
 				    }
-
 			    }
 			    $pdf->Output();	
 		}

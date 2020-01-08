@@ -195,9 +195,7 @@
 
                 <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
                 <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round"><i class="material-icons">add_circle_outline</i> Pemasukan</button>  
-                <?php } ?>
-
-                <?php } ?>
+                <?php } } ?>
             </div>
             
             <div class="body">
@@ -212,7 +210,6 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             <?php 
                                 $totalPemasukan = 0;
                                 foreach($proker_pemasukan as $masuk){ 
@@ -230,8 +227,7 @@
                                     <?php }
                                     ?></td>                                                
                                 </tr>
-                            <?php } ?>
-                   
+                            <?php } ?>     
                         </tbody>
                     </table>
                 </div>
@@ -293,9 +289,7 @@
     </div>
 </section>
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
-
 <script src="<?php echo base_url('assets/js/jspdf.debug.js')?>"></script>
 <script src="<?php echo base_url('assets/js/jspdf.plugin.autotable.min.js')?>"></script>
 
@@ -335,7 +329,5 @@ function generate() {
 
 document.getElementById('totalPemasukan').innerHTML = "Rp" + <?php echo $totalPemasukan ?>;
 document.getElementById('totalPengeluaran').innerHTML = "Rp" + <?php echo $totalPengeluaran ?>;
-document.getElementById('saldo').innerHTML = "Rp" + <?php echo $totalPemasukan - $totalPengeluaran ?>;
-
-   
+document.getElementById('saldo').innerHTML = "Rp" + <?php echo $totalPemasukan - $totalPengeluaran ?>;  
 </script>

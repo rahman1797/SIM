@@ -74,7 +74,8 @@
            <center>
             <div class="modal-body">
                   <!-- Form Kabinet -->          
-                    <form id="form_validation" class="formKabinet" method="POST" style="margin: 20px" onsubmit="return submitOpmawa()">
+                    <!-- <form id="form_validation" class="formKabinet" method="POST" style="margin: 20px" onsubmit="return submitOpmawa()"> -->
+                        <form method="POST" action="<?php echo base_url('Main_C/addOpmawa') ?>">
                         <div class="form-group form-float">
                             <div class="form-line">
                                  <label class="form-label">Nama Kabinet</label>
@@ -91,6 +92,18 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <select class="form-control show-tick" name="opmawa_level" data-live-search="true">
+                                                <option value="0">-- Fakultas --</option>
+                                                <?php 
+                                                    foreach ($prodi_data as $pd) {
+                                                        echo "<option value='$pd->prodi_ID'>".$pd->prodi_nama ."</option>";
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
                         <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
                     </form>
                 <!-- #END# Form Kabinet -->
