@@ -7,6 +7,7 @@ class Keuangan_C extends CI_Controller {
         parent ::__construct();
         $this->load->model('M_keuangan');
         $this->load->model('M_proker');
+        $this->load->model('M_sys');
         $this->load->helper('url');
         $this->load->helper('download');
         $this->load->library('upload');

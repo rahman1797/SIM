@@ -1,3 +1,4 @@
+<?php $data_opmawa_user = $this->M_sys->getOpmawaData($_SESSION['user_opmawa']); ?>
 <section class="content">
     <div class="container-fluid">
     
@@ -34,39 +35,45 @@
                                 </tfoot>
                                 <tbody>
                                     <?php foreach($proker_data as $pd){
-                                        if ($pd->proker_tahun == $_SESSION['user_tahun']) {
-                                        $date = date_create($pd->proker_tanggal);
-                                        $id_proker = $pd->proker_ID ?>
-                                        <tr>
-                                            <td><?php echo $pd->proker_nama ?></td>
-                                            <td><?php if ($pd->proker_jenis == "event") { 
-                                                    echo date_format($date,"d M Y"); 
-                                                } else {
-                                                    echo "<font color='red'>non-event</font>";
-                                                } ?>
-                                            </td>
-                                             <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
-                                             <td><?php if ($pd->proker_nilai && ($_SESSION['user_role'] == 1)) {
-                                                        echo $pd->proker_nilai;
-                                                    }
-                                                    elseif ($_SESSION['user_role'] == 2) {
-                                                        echo "<font color='red'>Nan</font>";
-                                                    }
-                                                    else {
-                                                        echo "<font color='red'>Proker belum dinilai</font>";
-                                                    }
-                                             ?></td>
-                                             <td>
-                                                 <a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>">
-                                                    <button class="btn btn-info" id="round"><i class="material-icons">more_horiz</i></button>
-                                                </a>
-                                              <?php if ($pd->proker_tahun != $_SESSION['user_tahun']) {
-                                                        echo "<button class='btn btn-danger' id='round' disabled>Locked</button>";
-                                                    }
-                                                    else { ?>
-                                                       <a href='<?php echo site_url();?>/Proker_C/delProker/<?php print($pd->proker_ID);?>'><button class='btn btn-danger' id='round' onclick='return delConfirm()'><i class="material-icons">delete_forever</i></button></a>
-                                                   <?php }
-                                            } } ?>
+
+                                        $data_opmawa_proker = $this->M_sys->getOpmawaData($pd->id_opmawa);
+                                        
+                                        // Memfilter opmawa berdasarkan tingkatan level dan prodi
+                                        if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_proker["0"]["opmawa_level"]) {
+
+                                            if ($pd->proker_tahun == $_SESSION['user_tahun']) {
+                                            $date = date_create($pd->proker_tanggal);
+                                            $id_proker = $pd->proker_ID ?>
+                                            <tr>
+                                                <td><?php echo $pd->proker_nama ?></td>
+                                                <td><?php if ($pd->proker_jenis == "event") { 
+                                                        echo date_format($date,"d M Y"); 
+                                                    } else {
+                                                        echo "<font color='red'>non-event</font>";
+                                                    } ?>
+                                                </td>
+                                                 <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
+                                                 <td><?php if ($pd->proker_nilai && ($_SESSION['user_role'] == 1)) {
+                                                            echo $pd->proker_nilai;
+                                                        }
+                                                        elseif ($_SESSION['user_role'] == 2) {
+                                                            echo "<font color='red'>Nan</font>";
+                                                        }
+                                                        else {
+                                                            echo "<font color='red'>Proker belum dinilai</font>";
+                                                        }
+                                                 ?></td>
+                                                 <td>
+                                                     <a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>">
+                                                        <button class="btn btn-info" id="round"><i class="material-icons">more_horiz</i></button>
+                                                    </a>
+                                                  <?php if ($pd->proker_tahun != $_SESSION['user_tahun']) {
+                                                            echo "<button class='btn btn-danger' id='round' disabled>Locked</button>";
+                                                        }
+                                                        else { ?>
+                                                           <a href='<?php echo site_url();?>/Proker_C/delProker/<?php print($pd->proker_ID);?>'><button class='btn btn-danger' id='round' onclick='return delConfirm()'><i class="material-icons">delete_forever</i></button></a>
+                                                       <?php }
+                                                } } } ?>
                                             </td>
                                         </tr>
                                 </tbody>
@@ -104,36 +111,42 @@
                                 </tfoot>
                                 <tbody>
                                     <?php foreach($proker_data as $pd){
-                                        if ($pd->proker_tahun != $_SESSION['user_tahun']) {
-                                     
-                                        $date = date_create($pd->proker_tanggal);
-                                        $id_proker = $pd->proker_ID ?>
-                                        <tr>
-                                            <td><?php echo $pd->proker_nama ?></td>
-                                            <td><?php if ($pd->proker_jenis == "event") { 
-                                                    echo date_format($date,"d M Y"); 
-                                                } else {
-                                                    echo "<font color='red'>non-event</font>";
-                                                } ?>        
-                                            </td>
-                                            <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
-                                            <td><?php if ($pd->proker_nilai && ($_SESSION['user_role'] == 1)) 
-                                                        {
-                                                            echo $pd->proker_nilai;
-                                                        }
-                                                        elseif ($_SESSION['user_role'] == 2) {
-                                                            echo "<font color='red'>Nan</font>";
-                                                        }
-                                                      else 
-                                                        {
-                                                            echo "<font color='red'>Proker belum dinilai</font>";
-                                                        }
-                                            ?></td>
-                                            <td>
-                                                <a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>">
-                                                   <button class="btn btn-info" id="round"><i class="material-icons">more_horiz</i></button>
-                                                </a>
-                                            <?php } } ?>
+
+                                        $data_opmawa_proker = $this->M_sys->getOpmawaData($pd->id_opmawa);
+                                        
+                                        // Memfilter opmawa berdasarkan tingkatan level dan prodi
+                                        if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_proker["0"]["opmawa_level"]) {
+
+                                            if ($pd->proker_tahun != $_SESSION['user_tahun']) {
+                                         
+                                            $date = date_create($pd->proker_tanggal);
+                                            $id_proker = $pd->proker_ID ?>
+                                            <tr>
+                                                <td><?php echo $pd->proker_nama ?></td>
+                                                <td><?php if ($pd->proker_jenis == "event") { 
+                                                        echo date_format($date,"d M Y"); 
+                                                    } else {
+                                                        echo "<font color='red'>non-event</font>";
+                                                    } ?>        
+                                                </td>
+                                                <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
+                                                <td><?php if ($pd->proker_nilai && ($_SESSION['user_role'] == 1)) 
+                                                            {
+                                                                echo $pd->proker_nilai;
+                                                            }
+                                                            elseif ($_SESSION['user_role'] == 2) {
+                                                                echo "<font color='red'>Nan</font>";
+                                                            }
+                                                          else 
+                                                            {
+                                                                echo "<font color='red'>Proker belum dinilai</font>";
+                                                            }
+                                                ?></td>
+                                                <td>
+                                                    <a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>">
+                                                       <button class="btn btn-info" id="round"><i class="material-icons">more_horiz</i></button>
+                                                    </a>
+                                        <?php } } } ?>
                                             </td>
                                         </tr> 
                                 </tbody>
@@ -189,6 +202,7 @@
                         </div>
                          <input type="hidden" name="proker_tahun" value="<?php echo $_SESSION['user_tahun'] ?>">
                          <input type="hidden" name="proker_lembaga" value="<?php echo $_SESSION['user_role'] ?>">
+                         <input type="hidden" name="id_opmawa" value="<?php echo $_SESSION['user_opmawa'] ?>">
                         <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
                     </form>
                 <!-- #END# Form Proker -->

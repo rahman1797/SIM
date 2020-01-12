@@ -1,3 +1,4 @@
+      <?php $data_opmawa_user = $this->M_sys->getOpmawaData($_SESSION['user_opmawa']); ?>
       <section class="content">
         <div class="container-fluid">
         
@@ -34,55 +35,57 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        <?php foreach($proker_BEM as $pd){
 
-                                        <?php 
-                                            foreach($proker_BEM as $pd){ 
-                                            $date = date_create($pd->proker_tanggal);
-                                            $id_proker = $pd->proker_ID
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $pd->proker_nama ?></td>
-                                                <td><?php echo date_format($date,"d M Y"); ?></td>
-                                                <td><?php if ($pd->proker_lembaga == 1) 
-                                                            {
-                                                                echo "Eksekutif";
-                                                            }
-                                                          elseif ($pd->proker_lembaga == 2) 
-                                                            {
-                                                                echo "Legislatif";
-                                                            }
-                                                 ?></td>
-                                                 <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
-                                                 <td><?php if ($pd->proker_nilai) 
-                                                            {
-                                                                echo $pd->proker_nilai;
-                                                            }
-                                                            // elseif ($_SESSION['user_role'] == 2) {
-                                                            //     echo "<font color='red'>Nan</font>";
-                                                            // }
-                                                          else 
-                                                            {
-                                                                echo "<font color='red'>Proker belum dinilai</font>";
-                                                            }
-                                                 ?></td>
-                                                 <td>
-                                                    <?php  
-                                                    if ($pd->proker_tahun != $_SESSION['user_tahun']) 
-                                                    {
-                                                       echo "<button class='btn btn-danger' id='round' disabled>Locked</button>";
-                                                    }
+                                            $data_opmawa_proker = $this->M_sys->getOpmawaData($pd->id_opmawa);
+                                        
+                                            // Memfilter opmawa berdasarkan tingkatan level dan prodi
+                                            if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_proker["0"]["opmawa_level"]) {
 
-                                                    else { ?>
-                                                     
-                                                     <a href="<?php echo base_url('Proker_C/proker_bem_detail?id_proker='.$id_proker)?>">
-                                                        <button class="btn btn-info" id="round"><i class="material-icons">more_horiz</i></button>
-                                                    </a>
-                                                    
-                                                    <?php $value = [$pd->proker_nilai, $pd->proker_ID];?> 
-                                                    <button class="btn btn-info get-id" data-toggle="modal" data-target="#ModalNilai" id="round" value="<?php echo $value['0'].'-'.$value['1'] ?>" onclick="return getValue(this.value)" ><i class="material-icons">edit</i></button>
-                                                    
-                                                  <?php }         
-                                            } ?>
+                                                $date = date_create($pd->proker_tanggal);
+                                                $id_proker = $pd->proker_ID ?>
+                                                <tr>
+                                                    <td><?php echo $pd->proker_nama ?></td>
+                                                    <td><?php echo date_format($date,"d M Y"); ?></td>
+                                                    <td><?php if ($pd->proker_lembaga == 1) 
+                                                                {
+                                                                    echo "Eksekutif";
+                                                                }
+                                                              elseif ($pd->proker_lembaga == 2) 
+                                                                {
+                                                                    echo "Legislatif";
+                                                                }
+                                                     ?></td>
+                                                     <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
+                                                     <td><?php if ($pd->proker_nilai) 
+                                                                {
+                                                                    echo $pd->proker_nilai;
+                                                                }
+                                                                // elseif ($_SESSION['user_role'] == 2) {
+                                                                //     echo "<font color='red'>Nan</font>";
+                                                                // }
+                                                              else 
+                                                                {
+                                                                    echo "<font color='red'>Proker belum dinilai</font>";
+                                                                }
+                                                     ?></td>
+                                                     <td>
+                                                        <?php  
+                                                        if ($pd->proker_tahun != $_SESSION['user_tahun']) 
+                                                        {
+                                                           echo "<button class='btn btn-danger' id='round' disabled>Locked</button>";
+                                                        }
+
+                                                        else { ?>
+                                                         
+                                                         <a href="<?php echo base_url('Proker_C/proker_bem_detail?id_proker='.$id_proker)?>">
+                                                            <button class="btn btn-info" id="round"><i class="material-icons">more_horiz</i></button>
+                                                        </a>
+                                                        
+                                                        <?php $value = [$pd->proker_nilai, $pd->proker_ID];?> 
+                                                        <button class="btn btn-info get-id" data-toggle="modal" data-target="#ModalNilai" id="round" value="<?php echo $value['0'].'-'.$value['1'] ?>" onclick="return getValue(this.value)" ><i class="material-icons">edit</i></button>
+                                                        
+                                            <?php } } } ?>
                                                  
                                                  </td>
                                             </tr>
