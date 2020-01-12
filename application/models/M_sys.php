@@ -10,6 +10,15 @@ class M_sys extends CI_Model{
 		return $this->db->get_where('opmawa_tbl');
 	}
 
+			function getOpmawaData($id_opmawa)
+			{
+				
+				 $query = $this->db->get_where('opmawa_tbl', array('opmawa_ID' => $id_opmawa));
+
+				 return $query->result_array();
+				
+			}
+
 			function tampil_opmawaDetail(){
 				return $this->db->get_where('opmawa_tbl', array('opmawa_ID' => $_GET['id_opmawa']));
 			}

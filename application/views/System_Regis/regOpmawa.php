@@ -82,7 +82,7 @@
                                 <input type="text" class="form-control" name="nama_kabinet" id="nama_kabinet" required>
                             </div>
                         </div>
-                        <div class="form-group form-float">
+                     <!--    <div class="form-group form-float">
                             <div class="form-line">
                                 <select class="form-control show-tick" name="nama_user" data-live-search="true" required>
                                     <option value="">-- Nama Ketua --</option>
@@ -91,7 +91,7 @@
                                     } ?>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group form-float">
                                         <div class="form-line">
                                             <select class="form-control show-tick" name="opmawa_level" data-live-search="true">

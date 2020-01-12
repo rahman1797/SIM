@@ -1,23 +1,13 @@
 <?php if ($_SESSION['user_role'] == 0) {
     redirect(base_url('Dosen_C'));
-} ?>
+}
+$data_opmawa_user = $this->M_sys->getOpmawaData($_SESSION['user_opmawa']); ?>
 
 <section class="content">
         <div class="container-fluid">
             
             <!-- Widgets -->
             <div class="row clearfix">
-                <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-pink hover-zoom-effect" id="round">
-                        <div class="icon">
-                            <i class="material-icons">playlist_add_check</i>
-                        </div>
-                        <div class="content">
-                            <div class="text"></div>
-                            <div class="number count-to" data-from="0" data-to="0" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-light-green hover-zoom-effect" id="round">
                         <div class="icon">
@@ -27,15 +17,10 @@
                             <div class="text">Jadwal Rapat Terdekat</div>
 
                             <?php foreach ($rapat_terdekat as $r) {
-
-                                    if (strtotime($r->rapat_tanggal) > strtotime("now")) {
-                                       
-                                        echo date('d F Y', strtotime($r->rapat_tanggal));
-
-                                        break;
-                                    }
-
-                            } ?>
+                                if (strtotime($r->rapat_tanggal) > strtotime("now")) {
+                                    echo date('d F Y', strtotime($r->rapat_tanggal));
+                                    break;
+                            } } ?>
                         </div>
                     </div>
                 </div>
@@ -79,32 +64,38 @@
                                         <?php 
                                         $no = 1;
                                         foreach ($data_proker as $dp) {
-                                        $id_proker = $dp->proker_ID;
-                                        $progress = $this->M_proker->Progress_proker($id_proker);
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $no++; ?></td>
-                                            <td><a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>"><?php echo $dp->proker_nama . "</a>"; ?></a></td>
-                                            <!-- <td><span class="label bg-green">Pending</span></td> -->
-                                            <td><?php if ($dp->proker_jenis == "event") {
-                                                    echo date('d F Y', strtotime($dp->proker_tanggal));
-                                                }
-                                                else {
-                                                    echo "<font color='red'>non-event</font>";
-                                                } ?>
-                                            </td>
-                                            <td>
-                                                <div class="progress">
-                                                    <?php if (is_nan($progress)) {
-                                                        $progress = 100 ?>
-                                                        <div id="progress" class="progress-bar bg-orange" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?= $progress; ?>%"></div>
-                                                    <?php } else { ?>
-                                                        <div id="progress" class="progress-bar bg-green" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?= $progress; ?>%"></div>
-                                                    <?php } ?>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <?php } ?>
+
+                                        $data_opmawa_proker = $this->M_sys->getOpmawaData($dp->id_opmawa);
+                                        
+                                        // Memfilter opmawa berdasarkan tingkatan level dan prodi
+                                        if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_proker["0"]["opmawa_level"]) {
+                        
+                                            $id_proker = $dp->proker_ID;
+                                            $progress = $this->M_proker->Progress_proker($id_proker);
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $no++; ?></td>
+                                                <td><a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>"><?php echo $dp->proker_nama . "</a>"; ?></a></td>
+                                                <!-- <td><span class="label bg-green">Pending</span></td> -->
+                                                <td><?php if ($dp->proker_jenis == "event") {
+                                                        echo date('d F Y', strtotime($dp->proker_tanggal));
+                                                    }
+                                                    else {
+                                                        echo "<font color='red'>non-event</font>";
+                                                    } ?>
+                                                </td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <?php if (is_nan($progress)) {
+                                                            $progress = 100 ?>
+                                                            <div id="progress" class="progress-bar bg-orange" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?= $progress; ?>%"></div>
+                                                        <?php } else { ?>
+                                                            <div id="progress" class="progress-bar bg-green" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?= $progress; ?>%"></div>
+                                                        <?php } ?>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php } } ?>
                                     </tbody>
                                 </table>
                             </div>

@@ -61,7 +61,6 @@ class Main_C extends CI_Controller {
 	{
 		$data['data_opmawa'] = $this->M_sys->tampil_regis_opmawa()->result();
 		$data['prodi_data'] = $this->M_sys->tampil_regis_prodi()->result();
-		$data['user_data'] = $this->M_user->tampil_user()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('System_Regis/regOpmawa', $data);		
@@ -71,6 +70,7 @@ class Main_C extends CI_Controller {
 			{
 				$data['detail_opmawa'] = $this->M_sys->tampil_opmawaDetail()->result();
 				$data['detail_departemenOpmawa'] = $this->M_sys->tampil_departemenOpmawaDetail()->result();
+				$data['user_data'] = $this->M_user->tampil_user()->result();
 				$this->load->view('layout/header');
 				$this->load->view('layout/footer');
 				$this->load->view('System_Regis/opmawa/opmawaDetail', $data);		
@@ -84,47 +84,79 @@ class Main_C extends CI_Controller {
 	function addOpmawa()
 	{
 		// $namaKetua = $this->input->post('nama_user');
-		// $namaKabinet = $this->input->post('nama_kabinet');
-		// $tahunKepengurusan = $_SESSION['user_tahun'] + 1;
-		// $level = $this->input->post('opmawa_level');
-		// $data = array(
-		// 	'opmawa_kabinet' => $namaKabinet,
-		// 	'id_user' => $namaKetua,
-		// 	'opmawa_tahun' => $tahunKepengurusan,
-		// 	'opmawa_level' => $level
-		// );
-		// $this->M_sys->inputOpmawa($data);	
-
-		$opmawa = $this->M_sys->tampil_regis_opmawa()->result();
-		echo $opmawa["0"]->opmawa_ID;
-		print_r($opmawa);
-
-		// $idToUser = $this->M_user->getUserNama($namaKetua);
-
-		// $nama = $idToUser['0']['user_nama'];
-		// $NIM = $idToUser['0']['user_NIM'];
-		// $pass = $idToUser['0']['user_pass'];
-		// $prodi = $idToUser['0']['id_prodi'];
-		// $posisi = 1;
-		// $idOpmawa = $Opmawa;
-		// $idDepartemen = $idToUser['0']['id_departemen'];
-		// $tahun = $idToUser['0']['user_tahun'] + 1;
-		// $role = $idToUser['0']['user_role'];
-		// $data = array(
-		// 	'user_nama' => $nama,
-		// 	'user_NIM' => $NIM,
-		// 	'user_pass' => $pass,
-		// 	'id_prodi' => $prodi,
-		// 	'id_posisi' => $posisi,
-		// 	'id_opmawa' => $idOpmawa,
-		// 	'id_departemen' => $idDepartemen,
-		// 	'user_tahun' => $tahun,
-		// 	'user_role' => $role
-		// );
-		// $this->M_user->inputAnggota($data);
-
+		$namaKabinet = $this->input->post('nama_kabinet');
+		$tahunKepengurusan = $_SESSION['user_tahun'] + 1;
+		$level = $this->input->post('opmawa_level');
+		$data = array(
+			'opmawa_kabinet' => $namaKabinet,
+			// 'id_user' => $namaKetua,
+			'opmawa_tahun' => $tahunKepengurusan,
+			'opmawa_level' => $level
+		);
+		$this->M_sys->inputOpmawa($data);	
 
 	}
+
+			function addKetuaOpmawa(){
+
+				$nama = $this->input->post('user_nama');
+				echo $nama;
+				$idToUser = $this->M_user->getUserNama($nama);
+				
+				$NIM = $idToUser['0']['user_NIM']."-".$idToUser['0']['user_tahun'];;
+				// $pass = $idToUser['0']['user_pass'];
+				// $prodi = $idToUser['0']['id_prodi'];
+				// $posisi = $idToUser['0']['id_posisi'];
+				$idOpmawa = $this->input->post('id_opmawa');
+				$idDepartemen = $this->input->post('user_departemen');
+				$tahun = $idToUser['0']['user_tahun'];
+				// $role = $idToUser['0']['user_role'];
+				$data = array(
+					// 'user_nama' => $nama,
+					// 'user_NIM' => $NIM,
+					// 'user_pass' => $pass,
+					// 'id_prodi' => $prodi,
+					'id_posisi' => 1, //update
+					'id_opmawa' => $idOpmawa, //update
+					'id_departemen' => $idDepartemen, //update
+					'user_tahun' => $tahun + 1, //update
+					// 'user_role' => $role
+				);
+
+				$where = array('user_ID' => $idToUser['0']['user_ID']);
+				$this->M_sys->updateData($where, $data, 'user_tbl');
+
+				// update data ketua opmawa
+				$data_ketua = array(
+					'id_user' => $nama
+				);
+				$where = array('opmawa_ID' => $idOpmawa);
+				$this->M_sys->updateData($where, $data_ketua, 'opmawa_tbl');
+
+				// menambah backup opmawa sebelumnya
+				$nama = $idToUser['0']['user_nama'];
+				$NIM = $idToUser['0']['user_NIM']."-".$idToUser['0']['user_tahun'];;
+				$pass = $idToUser['0']['user_pass'];
+				$prodi = $idToUser['0']['id_prodi'];
+				$posisi = $idToUser['0']['id_posisi'];
+				$idOpmawa = $idToUser['0']['id_opmawa'];
+				$idDepartemen = $idToUser['0']['id_departemen'];
+				$tahun = $idToUser['0']['user_tahun'];
+				$role = $idToUser['0']['user_role'];
+				$data = array(
+					'user_nama' => $nama,
+					'user_NIM' => $NIM,
+					'user_pass' => $pass,
+					'id_prodi' => $prodi,
+					'id_posisi' => $posisi,
+					'id_opmawa' => $idOpmawa,
+					'id_departemen' => $idDepartemen,
+					'user_tahun' => $tahun,
+					'user_role' => $role
+				);
+				$this->M_user->inputAnggota($data);
+
+			}
 
 			function addDepartemen()
 			{

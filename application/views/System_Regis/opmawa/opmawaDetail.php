@@ -9,29 +9,33 @@
                         <h1><strong>
                             <?php foreach ($detail_opmawa as $do) {
                                     echo $do->opmawa_kabinet;
-                                    $idToNama = $this->M_user->getUserNama($do->id_user); ?>
+                                    $idToNama = $this->M_user->getUserNama($do->id_user);
+                                    $idToProdi = $this->M_user->getProdi($do->opmawa_level); ?>
                         </h1></strong>  
+                        <?php if ($do->opmawa_level == 0) { 
+                            echo "<strong>Tingkat : </strong>Fakultas";
+                         } else {
+                            echo "<strong>Tingkat : </strong> Prodi - " . $idToProdi['0']['prodi_nama'];
+                         } ?>
                     </div>
                     
                     <div class="body">
                         <div class="row">
-                            <div class="col-lg-3">
-                                <?= "<strong>Ketua : </strong>" . $idToNama['0']['user_nama']; ?>
-                            </div>
-                            <!-- <div class="col-lg-3">
-                                <?php 
-                                    echo "<strong>Penilaian Opmawa : </strong>" ."78";
+                            <div class="col-lg-4">
+                                <?php if($do->id_user == 0) { ?>
+                                    <button class="btn btn-sm btn-info waves-effect" data-toggle="modal" data-target="#ModalKetua" id="round"><i class="material-icons">library_add</i> Tambahkan Ketua</button>  
+                                <?php } else { 
+                                    echo "<strong>Ketua : </strong>" . $idToNama['0']['user_nama']; 
                                 } ?>
-                            </div> -->
+                            </div>
+                            <?php } ?>
                         </div>
 
                         <div class="header" align="center">
                             <div class="alert alert-warning" id="round">
                               <strong>Informasi!</strong> Tabel ini merupakan daftar posisi/jabatan yang terdaftar di dalam OPMAWA.
                             </div>
-                            <?php if($idToNama['0']['user_ID'] == $_SESSION['user_ID']) { ?>
-                                <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalDepartemen" id="round"><i class="material-icons">library_add</i> Departemen</button>  
-                            <?php } ?>
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalDepartemen" id="round"><i class="material-icons">library_add</i> Departemen</button>  
                         </div>
                   
                         <div class="table-responsive">
@@ -94,6 +98,47 @@
     </div>
 </div>
 
+<!-- Modal Ketua -->
+<div class="modal fade" id="ModalKetua" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="round">
+           <center>
+            <div class="modal-body">
+                <!-- Form departemen -->
+                <!-- <form id="form_validation" class="formKetua" method="POST" style="margin: 20px" onsubmit="return submitKetua()"> -->
+                <form id="form_validation" class="formKetua" method="POST" style="margin: 20px" action="<?php echo base_url('Main_C/addKetuaOpmawa') ?>">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <select class="form-control show-tick" name="user_nama" data-live-search="true" required>
+                                <option value="">-- Nama Ketua --</option>
+                                <?php foreach ($user_data as $ud) {
+                                        echo "<option value='$ud->user_ID'>".$ud->user_nama."</option>";
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <select class="form-control show-tick" name="user_departemen" data-live-search="true">
+                                <option value="">-- Departemen --</option>
+                                <?php 
+                                    foreach ($detail_departemenOpmawa as $dd) {
+                                        echo "<option value='$dd->departemen_ID'>".$dd->departemen_nama ."</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" name="id_opmawa" value="<?php echo $do->opmawa_ID ?>">
+                    <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                </form>
+                <!-- #END# Form Departemen -->
+            </div>
+            </center>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 
@@ -128,6 +173,34 @@ function submitDepart() {
                 var ref = $('#refDep');
                 $('#refDep').load(document.URL +  ' #refDep', function() {
                 ref.children('#refDep').unwrap();});
+            })        
+        }
+    });
+    return false;
+        
+}
+
+function submitKetua() {
+
+    var data = $('.formKetua').serialize();
+
+    alert(data);
+    
+    $.ajax({
+        type: 'POST',
+        url: "<?php echo base_url('Main_C/addKetuaOpmawa') ?>",
+        data: data,
+        success: function() {
+            Swal.fire({
+              position: 'top-end',
+              type: 'success',
+              title: 'Berhasil menambah departemen',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(function(){
+                var ref = $('#refKetua');
+                $('#refKetua').load(document.URL +  ' #refKetua', function() {
+                ref.children('#refKetua').unwrap();});
             })        
         }
     });
