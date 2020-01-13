@@ -58,17 +58,13 @@ class M_proker extends CI_Model{
 			    }
 			}
 
-				function Progress_proker($id_proker)
-				{   
-
+				function Progress_proker($id_proker){   
 				    $query1 = $this->db->get_where('prokertugas_tbl', array('id_proker' => $id_proker));
 
-				    if($query1->num_rows()>0)
-				    {
+				    if($query1->num_rows()>0){
 				      $total = $query1->num_rows();
 				    }
-				    else
-				    {
+				    else{
 				      $total = 0;
 				    }
 
@@ -77,19 +73,15 @@ class M_proker extends CI_Model{
 				    	'prokerTugas_status' => '1' 
 				    ));
 
-				    if($query2->num_rows()>0)
-				    {
+				    if($query2->num_rows()>0){
 				      $done = $query2->num_rows();
 				    }
-				    else
-				    {
+				    else {
 				      $done = 0;
 				    }
 
 				    $count_progress = ($done / $total) * 100;
-
 				    return $count_progress;
-
 				}
 
 			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
@@ -121,35 +113,24 @@ class M_proker extends CI_Model{
 			}
 
 			// Menghitung banyak nya jumlah data pada database dengan ketentuan tertentu
-			function JumlahProkerAnggota()
-			{   
+			function JumlahProkerAnggota() {   
 			    $query = $this->db->get_where('prokeranggota_tbl', array('id_proker' => $_GET['id_proker']));
-			    if($query->num_rows()>0)
-			    {
+			    if($query->num_rows()>0) {
 			      return $query->num_rows();
 			    }
-			    else
-			    {
+			    else {
 			      return 0;
 			    }
 			}
 
-			function getProkerNama($id_proker)
-			{
-				
+			function getProkerNama($id_proker){
 				 $query = $this->db->get_where('proker_tbl', array('proker_ID' => $id_proker));
-
         		 return $query->result_array();
-				
 			}
 
-			function getPosisiNama($id_posisi)
-			{
-				
+			function getPosisiNama($id_posisi) {
 				 $query = $this->db->get_where('prokerposisi_tbl', array('prokerposisi_ID' => $id_posisi));
-
         		 return $query->result_array();
-				
 			}
 
 
@@ -173,7 +154,6 @@ class M_proker extends CI_Model{
 			function inputProkerEvaluasi($data) {
 				$this->db->insert('prokerevaluasi_tbl', $data);
 			}
-
 
 // Delete Proker yang terdaftar beserta sub function nya
 	function deleteProker($data) {

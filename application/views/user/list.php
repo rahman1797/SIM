@@ -1,3 +1,4 @@
+    <?php $data_opmawa_user = $this->M_sys->getOpmawaData($_SESSION['user_opmawa']); ?>
       <section class="content">
         <div class="container-fluid">
         
@@ -40,6 +41,11 @@
 
                                         <?php 
                                             foreach($user_data as $u){ 
+                                                $data_opmawa_anggota = $this->M_sys->getOpmawaData($u->id_opmawa);
+                                        
+                                                // Memfilter opmawa berdasarkan tingkatan level dan prodi
+                                                if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_anggota["0"]["opmawa_level"]) {
+
                                                 $idToProdi = $this->M_user->getProdi($u->id_prodi);
                                                 $idToPosisi = $this->M_user->getPosisi($u->id_posisi);
                                                 $tahun = $u->user_tahun;
@@ -69,8 +75,7 @@
                                                     <?php } ?>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
-                                        
+                                        <?php } } ?>
                                     </tbody>
                                 </table>
                             </div>

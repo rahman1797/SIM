@@ -90,6 +90,7 @@ if (!isset($_SESSION['logged_in'])) {
             <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
             <a href="javascript:void(0);" class="bars"></a>
             <div class="navbar-brand">Sistem Informasi Manajemen OPMAWA</div> 
+            <!-- <?php print_r($_SESSION) ?> -->
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">

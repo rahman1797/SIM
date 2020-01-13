@@ -99,8 +99,7 @@ function konfirmasiHapus(id) {
 
     job = confirm("Are you sure to delete permanently?");
     
-    if(job != true)
-    {
+    if(job != true) {
         return false;
     }
 
@@ -127,5 +126,4 @@ function konfirmasiHapus(id) {
         })
     }
 }
-
 </script>

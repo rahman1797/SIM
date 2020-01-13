@@ -45,7 +45,7 @@
       margin-bottom: 0;
     }
   </style>
-
+<?php $data_opmawa_user = $this->M_sys->getOpmawaData($_SESSION['user_opmawa']); ?>
 <section class="content">
     <div class="container-fluid">
     
@@ -95,6 +95,12 @@
                                 <?php 
                                 
                                 foreach($proker_data as $pd){ 
+
+                                   $data_opmawa_proker = $this->M_sys->getOpmawaData($pd->id_opmawa);
+                                        
+                                    // Memfilter opmawa berdasarkan tingkatan level dan prodi
+                                    if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_proker["0"]["opmawa_level"]) {
+
                                     $date = date_create($pd->proker_tanggal);
                                     $id_proker = $pd->proker_ID;
                                     $jumlah = $this->M_berkas->JumlahBerkasAll($id_proker); ?>
@@ -112,7 +118,7 @@
                                         </div>                                  
                                     </div>
 
-                                    <?php } ?>
+                                    <?php } } ?>
                                 </a>
                             </center>
                         </div>    
@@ -145,6 +151,12 @@
                                 <tbody>
                                     <?php 
                                         foreach($berkas_data as $bd){ 
+                                            
+                                            $data_opmawa_berkas = $this->M_sys->getOpmawaData($bd->id_opmawa);
+                                        
+                                            // Memfilter opmawa berdasarkan tingkatan level dan prodi
+                                            if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_berkas["0"]["opmawa_level"]) {
+
                                             $idUser = $bd->id_user;
                                             $idProker = $bd->id_proker;
                                             $idToUser = $this->M_user->getUserNama($idUser);
@@ -199,7 +211,7 @@
 
                                         </td>
                                     </tr>
-                                    <?php   }
+                                    <?php   } }
                                     } ?>      
                                 </tbody>
                             </table>

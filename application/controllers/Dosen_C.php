@@ -79,6 +79,8 @@ class Dosen_C extends CI_Controller {
 
 		function print_to_pdf(){	
 
+			 	$data_opmawa_user = $this->M_sys->getOpmawaData($_SESSION['user_opmawa']);
+
 				$tahun = $_GET['tahun'];
 				$role = $_GET['role'];
 				if ($role == 1) {
@@ -101,6 +103,12 @@ class Dosen_C extends CI_Controller {
 			    $result = $this->db->get_where('proker_tbl', array('proker_tahun' => $tahun, 'proker_lembaga' => $role))->result();
 			    $no = 0;
 			    foreach ($result as $r){
+
+		    	$data_opmawa_proker = $this->M_sys->getOpmawaData($r->id_opmawa);
+                                    
+                // Memfilter opmawa berdasarkan tingkatan level dan prodi
+                if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_proker["0"]["opmawa_level"]) {
+
 				    $pdf->Ln(15);
 				    $no++;
 
@@ -123,7 +131,7 @@ class Dosen_C extends CI_Controller {
 				    else {
 				    	$pdf->Multicell(170,5,$r->proker_deskripsi,0);
 				    }
-			    }
+			    } }
 			    $pdf->Output();	
 		}
 }

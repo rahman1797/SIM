@@ -7,6 +7,7 @@ class Berkas_C extends CI_Controller {
         parent ::__construct();
         $this->load->model('M_proker');
         $this->load->model('M_user');
+        $this->load->model('M_sys');
         $this->load->model('M_berkas');
         $this->load->helper('download');
         $this->load->library('upload');
@@ -48,7 +49,8 @@ class Berkas_C extends CI_Controller {
 	            'id_user' => $_SESSION['user_ID'],
 	            'id_proker' => $_GET['id_proker'],
 	            'berkas_lembaga' => $_SESSION['user_role'],
-	            'berkas_jenis' =>  $jenis
+	            'berkas_jenis' =>  $jenis,
+	            'id_opmawa' => $_SESSION['user_opmawa']
 	            );
 	        $result = $this->db->insert('berkas_tbl', $database);
 	        echo "<script>history.go(-1)</script>";
@@ -67,7 +69,8 @@ class Berkas_C extends CI_Controller {
 	            'id_user' => $_SESSION['user_ID'],
 	            'id_proker' => $id_proker,
 	            'berkas_lembaga' => $_SESSION['user_role'],
-	            'berkas_jenis' =>  $jenis
+	            'berkas_jenis' =>  $jenis,
+	            'id_opmawa' => $_SESSION['user_opmawa']
 	            );
 	    	$result = $this->db->insert('berkas_tbl', $database);
 		} else {
