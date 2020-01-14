@@ -50,6 +50,43 @@ class Login_C extends CI_Controller {
             }
 
         }
+
+        function exeLogin_dosen(){
+        $NIM = $this->input->post('user_NIM');
+        $pass = $this->input->post('user_pass');
+        $where = array(
+            'dosen_nik' => $NIM,
+            'dosen_password' => $pass
+            );
+
+        $cek2 = $this->M_user->cekLogin("dosen_tbl",$where);
+        $cek = $this->M_user->cekLogin("dosen_tbl",$where)->num_rows();
+         
+        if($cek > 0){
+           foreach ($cek2->result() as $sess ) {
+                $sess_data['logged_in'] = 'Sudah Masuk';
+                $sess_data['user_ID'] = $sess->dosen_ID;
+                $sess_data['user_nama'] = $sess->dosen_nama;
+                $sess_data['user_NIM'] = $sess->dosen_nik;             
+                $sess_data['user_prodi'] = $sess->id_prodi;
+                // $sess_data['user_posisi'] = $sess->id_posisi;
+                // $sess_data['user_opmawa'] = $sess->id_opmawa;
+                // $sess_data['user_departemen'] = $sess->id_departemen;
+                // $sess_data['user_tahun'] = $sess->user_tahun;
+                // $sess_data['user_role'] = $sess->user_role;
+        
+            }
+                $this->session->set_userdata($sess_data);
+                
+                if ($_SESSION['user_role'] == 0) {
+                    echo "dosen";
+                }
+                else {
+                    echo "sukses";    
+                }     
+
+            }
+        }
         
         function exeLogout() {
             $this->session->sess_destroy();

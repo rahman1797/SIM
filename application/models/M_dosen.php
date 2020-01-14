@@ -26,7 +26,7 @@ class M_dosen extends CI_Model{
         		 return $query->result_array();
 			}
 
-	function getProfil(){
+	function getProfil_dosen(){
 		return $this->db->get_where('dosen_tbl', array('dosen_ID' => $_SESSION['user_ID']));
 	}
 

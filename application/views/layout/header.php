@@ -173,8 +173,18 @@ if (!isset($_SESSION['logged_in'])) {
                 <img src="<?php echo base_url('assets/images/user.png')?>" width="48" height="48" alt="User" />
             </div>
             <div class="info-container">
-                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['user_nama']; ?></div>
-                <div class="email"><?php echo $_SESSION['user_NIM']; ?></div>
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php 
+                    if ($_SESSION['user_role'] == 0) {
+                        $dosen_nama = $this->M_dosen->getProfil_dosen()->result();
+                        echo $dosen_nama['0']->dosen_nama;
+                    } else {
+                        echo $_SESSION['user_nama']; } ?></div>
+                <div class="email"><?php 
+                    if ($_SESSION['user_role'] == 0) {
+                        $dosen_nama = $this->M_dosen->getProfil_dosen()->result();
+                        echo $dosen_nama['0']->dosen_nik;
+                    } else {
+                        echo $_SESSION['user_NIM']; } ?></div>
                 <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right" id="round">

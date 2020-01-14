@@ -22,7 +22,7 @@ class Dosen_C extends CI_Controller {
 	}
 
 	function profil(){
-		$data['profil'] = $this->M_dosen->getProfil()->result();
+		$data['profil'] = $this->M_dosen->getProfil_dosen()->result();
 		$data['prodi_data'] = $this->M_sys->tampil_regis_prodi()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
@@ -32,30 +32,48 @@ class Dosen_C extends CI_Controller {
 		function ubah_profil(){
 			$idUser = $this->input->post('dosen_ID');
 			$nama = $this->input->post('dosen_nama');
-			$NIM = $this->input->post('doseb_nik');
+			$NIDN = $this->input->post('dosen_nik');
 			$prodi = $this->input->post('id_prodi');
 
 			$where = array('dosen_ID' => $idUser);
 
 			$data = array(
-				'user_nama' => $nama,
-				'user_NIM' => $NIM,
+				'dosen_nama' => $nama,
+				'dosen_nik' => $NIDN,
 				'id_prodi' => $prodi
 			);
-			return $this->M_sys->updateData($where, $data, 'dosen_tbl');
+		    
+		    $this->M_sys->updateData($where, $data, 'dosen_tbl');
+
+		    $where_user_tbl = array('user_ID' => $idUser);
+
+			$data_user_tbl = array(
+				'user_NIM' => $NIDN,
+			);
+
+			$this->M_sys->updateData($where_user_tbl, $data_user_tbl, 'user_tbl');
 		}
 
 		function ubah_password(){
 			$OldPass = $this->input->post('OldPassword');
 			$NewPass = $this->input->post('NewPasswordConfirm');
 			$idUser = $this->input->post('dosen_ID');
-			$check_pass = $this->M_dosen->getProfil()->result_array();
+			$check_pass = $this->M_dosen->getProfil_dosen()->result_array();
 			$check_old_pass = $check_pass['0']['dosen_password'];
 
 			if ($OldPass == $check_old_pass) {
 				$where = array('dosen_ID' => $idUser);
 				$data = array('dosen_password' => $NewPass);
 				$this->M_sys->updateData($where, $data, 'dosen_tbl');
+
+				$where_user_tbl = array('user_ID' => $idUser);
+
+				$data_user_tbl = array(
+					'user_pass' => $NewPass,
+				);
+
+				$this->M_sys->updateData($where_user_tbl, $data_user_tbl, 'user_tbl');
+
 				echo "berhasil";
 			} else {
 				echo "password lama salah";
