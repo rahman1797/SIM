@@ -232,7 +232,7 @@ if (!isset($_SESSION['logged_in'])) {
                             <ul class="ml-menu">
                                 <?php for ($i=0; $i < 5; $i++) { ?>
                                 <li>
-                                    <a href="#"><?= date("Y") - $i; ?></a>  
+                                    <a href="<?php echo base_url('Dosen_C/print_to_pdf?tahun=' . (date('Y') - $i). '&&role=2' ) ?>"><?= date("Y") - $i; ?></a>  
                                 </li>
                                 <?php } ?> 
                             </ul>
