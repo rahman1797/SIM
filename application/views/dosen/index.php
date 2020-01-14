@@ -160,7 +160,7 @@
                                             } ?></td>           
                                             <td>
                                                 <?php if($bd->berkas_jenis != 'link') { ?>
-                                                  <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama.'&id_proker='.$idProker) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
+                                                  <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
                                                 <?php } ?>                        
                                             </td>
                                         </tr>
