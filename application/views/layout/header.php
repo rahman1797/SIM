@@ -98,7 +98,7 @@ if (!isset($_SESSION['logged_in'])) {
                 <!-- <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li> -->
                 <!-- #END# Call Search -->
                 <!-- Notifications -->
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <i class="material-icons">notifications</i>
                         <span class="label-count">3</span>
@@ -153,7 +153,7 @@ if (!isset($_SESSION['logged_in'])) {
                             <a href="javascript:void(0);">View All Notifications</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <!-- #END# Notifications -->
                 <!-- Tasks -->             
                 

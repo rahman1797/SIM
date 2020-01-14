@@ -108,9 +108,9 @@
 
                                     <div role="tabpanel" class="tab-pane fade in" id="change_password_settings">
 
-                                        <form class="form-horizontal" method="post" action="<?php echo base_url('Dosen_C/ubah_password') ?>">
+                                        <!-- <form class="form-horizontal" method="post" action="<?php echo base_url('Dosen_C/ubah_password') ?>"> -->
 
-                                        <!-- <form class="form-horizontal form_edit_password" onsubmit="return ubah_password()"> --> 
+                                        <form class="form-horizontal form_edit_password" onsubmit="return ubah_password()"> 
                                             
                                             <div class="form-group">
                                                 <label for="OldPassword" class="col-sm-3 control-label">Password Lama</label>
@@ -196,7 +196,7 @@ function ubah_password() {
 
  var data = $('.form_edit_password').serialize();
 
- alert(data);
+ // alert(data);
           
     $.ajax({
         type: 'POST',
