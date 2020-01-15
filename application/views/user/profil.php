@@ -1,3 +1,4 @@
+      <?php $data_opmawa_user = $this->M_sys->getOpmawaData($_SESSION['user_opmawa']); ?>
       <section class="content">
         <div class="container-fluid">
         
@@ -12,22 +13,30 @@
                                  $idToKabinet = $this->M_user->getKabinet($p->id_opmawa);
                                  $idToDepartemen = $this->M_user->getDepartemen($p->id_departemen);
                                  $tahun = $p->user_tahun;
+                                 $data_opmawa_user['0']['opmawa_level'];
                             ?>
                         
                               <div class="card profile-card">
-                                <div class="profile-header">&nbsp;</div>
+                                <!-- <div class="profile-header">&nbsp;</div> -->
                                 <div class="profile-body">
-                                    <div class="image-area">
+                                    <!-- <div class="image-area">
                                         <img style="width: 70%" src="<?php echo base_url('assets/images/user.png')?>" />
-                                    </div>
+                                    </div> -->
                                     <div class="content-area" style="padding: 5px" id="refProfil1">
                                         <h3><?= $p->user_nama; ?></h3>
                                         <p><?php 
                                             if ($p->user_role == 1) {
-                                               echo "Lembaga Eksekutif";
+                                               echo "Lembaga Eksekutif ";
                                             }
                                             else {
-                                               echo "Lembaga Legislatif";
+                                               echo "Lembaga Legislatif ";
+                                            } 
+                                            if ($data_opmawa_user['0']['opmawa_level'] == 0) {
+                                                echo "Fakultas FMIPA";
+                                            }
+                                            else {
+                                                $opmawa_prodi = $this->M_user->getProdi($data_opmawa_user['0']['opmawa_level']);
+                                                echo "Prodi ". $opmawa_prodi['0']['prodi_nama'];
                                             } ?> 
                                         </p>
                                         <p><?= "Kabinet ". $idToKabinet['0']['opmawa_kabinet']; ?></p>
@@ -119,7 +128,7 @@
                                         <form class="form-horizontal form_edit_profil" id="form_edit_profil" onsubmit="return ubah_profil()">
 
                                             <div class="form-group">
-                                                <label for="nama" class="col-lg-2 control-label">Nama</label>
+                                                <label for="nama" class="col-lg-2 control-label">Nama Lengkap</label>
                                                 <div class="col-lg-10">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" id="nama" name="user_nama" value="<?=  $p->user_nama; ?>" required>
@@ -127,7 +136,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="NIM" class="col-lg-2 control-label">NIM</label>
+                                                <label for="NIM" class="col-lg-2 control-label">Nomor Induk Mahasiswa</label>
                                                 <div class="col-lg-10">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" id="NIM" name="user_NIM" value="<?= $p->user_NIM ?>" required>
@@ -135,7 +144,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="prodi" class="col-lg-2 control-label">Prodi</label>
+                                                <label for="prodi" class="col-lg-2 control-label">Program Studi</label>
                                                 <div class="col-lg-10">
                                                     <select class="form-control show-tick" id="prodi" name="id_prodi" data-live-search="true">
                                                         <option value="<?php echo $p->id_prodi ?>"><?= $idToProdi['0']['prodi_nama']; ?></option>

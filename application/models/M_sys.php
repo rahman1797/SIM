@@ -1,5 +1,4 @@
 <?php 
- 
 class M_sys extends CI_Model{
 
 	function tampil_regis_prodi(){
@@ -30,10 +29,6 @@ class M_sys extends CI_Model{
 			function tampil_departemenOpmawa(){
 				return $this->db->get_where('departemen_tbl', array('id_opmawa' => $_SESSION['user_opmawa']));
 			}
-
-	// function tampil_regis_posisi(){
-	// 	return $this->db->get_where('posisi_tbl');
-	// }
 
 			function tampil_regis_posisi_byLembaga(){
 				return $this->db->get_where('posisi_tbl', array('posisi_lembaga' => $_SESSION['user_role'] ));
@@ -72,11 +67,9 @@ class M_sys extends CI_Model{
 	}
 
 
-	function updateData($where,$data,$table)
-	{
+	function updateData($where,$data,$table){
 		$this->db->where($where);
 		
 		$this->db->update($table,$data);
 	}
-
 }

@@ -42,7 +42,7 @@
                                             <table class="table" id="refProfil2">
 
                                             <tr>
-                                                <th>Nomor Induk Karyawan </th>
+                                                <th>NIDN / NIK </th>
                                                 <td>:</td>
                                                 <td><?php echo $p->dosen_nik; ?></td>
                                             </tr>
@@ -60,7 +60,7 @@
                                         <form class="form-horizontal form_edit_profil" id="form_edit_profil" onsubmit="return ubah_profil()">
 
                                             <div class="form-group">
-                                                <label for="nama" class="col-lg-2 control-label">Nama</label>
+                                                <label for="nama" class="col-lg-2 control-label">Nama Lengkap</label>
                                                 <div class="col-lg-10">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" id="nama" name="dosen_nama" value="<?=  $p->dosen_nama; ?>" required>
@@ -68,7 +68,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="NIM" class="col-lg-2 control-label">NIK</label>
+                                                <label for="NIM" class="col-lg-2 control-label">NIDN / NIK</label>
                                                 <div class="col-lg-10">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" id="NIM" name="dosen_nik" value="<?= $p->dosen_nik ?>" required>
@@ -76,7 +76,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="prodi" class="col-lg-2 control-label">Prodi</label>
+                                                <label for="prodi" class="col-lg-2 control-label">Program Studi</label>
                                                 <div class="col-lg-10">
                                                     <select class="form-control show-tick" id="prodi" name="id_prodi" data-live-search="true">
                                                         <option value="<?php echo $p->id_prodi ?>"><?= $idToProdi['0']['prodi_nama']; ?></option>

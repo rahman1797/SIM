@@ -40,7 +40,7 @@ body {
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="user_NIM" id="user_NIM" placeholder="NIM" required autofocus>
+                            <input type="text" class="form-control" name="user_NIM" id="user_NIM" placeholder="NIM / NIDN / NIK" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">

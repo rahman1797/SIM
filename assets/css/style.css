@@ -3095,6 +3095,8 @@ section.content {
     .info-box .content .text {
       font-size: 13px;
       margin-top: 11px;
+      max-height: 50%;
+      overflow: hidden;
       color: #555; }
     .info-box .content .number {
       font-weight: normal;
@@ -3103,7 +3105,8 @@ section.content {
       color: #555; }
 
 .info-box.hover-zoom-effect .icon {
-  overflow: hidden; }
+  overflow: hidden;
+  min-width: 30%; }
   .info-box.hover-zoom-effect .icon i {
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -7905,7 +7908,7 @@ fieldset[disabled] .form-control {
   border-bottom: 1px solid #ddd;
   padding-bottom: 15px; }
   .profile-card .profile-body .content-area p {
-    margin-bottom: 0; }
+    margin-bottom: 50px; }
     .profile-card .profile-body .content-area p:last-child {
       font-weight: 600;
       color: #ad1455;

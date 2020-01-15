@@ -169,11 +169,14 @@ if (!isset($_SESSION['logged_in'])) {
     <aside id="leftsidebar" class="sidebar">
         <!-- User Info -->
         <div class="user-info">
-            <div class="image">
+            <!-- <div class="image">
                 <img src="<?php echo base_url('assets/images/user.png')?>" width="48" height="48" alt="User" />
-            </div>
+            </div> -->
             <div class="info-container">
-                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php 
+                <font color="white">Selamat datang, </font>
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                    <?php 
                     if ($_SESSION['user_role'] == 0) {
                         $dosen_nama = $this->M_dosen->getProfil_dosen()->result();
                         echo $dosen_nama['0']->dosen_nama;

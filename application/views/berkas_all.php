@@ -92,21 +92,18 @@
                     <div class="body">
                         <div class="row">
                             <center>
-                                <?php 
-                                
-                                foreach($proker_data as $pd){ 
+                                <?php foreach($proker_data as $pd){ 
 
-                                   $data_opmawa_proker = $this->M_sys->getOpmawaData($pd->id_opmawa);
+                                  $data_opmawa_proker = $this->M_sys->getOpmawaData($pd->id_opmawa);
                                         
                                     // Memfilter opmawa berdasarkan tingkatan level dan prodi
-                                    if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_proker["0"]["opmawa_level"]) {
+                                  if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_proker["0"]["opmawa_level"]) {
 
-                                    $date = date_create($pd->proker_tanggal);
-                                    $id_proker = $pd->proker_ID;
-                                    $jumlah = $this->M_berkas->JumlahBerkasAll($id_proker); ?>
+                                  $date = date_create($pd->proker_tanggal);
+                                  $id_proker = $pd->proker_ID;
+                                  $jumlah = $this->M_berkas->JumlahBerkasAll($id_proker); ?>
                                 <a href="<?php echo base_url('Berkas_C/proker?id_proker='.$id_proker) ?>">
                                     <div class="col-lg-3">
-
                                         <div style="cursor: pointer;" class="info-box bg-orange hover-zoom-effect" id="round">
                                             <div class="icon">
                                                 <i class="material-icons">description</i>
@@ -117,7 +114,6 @@
                                             </div>
                                         </div>                                  
                                     </div>
-
                                     <?php } } ?>
                                 </a>
                             </center>
