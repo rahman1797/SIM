@@ -33,7 +33,7 @@ class Main_C extends CI_Controller {
 			'filename' => 'sim.sql'
 		);
 		$backup = & $this->dbutil->backup($prefs);
-		$db_name = 'crm-on-' . date("Y-m-d-H-i-s") . '.zip';
+		$db_name = 'sim-bckup-' . date("s-i-H-d-m-Y") . '.zip';
 		$save = 'assets/sql/' . $db_name;
 		$this->load->helper('file');
 		write_file($save, $backup);
