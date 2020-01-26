@@ -9,7 +9,7 @@
                     <div class="header" align="center">
                         <h2><strong>PROGRAM KERJA PERIODE SAAT INI</strong></h2>
                         <p></p>
-                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProker" id="round"><i class="material-icons">library_add</i> Program Kerja</button>  
+                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProker" id="round"><i class="material-icons">library_add</i> Tambah</button>  
                     </div>
                     
                     <div class="body">
@@ -19,18 +19,16 @@
                                     <tr>
                                         <th>Nama Proker</th>
                                         <th>Tanggal</th>
-                                        <th>Tahun Kepengurusan</th>
-                                        <th>Nilai</th>
-                                        <th>Kelola</th>
+                                        <th>Periode Kepengurusan</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>Nama Proker</th>
                                         <th>Tanggal</th>
-                                        <th>Tahun Kepengurusan</th>
-                                        <th>Nilai</th>
-                                        <th>Kelola</th>
+                                        <th>Periode Kepengurusan</th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -53,16 +51,6 @@
                                                     } ?>
                                                 </td>
                                                  <td><?php echo $pd->proker_tahun." - ".(($pd->proker_tahun) + 1); ?></td>
-                                                 <td><?php if ($pd->proker_nilai && ($_SESSION['user_role'] == 1)) {
-                                                            echo $pd->proker_nilai;
-                                                        }
-                                                        elseif ($_SESSION['user_role'] == 2) {
-                                                            echo "<font color='red'>Nan</font>";
-                                                        }
-                                                        else {
-                                                            echo "<font color='red'>Proker belum dinilai</font>";
-                                                        }
-                                                 ?></td>
                                                  <td>
                                                      <a href="<?php echo base_url('Proker_C/prokerDetail?id_proker='.$id_proker)?>">
                                                         <button class="btn btn-info" id="round"><i class="material-icons">more_horiz</i></button>
@@ -95,18 +83,18 @@
                                     <tr>
                                         <th>Nama Proker</th>
                                         <th>Tanggal</th>
-                                        <th>Tahun Kepengurusan</th>
+                                        <th>Periode Kepengurusan</th>
                                         <th>Nilai</th>
-                                        <th>Kelola</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>Nama Proker</th>
                                         <th>Tanggal</th>
-                                        <th>Tahun Kepengurusan</th>
+                                        <th>Periode Kepengurusan</th>
                                         <th>Nilai</th>
-                                        <th>Kelola</th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>

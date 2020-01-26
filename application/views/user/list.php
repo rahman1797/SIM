@@ -21,9 +21,8 @@
                                             <th>NIM</th>
                                             <th>Prodi</th>
                                             <th>Posisi</th>
-                                            <th>Tahun</th>
-                                            <th>Lembaga</th>
-                                            <th>Kelola</th>
+                                            <th>Periode</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -32,9 +31,8 @@
                                             <th>NIM</th>
                                             <th>Prodi</th>
                                             <th>Posisi</th>
-                                            <th>Tahun</th>
-                                            <th>Lembaga</th>
-                                            <th>Kelola</th>
+                                            <th>Periode</th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -56,15 +54,6 @@
                                                 <td><?php echo $idToProdi['0']['prodi_nama']; ?></td>
                                                 <td><?php echo $idToPosisi['0']['posisi_nama']; ?></td>
                                                 <td><?php echo $tahun . " - " . ($tahun + 1) ?></td>
-                                                <td><?php if ($u->user_role == 1) 
-                                                            {
-                                                                echo "Eksekutif";
-                                                            }
-                                                          elseif ($u->user_role == 2) 
-                                                            {
-                                                                echo "Legislatif";
-                                                            }
-                                                 ?></td>
                                                  <td>
                                                     <?php 
                                                         if ($_SESSION['user_role'] != $u->user_role) {

@@ -16,8 +16,8 @@
                                         <th>No</th>
                                         <th>Nama Kabinet</th>
                                         <th>Nama Ketua</th>
-                                        <th>Tahun Kepengurusan</th>
-                                        <th>Kelola</th>
+                                        <th>Periode Kepengurusan</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -25,8 +25,8 @@
                                         <th>No</th>
                                         <th>Nama Kabinet</th>
                                         <th>Nama Ketua</th>
-                                        <th>Tahun Kepengurusan</th>
-                                        <th>Kelola</th>
+                                        <th>Periode Kepengurusan</th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -45,9 +45,9 @@
                                             <td><?php echo $tahunKepengurusan . " - " . ($tahunKepengurusan + 1)  ?></td>
                                             <td>
                                                 <a href="<?php echo base_url('Main_C/opmawaDetail?id_opmawa='. $id_opmawa)?>">
-                                                    <button class="btn btn-info" id="round">Detail</button>
+                                                    <button class="btn btn-info" id="round"><i class="material-icons">more_horiz</i></button>
                                                 </a>
-                                                <?php if ($_SESSION['user_posisi'] == 1) { ?>
+                                                <?php if ($_SESSION['user_posisi'] == 1 && $_SESSION['user_opmawa'] == $id_opmawa) { ?>
                                                         <a href="<?php echo site_url();?>/Main_C/delOpmawa/<?php print($do->opmawa_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
                                                 <?php }
                                                       else {

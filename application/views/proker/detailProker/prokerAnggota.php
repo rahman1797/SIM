@@ -7,8 +7,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" id="round">
                     
-                    <div class="dropdown">
-                      <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%; background-color: #FF9800 !important">Kelola lainnya
+                   <div class="dropdown text-center">
+                      <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 75%; background-color: #FF9800 !important">Kelola lainnya
                       <span class="caret"></span></button>
                       <ul class="dropdown-menu">
                         <li><a href="<?php echo base_url('Proker_C/prokerTugas?id_proker='.$_GET['id_proker']) ?>">Daftar Tugas</a></li>
@@ -21,13 +21,13 @@
                     </div>
                     
                     <div class="header" align="center">
-                        <h2><strong>ANGGOTA KEPANITIAAN</strong></h2>
+                        <h2><strong>ANGGOTA KEPANITIAAN</strong><br>"<?= $idToProker['0']['proker_nama'] ?>"</h2>
                         <p>
                         </p>
                         <?php if ($idToProker['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
 
                         <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
-                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerAnggota" id="round"><i class="material-icons">person_add</i> Anggota Kepanitiaan</button> 
+                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerAnggota" id="round"><i class="material-icons">person_add</i> Tambah</button> 
                         <?php } ?>
 
                         <?php } ?>
@@ -40,14 +40,14 @@
                                     <tr>
                                         <th>Nama Panitia</th>
                                         <th>Sie Kepanitiaan</th>
-                                        <th>Kelola</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>Nama Panitia</th>
                                         <th>Sie Kepanitiaan</th>
-                                        <th>Kelola</th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -74,9 +74,7 @@
                                                 <?php } ?>
                                             </td>
                                         </tr>
-                                    <?php } 
-                                         echo "<div class='alert alert-warning' id='round'>Pendaftaran Anggota Kepanitiaan Untuk Program Kerja <font size='5'>".$idToProker['0']['proker_nama']."</font></div>";
-                                    ?>   
+                                    <?php } ?>   
                                 </tbody>
                             </table>
                         </div>

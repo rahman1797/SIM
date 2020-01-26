@@ -6,8 +6,8 @@
                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round"> 
 
-                            <div class="dropdown">
-                              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%; background-color: #FF9800 !important">Kelola lainnya
+                            <div class="dropdown text-center">
+                              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 75%; background-color: #FF9800 !important">Kelola lainnya
                               <span class="caret"></span></button>
                               <ul class="dropdown-menu">
                                 <li><a href="<?php echo base_url('Proker_C/prokerTugas?id_proker='.$_GET['id_proker']) ?>">Daftar Tugas</a></li>
@@ -21,8 +21,7 @@
                         
                         <div class="body">
                             <div class="header" align="center">
-                                <h2><strong>KEUANGAN UNTUK PROGRAM KERJA</strong></h2>
-                                <?php echo $idToProker['0']['proker_nama']; ?>
+                                <h2><strong>KEUANGAN UNTUK PROGRAM KERJA</strong><br>"<?= $idToProker['0']['proker_nama'] ?>"</h2>
                             </div> 
                             <table class="table">
                                 <tr>

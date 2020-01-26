@@ -1,3 +1,4 @@
+<?php $idToProker = $this->M_proker->getProkerNama($_GET['id_proker']);?>
 <section class="content">
     <div class="container-fluid">
     
@@ -6,8 +7,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" id="round">
 
-                        <div class="dropdown">
-                          <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%; background-color: #FF9800 !important">Kelola lainnya
+                        <div class="dropdown text-center">
+                          <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 75%; background-color: #FF9800 !important">Kelola lainnya
                           <span class="caret"></span></button>
                           <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url('Proker_C/prokerTugas?id_proker='.$_GET['id_proker']) ?>">Daftar Tugas</a></li>
@@ -20,9 +21,9 @@
                         </div>
                  
                     <div class="header" align="center">
-                        <h2><strong>EVALUASI</strong></h2>
+                        <h2><strong>EVALUASI</strong><br>"<?= $idToProker['0']['proker_nama'] ?>"</h2>
                         <p></p>
-                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerEvaluasi" id="round"><i class="material-icons">person_add</i> Evaluasi</button>  
+                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerEvaluasi" id="round"><i class="material-icons">person_add</i> Tambah</button>  
                     </div>
                     
                     <div class="body">
@@ -30,16 +31,16 @@
                             <table id="refProkerEvaluasi" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                 <thead>
                                     <tr>
-                                        <th>Nama Panitia</th>
+                                        <th>Evaluator</th>
                                         <th>Evaluasi</th>
-                                        <th>Kelola</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Nama Panitia</th>
+                                        <th>Evaluator</th>
                                         <th>Evaluasi</th>
-                                        <th>Kelola</th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -62,9 +63,7 @@
                                                 } ?>
                                         </td>
                                     </tr>
-                                <?php } 
-                                     echo "<div class='alert alert-warning' id='round'>Evaluasi Untuk Program Kerja <font size='5'>".$idToProker['0']['proker_nama']."</font></div>";
-                                ?>                                    
+                                <?php } ?>                                    
                                 </tbody>
                             </table>
                         </div>

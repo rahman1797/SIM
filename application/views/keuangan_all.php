@@ -1,16 +1,25 @@
 <?php $idToPemasukan = $this->M_keuangan->getPemasukanAll(); 
 $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
 // $data_opmawa_user = $this->M_sys->getOpmawaData($_SESSION['user_opmawa']); ?>
+<style type="text/css">
+.chart {
+  min-height: 480px;
+  margin: 0px;
+  width: 850px;
+}
+</style>
 <section class="content">
     <div class="container-fluid">     
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card" id="round"> 
+                 <div class="header" align="center">
+                        <h2><strong>KEUANGAN PROKER</strong></h2>
+                    </div>
               <div class="body">
                   <div class="row">
                       <center>
                           <?php foreach($data_proker as $dp){ 
-
                             // $data_opmawa_proker = $this->M_sys->getOpmawaData($dp->id_opmawa);
                                     
                             // Memfilter opmawa berdasarkan tingkatan level dan prodi
@@ -35,7 +44,9 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                   </div>    
               </div>
               <div class="body">
-                  <div id="barchart_material" style="height: 300px; max-width: 800px; margin: 0px auto;"></div>
+                <div class="table-responsive">
+                    <td><div id="barchart_material" class="chart"></div></td>      
+                </div>
               </div>
             </div>
          </div> 
@@ -43,7 +54,7 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card" id="round"> 
                 <div class="header" align="center">
-                    <h2><strong>DATA KEUANGAN NON PROKER</strong></h2>
+                    <h2><strong>KEUANGAN NON PROKER</strong></h2>
                 </div>
                 
                 <div class="body">
@@ -496,7 +507,7 @@ function drawChart() {
   var options = {
     hAxis: {format: 'decimal',
     title: 'Total nominal (Rp)'},
-    bars: 'horizontal' // Required for Material Bar Charts.
+    bars: 'horizontal'
   };
 
   var chart = new google.charts.Bar(document.getElementById('barchart_material'));

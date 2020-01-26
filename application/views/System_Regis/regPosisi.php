@@ -7,10 +7,10 @@
                 <div class="card" id="round">
                     <div class="header" align="center">
                         <div class="alert alert-warning" id="round">
-                          <strong>Informasi!</strong> Tabel ini merupakan daftar posisi/jabatan yang terdaftar di dalam OPMAWA.
+                          <strong>Informasi!</strong> Tabel ini merupakan daftar posisi / jabatan yang terdaftar di dalam Opmawa.
                         </div>
                         
-                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalPosisi" id="round"><i class="material-icons">group_add</i> Posisi</button>  
+                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalPosisi" id="round"><i class="material-icons">group_add</i> Tambah</button>  
                     </div>
                     
                     <div class="body refresh">
@@ -20,14 +20,14 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Posisi Terdaftar</th>
-                                        <th>Kelola</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
                                         <th>Posisi Terdaftar</th>
-                                        <th>Kelola</th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>

@@ -7,9 +7,9 @@
                 <div class="card" id="round">
                     <div class="header" align="center">
                         <div class="alert alert-warning" id="round">
-                          <strong>Peringatan!</strong> Menghapus salah satu prodi, maka seluruh user yang merupakan prodi tersebut akan otomatis terhapus.
+                          <strong>Informasi!</strong> Prodi tidak dapat terhapus apabila ada anggota Opmawa dari prodi tersebut.
                         </div>
-                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProdi" id="round"><i class="material-icons">add_box</i> Prodi</button>  
+                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProdi" id="round"><i class="material-icons">add_box</i> Tambah</button>  
                     </div>
                     
                     <div class="body">
@@ -19,14 +19,14 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Program Studi Terdaftar</th>
-                                        <th>Kelola</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
                                         <th>Program Studi Terdaftar</th>
-                                        <th>Kelola</th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>

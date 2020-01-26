@@ -86,7 +86,7 @@
              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" id="round">
                     <div class="header" align="center">
-                        <h2><strong>DAFTAR BERKAS FILE PROKER</strong></h2>
+                        <h2><strong>BERKAS FILE PROKER</strong></h2>
                     </div>
 
                     <div class="body">
@@ -99,7 +99,6 @@
                                     // Memfilter opmawa berdasarkan tingkatan level dan prodi
                                   if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_proker["0"]["opmawa_level"]) {
 
-                                  $date = date_create($pd->proker_tanggal);
                                   $id_proker = $pd->proker_ID;
                                   $jumlah = $this->M_berkas->JumlahBerkasAll($id_proker); ?>
                                 <a href="<?php echo base_url('Berkas_C/proker?id_proker='.$id_proker) ?>">
@@ -121,15 +120,15 @@
                     </div>
                     
                     <div class="header" align="center">
-                        <h2><strong>DAFTAR BERKAS NON PROKER</strong></h2>
+                        <h2><strong>BERKAS NON PROKER</strong></h2>
                     </div>
                     <div class="body">
                         <div class="table-responsive">
                             <table id="refBerkas" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                 <thead>
                                     <tr>
-                                        <th>Nama File / Link</th>
-                                        <th>Di upload oleh</th>
+                                        <th>File / Link</th>
+                                        <th>Peng-upload</th>
                                       <!--   <th>Program kerja</th> -->
                                         <th>Tanggal di upload</th>
                                         <th>Kelola</th>
@@ -137,8 +136,8 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Nama File</th>
-                                        <th>Di upload oleh</th>
+                                        <th>File / Link</th>
+                                        <th>Peng-upload</th>
                                        <!--  <th>Program kerja</th> -->
                                         <th>Tanggal di upload</th>
                                         <th>Kelola</th>
@@ -149,6 +148,8 @@
                                         foreach($berkas_data as $bd){ 
                                             
                                             $data_opmawa_berkas = $this->M_sys->getOpmawaData($bd->id_opmawa);
+
+                                            $date = date_create($bd->berkas_tanggal);
                                         
                                             // Memfilter opmawa berdasarkan tingkatan level dan prodi
                                             if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_berkas["0"]["opmawa_level"]) {
@@ -178,7 +179,7 @@
                                             }
                                          ?>    
                                         </td> -->
-                                        <td><?php echo $bd->berkas_tanggal; ?></td>
+                                        <td><?php echo date_format($date, "d M Y H:i:s"); ?></td>
                                         <td>
                                             <?php 
                                                 if($bd->berkas_jenis != 'link') { ?>

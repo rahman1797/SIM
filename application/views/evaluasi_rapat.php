@@ -6,9 +6,9 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" id="round">
                     <div class="header" align="center">
-                        <h2><strong>EVALUASI RAPAT</strong></h2>
+                        <h2><strong>EVALUASI RAPAT</strong><br>"<?=date('d F Y', strtotime($idToRapat['0']['rapat_tanggal']))?>"</h2>
                         <p></p>
-                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalEvaluasiRapat" id="round"><i class="material-icons">person_add</i> Evaluasi</button>  
+                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalEvaluasiRapat" id="round"><i class="material-icons">person_add</i> Tambah</button>  
                     </div>
                     
                     <div class="body">
@@ -16,16 +16,16 @@
                             <table id="refEvaluasiRapat" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                 <thead>
                                     <tr>
-                                        <th>Nama Panitia</th>
+                                        <th>Evaluator</th>
                                         <th>Evaluasi</th>
-                                        <th>Kelola</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Nama Panitia</th>
+                                        <th>Evaluator</th>
                                         <th>Evaluasi</th>
-                                        <th>Kelola</th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -48,9 +48,7 @@
                                             } ?>       
                                         </td>
                                     </tr>
-                                    <?php } 
-                                         echo "<div class='alert alert-warning' id='round'>Evaluasi Untuk Rapat Pada Tanggal <font size='5'>".date('d F Y', strtotime($idToRapat['0']['rapat_tanggal']))."</font></div>";
-                                    ?>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

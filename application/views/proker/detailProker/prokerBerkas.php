@@ -86,8 +86,8 @@
                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
                       
-                            <div class="dropdown" align="center">
-                              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%; background-color: #FF9800 !important">Kelola lainnya
+                           <div class="dropdown text-center">
+                              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 75%; background-color: #FF9800 !important">Kelola lainnya
                               <span class="caret"></span></button>
                               <ul class="dropdown-menu">
                                 <li><a href="<?php echo base_url('Proker_C/prokerTugas?id_proker='.$_GET['id_proker']) ?>">Daftar Tugas</a></li>
@@ -100,38 +100,35 @@
                             </div>
                         
                         <div class="header" align="center">
-                            <h2><strong>BERKAS (FILE) PROGRAM KERJA</strong></h2>
-                            <?php echo $idToProker['0']['proker_nama']; ?>
+                            <h2><strong>BERKAS (FILE)</strong><br>"<?= $idToProker['0']['proker_nama'] ?>"</h2>
                         </div>       
                         <div class="body">
                             <div class="table-responsive">
                                 <table id="refBerkas" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                     <thead>
                                         <tr>
-                                            <th>Nama / Link</th>
-                                            <th>Oleh</th>
-                                            <th>Tanggal</th>
-                                            <th>Kelola</th>
+                                            <th>File / Link</th>
+                                            <th>Peng-upload</th>
+                                            <th>Tanggal Ter-upload</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Nama / Link</th>
-                                            <th>Oleh</th>
-                                            <th>Tanggal</th>
-                                            <th>Kelola</th>
+                                            <th>File / Link</th>
+                                            <th>Peng-upload</th>
+                                            <th>Tanggal Ter-upload</th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-
                                         <?php                     
                                             foreach($berkas_data as $bd){ 
                                                 $idUser = $bd->id_user;
                                                 $idProker = $bd->id_proker;
                                                 $idToUser = $this->M_user->getUserNama($idUser);
-                                            
-                                                if ($idProker == $_GET['id_proker']) {           
-                                                
+                                                $date = date_create($bd->berkas_tanggal);
+                                                if ($idProker == $_GET['id_proker']) {                    
                                             ?>
 
                                             <?php if ($bd->berkas_jenis == 'lpj') {      
@@ -142,12 +139,9 @@
                                               }
                                             ?>
 
-                                                <td><?php echo $bd->berkas_nama; ?>
-                                                   
-                                                    
-                                                </td>
+                                                <td><?php echo $bd->berkas_nama; ?></td>
                                                 <td><?php echo $idToUser['0']['user_nama']; ?></td>           
-                                                <td><?php echo $bd->berkas_tanggal; ?></td>           
+                                                <td><?php echo date_format($date, "d M Y H:i:s"); ?></td>           
                                                 <td>
                                                     <?php 
                                                     if($bd->berkas_jenis != 'link') { ?>
@@ -417,8 +411,6 @@ function konfirmasiHapus(id, id_proker)
 
     job = confirm("Are you sure to delete permanently?");
 
-    alert(id);
-    
     if(job != true)
     {
         return false;

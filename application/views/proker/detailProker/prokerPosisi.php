@@ -1,5 +1,4 @@
 <?php $idToProker = $this->M_proker->getProkerNama($_GET['id_proker']);?>
-
     <section class="content">
         <div class="container-fluid">
         
@@ -8,8 +7,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
 
-                            <div class="dropdown">
-                              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%; background-color: #FF9800 !important">Kelola lainnya
+                            <div class="dropdown text-center">
+                              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 75%; background-color: #FF9800 !important">Kelola lainnya
                               <span class="caret"></span></button>
                               <ul class="dropdown-menu">
                                 <li><a href="<?php echo base_url('Proker_C/prokerTugas?id_proker='.$_GET['id_proker']) ?>">Daftar Tugas</a></li>
@@ -23,13 +22,13 @@
                         
                         <div class="header" align="center">
 
-                            <h2><strong>DAFTAR KEPANITIAAN</strong></h2>
+                            <h2><strong>POSISI KEPANITIAAN</strong><br>"<?= $idToProker['0']['proker_nama'] ?>"</h2>
                             <p></p>
 
                             <?php if ($idToProker['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
 
                             <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerPosisi" id="round"><i class="material-icons">group_add</i> Posisi Kepanitiaan</button>  
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerPosisi" id="round"><i class="material-icons">group_add</i> Tambah</button>  
                             <?php } ?>
 
                             <?php } ?>
@@ -41,22 +40,19 @@
                                     <thead>
                                         <tr>
                                             <th>Posisi Terdaftar</th>
-                                            <th>Kelola</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Posisi Terdaftar</th>
-                                            <th>Kelola</th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-
                                         <?php foreach($proker_posisi as $pp){ 
                                             $idProker = $pp->id_proker;
                                             $id_posisi = $pp->prokerPosisi_ID;
-                                            // $idToProker = $this->M_proker->getProkerNama($idProker);
-
                                             ?>
                                             <tr>                
                                                 <td><?php echo $pp->prokerPosisi_nama ?></td>
@@ -73,10 +69,7 @@
                                                     <?php } ?>
                                                 </td>
                                             </tr>
-                                        <?php } 
-                                             echo "<div class='alert alert-warning' id='round'>Pendaftaran Struktur Kepanitiaan Untuk Program Kerja <font size='5'>".$idToProker['0']['proker_nama']."</font></div>";
-                                        ?>
-                                 
+                                        <?php } ?>                    
                                     </tbody>
                                 </table>
                             </div>

@@ -16,48 +16,50 @@
                             echo "<strong>Tingkat : </strong>Fakultas";
                          } else {
                             echo "<strong>Tingkat : </strong> Prodi - " . $idToProdi['0']['prodi_nama'];
-                         } ?>
+                         } echo "<br><strong>Ketua : </strong>" . $idToNama['0']['user_nama']; ?>
                     </div>
                     
                     <div class="body">
+                        <div class="header" align="center">
+                            <div class="alert alert-warning" id="round">
+                              <strong>Informasi!</strong> Data ini merupakan daftar departemen / biro yang terdaftar di dalam kabinet.
+                            </div>
+                            <?php if ($_SESSION['user_opmawa'] == $_GET['id_opmawa']) { ?>
+                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalDepartemen" id="round"><i class="material-icons">library_add</i> Tambah</button>  
+                            <?php } ?>
+                        </div>
                         <div class="row">
                             <div class="col-lg-4">
                                 <?php if($do->id_user == 0) { ?>
                                     <button class="btn btn-sm btn-info waves-effect" data-toggle="modal" data-target="#ModalKetua" id="round"><i class="material-icons">library_add</i> Tambahkan Ketua</button>  
-                                <?php } else { 
-                                    echo "<strong>Ketua : </strong>" . $idToNama['0']['user_nama']; 
-                                } ?>
+                                <?php } ?>
                             </div>
                             <?php } ?>
                         </div>
 
-                        <div class="header" align="center">
-                            <div class="alert alert-warning" id="round">
-                              <strong>Informasi!</strong> Tabel ini merupakan daftar posisi/jabatan yang terdaftar di dalam OPMAWA.
-                            </div>
-                            <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalDepartemen" id="round"><i class="material-icons">library_add</i> Departemen</button>  
-                        </div>
-                  
                         <div class="table-responsive">
                             <table id="refDep" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
                                 <thead>
                                     <tr>
-                                        <th>Nama Departemen/Biro</th>
-                                        <th>Kelola</th>
+                                        <th>Nama Departemen / Biro</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Nama Departemen/Biro</th>
-                                        <th>Kelola</th>
+                                        <th>Nama Departemen / Biro</th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     <?php foreach($detail_departemenOpmawa as $ddo) { ?>
                                         <tr>
                                             <td><?php echo $ddo->departemen_nama ?></td>
-                                            <td>
+                                            <td><?php if ($_SESSION['user_opmawa'] == $_GET['id_opmawa']) { ?> 
                                                 <a href="<?php echo site_url();?>/Main_C/delDepartemen/<?php print($ddo->departemen_ID);?>"><button class="btn btn-danger" id="round" onclick="return delConfirm()"><i class="material-icons">delete_forever</i></button></a>
+                                                <?php } else {
+                                                    echo "Locked";
+                                                } ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
