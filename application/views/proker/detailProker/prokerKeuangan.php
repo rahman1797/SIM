@@ -351,7 +351,7 @@ function hapus_pemasukan(id){
                   showConfirmButton: false,
                   timer: 1300
                 }).then(function(){
-                    var ref = $('$refPemasukan');
+                    var ref = $('#refPemasukan');
                     $('#refPemasukan').load(document.URL + ' #refPemasukan', function() {
                     ref.children('#refPemasukan').unwrap();});
                 }) 

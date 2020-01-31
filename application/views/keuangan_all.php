@@ -439,7 +439,9 @@ function hapus_pemasukan(id){
                 showConfirmButton: false,
                 timer: 1300
               }).then(function(){
-                  $('#refPemasukan').load(document.URL +  ' #refPemasukan');
+                  var ref = $('#refPemasukan');
+                  $('#refPemasukan').load(document.URL + ' #refPemasukan', function() {
+                  ref.children('#refPemasukan').unwrap();});
               }) 
             },
             error: function(data){
@@ -472,7 +474,9 @@ function hapus_pengeluaran(id){
                 showConfirmButton: false,
                 timer: 1300
               }).then(function(){
-                  $('#refPengeluaran').load(document.URL +  ' #refPengeluaran');
+                  var ref = $('$refPengeluaran');
+                  $('#refPengeluaran').load(document.URL + ' #refPengeluaran', function() {
+                  ref.children('#refPengeluaran').unwrap();});
               }) 
             },
             error: function(data){

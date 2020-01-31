@@ -24,7 +24,7 @@
                             <div class="alert alert-warning" id="round">
                               <strong>Informasi!</strong> Data ini merupakan daftar departemen / biro yang terdaftar di dalam kabinet.
                             </div>
-                            <?php if ($_SESSION['user_opmawa'] == $_GET['id_opmawa']) { ?>
+                            <?php if (($_SESSION['user_opmawa'] == $_GET['id_opmawa']) || (!isset($idToNama['0']['user_nama']))) { ?>
                             <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalDepartemen" id="round"><i class="material-icons">library_add</i> Tambah</button>  
                             <?php } ?>
                         </div>

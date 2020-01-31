@@ -471,7 +471,9 @@ function konfirmasiHapus_link(id)
                   showConfirmButton: false,
                   timer: 1200
                 }).then(function(){
-                    $('#refBerkas').load(document.URL +  ' #refBerkas');
+                    var ref = $('#refBerkas');
+                    $('#refBerkas').load(document.URL +  ' #refBerkas', function() {
+                    ref.children('#refBerkas').unwrap();});
                 }) 
               },
               error: function(data){

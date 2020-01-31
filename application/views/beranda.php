@@ -69,7 +69,8 @@ $data_opmawa_user = $this->M_sys->getOpmawaData($_SESSION['user_opmawa']); ?>
                                         
                                         // Memfilter opmawa berdasarkan tingkatan level dan prodi
                                         if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_proker["0"]["opmawa_level"]) {
-                        
+                                            
+                                            if ($dp->proker_tahun == $_SESSION['user_tahun']) {
                                             $id_proker = $dp->proker_ID;
                                             $progress = $this->M_proker->Progress_proker($id_proker);
                                             ?>
@@ -95,7 +96,7 @@ $data_opmawa_user = $this->M_sys->getOpmawaData($_SESSION['user_opmawa']); ?>
                                                     </div>
                                                 </td>
                                             </tr>
-                                        <?php } } ?>
+                                        <?php } } } ?>
                                     </tbody>
                                 </table>
                             </div>

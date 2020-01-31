@@ -136,6 +136,8 @@ function submitOpmawa() {
                 var ref = $('#refOpmawa');
                 $('#refOpmawa').load(document.URL +  ' #refOpmawa', function() {
                 ref.children('#refOpmawa').unwrap();});
+                $('#ModalKabinet').modal('hide');
+                $('.formKabinet')[0].reset();
             })     
         }
     });

@@ -102,6 +102,8 @@ function submitPosisi() {
                 var ref = $('#refPos');
                 $('#refPos').load(document.URL +  ' #refPos', function() {
                 ref.children('#refPos').unwrap();});
+                $('#ModalPosisi').modal('hide');
+                $('.formPosisi')[0].reset();
             })     
         }
     });

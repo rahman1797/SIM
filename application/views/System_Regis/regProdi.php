@@ -98,6 +98,8 @@ function submitProdi() {
                 var ref = $('#refPro');
                 $('#refPro').load(document.URL +  ' #refPro' , function() {
                 ref.children('#refPro').unwrap();});
+                $('#ModalProdi').modal('hide');
+                $('.formProdi')[0].reset();
             })     
         }
     });
