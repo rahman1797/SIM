@@ -189,7 +189,7 @@ function submitProkerPosisi() {
                 var ref = $('#select_posisi');
                 $('#select_posisi').load(document.URL +  ' #select_posisi', function() {
                 ref.children('#select_posisi').unwrap();});
-
+                $('.formProkerPosisi')[0].reset();
             })     
         }
     });
@@ -216,6 +216,8 @@ function submitProkerAnggota() {
                 var ref = $('#refProkerAnggota');
                 $('#refProkerAnggota').load(document.URL +  ' #refProkerAnggota', function() {
                 ref.children('#refProkerAnggota').unwrap();});
+                // $('#ModalAnggota').modal('hide');
+                // $('.formProkerAnggota')[0].reset();
             })     
         }
     });

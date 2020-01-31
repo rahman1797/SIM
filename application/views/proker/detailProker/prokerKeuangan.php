@@ -193,7 +193,7 @@
            <center>
             <div class="modal-body">
                 <div class="alert alert-success" id="round">
-                  <strong>FORM PEMASUKAN
+                  <strong>FORM PEMASUKAN</strong>
                 </div>
                   <!-- Form Angggota -->
                     <!-- <form id="form_validation" name="formPemasukan" class="formPemasukan" method="POST" style="margin: 20px" onsubmit="return submitPemasukan()"> -->
@@ -240,7 +240,7 @@
            <center>
             <div class="modal-body">
                 <div class="alert alert-danger" id="round">
-                  <strong>FORM PENGELUARAN
+                  <strong>FORM PENGELUARAN</strong>
                 </div>
                   <!-- Form Angggota -->
                     <!-- <form id="form_validation" name="formPengeluaran" class="formPengeluaran" method="POST" style="margin: 20px" onsubmit="return submitPengeluaran()"> -->
@@ -260,7 +260,6 @@
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <input class="form-control" type="date" name="pengeluaran_tanggal">
-                                
                             </div>
                         </div>
                         <div class="form-group form-float">

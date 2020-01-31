@@ -95,6 +95,8 @@ class Main_C extends CI_Controller {
 		);
 		$this->M_sys->inputOpmawa($data);	
 
+		redirect(base_url('Main_C/regOpmawa'));
+
 	}
 
 			function addKetuaOpmawa(){

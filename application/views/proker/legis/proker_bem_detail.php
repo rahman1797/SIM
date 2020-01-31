@@ -54,7 +54,10 @@
                                                                 echo "<font color='red'>Proker belum dinilai</font>";
                                                             }
                                                  ?></td>
-                                            </tr>             
+                                            </tr> 
+                                            <tr><th>Deskripsi</th>
+                                                <td><?= $pd->proker_deskripsi ?></td>
+                                            </tr>            
                                                  <td>
 
                                                 <?php 
@@ -70,6 +73,7 @@
                                                  
                                                  </td>
                                             </tr>
+                                            
                                 </table>
                             </div>
 
@@ -106,9 +110,7 @@
                                                 </tr>
                                             <?php } 
                                                 
-                                            ?>
-
-                                            
+                                            ?>                                            
                                         </tbody>
                                     </table>
                                 </div>

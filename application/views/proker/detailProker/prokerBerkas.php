@@ -349,7 +349,11 @@ function submit_link(){
             showConfirmButton: false,
             timer: 1500
           }).then(function(){
-              $('#refBerkas').load(document.URL +  ' #refBerkas');
+               var ref = $('#refBerkas');
+              $('#refBerkas').load(document.URL +  ' #refBerkas', function() {
+              ref.children('#refBerkas').unwrap();});
+              $('#ModalLink').modal('hide');
+              $('.formLink')[0].reset();
           })     
       }
   });
@@ -430,7 +434,9 @@ function konfirmasiHapus(id, id_proker)
                   showConfirmButton: false,
                   timer: 1200
                 }).then(function(){
-                    $('#refBerkas').load(document.URL +  ' #refBerkas');
+                    var ref = $('#refBerkas');
+                    $('#refBerkas').load(document.URL +  ' #refBerkas', function() {
+                    ref.children('#refBerkas').unwrap();});
                 }) 
               },
               error: function(data){

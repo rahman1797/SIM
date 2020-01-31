@@ -38,12 +38,15 @@
                                     } ?>
                                 </div>
                                 <div class="col-lg-4">
-                                    <?php if ($pd->proker_nilai) {
+                                    <?php
+                                    if ($_SESSION['user_role'] == 1) {
+                                        if ($pd->proker_nilai) {
                                             echo "<strong>Penilaian : </strong>" . $pd->proker_nilai;
                                         }
-                                      else {
+                                        else {
                                             echo "<strong>Penilaian : </strong>" . "<font color='red'>Proker belum dinilai</font>";
-                                        } ?>
+                                        }
+                                    } ?>
                                 </div>
                                 <div class="col-lg-4">
                                     <?= "<strong>Deskripsi : </strong>" . $deskripsi; } ?>

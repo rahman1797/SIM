@@ -84,28 +84,28 @@
 
 
 <!-- Modal Tambah Posisi Panitia -->
-            <div class="modal fade" id="ModalProkerPosisi" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content" id="round">
-                       <center>
-                        <div class="modal-body">
-                              <!-- Form Angggota -->
-                                <form id="form_validation" name="formProkerPosisi" class="formProkerPosisi" method="POST" style="margin: 20px" onsubmit="return submitProkerPosisi()">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="prokerPosisi_nama" id="ProkerPosisi_nama" required>
-                                            <label class="form-label">Nama Posisi Kepanitiaan</label>
-                                        </div>
-                                    </div>
-                                     <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
-                                    <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
-                                </form>
-                            <!-- #END# Form Posisi Panitia -->
+<div class="modal fade" id="ModalProkerPosisi" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="round">
+           <center>
+            <div class="modal-body">
+                  <!-- Form Angggota -->
+                    <form id="form_validation" name="formProkerPosisi" class="formProkerPosisi" method="POST" style="margin: 20px" onsubmit="return submitProkerPosisi()">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="prokerPosisi_nama" id="ProkerPosisi_nama" required>
+                                <label class="form-label">Nama Posisi Kepanitiaan</label>
+                            </div>
                         </div>
-                        </center>
-                    </div>
-                </div>
+                         <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
+                        <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
+                    </form>
+                <!-- #END# Form Posisi Panitia -->
             </div>
+            </center>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
@@ -132,6 +132,8 @@ function submitProkerPosisi() {
                 var ref = $('#refProkerPosisi');
                 $('#refProkerPosisi').load(document.URL +  ' #refProkerPosisi', function() {
                 ref.children('#refProkerPosisi').unwrap();});
+                $('#ModalProkerPosisi').modal('hide');
+                $('.formProkerPosisi')[0].reset();
             })     
         }
     });

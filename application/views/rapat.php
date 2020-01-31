@@ -9,7 +9,7 @@
                         <h2><strong>Tambah Jadwal</strong></h2>
                         <p></p>
                         <div class="row">
-                            <form method="POST" class="formRapat" onsubmit="return submit_rapat()">
+                            <form method="POST" class="formRapat" id="formRapat" onsubmit="return submit_rapat()">
                                 <div class="col-lg-4">
                                     <input class="form-control" style="margin-bottom: 10px" type="date" name="rapat_tanggal" required>
                                 </div>
@@ -91,6 +91,7 @@ function submit_rapat() {
               timer: 1300
             }).then(function(){
                 $('#refJadwalRapat').load(document.URL +  ' #refJadwalRapat');
+                document.getElementById("formRapat").reset();
             })     
         }
     });

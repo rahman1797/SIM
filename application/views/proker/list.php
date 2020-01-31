@@ -228,19 +228,21 @@
                     }).then(function(){
                         var ref = $('#refProker');
                         $('#refProker').load(document.URL +  ' #refProker', function() {
-                    ref.children('#refProker').unwrap();});
+                        ref.children('#refProker').unwrap();});
+                        $('#ModalProker').modal('hide');
+                        $('.formProker')[0].reset();
                     })     
                 }
             });      
             return false;
         }
 
-         function delConfirm(){
-            job = confirm("Are you sure to delete permanently?");
-            
-            if(job != true)
-            {
-                return false;
-            }
+     function delConfirm(){
+        job = confirm("Are you sure to delete permanently?");
+        
+        if(job != true)
+        {
+            return false;
         }
+    }
 </script>

@@ -26,7 +26,7 @@
                         <?php if ($idToProker['0']['proker_lembaga'] == $_SESSION['user_role']) { ?>
 
                         <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
-                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerAnggota" id="round"><i class="material-icons">note_add</i> Tambah</button>  
+                        <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalProkerTugas" id="round"><i class="material-icons">note_add</i> Tambah</button>  
                         <?php } ?> 
 
                         <?php } ?>
@@ -102,7 +102,7 @@
 </section>
 
 <!-- Modal Tambah Tugas Catatan -->
-<div class="modal fade" id="ModalProkerAnggota" tabindex="-1" role="dialog">
+<div class="modal fade" id="ModalProkerTugas" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content" id="round">
            <center>
@@ -162,6 +162,8 @@ function submitProkerTugas() {
                 var ref = $('#refProkerTugas');
                 $('#refProkerTugas').load(document.URL +  ' #refProkerTugas', function() {
                 ref.children('#refProkerTugas').unwrap();});
+                $('#ModalProkerTugas').modal('hide');
+                $('.formProkerTugas')[0].reset();
             })     
         }
     });

@@ -66,7 +66,7 @@ class Keuangan_C extends CI_Controller {
 	       $path_parts = pathinfo($_FILES["pemasukan_file"]["name"]);
 		   $extension = $path_parts['extension'];
 
-		  echo $extension;
+		  // echo $extension;
 
 	       $file_name = time().".".$extension;
 

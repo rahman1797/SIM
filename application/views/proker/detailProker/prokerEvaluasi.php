@@ -124,6 +124,8 @@ function submitProkerEvaluasi() {
                 var ref = $('#refProkerEvaluasi');
                 $('#refProkerEvaluasi').load(document.URL +  ' #refProkerEvaluasi', function() {
                 ref.children('#refProkerEvaluasi').unwrap();});
+                $('#ModalProkerEvaluasi').modal('hide');
+                $('.formProkerEvaluasi')[0].reset();
             })     
         }
     });
@@ -131,13 +133,12 @@ function submitProkerEvaluasi() {
     return false;
 }
 
- function delConfirm()
+ function delConfirm() {
+    job = confirm("Are you sure to delete permanently?");
+    
+    if(job != true)
     {
-        job = confirm("Are you sure to delete permanently?");
-        
-        if(job != true)
-        {
-            return false;
-        }
+        return false;
     }
+}
 </script>

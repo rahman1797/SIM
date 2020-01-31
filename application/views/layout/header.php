@@ -280,7 +280,7 @@ if (!isset($_SESSION['logged_in'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" class="menu-toggle">
+                    <a href="javascript:void(0);" class="menu-toggle" id="test">
                         <i class="material-icons">settings</i>
                         <span>Registrasi Sistem</span>
                     </a>

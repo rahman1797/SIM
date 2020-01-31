@@ -192,6 +192,8 @@
                             var ref = $('#refAng');
                             $('#refAng').load(document.URL +  ' #refAng', function() {
                             ref.children('#refAng').unwrap();});
+                            $('#ModalAnggota').modal('hide');
+                            $('.formAnggota')[0].reset();
                         })     
                     }
                 });
@@ -217,7 +219,6 @@
 
          function delConfirm()
             {
-
                 job = confirm("Are you sure to delete permanently?");
                 
                 if(job != true)

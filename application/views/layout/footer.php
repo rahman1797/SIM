@@ -27,7 +27,7 @@
 <script src="<?php echo base_url('assets/plugins/jquery-countto/jquery.countTo.js')?>"></script>
  <!-- Jquery DataTable Plugin Js -->
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url('assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.min.js')?>"></script>s
+<script src="<?php echo base_url('assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.min.js')?>"></script>
 <!-- Custom Js -->
 <script src="<?php echo base_url('assets/js/admin.js')?>"></script>
 <script src="<?php echo base_url('assets/js/pages/tables/jquery-datatable.js')?>"></script>
