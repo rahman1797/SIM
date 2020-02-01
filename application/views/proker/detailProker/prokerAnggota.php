@@ -216,8 +216,8 @@ function submitProkerAnggota() {
                 var ref = $('#refProkerAnggota');
                 $('#refProkerAnggota').load(document.URL +  ' #refProkerAnggota', function() {
                 ref.children('#refProkerAnggota').unwrap();});
-                // $('#ModalAnggota').modal('hide');
-                // $('.formProkerAnggota')[0].reset();
+                $('#ModalAnggota').modal('hide');
+                $('.formProkerAnggota')[0].reset();
             })     
         }
     });

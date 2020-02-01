@@ -13,8 +13,7 @@ class Main_C extends CI_Controller {
         $this->load->model('M_keuangan');
     }
 	
-	function index()
-	{	
+	function index(){	
 		$data['data_proker'] = $this->M_proker->tampil_proker()->result();
 		$data['data_tugasSaya'] = $this->M_proker->tampil_prokerTugasSaya()->result();
 		$data['rapat_terdekat'] = $this->M_rapat->tampil_jadwal()->result();
@@ -23,7 +22,6 @@ class Main_C extends CI_Controller {
 		$this->load->view('layout/header');
 		$this->load->view('beranda', $data);
 		$this->load->view('layout/footer');
-
 	}
 
 	function backup_database() {
@@ -41,24 +39,21 @@ class Main_C extends CI_Controller {
 		force_download($db_name, $backup);
 	}
 
-	function regProdi()
-	{
+	function regProdi(){
 		$data['data_prodi'] = $this->M_sys->tampil_regis_prodi()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('System_Regis/regProdi', $data);		
 	}
 
-	function regPosisi()
-	{
+	function regPosisi(){
 		$data['data_posisi'] = $this->M_sys->tampil_regis_posisi_byLembaga()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('System_Regis/regPosisi', $data);		
 	}
 
-	function regOpmawa()
-	{
+	function regOpmawa(){
 		$data['data_opmawa'] = $this->M_sys->tampil_regis_opmawa()->result();
 		$data['prodi_data'] = $this->M_sys->tampil_regis_prodi()->result();
 		$this->load->view('layout/header');
@@ -66,8 +61,7 @@ class Main_C extends CI_Controller {
 		$this->load->view('System_Regis/regOpmawa', $data);		
 	}
 
-			function opmawaDetail()
-			{
+			function opmawaDetail(){
 				$data['detail_opmawa'] = $this->M_sys->tampil_opmawaDetail()->result();
 				$data['detail_departemenOpmawa'] = $this->M_sys->tampil_departemenOpmawaDetail()->result();
 				$data['user_data'] = $this->M_user->tampil_user()->result();
@@ -76,13 +70,7 @@ class Main_C extends CI_Controller {
 				$this->load->view('System_Regis/opmawa/opmawaDetail', $data);		
 			}
 
-
-
-// ON PROGGRESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-//	SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-//	SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-	function addOpmawa()
-	{
+	function addOpmawa(){
 		// $namaKetua = $this->input->post('nama_user');
 		$namaKabinet = $this->input->post('nama_kabinet');
 		$tahunKepengurusan = $_SESSION['user_tahun'] + 1;
@@ -96,33 +84,23 @@ class Main_C extends CI_Controller {
 		$this->M_sys->inputOpmawa($data);	
 
 		redirect(base_url('Main_C/regOpmawa'));
-
 	}
 
 			function addKetuaOpmawa(){
 
 				$nama = $this->input->post('user_nama');
-				echo $nama;
 				$idToUser = $this->M_user->getUserNama($nama);
 				
 				$NIM = $idToUser['0']['user_NIM']."-".$idToUser['0']['user_tahun'];;
-				// $pass = $idToUser['0']['user_pass'];
-				// $prodi = $idToUser['0']['id_prodi'];
-				// $posisi = $idToUser['0']['id_posisi'];
 				$idOpmawa = $this->input->post('id_opmawa');
 				$idDepartemen = $this->input->post('user_departemen');
 				$tahun = $idToUser['0']['user_tahun'];
-				// $role = $idToUser['0']['user_role'];
+
 				$data = array(
-					// 'user_nama' => $nama,
-					// 'user_NIM' => $NIM,
-					// 'user_pass' => $pass,
-					// 'id_prodi' => $prodi,
 					'id_posisi' => 1, //update
 					'id_opmawa' => $idOpmawa, //update
 					'id_departemen' => $idDepartemen, //update
 					'user_tahun' => $tahun + 1, //update
-					// 'user_role' => $role
 				);
 
 				$where = array('user_ID' => $idToUser['0']['user_ID']);
@@ -158,6 +136,8 @@ class Main_C extends CI_Controller {
 				);
 				$this->M_user->inputAnggota($data);
 
+				echo "<script>window.history.back()</script>";
+
 			}
 
 			function addDepartemen()
@@ -170,10 +150,6 @@ class Main_C extends CI_Controller {
 				);
 				$this->M_sys->inputDepartemen($data);	
 			}
-
-// SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-// SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-
 
 	function addProdi()
 	{

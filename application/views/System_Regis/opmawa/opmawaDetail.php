@@ -5,7 +5,7 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" id="round">
-                    <div class="header" align="center">
+                    <div class="header" align="center" id="refKetua1">
                         <h1><strong>
                             <?php foreach ($detail_opmawa as $do) {
                                     echo $do->opmawa_kabinet;
@@ -29,7 +29,7 @@
                             <?php } ?>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-4" id="refKetua2">
                                 <?php if($do->id_user == 0) { ?>
                                     <button class="btn btn-sm btn-info waves-effect" data-toggle="modal" data-target="#ModalKetua" id="round"><i class="material-icons">library_add</i> Tambahkan Ketua</button>  
                                 <?php } ?>
@@ -119,7 +119,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group form-float">
+                    <div class="form-group form-float" id="select_departemen">
                         <div class="form-line">
                             <select class="form-control show-tick" name="user_departemen" data-live-search="true">
                                 <option value="">-- Departemen --</option>
@@ -175,6 +175,10 @@ function submitDepart() {
                 var ref = $('#refDep');
                 $('#refDep').load(document.URL +  ' #refDep', function() {
                 ref.children('#refDep').unwrap();});
+                
+                var ref1 = $('#select_departemen');
+                $('#select_departemen').load(document.URL +  ' #select_departemen', function() {
+                ref1.children('#select_departemen').unwrap();});
             })        
         }
     });
@@ -196,13 +200,17 @@ function submitKetua() {
             Swal.fire({
               position: 'top-end',
               type: 'success',
-              title: 'Berhasil menambah departemen',
+              title: 'Berhasil menambah ketua',
               showConfirmButton: false,
               timer: 1500
             }).then(function(){
-                var ref = $('#refKetua');
-                $('#refKetua').load(document.URL +  ' #refKetua', function() {
-                ref.children('#refKetua').unwrap();});
+                var ref = $('#refKetua1');
+                $('#refKetua1').load(document.URL +  ' #refKetua1', function() {
+                ref.children('#refKetua1').unwrap();});
+
+                var ref2 = $('#refKetua2');
+                $('#refKetua2').load(document.URL +  ' #refKetua2', function() {
+                ref2.children('#refKetua2').unwrap();});
             })        
         }
     });

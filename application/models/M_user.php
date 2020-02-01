@@ -56,7 +56,7 @@ class M_user extends CI_Model{
 	}
 
 	function inputAnggota($data) {
-		print_r($data);
+		// print_r($data);
 		$this->db->insert('user_tbl', $data);
 	}
 

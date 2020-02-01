@@ -46,11 +46,17 @@ class Keuangan_C extends CI_Controller {
 		$lembaga = $this->input->post('pemasukan_lembaga');
 		$idOpmawa = $this->input->post('id_opmawa');
 
+		$rand_number = mt_rand();
+
+		if (!isset($idProker)) {
+			$idProker = 0;
+		}
+
 		// START UPLOAD
 		$config['upload_path']	 = 'uploads/keuangan/';
 	    $config['allowed_types'] = 'jpg|png|jpeg';
 	    $config['max_size'] 	 = 20000; 
-	    $config['file_name']	 = time();
+	    $config['file_name']	 = $idProker."-".$idOpmawa."-".$rand_number;
 
 	    $this->load->library('upload', $config); 
 
@@ -66,9 +72,7 @@ class Keuangan_C extends CI_Controller {
 	       $path_parts = pathinfo($_FILES["pemasukan_file"]["name"]);
 		   $extension = $path_parts['extension'];
 
-		  // echo $extension;
-
-	       $file_name = time().".".$extension;
+	       $file_name = $idProker."-".$idOpmawa."-".$rand_number.".".$extension;
 
 	       $database = array(
 	       	   'pemasukan_nominal' => $nominal,
