@@ -48,6 +48,9 @@ if (!isset($_SESSION['logged_in'])) {
       .round_edge {
         border-radius: 12px; 
       }
+      a {
+            text-decoration: none !important;
+        }
     </style>
 </head>
 
@@ -255,11 +258,25 @@ if (!isset($_SESSION['logged_in'])) {
                         <span>Daftar Anggota</span>
                     </a>
                 </li>
-                <li>
-                    <a href="<?php echo base_url('Proker_C') ?>">
+                <li><?php if ($_SESSION['user_role'] == 2) { ?>
+                    <a href="javascript:void(0);" class="menu-toggle" id="test">
                         <i class="material-icons">list</i>
-                        <span>Daftar Proker</span>
+                        <span>Daftar Program Kerja</span>
                     </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="<?php echo base_url('Proker_C') ?>">Lembaga Legislatif</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url('Proker_C/proker_bem') ?>">Lembaga Eksekutif</a>
+                        </li>
+                    </ul>
+                    <?php } else { ?>
+                        <a href="<?php echo base_url('Proker_C') ?>">
+                            <i class="material-icons">list</i>
+                            <span>Daftar Program Kerja</span>
+                        </a>
+                    <?php } ?>
                 </li>
                 <li>
                     <a href="<?php echo base_url('Keuangan_C') ?>">
@@ -299,15 +316,7 @@ if (!isset($_SESSION['logged_in'])) {
                         </li>
                     </ul>
                 </li>
-                <?php if ($_SESSION['user_role'] == 2) { ?>
-                <li class="header">Pengawasan</li>
-                <li class="active">
-                    <a href="<?php echo base_url('Proker_C/proker_bem') ?>">
-                        <i class="material-icons">home</i>
-                        <span>Penilaian Program Kerja BEM</span>
-                    </a>
-                </li>
-                <?php } }?>
+                <?php } ?>
             </ul>
         </div>
         <!-- #Menu -->

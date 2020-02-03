@@ -9,7 +9,8 @@ $data_opmawa_user = $this->M_sys->getOpmawaData($_SESSION['user_opmawa']); ?>
             <!-- Widgets -->
             <div class="row clearfix">
                 <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-green hover-zoom-effect" id="round">
+                    <a href="<?php echo base_url('Rapat_C') ?>">
+                    <div class="info-box bg-light-green hover-zoom-effect" id="round" style="cursor: pointer;">
                         <div class="icon">
                             <i class="material-icons">forum</i>
                         </div>
@@ -23,10 +24,11 @@ $data_opmawa_user = $this->M_sys->getOpmawaData($_SESSION['user_opmawa']); ?>
                             } } ?>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
                     <a href="<?php echo base_url('Berkas_C') ?>">
-                    <div class="info-box bg-orange hover-zoom-effect" id="round">
+                    <div class="info-box bg-orange hover-zoom-effect" id="round" style="cursor: pointer;">
                         <div class="icon">
                             <i class="material-icons">attachment</i>
                         </div>

@@ -13,8 +13,7 @@ class Keuangan_C extends CI_Controller {
         $this->load->library('upload');
     }
 	
-	function index()
-	{	
+	function index(){	
 		$data['proker_pemasukan'] = $this->M_keuangan->tampil_pemasukan_all()->result();
 		$data['proker_pengeluaran'] = $this->M_keuangan->tampil_pengeluaran_all()->result();
 		$data['data_proker'] = $this->M_proker->tampil_proker()->result();
@@ -22,18 +21,15 @@ class Keuangan_C extends CI_Controller {
 		$this->load->view('layout/header');
 		$this->load->view('keuangan_all', $data);
 		$this->load->view('layout/footer');
-
 	}
 
-	function keuangan_proker()
-	{	
+	function keuangan_proker(){	
 		$data['proker_pemasukan'] = $this->M_keuangan->tampil_pemasukan()->result();
 		$data['proker_pengeluaran'] = $this->M_keuangan->tampil_pengeluaran()->result();
 		
 		$this->load->view('layout/header');
 		$this->load->view('proker/detailProker/prokerKeuangan', $data);
 		$this->load->view('layout/footer');
-
 	}
 
 	function inputPemasukan(){
@@ -96,8 +92,7 @@ class Keuangan_C extends CI_Controller {
 			$database = array(
 	       	   'pemasukan_nominal' => $nominal,
 	       	   'pemasukan_deskripsi' => $deskripsi,
-	       	   'pemasukan_tanggal' => $tanggal,
-	           
+	       	   'pemasukan_tanggal' => $tanggal,   
 	           'id_proker' => $idProker,
 	           'pemasukan_lembaga' => $lembaga,
 	           'id_opmawa' => $idOpmawa
@@ -105,13 +100,9 @@ class Keuangan_C extends CI_Controller {
 
 	       $this->db->insert('pemasukan_tbl', $database);
 
-				// echo "BBBBBBB";
-		  //      $error = array('error' => $this->upload->display_errors());
-				// print_r($error);
-				echo "<script>
-					window.history.back();
-				</script>";
-		     }
+			echo "<script>window.history.back();
+			$('.formPemasukan')[0].reset();</script>";
+		}
 
 		// END UPLOAD
 	}
@@ -147,7 +138,7 @@ class Keuangan_C extends CI_Controller {
 	       $path_parts = pathinfo($_FILES["pengeluaran_file"]["name"]);
 		   $extension = $path_parts['extension'];
 
-		  echo $extension;
+		   echo $extension;
 
 	       $file_name = time().".".$extension;
 
@@ -166,7 +157,6 @@ class Keuangan_C extends CI_Controller {
 	       echo "<script>
 					window.history.back();
 				</script>";
-
 		}
 
 		else {

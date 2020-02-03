@@ -92,9 +92,9 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                         <h2><strong>PEMASUKAN</strong></h2>
                         <p></p>
                         <?php if ($idToPemasukan['0']['id_opmawa'] == $_SESSION['user_opmawa']) { ?>
-                                  <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round"><i class="material-icons">add_circle_outline</i> Pemasukan</button>  
+                                  <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round" onclick="return reset()"><i class="material-icons">add_circle_outline</i> Pemasukan</button>  
                         <?php } elseif (isset($idToPemasukan)) { ?>
-                                  <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round"><i class="material-icons">add_circle_outline</i> Pemasukan</button>
+                                  <button class="btn btn-lg btn-success waves-effect" data-toggle="modal" data-target="#ModalPemasukan" id="round" onclick="return reset()"><i class="material-icons">add_circle_outline</i> Pemasukan</button>
                         <?php } ?>
                     </div>
                     
@@ -130,7 +130,7 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                                           $totalPemasukan += $masuk->pemasukan_nominal; 
                                         ?>
                                         <tr>
-                                            <td><?php echo date_format($date, "d M Y") ?></td>
+                                            <td><?php echo date_format($date, "Y/m/d") ?></td>
                                             <td><?php echo $masuk->pemasukan_nominal ?></td>
                                             <td><?php echo $masuk->pemasukan_deskripsi ?></td>
                                             <td><?php if (isset($masuk->pemasukan_file)) { ?>
@@ -159,9 +159,9 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                         <h2><strong>PENGELUARAN</strong></h2>
                         <p></p>
                         <?php if ($idToPengeluaran['0']['id_opmawa'] == $_SESSION['user_opmawa']) { ?>
-                                  <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round"><i class="material-icons">add_circle_outline</i> Pengeluaran</button>  
+                                  <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round" onclick="return reset()"><i class="material-icons">add_circle_outline</i> Pengeluaran</button>  
                         <?php } elseif (isset($idToPengeluaran)) { ?>
-                                  <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round"><i class="material-icons">add_circle_outline</i> Pengeluaran</button>
+                                  <button class="btn btn-lg btn-danger waves-effect" data-toggle="modal" data-target="#ModalPengeluaran" id="round" onclick="return reset()"><i class="material-icons">add_circle_outline</i> Pengeluaran</button>
                         <?php } ?>
                     </div>
                     
@@ -197,7 +197,7 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
                                           $totalPengeluaran += $keluar->pengeluaran_nominal; 
                                         ?>
                                         <tr>
-                                            <td><?php echo date_format($date, "d M Y") ?></td>
+                                            <td><?php echo date_format($date, "Y/m/d") ?></td>
                                             <td><?php echo $keluar->pengeluaran_nominal ?></td>
                                             <td><?php echo $keluar->pengeluaran_deskripsi ?></td>
                                             <td><?php if (isset($keluar->pengeluaran_file)) { ?>
@@ -280,7 +280,7 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
               </div>
                   <!-- Form Angggota -->
                     <!-- <form id="form_validation" name="formPengeluaran" class="formPengeluaran" method="POST" style="margin: 20px" onsubmit="return submitPengeluaran()"> -->
-                   <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPengeluaran') ?>" name="pemasukan_file" class="formPemasukan" method="POST" style="margin: 20px">
+                   <form enctype="multipart/form-data" id="form_validation" action="<?php echo base_url('Keuangan_C/inputPengeluaran') ?>" name="pemasukan_file" class="formPengeluaran" method="POST" style="margin: 20px">
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <input class="form-control" type="text" id="pengeluaran_nominal" name="pengeluaran_nominal">
@@ -367,61 +367,66 @@ $idToPengeluaran = $this->M_keuangan->getPengeluaranAll();
 //  previewZone.addClass('hidden');
 //  reset(dropzone);
 // });
-
-function submitPemasukan() {
-
- var data = $('.formPemasukan').serialize();
- alert(data);
-
-    $.ajax({
-        type: 'POST',
-        data: data,
-        url: "<?php echo base_url('Keuangan_C/inputPemasukan') ?>",
-        success: function() {
-            Swal.fire({
-              position: 'top-end',
-              type: 'success',
-              title: 'Berhasil',
-              showConfirmButton: false,
-              timer: 1300
-            }).then(function(){
-                $('#refPemasukan').load(document.URL +  ' #refPemasukan');
-            })     
-        }
-    });
-    
-    return false;
+function reset(){
+    $('.formPemasukan')[0].reset();
+    $('.formPengeluaran')[0].reset();
 }
 
-function submitPengeluaran() {
+// function submitPemasukan() {
 
- var data = $('.formPengeluaran').serialize();
+//  var data = $('.formPemasukan').serialize();
+//  alert(data);
+
+//     $.ajax({
+//         type: 'POST',
+//         data: data,
+//         url: "<?php echo base_url('Keuangan_C/inputPemasukan') ?>",
+//         success: function() {
+//             Swal.fire({
+//               position: 'top-end',
+//               type: 'success',
+//               title: 'Berhasil',
+//               showConfirmButton: false,
+//               timer: 1300
+//             }).then(function(){
+//                 $('#refPemasukan').load(document.URL +  ' #refPemasukan');
+//                 $('.formPemasukan')[0].reset();
+//             })     
+//         }
+//     });
+    
+//     return false;
+// }
+
+// function submitPengeluaran() {
+
+//  var data = $('.formPengeluaran').serialize();
           
-    $.ajax({
-        type: 'POST',
-        data: data,
-        url: "<?php echo base_url('Keuangan_C/inputPengeluaran') ?>",
-        success: function() {
-            Swal.fire({
-              position: 'top-end',
-              type: 'success',
-              title: 'Berhasil',
-              showConfirmButton: false,
-              timer: 1300
-            }).then(function(){
-                $('#refPengeluaran').load(document.URL +  ' #refPengeluaran');
-            })     
-        }
-    });
+//     $.ajax({
+//         type: 'POST',
+//         data: data,
+//         url: "<?php echo base_url('Keuangan_C/inputPengeluaran') ?>",
+//         success: function() {
+//             Swal.fire({
+//               position: 'top-end',
+//               type: 'success',
+//               title: 'Berhasil',
+//               showConfirmButton: false,
+//               timer: 1300
+//             }).then(function(){
+//                 $('#refPengeluaran').load(document.URL +  ' #refPengeluaran');
+//                 $('.formPengeluaran')[0].reset();
+//             })     
+//         }
+//     });
     
-    return false;
-}
+//     return false;
+// }
 
 function hapus_pemasukan(id){
     job = confirm("Are you sure to delete permanently?");
     
-    if(job != true)
-    {
+    if(job != true) {
         return false;
     }
 
@@ -442,6 +447,7 @@ function hapus_pemasukan(id){
                   var ref = $('#refPemasukan');
                   $('#refPemasukan').load(document.URL + ' #refPemasukan', function() {
                   ref.children('#refPemasukan').unwrap();});
+
               }) 
             },
             error: function(data){
@@ -455,8 +461,7 @@ function hapus_pemasukan(id){
 function hapus_pengeluaran(id){
     job = confirm("Are you sure to delete permanently?");
     
-    if(job != true)
-    {
+    if(job != true) {
         return false;
     }
 
@@ -474,7 +479,7 @@ function hapus_pengeluaran(id){
                 showConfirmButton: false,
                 timer: 1300
               }).then(function(){
-                  var ref = $('$refPengeluaran');
+                  var ref = $('#refPengeluaran');
                   $('#refPengeluaran').load(document.URL + ' #refPengeluaran', function() {
                   ref.children('#refPengeluaran').unwrap();});
               }) 

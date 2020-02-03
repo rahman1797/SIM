@@ -91,7 +91,7 @@
                                             $date = date_create($masuk->pemasukan_tanggal)
                                             ?>
                                             <tr>
-                                                <td><?php echo date_format($date, "d M Y") ?></td>
+                                                <td><?php echo date_format($date, "Y/m/d") ?></td>
                                                 <td><?php echo $masuk->pemasukan_nominal ?></td>
                                                 <td><?php echo $masuk->pemasukan_deskripsi ?></td>
                                                 <td><?php if (isset($masuk->pemasukan_file)) { ?>
@@ -157,7 +157,7 @@
                                             $totalPengeluaran += $keluar->pengeluaran_nominal; 
                                             $date = date_create($keluar->pengeluaran_tanggal) ?>
                                             <tr>
-                                                <td><?php echo date_format($date, "d M Y") ?></td>
+                                                <td><?php echo date_format($date, "Y/m/d") ?></td>
                                                 <td><?php echo $keluar->pengeluaran_nominal ?></td>
                                                 <td><?php echo $keluar->pengeluaran_deskripsi ?></td>
                                                 <td><?php if (isset($keluar->pengeluaran_file)) { ?>

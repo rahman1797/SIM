@@ -53,6 +53,9 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" id="round"> 
+                   <div class="header" align="center">
+                        <h2><strong>FORM INPUT BERKAS NON PROKER</strong></h2><br>
+                    </div>
 
                      <center>                      
                           <div class="row" style="padding: 20px">
@@ -120,7 +123,8 @@
                     </div>
                     
                     <div class="header" align="center">
-                        <h2><strong>BERKAS NON PROKER</strong></h2>
+                        <h2><strong>BERKAS NON PROKER</strong></h2><br>
+                        <i class="material-icons" style="color: #13fc03">info</i> Berkas LPJ
                     </div>
                     <div class="body">
                         <div class="table-responsive">
@@ -131,6 +135,7 @@
                                         <th>Peng-upload</th>
                                       <!--   <th>Program kerja</th> -->
                                         <th>Tanggal di upload</th>
+                                        <th>Tingkat Opmawa</th>
                                         <th>Kelola</th>
                                     </tr>
                                 </thead>
@@ -140,46 +145,55 @@
                                         <th>Peng-upload</th>
                                        <!--  <th>Program kerja</th> -->
                                         <th>Tanggal di upload</th>
+                                        <th>Tingkat Opmawa</th>
                                         <th>Kelola</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <?php 
-                                        foreach($berkas_data as $bd){ 
-                                            
-                                            $data_opmawa_berkas = $this->M_sys->getOpmawaData($bd->id_opmawa);
-
-                                            $date = date_create($bd->berkas_tanggal);
+                                    <?php foreach($berkas_data as $bd){ 
                                         
-                                            // Memfilter opmawa berdasarkan tingkatan level dan prodi
-                                            if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_berkas["0"]["opmawa_level"]) {
+                                        $data_opmawa_berkas = $this->M_sys->getOpmawaData($bd->id_opmawa);
 
-                                            $idUser = $bd->id_user;
-                                            $idProker = $bd->id_proker;
-                                            $idToUser = $this->M_user->getUserNama($idUser);
-                                            $idToProker = $this->M_proker->getProkerNama($idProker);
-                                            if ($idProker == '0') { ?>
-                                    <?php if ($bd->berkas_jenis == 'lpj') {      
-                                                echo "<tr style='background-color: #13fc03'>";
+                                        $date = date_create($bd->berkas_tanggal);
+                                    
+                                        // Memfilter opmawa berdasarkan tingkatan level dan prodi
+                                        // if ($data_opmawa_user["0"]["opmawa_level"] == $data_opmawa_berkas["0"]["opmawa_level"]) {
+
+                                        $getIDProdi = $data_opmawa_berkas["0"]["opmawa_level"];
+
+                                        if ($data_opmawa_berkas["0"]["opmawa_level"] == 0) {
+                                            $idToProdi = $this->M_user->getProdi($getIDProdi);
+                                        }
+
+                                        else {
+                                            $idToProdi = $this->M_user->getProdi($getIDProdi);
+                                        }
+                                        
+
+                                        $idUser = $bd->id_user;
+                                        $idProker = $bd->id_proker;
+                                        $idToUser = $this->M_user->getUserNama($idUser);
+                                        $idToProker = $this->M_proker->getProkerNama($idProker);
+                                        if ($idProker == '0') { ?>
+                                    <tr>
+                                        <td><?php if ($bd->berkas_jenis == 'lpj') {      
+                                                echo "<i class='material-icons' style='color: #13fc03'>info</i> ";
                                              } 
-                                              else {
-                                                echo "<tr>";
-                                              }
-                                            ?>
-                                        <td><?php echo $bd->berkas_nama; ?></td>
+                                                echo $bd->berkas_nama; ?></td>
                                         <td><?php echo $idToUser['0']['user_nama']; ?></td>
-                                        <!-- <td><?php 
-                                            if ($idToProker['0']['proker_nama']) 
-                                            {
-                                                echo $idToProker['0']['proker_nama'];
-                                            }
-                                            else 
-                                            {
-                                                echo "<font color='red'>Umum</font>";
-                                            }
-                                         ?>    
-                                        </td> -->
+
                                         <td><?php echo date_format($date, "d M Y H:i:s"); ?></td>
+                                    
+                                        <td><?php if (!isset($idToProdi['0']['prodi_nama'])) {
+                                          echo "Fakultas";
+                                        } else {
+                                          echo $idToProdi['0']['prodi_nama'];  
+                                        }
+
+                                          ?></td>
+                                      
+
+
                                         <td>
                                             <?php 
                                                 if($bd->berkas_jenis != 'link') { ?>
@@ -208,7 +222,7 @@
 
                                         </td>
                                     </tr>
-                                    <?php   } }
+                                    <?php   } 
                                     } ?>      
                                 </tbody>
                             </table>
@@ -391,7 +405,7 @@ function submit_link(){
             showConfirmButton: false,
             timer: 1500
           }).then(function(){
-              var ref = $('$refBerkas');
+              var ref = $('#refBerkas');
               $('#refBerkas').load(document.URL + ' #refBerkas', function() {
               ref.children('#refBerkas').unwrap();});
           })     
@@ -473,7 +487,7 @@ function konfirmasiHapus(id)
                   showConfirmButton: false,
                   timer: 1200
                 }).then(function(){
-                    var ref = $('$refBerkas');
+                    var ref = $('#refBerkas');
                     $('#refBerkas').load(document.URL + ' #refBerkas', function() {
                     ref.children('#refBerkas').unwrap();});
                 }) 

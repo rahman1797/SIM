@@ -189,9 +189,14 @@
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <select class="form-control" name="proker_jenis" id="proker_jenis" onchange="return date_hide_show(this.value)">
-                                    <option id="test"></option>
-                                    <option value="event">Event</option>
-                                    <option value="non_event">Non Event</option>
+                                    <?php if ($proker_jenis == 'event') { ?>
+                                        <!-- <option value="<?= $proker_jenis ?>"><?= $proker_jenis ." - (saat ini)" ?></option> -->
+                                        <option value="event">Event</option>
+                                        <option value="non_event">Non Event</option>
+                                    <?php } else { ?>
+                                        <option value="non_event">Non Event</option>
+                                        <option value="event">Event</option>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -286,6 +291,9 @@ function getValue(value) {
         
     var val = value;
     var split = val.split(",");
+
+    // document.getElementById('test').value = split[1];
+    // document.getElementById('test').innerHTML = split[1];
 
     document.getElementById('proker_nama').value = split[0];
     document.getElementById('proker_jenis').value = split[1];

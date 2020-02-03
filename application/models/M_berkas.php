@@ -42,7 +42,7 @@ class M_berkas extends CI_Model{
 
 	function JumlahBerkas()
 	{   
-	    $query = $this->db->get_where('berkas_tbl');
+	    $query = $this->db->get_where('berkas_tbl', array('berkas_lembaga' => $_SESSION['user_role']));
 	   
 	    if($query->num_rows()>0)
 	    {

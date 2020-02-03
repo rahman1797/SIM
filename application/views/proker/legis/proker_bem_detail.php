@@ -355,7 +355,7 @@
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         Nilai Proker
-                                        <input type="text" class="form-control getValue" name="proker_nilai" id="proker_nilai" required>
+                                        <input type="text" placeholder="Penilaian dalam bentuk angka" class="form-control getValue" name="proker_nilai" id="proker_nilai" required>
                                     </div>
                                 </div>
                                  <input type="hidden" name="proker_ID" id="idProker">
