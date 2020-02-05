@@ -23,6 +23,8 @@ class Proker_C extends CI_Controller {
 	function proker_bem()
 	{	
 		$data['proker_BEM'] = $this->M_proker->tampil_proker_BEM()->result();
+		$data['proker_berkas'] = $this->M_berkas->tampil_berkas_bem()->result();
+
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('proker/listBEM',$data);
@@ -91,7 +93,7 @@ class Proker_C extends CI_Controller {
 			$data['proker_pemasukan'] = $this->M_keuangan->tampil_pemasukan()->result();
 			$data['proker_pengeluaran'] = $this->M_keuangan->tampil_pengeluaran()->result();
 			$data['proker_evaluasi'] = $this->M_proker->tampil_prokerEvaluasi()->result();
-			$data['proker_berkas'] = $this->M_berkas->tampil_berkas_bem();
+			$data['proker_berkas'] = $this->M_berkas->tampil_berkas_bem()->result();
 
 			$this->load->view('layout/header');
 			$this->load->view('layout/footer');
@@ -171,6 +173,19 @@ class Proker_C extends CI_Controller {
 						$this->M_sys->updateData($where, $data, 'prokerTugas_tbl');
 						
 					}
+
+				}
+
+				function ganti_status_berkas() {
+					$status = $this->input->post('berkas_status');
+					$idBerkas = $this->input->post('berkas_ID');
+
+					$where = array('berkas_ID' => $idBerkas);
+					$data = array('berkas_status' => $status);
+
+					$this->M_sys->updateData($where, $data, 'berkas_tbl');
+
+					echo $status."--".$idBerkas;
 
 				}
 #END# TAMPIL PROKER

@@ -95,6 +95,70 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="card" id="round">
+                        <div class="header" align="center">
+                            <h2><strong>Berkas Umum</strong></h2>
+                        </div>
+                        <div class="row clearfix">
+                          <div class="body col-lg-12">
+                                <div class="table-responsive">
+                                    <table id="refProkerBerkas" class="table table-bordered table-striped round_edge" style="margin-bottom: 60px">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama file</th>
+                                                <th>Tanggal di-upload</th>
+                                                <th>Download</th>
+                                                <th>Berkas status</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            <?php 
+                                           
+                                                foreach($proker_berkas as $pb){ 
+                                                $idBerkas = $pb->berkas_ID;
+                                                ?>
+                                                <tr>
+                                                    
+                                                    <td><?php echo $pb->berkas_nama; ?></td>
+                                                    <td><?php echo $pb->berkas_tanggal; ?> </td>
+                                                    <td><?php if($bd->berkas_jenis != 'link') { ?>
+                                                          
+                                                          <a href="<?php echo base_url('Berkas_C/download?name='.$pb->berkas_nama) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
+                                                         
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td>
+                                                        <select name="berkas_status" onchange="return change_status(<?php echo $idBerkas ?>, this.value)">
+                                                            <?php if (($pb->berkas_status) == 0) { ?>
+                                                                <option value="0">Belum dikonfirmasi</option>
+                                                                <option value="1">Ditolak</option>
+                                                                <option value="2">Diterima</option>
+                                                            <?php }
+                                                            else if (($pb->berkas_status) == 1) { ?>
+                                                                <option value="1">Ditolak</option>
+                                                                <option value="2">Diterima</option>
+                                                            <?php }
+                                                            else { ?>
+                                                                <option value="2">Diterima</option>
+                                                                <option value="1">Ditolak</option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div> 
 
@@ -163,6 +227,29 @@
             });
             
             return false;
+        }
+
+        function change_status(idBerkas, status) {
+
+            var data = $('.formStatus').serialize();
+
+            $.ajax({
+                type: 'POST',
+                data: {berkas_ID: idBerkas, berkas_status: status},
+                url: "<?php echo base_url('Proker_C/ganti_status_berkas') ?>",
+                success: function() {
+                    Swal.fire({
+                      position: 'top-end',
+                      type: 'success',
+                      title: 'Status diganti',
+                      showConfirmButton: false,
+                      timer: 1500
+                    }) 
+                }
+            });
+            
+            return false;
+
         }
 
          function delConfirm()
