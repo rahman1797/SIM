@@ -193,7 +193,7 @@
                             $('#refAng').load(document.URL +  ' #refAng', function() {
                             ref.children('#refAng').unwrap();});
                             $('#ModalAnggota').modal('hide');
-                            $('.formAnggota')[0].reset();
+                            // $('.formAnggota').reset();
                         })     
                     }
                 });

@@ -50,7 +50,8 @@ class Berkas_C extends CI_Controller {
 	            'id_proker' => $_GET['id_proker'],
 	            'berkas_lembaga' => $_SESSION['user_role'],
 	            'berkas_jenis' =>  $jenis,
-	            'id_opmawa' => $_SESSION['user_opmawa']
+	            'id_opmawa' => $_SESSION['user_opmawa'],
+	            'berkas_status' => 0
 	            );
 	        $result = $this->db->insert('berkas_tbl', $database);
 	        echo "<script>history.go(-1)</script>";
@@ -70,7 +71,8 @@ class Berkas_C extends CI_Controller {
 	            'id_proker' => $id_proker,
 	            'berkas_lembaga' => $_SESSION['user_role'],
 	            'berkas_jenis' =>  $jenis,
-	            'id_opmawa' => $_SESSION['user_opmawa']
+	            'id_opmawa' => $_SESSION['user_opmawa'],
+	            'berkas_status' => 0
 	            );
 	    	$result = $this->db->insert('berkas_tbl', $database);
 		} else {

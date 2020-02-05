@@ -9,6 +9,18 @@ class M_berkas extends CI_Model{
 								));
 	}
 
+	function tampil_berkas_bem(){
+		$id_proker = $_GET['id_proker'];
+		if (!isset($id_proker)) {
+			$id_proker = 0;
+		}
+		return $this->db->get_where('berkas_tbl', array(
+							'berkas_lembaga' => 1,
+							'id_opmawa' => $_SESSION['user_opmawa'],
+							'id_proker' => $id_proker
+						));		
+	}
+
 	function JumlahBerkasProker()
 	{   
 	    $query = $this->db->get_where('berkas_tbl', array('id_proker' => $_GET['id_proker']));

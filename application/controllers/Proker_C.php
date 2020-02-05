@@ -91,6 +91,7 @@ class Proker_C extends CI_Controller {
 			$data['proker_pemasukan'] = $this->M_keuangan->tampil_pemasukan()->result();
 			$data['proker_pengeluaran'] = $this->M_keuangan->tampil_pengeluaran()->result();
 			$data['proker_evaluasi'] = $this->M_proker->tampil_prokerEvaluasi()->result();
+			$data['proker_berkas'] = $this->M_berkas->tampil_berkas_bem();
 
 			$this->load->view('layout/header');
 			$this->load->view('layout/footer');

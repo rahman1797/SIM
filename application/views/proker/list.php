@@ -230,7 +230,7 @@
                         $('#refProker').load(document.URL +  ' #refProker', function() {
                         ref.children('#refProker').unwrap();});
                         $('#ModalProker').modal('hide');
-                        $('.formProker')[0].reset();
+                        // $('.formProker')[0].reset();
                     })     
                 }
             });      
