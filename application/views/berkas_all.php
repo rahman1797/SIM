@@ -177,9 +177,19 @@
                                         if ($idProker == '0') { ?>
                                     <tr>
                                         <td><?php if ($bd->berkas_jenis == 'lpj') {      
-                                                echo "<i class='material-icons' style='color: #13fc03'>info</i> ";
-                                             } 
-                                                echo $bd->berkas_nama; ?></td>
+                                                echo "<i class='material-icons'>class</i> ";
+                                             } ?>
+
+                                            <?php if ($bd->berkas_status == 0) { ?>
+                                                <i class="material-icons">alarm</i>
+                                              <?php } else if ($bd->berkas_status == 1) { ?>
+                                                <i class="material-icons">highlight_off</i>
+                                              <?php } else { ?>
+                                                <i class="material-icons">check_circle</i>
+                                              <?php } 
+                                                echo $bd->berkas_nama;
+                                              ?>
+                                        </td>
                                         <td><?php echo $idToUser['0']['user_nama']; ?></td>
 
                                         <td><?php echo date_format($date, "d M Y H:i:s"); ?></td>

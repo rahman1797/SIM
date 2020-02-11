@@ -122,6 +122,7 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                      <tr>
                                         <?php                     
                                             foreach($berkas_data as $bd){ 
                                                 $idUser = $bd->id_user;
@@ -131,15 +132,20 @@
                                                 if ($idProker == $_GET['id_proker']) {                    
                                             ?>
 
-                                            <?php if ($bd->berkas_jenis == 'lpj') {      
-                                                echo "<tr style='background-color: #13fc03'>";
-                                             } 
-                                              else {
-                                                echo "<tr>";
-                                              }
-                                            ?>
+                                                <td><?php if ($bd->berkas_jenis == 'lpj') {      
+                                                      echo "<i class='material-icons'>class</i> ";
+                                                   } ?>
 
-                                                <td><?php echo $bd->berkas_nama; ?></td>
+                                                  <?php if ($bd->berkas_status == 0) { ?>
+                                                    <i class="material-icons">alarm</i>
+                                                  <?php } else if ($bd->berkas_status == 1) { ?>
+                                                    <i class="material-icons">highlight_off</i>
+                                                  <?php } else { ?>
+                                                    <i class="material-icons">check_circle</i>
+                                                  <?php } 
+                                                    echo $bd->berkas_nama;
+                                                  ?>    
+                                                </td>
                                                 <td><?php echo $idToUser['0']['user_nama']; ?></td>           
                                                 <td><?php echo date_format($date, "d M Y H:i:s"); ?></td>           
                                                 <td>
@@ -169,24 +175,17 @@
                                                  ?>                        
                                                 </td>
                                             </tr>
-                                    
-                                        <?php } 
-
-                                          } ?>
-                                        
+                                        <?php } } ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
                     </div>
                  </div>
-
             </div>
             <!-- #END# Basic Examples -->
         </div>
     </section>
-
 
 
 <!-- Modal Area -->
@@ -291,8 +290,6 @@
     </div>
 </div>
 <!-- #END# Modal Area -->
-
-
 
 <!-- Modal Area -->
 <div class="modal fade" id="ModalLink" tabindex="-1" role="dialog">
