@@ -12,8 +12,8 @@ class Berkas_C extends CI_Controller {
         $this->load->helper('download');
         $this->load->library('upload');
     }
-	
-	function index() {	
+
+	function index() {
 		$data['berkas_data'] = $this->M_berkas->tampil_berkas()->result();
 		$data['proker_data'] = $this->M_proker->tampil_proker()->result();
 		$this->load->view('layout/header');
@@ -21,22 +21,22 @@ class Berkas_C extends CI_Controller {
 		$this->load->view('berkas_all',$data);
 	}
 
-	function proker() {	
+	function proker() {
 		$data['berkas_data'] = $this->M_berkas->tampil_berkas()->result();
 		$this->load->view('layout/header');
 		$this->load->view('layout/footer');
 		$this->load->view('proker/detailProker/prokerBerkas',$data);
 	}
-			
+
 	function uploadBerkas() {
 		$config['upload_path']= 'uploads/'.$_GET['id_proker'].'/';
-	    $config['allowed_types'] = 'gif|jpg|png|txt|pdf|xlsx|csv|xls|bmp|doc|docx'; 
-	    $config['max_size']      = 10000; 
+	    $config['allowed_types'] = 'gif|jpg|png|txt|pdf|xlsx|csv|xls|bmp|doc|docx';
+	    $config['max_size']      = 10000;
 	    if (!is_dir('uploads/' . $_GET['id_proker'])) {
 			mkdir('./uploads/' . $_GET['id_proker'], 0777, TRUE);
 		}
      	$this->upload->initialize($config);
-     	$this->load->library('upload', $config); 
+     	$this->load->library('upload', $config);
      	if ($this->upload->do_upload('userfile')) { //use this function
 	        $data['error'] = false;
 	        $upload_data = $this->upload->data();
@@ -57,7 +57,7 @@ class Berkas_C extends CI_Controller {
 	        echo "<script>history.go(-1)</script>";
 	    } else {
 	    	$data['msg'] = $this->upload->display_errors('', '<br>');
-	     }			    	                 
+	     }
     }
 
     function berkas_link(){

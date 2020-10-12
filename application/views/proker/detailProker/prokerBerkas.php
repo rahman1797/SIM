@@ -8,7 +8,7 @@
       top: 5px;
     }
     .dropzone-wrapper {
-    
+
       border: 2px dashed #91b0b3;
       color: #92b0b3;
       position: relative;
@@ -49,10 +49,10 @@
   <?php $idToProker = $this->M_proker->getProkerNama($_GET['id_proker']);?>
     <section class="content">
         <div class="container-fluid">
-        
+
             <!-- Basic Examples -->
             <div class="row clearfix">
-              
+
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <?php if ($idToProker['0']['proker_tahun'] == $_SESSION['user_tahun']) { ?>
@@ -67,25 +67,25 @@
                               Sebelum mengupload berkas, disarankan untuk me-rename file yang akan di upload agar mempermudah proses pencarian kembali.
                             </div>
                             <div class="col-lg-4 col-sm-4">
-                              <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalUmum" id="round"><i class="material-icons">library_add</i> Berkas non-LPJ</button>  
+                              <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalUmum" id="round"><i class="material-icons">library_add</i> Berkas non-LPJ</button>
                             </div>
                             <div class="col-lg-4 col-sm-4">
                               <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalLpj" id="round"><i class="material-icons">library_add</i> Berkas LPJ</button>
                             </div>
                             <div class="col-lg-4 col-sm-4">
                               <button class="btn btn-lg btn-info waves-effect" data-toggle="modal" data-target="#ModalLink" id="round"><i class="material-icons">library_add</i> Link</button>
-                            </div>                                                                  
+                            </div>
                           </div>
                         </center>
-                          
-                                                
+
+
                     </div>
                     <?php } ?>
-                 </div> 
+                 </div>
 
                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card" id="round">
-                      
+
                            <div class="dropdown text-center">
                               <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" style="width: 75%; background-color: #FF9800 !important">Kelola lainnya
                               <span class="caret"></span></button>
@@ -98,10 +98,10 @@
                                 <li><a href="<?php echo base_url('Proker_C/prokerEvaluasi?id_proker='.$_GET['id_proker']) ?>">Evaluasi</a></li>
                               </ul>
                             </div>
-                        
+
                         <div class="header" align="center">
                             <h2><strong>BERKAS (FILE)</strong><br>"<?= $idToProker['0']['proker_nama'] ?>"</h2>
-                        </div>       
+                        </div>
                         <div class="body">
                             <div class="table-responsive">
                                 <table id="refBerkas" class="table table-bordered table-striped table-hover js-basic-example dataTable round_edge">
@@ -123,16 +123,16 @@
                                     </tfoot>
                                     <tbody>
                                       <tr>
-                                        <?php                     
-                                            foreach($berkas_data as $bd){ 
+                                        <?php
+                                            foreach($berkas_data as $bd){
                                                 $idUser = $bd->id_user;
                                                 $idProker = $bd->id_proker;
                                                 $idToUser = $this->M_user->getUserNama($idUser);
                                                 $date = date_create($bd->berkas_tanggal);
-                                                if ($idProker == $_GET['id_proker']) {                    
+                                                if ($idProker == $_GET['id_proker']) {
                                             ?>
 
-                                                <td><?php if ($bd->berkas_jenis == 'lpj') {      
+                                                <td><?php if ($bd->berkas_jenis == 'lpj') {
                                                       echo "<i class='material-icons'>class</i> ";
                                                    } ?>
 
@@ -142,18 +142,18 @@
                                                     <i class="material-icons">highlight_off</i>
                                                   <?php } else { ?>
                                                     <i class="material-icons">check_circle</i>
-                                                  <?php } 
+                                                  <?php }
                                                     echo $bd->berkas_nama;
-                                                  ?>    
+                                                  ?>
                                                 </td>
-                                                <td><?php echo $idToUser['0']['user_nama']; ?></td>           
-                                                <td><?php echo date_format($date, "d M Y H:i:s"); ?></td>           
+                                                <td><?php echo $idToUser['0']['user_nama']; ?></td>
+                                                <td><?php echo date_format($date, "d M Y H:i:s"); ?></td>
                                                 <td>
-                                                    <?php 
+                                                    <?php
                                                     if($bd->berkas_jenis != 'link') { ?>
-                                                      
+
                                                       <a href="<?php echo base_url('Berkas_C/download?name='.$bd->berkas_nama.'&id_proker='.$idProker) ?>"><button button class="btn btn-info" id="round"><i class="material-icons">cloud_download</i></button></a>
-                                                     
+
                                                     <?php }
 
                                                     if ($idUser == $_SESSION['user_ID']) {
@@ -165,14 +165,14 @@
                                                       elseif ($bd->berkas_jenis != 'link') { ?>
 
                                                          <button class="btn btn-danger" value="<?php echo $bd->berkas_ID ?>" id="round" onclick="return konfirmasiHapus(this.value, <?= $idProker ?>)"><i class="material-icons">delete_forever</i></button>
-                                                      
-                                                      <?php } 
+
+                                                      <?php }
                                                     }
-                                                    
+
                                                     else {
                                                         echo "<button class='btn btn-danger' id='round' disabled><i class='material-icons'>delete_forever</i></button>";
                                                     }
-                                                 ?>                        
+                                                 ?>
                                                 </td>
                                             </tr>
                                         <?php } } ?>
@@ -198,7 +198,7 @@
               <div class="alert alert-warning" id="round">
                   <strong>Informasi!</strong> Form peng-inputan dokumen / berkas non-LPJ.
               </div>
-                
+
               <div class="row" style="padding: 20px">
                 <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker='.$_GET['id_proker']);?>" method="POST" enctype="multipart/form-data" >
                  <div class="col-lg-12">
@@ -206,7 +206,7 @@
                    <div class="preview-zone hidden">
                     <div class="box box-solid">
                      <div class="box-header with-border">
-                     
+
                       <div class="box-tools pull-right">
                        <button type="button" class="btn btn-danger btn-xs remove-preview">
                         <i class="material-icons">autorenew</i> Reset
@@ -228,7 +228,7 @@
                   </div>
                    <button type="submit" class="btn btn-primary" id="round">Upload</button>
                  </div>
-                </form> 
+                </form>
               </div>
 
                 <!-- #END# Form Berkas Umum -->
@@ -250,7 +250,7 @@
               <div class="alert alert-warning" id="round">
                   <strong>Informasi!</strong> Form peng-inputan dokumen / berkas khusus LPJ.
               </div>
-                
+
               <div class="row" style="padding: 20px">
                 <form action="<?php echo site_url('Berkas_C/uploadBerkas?id_proker='.$_GET['id_proker']);?>" method="POST" enctype="multipart/form-data" >
                  <div class="col-lg-12">
@@ -258,7 +258,7 @@
                    <div class="preview-zone hidden">
                     <div class="box box-solid">
                      <div class="box-header with-border">
-                     
+
                       <div class="box-tools pull-right">
                        <button type="button" class="btn btn-danger btn-xs remove-preview">
                         <i class="material-icons">autorenew</i> Reset
@@ -280,7 +280,7 @@
                   </div>
                    <button type="submit" class="btn btn-primary" id="round">Upload</button>
                  </div>
-                </form>  
+                </form>
               </div>
 
                 <!-- #END# Form Berkas Umum -->
@@ -301,7 +301,7 @@
               <div class="alert alert-warning" id="round">
                   <strong>Informasi!</strong> Form peng-inputan dokumen / berkas dalam bentuk link.
               </div>
-                
+
               <div class="row" style="padding: 20px">
                 <!-- <form id="form_validation" name="formLink" class="formLink" action="<?php echo site_url('Berkas_C/berkas_link?id_proker='.$_GET['id_proker']);?>" method="POST" > -->
 
@@ -315,7 +315,7 @@
                   <input type="hidden" name="id_proker" value="<?php echo $_GET['id_proker'] ?>">
                   <input type="hidden" name="berkas_jenis" value="link">
                   <button class="btn btn-primary waves-effect btn-lg" type="submit" id="round">Simpan</button>
-                </form>  
+                </form>
               </div>
 
                 <!-- #END# Form Berkas Umum -->
@@ -333,7 +333,7 @@
 
 function submit_link(){
   var data = $('.formLink').serialize();
-         
+
   $.ajax({
       type: 'POST',
       data: data,
@@ -351,29 +351,29 @@ function submit_link(){
               ref.children('#refBerkas').unwrap();});
               $('#ModalLink').modal('hide');
               $('.formLink')[0].reset();
-          })     
+          })
       }
   });
-  
+
   return false;
 }
 
 function readFile(input) {
    if (input.files && input.files[0]) {
    var reader = new FileReader();
-   
+
    reader.onload = function (e) {
    var htmlPreview = input.files[0].name;
    var wrapperZone = $(input).parent();
    var previewZone = $(input).parent().parent().find('.preview-zone');
    var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
-   
+
    wrapperZone.removeClass('dragover');
    previewZone.removeClass('hidden');
    boxZone.empty();
    boxZone.append(htmlPreview);
    };
-   
+
  reader.readAsDataURL(input.files[0]);
  }
 }
@@ -418,7 +418,7 @@ function konfirmasiHapus(id, id_proker)
     }
 
     else
-    {   
+    {
         $.ajax({
             data: [id, id_proker],
             type: "GET",
@@ -434,7 +434,7 @@ function konfirmasiHapus(id, id_proker)
                     var ref = $('#refBerkas');
                     $('#refBerkas').load(document.URL +  ' #refBerkas', function() {
                     ref.children('#refBerkas').unwrap();});
-                }) 
+                })
               },
               error: function(data){
                 alert('Failed deleting data ');
@@ -448,14 +448,14 @@ function konfirmasiHapus_link(id)
 {
 
     job = confirm("Are you sure to delete permanently?");
-    
+
     if(job != true)
     {
         return false;
     }
 
     else
-    {   
+    {
         $.ajax({
             data: id,
             type: "GET",
@@ -471,7 +471,7 @@ function konfirmasiHapus_link(id)
                     var ref = $('#refBerkas');
                     $('#refBerkas').load(document.URL +  ' #refBerkas', function() {
                     ref.children('#refBerkas').unwrap();});
-                }) 
+                })
               },
               error: function(data){
                 alert('Failed deleting data ');
@@ -480,4 +480,3 @@ function konfirmasiHapus_link(id)
     }
 }
 </script>
-
